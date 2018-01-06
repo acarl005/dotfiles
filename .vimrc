@@ -31,7 +31,6 @@ Plugin 'scrooloose/nerdtree' " a file explorer
 Plugin 'AndrewRadev/splitjoin.vim' " switch formatting of objects between one-line and multi-line with gj and gS
 Plugin 'skammer/vim-swaplines' " move lines up or down
 Plugin 'eapache/rainbow_parentheses.vim' " color parentheses based on depth
-Plugin 'sagarrakshe/toggle-bool' " shortcut for toggling booleans in whatever language
 Plugin 'mileszs/ack.vim' " call ack command from vim
 
 Plugin 'scrooloose/syntastic' " inline syntax checker

@@ -318,13 +318,17 @@ if [ -d "$HOME/Go" ]; then
   PATH="$GOPATH/bin:$PATH"
 fi
 
+if [[ `which java` ]]; then
+  if [[ `uname -s` = Linux ]]; then
+    export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+  else 
+    export JAVA_HOME=/usr/libexec/java_home
+  fi
+fi
+
 # include rabbitmq commands
 if [ -d /usr/local/sbin ]; then
   PATH="$PATH:/usr/local/sbin"
 fi
 
-# set java home
-if [[ `which java` ]]; then
-  export JAVA_HOME=`/usr/libexec/java_home`
-fi
-
+source /usr/share/autojump/autojump.bash
