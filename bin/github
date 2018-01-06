@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # pushes local git repo to github
 c_reset='\033[0m'
 c_red='\033[0;31;40m'
