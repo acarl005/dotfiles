@@ -1,15 +1,17 @@
+#!/bin/bash
+
 ln -s $PWD/bin ~/bin
 ln -s $PWD/.bashrc ~/.bashrc
-ls -s $PWD/.bash_aliases ~/.bash_aliases
-ls -s $PWD/.bash_completions ~/.bash_completions
-ls -s $PWD/.gitconfig ~/.gitconfig
-ls -s $PWD/.gitignore_global ~/.gitignore_global
-ls -s $PWD/.inputrc ~/.inputrc
-ls -s $PWD/.pryrc ~/.pryrc
-ls -s $PWD/.psqlrc ~/.psqlrc
-ls -s $PWD/.mongorc.js ~/.mongorc.js
-ls -s $PWD/.pythonrc.py ~/.pythonrc.py
-ls -s $PWD/.vimrc ~/.vimrc
+ln -s $PWD/.bash_aliases ~/.bash_aliases
+ln -s $PWD/.bash_completions ~/.bash_completions
+ln -s $PWD/.gitconfig ~/.gitconfig
+ln -s $PWD/.gitignore_global ~/.gitignore_global
+ln -s $PWD/.inputrc ~/.inputrc
+ln -s $PWD/.pryrc ~/.pryrc
+ln -s $PWD/.psqlrc ~/.psqlrc
+ln -s $PWD/.mongorc.js ~/.mongorc.js
+ln -s $PWD/.pythonrc.py ~/.pythonrc.py
+ln -s $PWD/.vimrc ~/.vimrc
 
 if [[ $(uname) = Darwin ]]; then
   . mac-packages.sh
@@ -19,10 +21,11 @@ fi
 
 # install more most up-to-date git and vim
 git clone https://github.com/powerline/fonts ~/Downloads/fonts
-cd !$
+pushd ~/Downloads/fonts
 ./install.sh
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
+popd
 
 if [[ $(uname) = Darwin ]]; then
   defaults import com.googlecode.iterm2 iterm2.plist

@@ -57,6 +57,12 @@ if [ -d "$HOME/bin" ]; then
   PATH="$HOME/bin:$PATH"
 fi
 
+export NVM_DIR="/Users/andy/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && {
+  . "$NVM_DIR/nvm.sh"  # This loads nvm
+  export NODE_PATH="$HOME/.nvm/versions/node/$(node -v)/lib/node_modules"
+}
+
 # use the version of Git i installed with homebrew instead of the one that came with the OS
 if brew --prefix git >/dev/null 2>&1; then
   PATH="$(brew --prefix git)/bin:$PATH"
@@ -305,12 +311,6 @@ export PYTHONSTARTUP=$HOME/.pythonrc.py
 export PATH="$HOME/.yarn/bin:$HOME/Downloads/spark-2.0.2-bin-hadoop2.7/bin:$PATH"
 
 export NPM_TOKEN=00000000-0000-0000-0000-000000000000
-
-export NVM_DIR="/Users/andy/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && {
-  . "$NVM_DIR/nvm.sh"  # This loads nvm
-  export NODE_PATH="$HOME/.nvm/versions/node/$(node -v)/lib/node_modules"
-}
 
 # include Golang stuff
 if [ -d "$HOME/Go" ]; then

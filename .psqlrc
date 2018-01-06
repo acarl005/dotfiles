@@ -1,0 +1,18 @@
+\set QUIET 1
+\pset null '_'
+
+-- prevents very long lines from wrapping
+\setenv PAGER 'less -S'
+
+-- Customize prompts
+\set PROMPT1 '%[%033[0;37m%]🐘 %[%033[1;36m%][%n@%/] %[%033[0m%]%R> '
+\set PROMPT2 '... %R> '
+
+-- Show how long each query takes to execute
+\timing
+
+-- Use best available output format
+\set VERBOSITY verbose
+\set HISTCONTROL ignoredups
+\set COMP_KEYWORD_CASE upper
+\unset QUIET
