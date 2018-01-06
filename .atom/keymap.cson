@@ -1,0 +1,13 @@
+'.editor':
+  'alt-c': 'custom:console-log'
+  'alt-a': 'custom:ansi-color'
+  'alt-;': 'custom:semicolon-end'
+  'alt-l': 'custom:semicolon-inside'
+  'alt-x': 'custom:remove-block'
+  'ctrl-cmd-j': 'editor:move-line-down'
+  'ctrl-cmd-k': 'editor:move-line-up'
+
+'atom-text-editor':
+  'ctrl-shift-M': 'bracket-matcher:select-inside-brackets'
+  'alt-shift-M': 'markdown-preview:toggle'
+  'alt-shift-G': 'open-on-github:file'

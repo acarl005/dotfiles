@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# takes the list of arguments which is presumed to be file names,
+# attempts to find out the mimetype with `file` command,
+# extracts the file name and mimetype with `sed`
+# and feed each result to `mv` to append the appropriate file extension
+file --mime "$@" | sed -E 's/^([^:]+): [a-zA-Z]+\/([a-zA-Z]+).*/\1 \1.\2/g' | xargs -n 2 mv
+

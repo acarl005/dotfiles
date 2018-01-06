@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# connects to local postgres database and DROPs any databases with "test-" in front of the name
+
+for db in `psql -c 'SELECT datname FROM pg_database WHERE datistemplate = false;'`; do
+  if [[ $db = test-* ]]; then
+    dropdb $db
+    echo dropped $db
+  fi
+done

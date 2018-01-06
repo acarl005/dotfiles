@@ -1,0 +1,34 @@
+"*":
+  core:
+    ignoredNames: [
+      ".git"
+      ".hg"
+      ".svn"
+      ".DS_Store"
+      "._*"
+      "Thumbs.db"
+      "desktop.ini"
+      "*.pyc"
+    ]
+    telemetryConsent: "limited"
+    themes: [
+      "one-dark-ui"
+      "atom-dark-syntax"
+    ]
+  editor:
+    fontSize: 24
+    invisibles:
+      eol: " "
+    showInvisibles: true
+  "exception-reporting":
+    userId: "8bb1bede-d845-4c77-9500-44049ce21f88"
+  "ide-flowtype":
+    tryFlowBin: true
+  "linter-ui-default": {}
+  termination:
+    style:
+      fontFamily: "Inconsolata for Powerline"
+  "vim-mode-plus":
+    notifiedCoffeeScriptNoLongerSupportedToExtendVMP: true
+  welcome:
+    showOnStartup: false

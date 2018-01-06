@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#dumps iterm config to this repo
+
+SOURCE=$BASH_SOURCE
+
+# follow simlink
+if [ -h $SOURCE ]; then
+  SOURCE=$(greadlink -f $SOURCE)
+fi
+
+# go back up 2 directories
+SOURCE=$(dirname $(dirname $SOURCE))
+builtin cd $SOURCE
+
+defaults export com.googlecode.iterm2 ./iterm2.plist
+

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# looks up a key (2nd arg) in a JSON string (1st arg) and prints its value
+
+node_script="console.log(JSON.parse(\`$1\`)['$2'] || '');"
+echo $(node -e "$node_script")
