@@ -331,4 +331,6 @@ if [ -d /usr/local/sbin ]; then
   PATH="$PATH:/usr/local/sbin"
 fi
 
-source /usr/share/autojump/autojump.bash
+if [[ `uname -s` = Linux ]]; then
+  source /usr/share/autojump/autojump.bash
+fi
