@@ -48,7 +48,7 @@ else
   echo -e "[48;5;m  [0m[48;5;95m      [0m[48;5;33m            [0m[48;5;m            [0m"
   echo -e "[48;5;m  [0m[48;5;95m    [0m[48;5;m                          [0m"
   echo
-  suggest screenfetch https://github.com/KittyKatt/screenFetch
+  suggest neofetch https://github.com/dylanaraps/neofetch
 fi
 
 
@@ -57,7 +57,7 @@ if [ -d "$HOME/bin" ]; then
   PATH="$HOME/bin:$PATH"
 fi
 
-export NVM_DIR="/Users/andy/.nvm"
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && {
   . "$NVM_DIR/nvm.sh"  # This loads nvm
   export NODE_PATH="$HOME/.nvm/versions/node/$(node -v)/lib/node_modules"
@@ -308,9 +308,7 @@ export PYTHONSTARTUP=$HOME/.pythonrc.py
 ####################
 
 # added by travis gem
-[ -f /Users/andy/.travis/travis.sh ] && source /Users/andy/.travis/travis.sh
-
-export PATH="$HOME/.yarn/bin:$HOME/Downloads/spark-2.0.2-bin-hadoop2.7/bin:$PATH"
+[ -f $HOME/.travis/travis.sh ] && source /Users/andy/.travis/travis.sh
 
 export NPM_TOKEN=00000000-0000-0000-0000-000000000000
 
