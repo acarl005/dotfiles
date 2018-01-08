@@ -107,6 +107,8 @@ generate_prompt() {
   ENV_STR=
   if [[ $VIRTUAL_ENV ]]; then
     ENV_STR="${ENV_STR}🐍 "
+  elif [[ `which conda` ]]; then
+    ENV_STR="${ENV_STR}🐍 $(conda info --envs | grep '*' | awk '{print $1}')"
   fi
   if [ ! -z $rvm_bin_path ]; then
     ENV_STR="${ENV_STR}💎 "
