@@ -63,6 +63,12 @@ export NVM_DIR="$HOME/.nvm"
   export NODE_PATH="$HOME/.nvm/versions/node/$(node -v)/lib/node_modules"
 }
 
+# include Golang stuff
+if [ -d "$HOME/Go" ]; then
+  export GOPATH="$HOME/Go"
+  PATH="$GOPATH/bin:$PATH"
+fi
+
 # use the version of Git i installed with homebrew instead of the one that came with the OS
 if brew --prefix git >/dev/null 2>&1; then
   PATH="$(brew --prefix git)/bin:$PATH"
@@ -191,10 +197,10 @@ export GREP_OPTIONS='--color=auto'
 # [[ $(which atom) ]] && export EDITOR=atom
 export EDITOR=vim
 
-if [[ `which ls-color` ]]; then
-  alias ll='ls-color -laiI'
+if [[ `which ls-go` ]]; then
+  alias ll='ls-go -alLRkSi'
 else
-  suggest color-ls https://github.com/acarl005/color-ls
+  suggest ls-go https://github.com/acarl005/ls-go
   alias ll='/bin/ls -FGlAhp'
 fi
 
@@ -311,12 +317,6 @@ export PYTHONSTARTUP=$HOME/.pythonrc.py
 [ -f $HOME/.travis/travis.sh ] && source /Users/andy/.travis/travis.sh
 
 export NPM_TOKEN=00000000-0000-0000-0000-000000000000
-
-# include Golang stuff
-if [ -d "$HOME/Go" ]; then
-  export GOPATH="$HOME/Go"
-  PATH="$GOPATH/bin:$PATH"
-fi
 
 if [[ `which java` ]]; then
   if [[ `uname -s` = Linux ]]; then
