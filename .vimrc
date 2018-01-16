@@ -40,6 +40,7 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'elzr/vim-json' " better json highlighting 
 Plugin 'derekwyatt/vim-scala'
 Plugin 'exu/pgsql.vim' " postgres-specific SQL syntax
+Plugin 'fatih/vim-go'
 
 " a pretty status line 
 " requires installation of this font package on OSX:
@@ -137,11 +138,14 @@ set laststatus=2 " always show the status bar
 "set statusline+=%c,%l/%L@%P\  " show column, line, line-count, and percent from top of file
 "set statusline+=%b,0x%-8B\                   " current char
 
+" vim-go options
+let g:go_def_mapping_enabled = 0
+
 " indentline options
 let g:indentLine_color_term = 236
 let g:indentLine_char = '𝄄'
 " syntastic options
-"let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_checkers = ['eslint']
 "let g:syntastic_javascript_eslint_exec = 'eslint_d'
 let g:syntastic_python_checkers = ['pyflakes']
 "let g:syntastic_mode_map = { "mode": "passive" }
@@ -153,6 +157,9 @@ let g:syntastic_check_on_wq = 0
 
 " set default SQL dialect to postgres. used with 'exu/pgsql.vim'
 let g:sql_type_default = 'pgsql'
+
+" nerd commenter align to the left
+let g:NERDDefaultAlign = 'left'
 
 " CtrlP options
 let g:ctrlp_map = '<c-p>'
@@ -176,12 +183,6 @@ let g:omni_sql_no_default_maps = 1
 " custom key mappings
 " when in insert mode, insert line above
 imap <nowait> <C-l> <C-c>O
-" insert console.log (alt+c)
-imap <nowait> ç console.log()<ESC>i
-" wrap in JSON.stringify (alt+j)
-imap <nowait> ∆ JSON.stringify(, null, 2)<ESC>2F,i
-imap <nowait> ß // eslint-disable-line
-imap <nowait> † require('util').inspect(, { depth: 10, color: true<C-c>f}a))<ESC>2F,i
 " pretty format for a JSON file. just press =j
 nmap =j :%!python -m json.tool<CR>
 " open new tab
