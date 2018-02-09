@@ -112,12 +112,12 @@ generate_prompt() {
   ENV_BG=27
   ENV_STR=
   if [[ $VIRTUAL_ENV ]]; then
-    ENV_STR="${ENV_STR}🐍 "
+    ENV_STR=" $(basename $VIRTUAL_ENV) "
   elif [[ $CONDA_PREFIX ]]; then
-    ENV_STR="🐍 $(basename $CONDA_PREFIX)"
+    ENV_STR=" $(basename $CONDA_PREFIX)"
   fi
   if [ ! -z $rvm_bin_path ]; then
-    ENV_STR="${ENV_STR}💎 "
+    ENV_STR=" $RUBY_VERSION"
   fi
 
   DIR_BG=54
@@ -152,7 +152,6 @@ generate_prompt() {
   if [[ $(pwd) != "$HOME"* ]]; then
     DIR_BG=235
     DIR_FG=210
-    DIR_STR="💀 $DIR_STR"
   fi
 
   GIT_BG=
