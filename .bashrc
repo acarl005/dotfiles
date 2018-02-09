@@ -1,6 +1,6 @@
 # function for generating escaped color codes
 fg_bg_esc() {
-  echo "\\[\\e[0;38;5;${1};48;5;${2};1m\\]"
+  echo "\\[\\e[0;38;5;${1};48;5;${2}m\\]"
 }
 fg_esc() {
   echo "\\[\\e[0;38;5;${1};49;22m\\]"
@@ -96,7 +96,7 @@ fi
 # PS1 is the variable for the prompt you see when terminal is awaiting input
 # the echo uses an escape sequence to update the current tab name if the terminal supports multiple tabs
 # the history part makes sure the history from all tabs gets saved to .bash_history after they are closed
-PROMPT_COMMAND='EXIT=$?; echo -ne "\033]0;$(basename $(pwd))\007"; history -a; history -r; PS1="$(generate_prompt) ${reset_esc}";'
+PROMPT_COMMAND='EXIT_STAT=$?; echo -ne "\033]0;$(basename $(pwd))\007"; history -a; history -r; PS1="$(generate_prompt) ${reset_esc}";'
 export PS2='... '
 
 HISTSIZE=3000
@@ -104,17 +104,17 @@ HISTSIZE=3000
 generate_prompt() {
   STATUS_BG=196
   STATUS_STR='✘ '
-  if [[ $EXIT = 0 ]]; then
+  if [[ $EXIT_STAT = 0 ]]; then
     STATUS_BG=40
-    STATUS_STR='✔︎ '
+    STATUS_STR='✓ '
   fi
 
   ENV_BG=27
   ENV_STR=
   if [[ $VIRTUAL_ENV ]]; then
     ENV_STR="${ENV_STR}🐍 "
-  elif [[ `which conda` ]]; then
-    ENV_STR="${ENV_STR}🐍 $(conda info --envs | grep '*' | awk '{print $1}')"
+  elif [[ $CONDA_PREFIX ]]; then
+    ENV_STR="🐍 $(basename $CONDA_PREFIX)"
   fi
   if [ ! -z $rvm_bin_path ]; then
     ENV_STR="${ENV_STR}💎 "
@@ -198,7 +198,7 @@ export GREP_OPTIONS='--color=auto'
 export EDITOR=vim
 
 if [[ `which ls-go` ]]; then
-  alias ll='ls-go -alLRkSi'
+  alias ll='ls-go -alLRkSn'
 else
   suggest ls-go https://github.com/acarl005/ls-go
   alias ll='/bin/ls -FGlAhp'
@@ -334,3 +334,8 @@ fi
 if [[ `uname -s` = Linux ]]; then
   source /usr/share/autojump/autojump.bash
 fi
+
+if [ -d ~/miniconda ]; then
+  PATH="$PATH:$HOME/miniconda/bin"
+fi
+

@@ -8,6 +8,8 @@ alias mkdir='mkdir -pv'
 alias ls='ls -Gp'
 alias less='less -SXcmiJF'
 alias rn='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+# https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo
+alias sudo='sudo '
 
 # write the zsh commands for going up directories by typing a number of dots
 DOTS=..
@@ -75,3 +77,4 @@ alias gti=git
 alias npmi='npm i'
 alias gits='git s'
 
+alias w205='docker run -it --rm -v /Users/andy/Documents/MIDS/w205/docker-volume:/w205 midsw205/base:latest bash'

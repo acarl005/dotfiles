@@ -32,6 +32,7 @@ Plugin 'AndrewRadev/splitjoin.vim' " switch formatting of objects between one-li
 Plugin 'skammer/vim-swaplines' " move lines up or down
 Plugin 'eapache/rainbow_parentheses.vim' " color parentheses based on depth
 Plugin 'mileszs/ack.vim' " call ack command from vim
+Plugin 'ryanoasis/vim-devicons' " add icons for specific file types
 
 Plugin 'scrooloose/syntastic' " inline syntax checker
 Plugin 'jelera/vim-javascript-syntax' " better js highlighting
@@ -41,6 +42,7 @@ Plugin 'elzr/vim-json' " better json highlighting
 Plugin 'derekwyatt/vim-scala'
 Plugin 'exu/pgsql.vim' " postgres-specific SQL syntax
 Plugin 'fatih/vim-go'
+Plugin 'b4b4r07/vim-hcl' " syntax highlighting for Hashi Configuration Language (HCL)
 
 " a pretty status line 
 " requires installation of this font package on OSX:
