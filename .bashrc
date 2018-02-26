@@ -258,9 +258,14 @@ docker-clean() {
   docker rmi $(docker images -q)
 }
 
-
-#full recursive directory listing
-alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
+# set some global bash options that i like
+shopt -s extglob # enable extended glob patterns
+shopt -s no_empty_cmd_completion # don't try to autocomplete empty line
+# these are only available on bash version >= 4
+if [ ${BASH_VERSION:0:1} -ge 4 ]; then
+  shopt -s autocd # if you type non-existent command, and it happens to be a dir name, cd into that dir
+  shopt -s globstar # enable recursive glob patterns, e.g. **/*.js
+fi
 
 #extract most known archives
 extract() {

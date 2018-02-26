@@ -33,6 +33,7 @@ Plugin 'skammer/vim-swaplines' " move lines up or down
 Plugin 'eapache/rainbow_parentheses.vim' " color parentheses based on depth
 Plugin 'mileszs/ack.vim' " call ack command from vim
 Plugin 'ryanoasis/vim-devicons' " add icons for specific file types
+Plugin 'majutsushi/tagbar' " adds a tagbar
 
 Plugin 'scrooloose/syntastic' " inline syntax checker
 Plugin 'jelera/vim-javascript-syntax' " better js highlighting

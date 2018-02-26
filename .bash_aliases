@@ -11,6 +11,10 @@ alias rn='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; c
 # https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo
 alias sudo='sudo '
 
+
+#full recursive directory listing
+alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
+
 # write the zsh commands for going up directories by typing a number of dots
 DOTS=..
 ARG=..
@@ -53,13 +57,14 @@ alias r='r --no-save'
 alias grip='grip -b'
 alias https='http --default-scheme=https'
 alias conk="conky -d -c ~/.conky/conkyrc_seamod"
+alias root='cd $(git root)'
 
 alias fm=foreman
 alias ipy=ipython
 alias py=python
 alias py3=python3
-alias ns="npm start"
-alias root='cd $(git root)'
+alias jn='jupyter-notebook'
+alias jl='jupyter-lab'
 alias rstudio='open -a rstudio'
 
 # work stuff
