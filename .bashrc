@@ -317,9 +317,6 @@ export PYTHONSTARTUP=$HOME/.pythonrc.py
 # disposable stuff #
 ####################
 
-# added by travis gem
-[ -f $HOME/.travis/travis.sh ] && source /Users/andy/.travis/travis.sh
-
 export NPM_TOKEN=00000000-0000-0000-0000-000000000000
 
 if [[ `which java` ]]; then
@@ -336,10 +333,8 @@ if [ -d /usr/local/sbin ]; then
 fi
 
 if [[ `uname -s` = Linux ]]; then
-  source /usr/share/autojump/autojump.bash
-fi
-
-if [ -d ~/miniconda ]; then
-  PATH="$PATH:$HOME/miniconda/bin"
+  [ -f /usr/share/autojump/autojump.bash ] && . /usr/share/autojump/autojump.bash
+else
+  [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 fi
 
