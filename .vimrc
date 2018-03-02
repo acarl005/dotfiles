@@ -44,6 +44,7 @@ Plugin 'derekwyatt/vim-scala'
 Plugin 'exu/pgsql.vim' " postgres-specific SQL syntax
 Plugin 'fatih/vim-go'
 Plugin 'b4b4r07/vim-hcl' " syntax highlighting for Hashi Configuration Language (HCL)
+Plugin 'fatih/vim-hclfmt'
 
 " a pretty status line 
 " requires installation of this font package on OSX:
@@ -149,8 +150,8 @@ let g:indentLine_color_term = 236
 let g:indentLine_char = '𝄄'
 " syntastic options
 let g:syntastic_javascript_checkers = ['eslint']
-"let g:syntastic_javascript_eslint_exec = 'eslint_d'
 let g:syntastic_python_checkers = ['pyflakes']
+let g:syntaxtic_bash_checkers = ['shellcheck']
 "let g:syntastic_mode_map = { "mode": "passive" }
 let g:jsx_ext_required = 0
 let g:syntastic_always_populate_loc_list = 0

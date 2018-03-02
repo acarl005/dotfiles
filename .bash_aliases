@@ -66,6 +66,8 @@ alias py3=python3
 alias jn='jupyter-notebook'
 alias jl='jupyter-lab'
 alias rstudio='open -a rstudio'
+alias tf=terraform
+alias tg=terragrunt
 
 # work stuff
 alias bastion='ssh -A ec2-user@54.208.41.126'

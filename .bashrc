@@ -334,6 +334,7 @@ fi
 
 if [[ `uname -s` = Linux ]]; then
   [ -f /usr/share/autojump/autojump.bash ] && . /usr/share/autojump/autojump.bash
+  [ -f /usr/share/autojump/autojump.sh ] && . /usr/share/autojump/autojump.sh
 else
   [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 fi
