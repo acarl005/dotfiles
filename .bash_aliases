@@ -84,4 +84,5 @@ alias gti=git
 alias npmi='npm i'
 alias gits='git s'
 
-alias w205='docker run -it --rm -v /Users/andy/Documents/MIDS/w205/docker-volume:/w205 midsw205/base:latest bash'
+alias w205="docker run -it --rm -v $HOME/Documents/MIDS/w205/docker-volume:/w205 midsw205/base:latest bash"
+

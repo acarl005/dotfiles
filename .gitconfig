@@ -50,7 +50,7 @@
 
 
 [credential]
-  helper = osxkeychain
+  helper = store
 
 [merge]
 	tool = vimdiff
