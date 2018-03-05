@@ -5,7 +5,7 @@ else
 fi
 
 brew tap caskroom/fonts
-brew install ack autojump git vim coreutils neofetch node bash
+brew install ack autojump git vim coreutils neofetch bash
 brew cask install font-inconsolata-nerd-font
 
 # tell it to use the new installed version of bash
