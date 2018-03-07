@@ -21,12 +21,13 @@ reset='\033[0m'
 
 # print a message if a dependency is missing
 suggest() {
-  if [ -z "$SSH_TTY" ]; then
+  # but only print if interactive
+  if [[ $- =~ "i" ]]; then
     echo -e "$(backg 52)You can \033[4menhance\033[24m the experience by installing $(forg 51)$1$reset$(backg 52). Install here $(forg 199)$2$reset."
   fi
 }
 
-if [ -z "$SSH_TTY" ]; then
+if [[ $- =~ "i" ]]; then
   if [[ `which neofetch` ]]; then
     neofetch
   else
