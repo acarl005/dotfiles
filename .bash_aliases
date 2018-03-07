@@ -5,7 +5,11 @@ alias grep='grep --exclude-dir=node_modules'
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias mkdir='mkdir -pv'
-alias ls='ls -Gp'
+if [[ `uname -s` = Linux ]]; then
+  alias ls='ls -p --color=auto'
+else
+  alias ls='ls -Gp'
+fi
 alias less='less -SXcmiJF'
 alias rn='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 # https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo
