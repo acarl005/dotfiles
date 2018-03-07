@@ -200,7 +200,11 @@ if [[ `which ls-go` ]]; then
   alias ll='ls-go -alLRkSn'
 else
   suggest ls-go https://github.com/acarl005/ls-go
-  alias ll='/bin/ls -FGlAhp'
+  if [[ `uname -s` = Linux ]]; then
+    alias ll='/bin/ls -FlAhp --color=auto'
+  else
+    alias ll='/bin/ls -FGlAhp'
+  fi
 fi
 
 # Alias definitions.
