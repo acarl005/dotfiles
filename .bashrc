@@ -116,12 +116,15 @@ generate_prompt() {
   ENV_BG=27
   ENV_STR=
   if [[ $VIRTUAL_ENV ]]; then
-    ENV_STR=" $(basename $VIRTUAL_ENV) "
+    ENV_STR="$ENV_STR $(basename $VIRTUAL_ENV) "
   elif [[ $CONDA_PREFIX ]]; then
-    ENV_STR=" $(basename $CONDA_PREFIX)"
+    ENV_STR="$ENV_STR $(basename $CONDA_PREFIX)"
   fi
   if [ ! -z $rvm_bin_path ]; then
-    ENV_STR=" $RUBY_VERSION"
+    ENV_STR="$ENV_STR $RUBY_VERSION"
+  fi
+  if [ ! -z $SSH_TTY ]; then
+    ENV_STR="$ENV_STR $SSH_TTY"
   fi
 
   DIR_BG=54
