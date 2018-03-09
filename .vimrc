@@ -121,7 +121,11 @@ set ignorecase " searches are case insensitive
 set smartcase " searches become case sensitive when you enter capital letters
 set hlsearch " highlight the current search term
 set incsearch " highight search incrementally
-set clipboard=unnamed " the vim clipboard is be the same as the system clipboard. requires vim to be compiled with the +clipboard option if you run :echo has('clipboard') and it returns 0, you need to re-install vim to make use of this
+if $TMUX == ''
+  " the vim clipboard is be the same as the system clipboard. requires vim to be compiled with the +clipboard option if you run :echo has('clipboard') and it returns 0, you need to re-install vim to make use of this
+  " this doesnt work on TMUX though, so guard with if statement
+  set clipboard=unnamed
+endif
 set backspace=indent,eol,start " enable backspace button
 set scrolloff=15 " vim will automatically adjust viewport to leave at least 15 lines above and below cursor when possible
 set wildignore=*/node_modules/*,*.swp,*.zip,*/dist/*
