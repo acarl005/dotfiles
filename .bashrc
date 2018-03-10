@@ -124,7 +124,7 @@ generate_prompt() {
     ENV_STR="$ENV_STR $RUBY_VERSION"
   fi
   if [ ! -z $SSH_TTY ]; then
-    ENV_STR="$ENV_STR $SSH_TTY"
+    ENV_STR="$ENV_STR \u@\h"
   fi
 
   DIR_BG=54
@@ -175,13 +175,13 @@ generate_prompt() {
   fi
 
   PROMPT_STR="$(fg_bg_esc 16 $STATUS_BG)$STATUS_STR"
-  if [[ ! -z $ENV_STR ]]; then
+  if [ ! -z $ENV_STR ]; then
     PROMPT_STR="$PROMPT_STR$(fg_bg_esc $STATUS_BG $ENV_BG)$(fg_bg_esc 255 $ENV_BG)$ENV_STR  $(fg_bg_esc $ENV_BG $DIR_BG)"
   else
     PROMPT_STR="$PROMPT_STR$(fg_bg_esc $STATUS_BG $DIR_BG)"
   fi
   PROMPT_STR="$PROMPT_STR$(fg_bg_esc $DIR_FG $DIR_BG) $DIR_STR "
-  if [[ -z $GIT_STR ]]; then
+  if [ -z $GIT_STR ]; then
     PROMPT_STR="$PROMPT_STR$(fg_esc $DIR_BG)"
   else
     PROMPT_STR="$PROMPT_STR$(fg_bg_esc $DIR_BG $GIT_BG)$(fg_bg_esc 255 $GIT_BG) $GIT_STR $(fg_esc $GIT_BG)"
