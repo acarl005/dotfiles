@@ -89,6 +89,3 @@ alias npmi='npm i'
 alias gits='git s'
 
 alias w205="docker run -it --rm -v $HOME/Documents/MIDS/w205/docker-volume:/w205 midsw205/base:latest bash"
-export w205_ip=138.197.200.168
-export stem_ip=24.43.134.70
-
