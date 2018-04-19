@@ -74,4 +74,4 @@ alias tit=git
 alias gti=git
 alias npmi='npm i'
 alias gits='git s'
-
+alias cls='printf "\033c"'
