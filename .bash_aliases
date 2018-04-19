@@ -5,9 +5,19 @@ alias grep='grep --exclude-dir=node_modules'
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias mkdir='mkdir -pv'
-alias ls='ls -Gp'
+if [[ `uname -s` = Linux ]]; then
+  alias ls='ls -p --color=auto'
+else
+  alias ls='ls -Gp'
+fi
 alias less='less -SXcmiJF'
 alias rn='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+# https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo
+alias sudo='sudo '
+
+
+#full recursive directory listing
+alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
 
 # write the zsh commands for going up directories by typing a number of dots
 DOTS=..
@@ -51,14 +61,18 @@ alias r='r --no-save'
 alias grip='grip -b'
 alias https='http --default-scheme=https'
 alias conk="conky -d -c ~/.conky/conkyrc_seamod"
+alias root='cd $(git root)'
 
 alias fm=foreman
 alias ipy=ipython
 alias py=python
 alias py3=python3
-alias ns="npm start"
-alias root='cd $(git root)'
+alias jn='jupyter-notebook'
+alias jl='jupyter-lab'
 alias rstudio='open -a rstudio'
+alias tf=terraform
+alias tg=terragrunt
+alias cls='printf "\033c"'
 
 # work stuff
 alias bastion='ssh -A ec2-user@54.208.41.126'
@@ -74,4 +88,6 @@ alias tit=git
 alias gti=git
 alias npmi='npm i'
 alias gits='git s'
-alias cls='printf "\033c"'
+
+alias w205="docker run -it --rm -v $HOME/Documents/MIDS/w205/docker-volume:/w205 midsw205/base:latest bash"
+>>>>>>> cbe3bdcbf572721aa5e2b79a43fff798567c57aa

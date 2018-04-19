@@ -12,21 +12,21 @@ from datetime import datetime
 # wrap in try blocks because they may or may not be installed
 try:
     import numpy as np
-except ModuleNotFoundError:
+except ImportError:
     pass
 
 try:
     from matplotlib import pyplot as plt
-except ModuleNotFoundError:
+except ImportError:
     pass
 
 try:
     import pandas as pd
-except ModuleNotFoundError:
+except ImportError:
     pass
 
 try:
     import fuck
-except ModuleNotFoundError:
+except ImportError:
     pass
 

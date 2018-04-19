@@ -57,3 +57,7 @@
 
 [rebase]
   instructionFormat = ">%h (%an <%ae>) %s"
+[mergetool "nbdime"]
+	cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+[mergetool]
+	prompt = false

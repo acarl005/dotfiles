@@ -32,6 +32,8 @@ Plugin 'AndrewRadev/splitjoin.vim' " switch formatting of objects between one-li
 Plugin 'skammer/vim-swaplines' " move lines up or down
 Plugin 'eapache/rainbow_parentheses.vim' " color parentheses based on depth
 Plugin 'mileszs/ack.vim' " call ack command from vim
+Plugin 'ryanoasis/vim-devicons' " add icons for specific file types
+Plugin 'majutsushi/tagbar' " adds a tagbar
 
 Plugin 'scrooloose/syntastic' " inline syntax checker
 Plugin 'jelera/vim-javascript-syntax' " better js highlighting
@@ -41,6 +43,8 @@ Plugin 'elzr/vim-json' " better json highlighting
 Plugin 'derekwyatt/vim-scala'
 Plugin 'exu/pgsql.vim' " postgres-specific SQL syntax
 Plugin 'fatih/vim-go'
+Plugin 'b4b4r07/vim-hcl' " syntax highlighting for Hashi Configuration Language (HCL)
+Plugin 'fatih/vim-hclfmt'
 
 " a pretty status line 
 " requires installation of this font package on OSX:
@@ -117,7 +121,11 @@ set ignorecase " searches are case insensitive
 set smartcase " searches become case sensitive when you enter capital letters
 set hlsearch " highlight the current search term
 set incsearch " highight search incrementally
-set clipboard=unnamed " the vim clipboard is be the same as the system clipboard. requires vim to be compiled with the +clipboard option if you run :echo has('clipboard') and it returns 0, you need to re-install vim to make use of this
+if $TMUX == ''
+  " the vim clipboard is be the same as the system clipboard. requires vim to be compiled with the +clipboard option if you run :echo has('clipboard') and it returns 0, you need to re-install vim to make use of this
+  " this doesnt work on TMUX though, so guard with if statement
+  set clipboard=unnamed
+endif
 set backspace=indent,eol,start " enable backspace button
 set scrolloff=15 " vim will automatically adjust viewport to leave at least 15 lines above and below cursor when possible
 set wildignore=*/node_modules/*,*.swp,*.zip,*/dist/*
@@ -146,8 +154,8 @@ let g:indentLine_color_term = 236
 let g:indentLine_char = '𝄄'
 " syntastic options
 let g:syntastic_javascript_checkers = ['eslint']
-"let g:syntastic_javascript_eslint_exec = 'eslint_d'
 let g:syntastic_python_checkers = ['pyflakes']
+let g:syntaxtic_bash_checkers = ['shellcheck']
 "let g:syntastic_mode_map = { "mode": "passive" }
 let g:jsx_ext_required = 0
 let g:syntastic_always_populate_loc_list = 0

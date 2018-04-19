@@ -1,6 +1,6 @@
 # function for generating escaped color codes
 fg_bg_esc() {
-  echo "\\[\\e[0;38;5;${1};48;5;${2};1m\\]"
+  echo "\\[\\e[0;38;5;${1};48;5;${2}m\\]"
 }
 fg_esc() {
   echo "\\[\\e[0;38;5;${1};49;22m\\]"
@@ -21,36 +21,40 @@ reset='\033[0m'
 
 # print a message if a dependency is missing
 suggest() {
-  echo -e "$(backg 52)You can \033[4menhance\033[24m the experience by installing $(forg 51)$1$reset$(backg 52). Install here $(forg 199)$2$reset."
+  # but only print if interactive
+  if [[ $- =~ "i" ]]; then
+    echo -e "$(backg 52)You can \033[4menhance\033[24m the experience by installing $(forg 51)$1$reset$(backg 52). Install here $(forg 199)$2$reset."
+  fi
 }
 
-if [[ `which neofetch` ]]; then
-  neofetch
-else
-  # Greet me with a mario and other stuff
-  echo
-  echo -e "[48;5;m          [0m[48;5;9m          [0m[48;5;m    [0m[48;5;224m      [0m[48;5;m  [0m\
-    $(forg 227)username: $(forg 33)$USER"
-  echo -e "[48;5;m        [0m[48;5;9m                  [0m[48;5;224m    [0m[48;5;m  [0m\
-    $(forg 227)date: $(forg 33)$(date)"
-  echo -e "[48;5;m        [0m[48;5;95m      [0m[48;5;224m    [0m[48;5;0m  [0m[48;5;224m  [0m[48;5;m  [0m[48;5;9m      [0m[48;5;m  [0m\
-    $(forg 227)hostname: $(forg 33)$HOSTNAME"
-  echo -e "[48;5;m      [0m[48;5;95m  [0m[48;5;224m  [0m[48;5;95m  [0m[48;5;224m      [0m[48;5;0m  [0m[48;5;224m      [0m[48;5;9m    [0m[48;5;m  [0m\
-    $(forg 227)kernel: $(forg 33)$OSTYPE"
-  echo -e "[48;5;m      [0m[48;5;95m  [0m[48;5;224m  [0m[48;5;95m    [0m[48;5;224m      [0m[48;5;95m  [0m[48;5;224m      [0m[48;5;9m  [0m[48;5;m  [0m"
-  echo -e "[48;5;m      [0m[48;5;95m    [0m[48;5;224m        [0m[48;5;95m        [0m[48;5;9m  [0m[48;5;m    [0m"
-  echo -e "[48;5;m          [0m[48;5;224m              [0m[48;5;9m    [0m[48;5;m    [0m"
-  echo -e "[48;5;m    [0m[48;5;9m        [0m[48;5;33m  [0m[48;5;9m      [0m[48;5;33m  [0m[48;5;9m    [0m[48;5;m    [0m[48;5;95m  [0m"
-  echo -e "[48;5;224m    [0m[48;5;9m          [0m[48;5;33m  [0m[48;5;9m      [0m[48;5;33m  [0m[48;5;m    [0m[48;5;95m    [0m"
-  echo -e "[48;5;224m      [0m[48;5;9m        [0m[48;5;33m        [0m[48;5;11m  [0m[48;5;33m    [0m[48;5;95m    [0m"
-  echo -e "[48;5;m  [0m[48;5;224m  [0m[48;5;m    [0m[48;5;33m  [0m[48;5;9m  [0m[48;5;33m    [0m[48;5;11m  [0m[48;5;33m          [0m[48;5;95m    [0m"
-  echo -e "[48;5;m    [0m[48;5;95m      [0m[48;5;33m                  [0m[48;5;95m    [0m"
-  echo -e "[48;5;m  [0m[48;5;95m      [0m[48;5;33m            [0m[48;5;m            [0m"
-  echo -e "[48;5;m  [0m[48;5;95m    [0m[48;5;m                          [0m"
-  echo
-  suggest neofetch https://github.com/dylanaraps/neofetch
+if [[ $- =~ "i" ]]; then
+  if [[ `which neofetch` ]]; then
+    neofetch
+  else
+    # Greet me with a mario and other stuff
+    echo
+    echo -e "[48;5;m          [0m[48;5;9m          [0m[48;5;m    [0m[48;5;224m      [0m[48;5;m  [0m\
+      $(forg 227)username: $(forg 33)$USER"
+    echo -e "[48;5;m        [0m[48;5;9m                  [0m[48;5;224m    [0m[48;5;m  [0m\
+      $(forg 227)date: $(forg 33)$(date)"
+    echo -e "[48;5;m        [0m[48;5;95m      [0m[48;5;224m    [0m[48;5;0m  [0m[48;5;224m  [0m[48;5;m  [0m[48;5;9m      [0m[48;5;m  [0m\
+      $(forg 227)hostname: $(forg 33)$HOSTNAME"
+    echo -e "[48;5;m      [0m[48;5;95m  [0m[48;5;224m  [0m[48;5;95m  [0m[48;5;224m      [0m[48;5;0m  [0m[48;5;224m      [0m[48;5;9m    [0m[48;5;m  [0m\
+      $(forg 227)kernel: $(forg 33)$OSTYPE"
+    echo -e "[48;5;m      [0m[48;5;95m  [0m[48;5;224m  [0m[48;5;95m    [0m[48;5;224m      [0m[48;5;95m  [0m[48;5;224m      [0m[48;5;9m  [0m[48;5;m  [0m"
+    echo -e "[48;5;m      [0m[48;5;95m    [0m[48;5;224m        [0m[48;5;95m        [0m[48;5;9m  [0m[48;5;m    [0m"
+    echo -e "[48;5;m          [0m[48;5;224m              [0m[48;5;9m    [0m[48;5;m    [0m"
+    echo -e "[48;5;m    [0m[48;5;9m        [0m[48;5;33m  [0m[48;5;9m      [0m[48;5;33m  [0m[48;5;9m    [0m[48;5;m    [0m[48;5;95m  [0m"
+    echo -e "[48;5;224m    [0m[48;5;9m          [0m[48;5;33m  [0m[48;5;9m      [0m[48;5;33m  [0m[48;5;m    [0m[48;5;95m    [0m"
+    echo -e "[48;5;224m      [0m[48;5;9m        [0m[48;5;33m        [0m[48;5;11m  [0m[48;5;33m    [0m[48;5;95m    [0m"
+    echo -e "[48;5;m  [0m[48;5;224m  [0m[48;5;m    [0m[48;5;33m  [0m[48;5;9m  [0m[48;5;33m    [0m[48;5;11m  [0m[48;5;33m          [0m[48;5;95m    [0m"
+    echo -e "[48;5;m    [0m[48;5;95m      [0m[48;5;33m                  [0m[48;5;95m    [0m"
+    echo -e "[48;5;m  [0m[48;5;95m      [0m[48;5;33m            [0m[48;5;m            [0m"
+    echo -e "[48;5;m  [0m[48;5;95m    [0m[48;5;m                          [0m"
+    echo
+    suggest neofetch https://github.com/dylanaraps/neofetch
+  fi
 fi
-
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ]; then
@@ -96,7 +100,7 @@ fi
 # PS1 is the variable for the prompt you see when terminal is awaiting input
 # the echo uses an escape sequence to update the current tab name if the terminal supports multiple tabs
 # the history part makes sure the history from all tabs gets saved to .bash_history after they are closed
-PROMPT_COMMAND='EXIT=$?; echo -ne "\033]0;$(basename $(pwd))\007"; history -a; history -r; PS1="$(generate_prompt) ${reset_esc}";'
+PROMPT_COMMAND='EXIT_STAT=$?; echo -ne "\033]0;$(basename $(pwd))\007"; history -a; history -r; PS1="$(generate_prompt) ${reset_esc}";'
 export PS2='... '
 
 HISTSIZE=3000
@@ -104,20 +108,23 @@ HISTSIZE=3000
 generate_prompt() {
   STATUS_BG=196
   STATUS_STR='✘ '
-  if [[ $EXIT = 0 ]]; then
+  if [[ $EXIT_STAT = 0 ]]; then
     STATUS_BG=40
-    STATUS_STR='✔︎ '
+    STATUS_STR='✓ '
   fi
 
   ENV_BG=27
   ENV_STR=
   if [[ $VIRTUAL_ENV ]]; then
-    ENV_STR="${ENV_STR}🐍 "
-  elif [[ `which conda` ]]; then
-    ENV_STR="${ENV_STR}🐍 $(conda info --envs | grep '*' | awk '{print $1}')"
+    ENV_STR="$ENV_STR $(basename $VIRTUAL_ENV) "
+  elif [[ $CONDA_PREFIX ]]; then
+    ENV_STR="$ENV_STR $(basename $CONDA_PREFIX)"
   fi
   if [ ! -z $rvm_bin_path ]; then
-    ENV_STR="${ENV_STR}💎 "
+    ENV_STR="$ENV_STR $RUBY_VERSION"
+  fi
+  if [ ! -z $SSH_TTY ]; then
+    ENV_STR="$ENV_STR \u@\h"
   fi
 
   DIR_BG=54
@@ -152,7 +159,6 @@ generate_prompt() {
   if [[ $(pwd) != "$HOME"* ]]; then
     DIR_BG=235
     DIR_FG=210
-    DIR_STR="💀 $DIR_STR"
   fi
 
   GIT_BG=
@@ -169,13 +175,13 @@ generate_prompt() {
   fi
 
   PROMPT_STR="$(fg_bg_esc 16 $STATUS_BG)$STATUS_STR"
-  if [[ ! -z $ENV_STR ]]; then
+  if [ ! -z $ENV_STR ]; then
     PROMPT_STR="$PROMPT_STR$(fg_bg_esc $STATUS_BG $ENV_BG)$(fg_bg_esc 255 $ENV_BG)$ENV_STR  $(fg_bg_esc $ENV_BG $DIR_BG)"
   else
     PROMPT_STR="$PROMPT_STR$(fg_bg_esc $STATUS_BG $DIR_BG)"
   fi
   PROMPT_STR="$PROMPT_STR$(fg_bg_esc $DIR_FG $DIR_BG) $DIR_STR "
-  if [[ -z $GIT_STR ]]; then
+  if [ -z $GIT_STR ]; then
     PROMPT_STR="$PROMPT_STR$(fg_esc $DIR_BG)"
   else
     PROMPT_STR="$PROMPT_STR$(fg_bg_esc $DIR_BG $GIT_BG)$(fg_bg_esc 255 $GIT_BG) $GIT_STR $(fg_esc $GIT_BG)"
@@ -198,10 +204,14 @@ export GREP_OPTIONS='--color=auto'
 export EDITOR=vim
 
 if [[ `which ls-go` ]]; then
-  alias ll='ls-go -alLRkSi'
+  alias ll='ls-go -alLRkSn'
 else
   suggest ls-go https://github.com/acarl005/ls-go
-  alias ll='/bin/ls -FGlAhp'
+  if [[ `uname -s` = Linux ]]; then
+    alias ll='/bin/ls -FlAhp --color=auto'
+  else
+    alias ll='/bin/ls -FGlAhp'
+  fi
 fi
 
 # Alias definitions.
@@ -259,9 +269,14 @@ docker-clean() {
   docker rmi $(docker images -q)
 }
 
-
-#full recursive directory listing
-alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
+# set some global bash options that i like
+shopt -s extglob # enable extended glob patterns
+shopt -s no_empty_cmd_completion # don't try to autocomplete empty line
+# these are only available on bash version >= 4
+if [ ${BASH_VERSION:0:1} -ge 4 ]; then
+  shopt -s autocd # if you type non-existent command, and it happens to be a dir name, cd into that dir
+  shopt -s globstar # enable recursive glob patterns, e.g. **/*.js
+fi
 
 #extract most known archives
 extract() {
@@ -313,9 +328,6 @@ export PYTHONSTARTUP=$HOME/.pythonrc.py
 # disposable stuff #
 ####################
 
-# added by travis gem
-[ -f $HOME/.travis/travis.sh ] && source /Users/andy/.travis/travis.sh
-
 export NPM_TOKEN=00000000-0000-0000-0000-000000000000
 
 if [[ `which java` ]]; then
@@ -332,5 +344,12 @@ if [ -d /usr/local/sbin ]; then
 fi
 
 if [[ `uname -s` = Linux ]]; then
-  source /usr/share/autojump/autojump.bash
+  [ -f /usr/share/autojump/autojump.bash ] && . /usr/share/autojump/autojump.bash
+  [ -f /usr/share/autojump/autojump.sh ] && . /usr/share/autojump/autojump.sh
+else
+  [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 fi
+
+export PATH=/usr/local/cuda-9.0/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+

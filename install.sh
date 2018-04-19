@@ -1,17 +1,17 @@
 #!/bin/bash
 
-ln -s $PWD/bin ~/bin
-ln -s $PWD/.bashrc ~/.bashrc
-ln -s $PWD/.bash_aliases ~/.bash_aliases
-ln -s $PWD/.bash_completions ~/.bash_completions
-ln -s $PWD/.gitconfig ~/.gitconfig
-ln -s $PWD/.gitignore_global ~/.gitignore_global
-ln -s $PWD/.inputrc ~/.inputrc
-ln -s $PWD/.pryrc ~/.pryrc
-ln -s $PWD/.psqlrc ~/.psqlrc
-ln -s $PWD/.mongorc.js ~/.mongorc.js
-ln -s $PWD/.pythonrc.py ~/.pythonrc.py
-ln -s $PWD/.vimrc ~/.vimrc
+ln -i -s $PWD/bin ~/bin
+ln -i -s $PWD/.bashrc ~/.bashrc
+ln -i -s $PWD/.bash_aliases ~/.bash_aliases
+ln -i -s $PWD/.bash_completions ~/.bash_completions
+ln -i -s $PWD/.gitconfig ~/.gitconfig
+ln -i -s $PWD/.gitignore_global ~/.gitignore_global
+ln -i -s $PWD/.inputrc ~/.inputrc
+ln -i -s $PWD/.pryrc ~/.pryrc
+ln -i -s $PWD/.psqlrc ~/.psqlrc
+ln -i -s $PWD/.mongorc.js ~/.mongorc.js
+ln -i -s $PWD/.pythonrc.py ~/.pythonrc.py
+ln -i -s $PWD/.vimrc ~/.vimrc
 
 if [[ $(uname) = Darwin ]]; then
   . mac-packages.sh
