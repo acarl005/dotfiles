@@ -76,6 +76,7 @@ tg() {
   echo running terragrunt "$1" --terragrunt-source "$(<source)" ${@:2}
   terragrunt "$1" --terragrunt-source "$(<source)" ${@:2}
 }
+alias cls='printf "\033c"'
 
 # work stuff
 alias bastion='ssh -A ec2-user@54.208.41.126'
@@ -92,4 +93,3 @@ alias gti=git
 alias npmi='npm i'
 alias gits='git s'
 
-alias w205="docker run -it --rm -v $HOME/Documents/MIDS/w205/docker-volume:/w205 midsw205/base:latest bash"
