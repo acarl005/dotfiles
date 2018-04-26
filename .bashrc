@@ -60,6 +60,9 @@ fi
 if [ -d "$HOME/bin" ]; then
   PATH="$HOME/bin:$PATH"
 fi
+if [ -d "$HOME/opt/bin" ]; then
+  PATH="$HOME/opt/bin:$PATH"
+fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && {
@@ -334,7 +337,7 @@ if [[ `which java` ]]; then
   if [[ `uname -s` = Linux ]]; then
     export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
   else 
-    export JAVA_HOME=/usr/libexec/java_home
+    export JAVA_HOME=$(/usr/libexec/java_home)
   fi
 fi
 

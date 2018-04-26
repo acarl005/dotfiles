@@ -67,11 +67,15 @@ alias fm=foreman
 alias ipy=ipython
 alias py=python
 alias py3=python3
+alias 1p=op
 alias jn='jupyter-notebook'
 alias jl='jupyter-lab'
 alias rstudio='open -a rstudio'
 alias tf=terraform
-alias tg=terragrunt
+tg() {
+  echo running terragrunt "$1" --terragrunt-source "$(<source)" ${@:2}
+  terragrunt "$1" --terragrunt-source "$(<source)" ${@:2}
+}
 
 # work stuff
 alias bastion='ssh -A ec2-user@54.208.41.126'

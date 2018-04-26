@@ -37,8 +37,6 @@ Plugin 'majutsushi/tagbar' " adds a tagbar
 
 Plugin 'scrooloose/syntastic' " inline syntax checker
 Plugin 'jelera/vim-javascript-syntax' " better js highlighting
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'leafgarland/typescript-vim'
 Plugin 'elzr/vim-json' " better json highlighting 
 Plugin 'derekwyatt/vim-scala'
 Plugin 'exu/pgsql.vim' " postgres-specific SQL syntax
@@ -250,3 +248,4 @@ function! s:DiffWithSaved()
 endfunction
 com! DiffSaved call s:DiffWithSaved()
 
+autocmd filetype crontab setlocal nobackup nowritebackup
