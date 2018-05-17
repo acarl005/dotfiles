@@ -75,12 +75,17 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-syntax on " enable syntax highlighting
+" enable syntax highlighting
+syntax on
+
+" try loading a custom one. fallback to a built-in one
+try
+  colorscheme gotham256
+catch /^Vim\%((\a\+)\)\=:E185/
+  colorscheme pablo
+endtry
 
 " Use dark color theme after 5pm and light color theme in the morning
-"colorscheme pablo
-"colorscheme PaperColor
-colorscheme gotham256
 "if strftime('%H') > 16
   "set background=dark
 "elseif strftime('%H') < 7
@@ -160,6 +165,11 @@ let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" hcl-fmt options. disable automatic formatting for some file types
+"let g:hcl_fmt_autosave = 0
+let g:tf_fmt_autosave = 0
+"let g:nomad_fmt_autosave = 0
 
 " set default SQL dialect to postgres. used with 'exu/pgsql.vim'
 let g:sql_type_default = 'pgsql'

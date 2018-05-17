@@ -10,7 +10,7 @@ if [[ `uname -s` = Linux ]]; then
 else
   alias ls='ls -Gp'
 fi
-alias less='less -SXcmiJF'
+alias less='less -XmiJF'
 alias rn='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 # https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo
 alias sudo='sudo '
@@ -71,6 +71,7 @@ alias 1p=op
 alias jn='jupyter-notebook'
 alias jl='jupyter-lab'
 alias rstudio='open -a rstudio'
+alias sl=slcli
 alias tf=terraform
 tg() {
   echo running terragrunt "$1" --terragrunt-source "$(<source)" ${@:2}
