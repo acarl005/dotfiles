@@ -336,8 +336,11 @@ export NPM_TOKEN=00000000-0000-0000-0000-000000000000
 if [[ `which java` ]]; then
   if [[ `uname -s` = Linux ]]; then
     export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
-  else 
-    export JAVA_HOME=$(/usr/libexec/java_home)
+  else
+    UNUSED=$(/usr/libexec/java_home 2>/dev/null)
+    if [[ $? -eq 0 ]]; then
+      export JAVA_HOME=$(/usr/libexec/java_home)
+    fi
   fi
 fi
 
