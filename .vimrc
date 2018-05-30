@@ -2,66 +2,79 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set runtimepath^=~/.vim/bundle/ctrlp.vim
 set runtimepath+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+try
+  call vundle#begin()
+  " alternatively, pass a path where Vundle should install plugins
+  "call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+  " let Vundle manage Vundle, required
+  Plugin 'VundleVim/Vundle.vim'
 
-" plugin from http://vim-scripts.org/vim/scripts.html
-Plugin 'L9'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+  " plugin from http://vim-scripts.org/vim/scripts.html
+  Plugin 'L9'
+  " The sparkup vim script is in a subdirectory of this repo called vim.
+  " Pass the path to set the runtimepath properly.
+  Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
-Plugin 'Townk/vim-autoclose.git' " auto add matching bracket or quote when you type one
-"Plugin 'jiangmiao/auto-pairs' " auto add matching bracket or quote when you type one. has an annoying problem of skipping over the closing brace when i'm trying to actually insert one
-Plugin 'terryma/vim-multiple-cursors' " sublime-text-like multi cursors
-Plugin 'tpope/vim-surround' " manipulates surrounding brackets and quotes
-Plugin 'tpope/vim-repeat' " adds . support for the vim-surround maps
-Plugin 'tpope/vim-fugitive' " a git wrapper
-Plugin 'ctrlpvim/ctrlp.vim' " fuzzy searching for files
-Plugin 'Yggdroot/indentLine' " adds a little grey line at each indentation level
-Plugin 'airblade/vim-gitgutter' " adds git diff symbols on the left hand side
-Plugin 'scrooloose/nerdcommenter' " adds keybindings for easily commenting out lines \c<space> to toggle
-Plugin 'scrooloose/nerdtree' " a file explorer
-Plugin 'AndrewRadev/splitjoin.vim' " switch formatting of objects between one-line and multi-line with gj and gS
-Plugin 'skammer/vim-swaplines' " move lines up or down
-Plugin 'eapache/rainbow_parentheses.vim' " color parentheses based on depth
-Plugin 'mileszs/ack.vim' " call ack command from vim
-Plugin 'ryanoasis/vim-devicons' " add icons for specific file types
-Plugin 'majutsushi/tagbar' " adds a tagbar
+  Plugin 'Townk/vim-autoclose.git' " auto add matching bracket or quote when you type one
+  "Plugin 'jiangmiao/auto-pairs' " auto add matching bracket or quote when you type one. has an annoying problem of skipping over the closing brace when i'm trying to actually insert one
+  Plugin 'terryma/vim-multiple-cursors' " sublime-text-like multi cursors
+  Plugin 'tpope/vim-surround' " manipulates surrounding brackets and quotes
+  Plugin 'tpope/vim-repeat' " adds . support for the vim-surround maps
+  Plugin 'tpope/vim-fugitive' " a git wrapper
+  Plugin 'ctrlpvim/ctrlp.vim' " fuzzy searching for files
+  Plugin 'Yggdroot/indentLine' " adds a little grey line at each indentation level
+  Plugin 'airblade/vim-gitgutter' " adds git diff symbols on the left hand side
+  Plugin 'scrooloose/nerdcommenter' " adds keybindings for easily commenting out lines \c<space> to toggle
+  Plugin 'scrooloose/nerdtree' " a file explorer
+  Plugin 'AndrewRadev/splitjoin.vim' " switch formatting of objects between one-line and multi-line with gj and gS
+  Plugin 'skammer/vim-swaplines' " move lines up or down
+  Plugin 'eapache/rainbow_parentheses.vim' " color parentheses based on depth
+  Plugin 'mileszs/ack.vim' " call ack command from vim
+  Plugin 'ryanoasis/vim-devicons' " add icons for specific file types
+  Plugin 'majutsushi/tagbar' " adds a tagbar
 
-Plugin 'scrooloose/syntastic' " inline syntax checker
-Plugin 'jelera/vim-javascript-syntax' " better js highlighting
-Plugin 'elzr/vim-json' " better json highlighting 
-Plugin 'derekwyatt/vim-scala'
-Plugin 'exu/pgsql.vim' " postgres-specific SQL syntax
-Plugin 'fatih/vim-go'
-Plugin 'b4b4r07/vim-hcl' " syntax highlighting for Hashi Configuration Language (HCL)
-Plugin 'fatih/vim-hclfmt'
+  Plugin 'scrooloose/syntastic' " inline syntax checker
+  Plugin 'jelera/vim-javascript-syntax' " better js highlighting
+  Plugin 'elzr/vim-json' " better json highlighting 
+  Plugin 'derekwyatt/vim-scala'
+  Plugin 'exu/pgsql.vim' " postgres-specific SQL syntax
+  Plugin 'fatih/vim-go'
+  Plugin 'b4b4r07/vim-hcl' " syntax highlighting for Hashi Configuration Language (HCL)
+  Plugin 'fatih/vim-hclfmt'
 
-" a pretty status line 
-" requires installation of this font package on OSX:
-" https://github.com/powerline/fonts
-" this font must be chosen for the terminal as well
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+  " a pretty status line 
+  " requires installation of this font package on OSX:
+  " https://github.com/powerline/fonts
+  " this font must be chosen for the terminal as well
+  Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 
-Plugin 'kana/vim-textobj-user' " plugin for defining custom text objects
-Plugin 'glts/vim-textobj-comment' " binds a text object to c for comments
-Plugin 'nelstrom/vim-textobj-rubyblock' " binds a text object to r for ruby blocks
-Plugin 'michaeljsmith/vim-indent-object' " binds a text object to i for an indentation level (good for python)
-Plugin 'zandrmartin/vim-textobj-blanklines' " text obj for blank lines to <space>
-Plugin 'sgur/vim-textobj-parameter' " text obj for a function param to ,
+  Plugin 'kana/vim-textobj-user' " plugin for defining custom text objects
+  Plugin 'glts/vim-textobj-comment' " binds a text object to c for comments
+  Plugin 'nelstrom/vim-textobj-rubyblock' " binds a text object to r for ruby blocks
+  Plugin 'michaeljsmith/vim-indent-object' " binds a text object to i for an indentation level (good for python)
+  Plugin 'zandrmartin/vim-textobj-blanklines' " text obj for blank lines to <space>
+  Plugin 'sgur/vim-textobj-parameter' " text obj for a function param to ,
 
-Plugin 'NLKNguyen/papercolor-theme'
-Plugin 'acarl005/vim-gotham'
+  Plugin 'NLKNguyen/papercolor-theme'
+  Plugin 'acarl005/vim-gotham'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+  " All of your Plugins must be added before the following line
+  call vundle#end()            " required
+
+  " turn rainbow parentheses always on
+  au VimEnter * RainbowParenthesesToggle
+  au Syntax * RainbowParenthesesLoadRound
+  au Syntax * RainbowParenthesesLoadSquare
+  au Syntax * RainbowParenthesesLoadBraces
+
+catch /Unknown function/
+  " this allows us to use this vimrc even if the package manager Vundle isn't
+  " installed. its still technically usable, it just throws a ton of errors,
+  " which is annoying
+endtry
+
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -182,12 +195,6 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-
-" rainbow parentheses always on
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
 
 " dont hide double quotes using vim-json
 set conceallevel=0
