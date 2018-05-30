@@ -1,6 +1,8 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+let vundle_installed = 0
+
 " set the runtime path to include Vundle and initialize
 set runtimepath+=~/.vim/bundle/Vundle.vim
 try
@@ -62,6 +64,8 @@ try
 
   " All of your Plugins must be added before the following line
   call vundle#end()            " required
+
+  let vundle_installed = 1
 
   " turn rainbow parentheses always on
   au VimEnter * RainbowParenthesesToggle
@@ -154,13 +158,15 @@ set virtualedit=block
 set laststatus=2 " always show the status bar
 
 " these manually configure a nice status line. they are not necessary when powerline is installed
-"set statusline=   " clear the statusline for when vimrc is reloaded
-"set statusline=%f " show filename
-"set statusline+=[%{strlen(&fenc)?&fenc:'none'},%{&ff}]  " show encoding
-"set statusline+=%h%m%r%y
-"set statusline+=%= " right align
-"set statusline+=%c,%l/%L@%P\  " show column, line, line-count, and percent from top of file
-"set statusline+=%b,0x%-8B\                   " current char
+if (vundle_installed == 0)
+  set statusline=   " clear the statusline for when vimrc is reloaded
+  set statusline=%f " show filename
+  set statusline+=[%{strlen(&fenc)?&fenc:'none'},%{&ff}]  " show encoding
+  set statusline+=%h%m%r%y
+  set statusline+=%= " right align
+  set statusline+=%c,%l/%L@%P\  " show column, line, line-count, and percent from top of file
+  set statusline+=%b,0x%-8B\                   " current char
+endif
 
 " vim-go options
 let g:go_def_mapping_enabled = 0
