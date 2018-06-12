@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ln -i -s $PWD/bin ~/bin
+ln -i -s $PWD/.ackrc ~/.ackrc
 ln -i -s $PWD/.bashrc ~/.bashrc
 ln -i -s $PWD/.bash_aliases ~/.bash_aliases
 ln -i -s $PWD/.bash_completions ~/.bash_completions
@@ -19,14 +20,17 @@ else
   . linux-packages.sh
 fi
 
-# install more most up-to-date git and vim
+# install Powerline font
 git clone https://github.com/powerline/fonts ~/Downloads/fonts
 pushd ~/Downloads/fonts
 ./install.sh
+
+# install Vundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 popd
 
+# import iTerm preferences if on MacOS
 if [[ $(uname) = Darwin ]]; then
   defaults import com.googlecode.iterm2 iterm2.plist
 else

@@ -71,8 +71,8 @@ export NVM_DIR="$HOME/.nvm"
 }
 
 # include Golang stuff
-if [ -d "$HOME/Go" ]; then
-  export GOPATH="$HOME/Go"
+if [ -d "$HOME/go" ]; then
+  export GOPATH="$HOME/go"
   PATH="$GOPATH/bin:$PATH"
 fi
 
