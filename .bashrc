@@ -331,8 +331,6 @@ export PYTHONSTARTUP=$HOME/.pythonrc.py
 # disposable stuff #
 ####################
 
-export NPM_TOKEN=00000000-0000-0000-0000-000000000000
-
 if [[ `which java` ]]; then
   if [[ `uname -s` = Linux ]]; then
     export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
@@ -344,18 +342,10 @@ if [[ `which java` ]]; then
   fi
 fi
 
-# include rabbitmq commands
-if [ -d /usr/local/sbin ]; then
-  PATH="$PATH:/usr/local/sbin"
-fi
-
 if [[ `uname -s` = Linux ]]; then
   [ -f /usr/share/autojump/autojump.bash ] && . /usr/share/autojump/autojump.bash
   [ -f /usr/share/autojump/autojump.sh ] && . /usr/share/autojump/autojump.sh
 else
   [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 fi
-
-export PATH=/usr/local/cuda-9.0/bin${PATH:+:${PATH}}
-export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
