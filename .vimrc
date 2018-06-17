@@ -174,6 +174,7 @@ let g:go_def_mapping_enabled = 0
 " indentline options
 let g:indentLine_color_term = 236
 let g:indentLine_char = '𝄄'
+set list lcs=tab:\𝄄\ 
 " syntastic options
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_python_checkers = ['pyflakes']
