@@ -28,7 +28,7 @@ suggest() {
 }
 
 if [[ $- =~ "i" ]]; then
-  if [[ `which neofetch` ]]; then
+  if command -v neofetch >/dev/null; then
     neofetch
   else
     # Greet me with a mario and other stuff
@@ -202,11 +202,10 @@ export LSCOLORS=ExGxFxdxCxDxDxaccxaeex
 export GREP_OPTIONS='--color=auto'
 
 
-# Set atom as the default editor
-# [[ $(which atom) ]] && export EDITOR=atom
+# Set vim as the default editor
 export EDITOR=vim
 
-if [[ `which ls-go` ]]; then
+if command -v ls-go >/dev/null; then
   alias ll='ls-go -alLRkSn'
 else
   suggest ls-go https://github.com/acarl005/ls-go
@@ -242,7 +241,7 @@ man() {
   command man "$@"
 }
 
-if [[ `which pygmentize` ]]; then
+if command -v pygmentize >/dev/null; then
   export LESSOPEN="| pygmentize %s"
   export LESS=" -R" 
   # overwrite cat command so that it uses pygments instead
@@ -331,7 +330,7 @@ export PYTHONSTARTUP=$HOME/.pythonrc.py
 # disposable stuff #
 ####################
 
-if [[ `which java` ]]; then
+if command -v java >/dev/null; then
   if [[ `uname -s` = Linux ]]; then
     export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
   else
