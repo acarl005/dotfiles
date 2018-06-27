@@ -29,7 +29,9 @@ for i in `seq 1 11`; do
 done
 
 alias e=$EDITOR
-alias vi=vim
+if command -v vim >/dev/null; then
+  alias vi=vim
+fi
 
 # jump to commonly used directories
 alias desk="pushd $HOME/Desktop"
