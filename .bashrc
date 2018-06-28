@@ -87,6 +87,11 @@ git_prompt_script=/usr/local/etc/bash_completion.d/git-prompt.sh
 test -s $git_completion_script && source $git_completion_script
 test -s $git_prompt_script && source $git_prompt_script
 
+git_completion_script=~/git-completion.bash
+git_prompt_script=~/git-prompt.sh
+test -s $git_completion_script && source $git_completion_script
+test -s $git_prompt_script && source $git_prompt_script
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).

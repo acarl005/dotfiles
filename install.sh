@@ -50,6 +50,15 @@ if [ "$HAS_GUI" = true ]; then
   popd
 fi
 
+git_completion_script=/usr/local/etc/bash_completion.d/git-completion.bash
+git_prompt_script=/usr/local/etc/bash_completion.d/git-prompt.sh
+if ! test -s $git_completion_script; then
+  curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash > ~/git-completion.bash
+fi
+if ! test -s $git_prompt_script; then
+  curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh > ~/git-prompt.sh
+fi
+
 # install Vundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
