@@ -1,6 +1,10 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+" some stuff only works with some vim plugins installed via Vundle
+" to enable download it with this command
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+" then open vim and run :PluginInstall
 let vundle_installed = 0
 
 " set the runtime path to include Vundle and initialize
