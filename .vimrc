@@ -43,18 +43,14 @@ try
 
   Plugin 'scrooloose/syntastic' " inline syntax checker
   Plugin 'jelera/vim-javascript-syntax' " better js highlighting
-  Plugin 'elzr/vim-json' " better json highlighting 
+  Plugin 'elzr/vim-json' " better json highlighting
   Plugin 'derekwyatt/vim-scala'
   Plugin 'exu/pgsql.vim' " postgres-specific SQL syntax
   Plugin 'fatih/vim-go'
   Plugin 'b4b4r07/vim-hcl' " syntax highlighting for Hashi Configuration Language (HCL)
   Plugin 'fatih/vim-hclfmt'
 
-  " a pretty status line 
-  " requires installation of this font package on OSX:
-  " https://github.com/powerline/fonts
-  " this font must be chosen for the terminal as well
-  Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+  Plugin 'vim-airline/vim-airline'
 
   Plugin 'kana/vim-textobj-user' " plugin for defining custom text objects
   Plugin 'glts/vim-textobj-comment' " binds a text object to c for comments
@@ -118,10 +114,11 @@ endtry
 " a matching extension for things like ruby blocks
 runtime macros/matchit.vim
 
-" my favorite font. also includes customized unicode characters for making powerline look super dope
+" my favorite font. also includes customized unicode characters for making airline look super dope
 set guifont=Inconsolata\ for\ Powerline:h15
-" tell powerline to use those custom characters. they look super dope
-let g:Powerline_symbols = 'fancy'
+" tell airline to use those custom characters inspired by powerline.
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 
 set encoding=utf-8
 set t_Co=256
