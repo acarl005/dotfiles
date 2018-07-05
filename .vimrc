@@ -131,9 +131,9 @@ let mapleader = ','
 
 set showcmd " Display commands in the bottom right corner as they are typed
 set expandtab " convert tab to spaces
-set softtabstop=2 " how many spaces to insert for each <tab>
-set tabstop=2 " the width to display a <tab> character
-set shiftwidth=2 " used by commands like =, >, and < to know how much to indent
+set softtabstop=4 " how many spaces to insert for each <tab>
+set tabstop=4 " the width to display a <tab> character
+set shiftwidth=4 " used by commands like =, >, and < to know how much to indent
 "set relativenumber " line numbers are relative to where the cursor is (has performance issues on large files > 500 lines)
 set number " line numbers
 set autoindent
