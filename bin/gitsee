@@ -44,8 +44,8 @@ open_browser() {
 
 # try to get the base URL from the git remote command
 REMOTE_VERBOSE=$(git remote -v)
-if [[ $REMOTE_VERBOSE =~ ${REMOTE}[[:space:]]+(https:\/\/|git@)(github|gitlab|bitbucket)\.com(\:|\/)([^[:space:]]+)(\.git)? ]]; then
-  REPO_URL=https://${BASH_REMATCH[2]}.com/${BASH_REMATCH[4]%.git} # sometimes there is a '.git' after the remote, we'll chomp that if its there
+if [[ $REMOTE_VERBOSE =~ ${REMOTE}[[:space:]]+(https:\/\/|git@)([a-zA-Z0-9.]+)(\:|\/)([^[:space:]]+)(\.git)? ]]; then
+  REPO_URL=https://${BASH_REMATCH[2]}/${BASH_REMATCH[4]%.git} # sometimes there is a '.git' after the remote, we'll chomp that if its there
 else
   echo unable to parse 
   echo $REMOTE_VERBOSE

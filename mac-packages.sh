@@ -5,7 +5,7 @@ else
 fi
 
 brew tap caskroom/fonts
-brew install ack autojump git vim coreutils neofetch bash ranger fd tldr
+brew install ack autojump git vim coreutils neofetch bash ranger fd tldr shellcheck
 brew cask install font-inconsolata-nerd-font
 brew install acarl005/homebrew-formulas/ls-go
 

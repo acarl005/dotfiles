@@ -1,6 +1,10 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+" some stuff only works with some vim plugins installed via Vundle
+" to enable download it with this command
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+" then open vim and run :PluginInstall
 let vundle_installed = 0
 
 " set the runtime path to include Vundle and initialize
@@ -39,18 +43,14 @@ try
 
   Plugin 'scrooloose/syntastic' " inline syntax checker
   Plugin 'jelera/vim-javascript-syntax' " better js highlighting
-  Plugin 'elzr/vim-json' " better json highlighting 
+  Plugin 'elzr/vim-json' " better json highlighting
   Plugin 'derekwyatt/vim-scala'
   Plugin 'exu/pgsql.vim' " postgres-specific SQL syntax
   Plugin 'fatih/vim-go'
   Plugin 'b4b4r07/vim-hcl' " syntax highlighting for Hashi Configuration Language (HCL)
   Plugin 'fatih/vim-hclfmt'
 
-  " a pretty status line 
-  " requires installation of this font package on OSX:
-  " https://github.com/powerline/fonts
-  " this font must be chosen for the terminal as well
-  Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+  Plugin 'vim-airline/vim-airline'
 
   Plugin 'kana/vim-textobj-user' " plugin for defining custom text objects
   Plugin 'glts/vim-textobj-comment' " binds a text object to c for comments
@@ -114,10 +114,11 @@ endtry
 " a matching extension for things like ruby blocks
 runtime macros/matchit.vim
 
-" my favorite font. also includes customized unicode characters for making powerline look super dope
+" my favorite font. also includes customized unicode characters for making airline look super dope
 set guifont=Inconsolata\ for\ Powerline:h15
-" tell powerline to use those custom characters. they look super dope
-let g:Powerline_symbols = 'fancy'
+" tell airline to use those custom characters inspired by powerline.
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 
 set encoding=utf-8
 set t_Co=256
@@ -130,9 +131,9 @@ let mapleader = ','
 
 set showcmd " Display commands in the bottom right corner as they are typed
 set expandtab " convert tab to spaces
-set softtabstop=2 " how many spaces to insert for each <tab>
-set tabstop=2 " the width to display a <tab> character
-set shiftwidth=2 " used by commands like =, >, and < to know how much to indent
+set softtabstop=4 " how many spaces to insert for each <tab>
+set tabstop=4 " the width to display a <tab> character
+set shiftwidth=4 " used by commands like =, >, and < to know how much to indent
 "set relativenumber " line numbers are relative to where the cursor is (has performance issues on large files > 500 lines)
 set number " line numbers
 set autoindent
@@ -174,6 +175,7 @@ let g:go_def_mapping_enabled = 0
 " indentline options
 let g:indentLine_color_term = 236
 let g:indentLine_char = '𝄄'
+set list lcs=tab:\𝄄\ 
 " syntastic options
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_python_checkers = ['pyflakes']

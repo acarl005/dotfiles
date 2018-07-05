@@ -1,6 +1,21 @@
 #!/bin/bash
 
+HAS_GUI=true
+USE_SUDO=true
+
+while [[ "$#" > 0 ]]; do
+  case $1 in
+    --no-gui) HAS_GUI=false;;
+    --no-sudo) USE_SUDO=false;;
+    *) echo "Unknown parameter passed: $1"; exit 1;;
+  esac
+  shift
+done
+
+mkdir ~/.vim
+
 ln -i -s $PWD/bin ~/bin
+ln -i -s $PWD/ftplugin ~/.vim/ftplugin
 ln -i -s $PWD/.ackrc ~/.ackrc
 ln -i -s $PWD/.bashrc ~/.bashrc
 ln -i -s $PWD/.bash_aliases ~/.bash_aliases
@@ -15,21 +30,38 @@ ln -i -s $PWD/.pythonrc.py ~/.pythonrc.py
 ln -i -s $PWD/.vimrc ~/.vimrc
 /bin/cp $PWD/.bash_profile ~/.bash_profile
 
-if [[ $(uname) = Darwin ]]; then
-  . mac-packages.sh
-else
-  . linux-packages.sh
+if [ "$USE_SUDO" = true ]; then
+  if [[ $(uname) = Darwin ]]; then
+    . mac-packages.sh
+  elif command -v apt-get >/dev/null; then
+    . apt-packages.sh "$HAS_GUI"
+  elif command -v yum >/dev/null; then
+    . yum-packages.sh
+  else
+    echo no known package manager installed
+  fi
 fi
 
-# install Powerline font
-git clone https://github.com/powerline/fonts ~/Downloads/fonts
-pushd ~/Downloads/fonts
-./install.sh
+if [ "$HAS_GUI" = true ]; then
+  # install Powerline font
+  git clone https://github.com/powerline/fonts ~/Downloads/fonts
+  pushd ~/Downloads/fonts
+  ./install.sh
+  popd
+fi
+
+git_completion_script=/usr/local/etc/bash_completion.d/git-completion.bash
+git_prompt_script=/usr/local/etc/bash_completion.d/git-prompt.sh
+if ! test -s $git_completion_script; then
+  curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash > ~/git-completion.bash
+fi
+if ! test -s $git_prompt_script; then
+  curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh > ~/git-prompt.sh
+fi
 
 # install Vundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
-popd
 
 # import iTerm preferences if on MacOS
 if [[ $(uname) = Darwin ]]; then
