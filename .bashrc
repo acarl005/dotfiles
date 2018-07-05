@@ -60,8 +60,8 @@ fi
 if [ -d "$HOME/bin" ]; then
   PATH="$HOME/bin:$PATH"
 fi
-if [ -d "$HOME/opt/bin" ]; then
-  PATH="$HOME/opt/bin:$PATH"
+if [ -d "$HOME/.local/bin" ]; then
+  PATH="$HOME/.local/bin:$PATH"
 fi
 
 export NVM_DIR="$HOME/.nvm"
