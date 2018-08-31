@@ -11,9 +11,9 @@
   ui = true
 
 [color "status"]
-  untracked = cyan
-  changed = green
-  added = yellow
+  untracked = cyan bold
+  changed = green bold
+  added = yellow bold
 
 # Aliases are command shortcuts
 [alias]
