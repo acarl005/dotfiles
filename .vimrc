@@ -48,6 +48,7 @@ try
   Plugin 'exu/pgsql.vim' " postgres-specific SQL syntax
   Plugin 'fatih/vim-go'
   Plugin 'b4b4r07/vim-hcl' " syntax highlighting for Hashi Configuration Language (HCL)
+  " this depends on `go get github.com/fatih/hclfmt`
   Plugin 'fatih/vim-hclfmt'
 
   Plugin 'vim-airline/vim-airline'
@@ -177,8 +178,11 @@ let g:indentLine_color_term = 236
 let g:indentLine_char = '𝄄'
 set list lcs=tab:\𝄄\ 
 " syntastic options
+" this depends on `npm i -g eslint`
 let g:syntastic_javascript_checkers = ['eslint']
+" this depends on `pip install pyflakes`
 let g:syntastic_python_checkers = ['pyflakes']
+" this depends on `brew install shellcheck`
 let g:syntaxtic_bash_checkers = ['shellcheck']
 "let g:syntastic_mode_map = { "mode": "passive" }
 let g:jsx_ext_required = 0
@@ -189,7 +193,7 @@ let g:syntastic_check_on_wq = 0
 
 " hcl-fmt options. disable automatic formatting for some file types
 "let g:hcl_fmt_autosave = 0
-let g:tf_fmt_autosave = 0
+let g:tf_fmt_autosave = 1
 "let g:nomad_fmt_autosave = 0
 
 " set default SQL dialect to postgres. used with 'exu/pgsql.vim'

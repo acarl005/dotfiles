@@ -73,7 +73,6 @@ alias 1p=op
 alias jn='jupyter-notebook'
 alias jl='jupyter-lab'
 alias rstudio='open -a rstudio'
-alias sl=slcli
 alias tf=terraform
 tg() {
   echo running terragrunt "$1" --terragrunt-source "$(<source)" ${@:2}
