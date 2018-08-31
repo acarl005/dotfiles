@@ -76,6 +76,8 @@ if [ -d "$HOME/go" ]; then
   PATH="$GOPATH/bin:$PATH"
 fi
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 # use the version of Git i installed with homebrew instead of the one that came with the OS
 if brew --prefix git >/dev/null 2>&1; then
   PATH="$(brew --prefix git)/bin:$PATH"

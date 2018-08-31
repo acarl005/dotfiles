@@ -5,9 +5,11 @@ else
 fi
 
 brew tap caskroom/fonts
-brew install ack autojump git vim coreutils neofetch bash ranger fd tldr shellcheck bat
+brew install ack autojump git vim coreutils neofetch bash ranger fd tldr shellcheck bat fzf
 brew cask install font-inconsolata-nerd-font
 brew install acarl005/homebrew-formulas/ls-go
+
+$(brew --prefix)/opt/fzf/install
 
 # tell it to use the new installed version of bash
 chsh -s /usr/local/bin/bash
