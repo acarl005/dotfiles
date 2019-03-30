@@ -66,7 +66,7 @@ alias conk="conky -d -c ~/.conky/conkyrc_seamod"
 alias root='cd $(git root)'
 
 alias fm=foreman
-alias ipy=ipython
+alias ipy='ipython --no-confirm-exit'
 alias py=python
 alias py3=python3
 alias 1p=op
