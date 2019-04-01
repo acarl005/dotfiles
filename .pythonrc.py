@@ -6,7 +6,7 @@ sys.ps1 = '%s >>> ' % implementation
 sys.ps2 = '...  '
 
 # im too lazy to import some of this stuff all the time
-import math
+import math, os, re
 from datetime import datetime
 
 # wrap in try blocks because they may or may not be installed
@@ -22,11 +22,6 @@ except ImportError:
 
 try:
     import pandas as pd
-except ImportError:
-    pass
-
-try:
-    import fuck
 except ImportError:
     pass
 

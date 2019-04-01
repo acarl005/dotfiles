@@ -66,18 +66,14 @@ alias conk="conky -d -c ~/.conky/conkyrc_seamod"
 alias root='cd $(git root)'
 
 alias fm=foreman
-alias ipy=ipython
+alias ipy='ipython --no-confirm-exit'
 alias py=python
 alias py3=python3
 alias 1p=op
 alias jn='jupyter-notebook'
 alias jl='jupyter-lab'
 alias rstudio='open -a rstudio'
-alias tf=terraform
-tg() {
-  echo running terragrunt "$1" --terragrunt-source "$(<source)" ${@:2}
-  terragrunt "$1" --terragrunt-source "$(<source)" ${@:2}
-}
+alias tb='tensorboard --logdir'
 alias cls='printf "\033c"'
 
 # work stuff
