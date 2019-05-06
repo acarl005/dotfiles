@@ -51,6 +51,7 @@ export pg="/usr/local/var/postgres"
 alias al='e ~/.bash_aliases && . ~/.bash_aliases'
 alias rc='e ~/.bashrc'
 alias serv="python -m SimpleHTTPServer"
+alias serv3="python -m http.server"
 if [[ $(uname) = Darwin ]]; then
   alias chrome="open -a /Applications/Google\ Chrome.app/"
 else

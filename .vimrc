@@ -45,6 +45,7 @@ try
   Plugin 'jelera/vim-javascript-syntax' " better js highlighting
   Plugin 'elzr/vim-json' " better json highlighting
   Plugin 'exu/pgsql.vim' " postgres-specific SQL syntax
+  Plugin 'cespare/vim-toml' " TOML syntax
   Plugin 'racer-rust/vim-racer' " Rust autocomplete
 
   Plugin 'vim-airline/vim-airline'
