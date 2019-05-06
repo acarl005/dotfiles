@@ -23,42 +23,52 @@ try
   " Pass the path to set the runtimepath properly.
   Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
+  " editing utilities
   Plugin 'Townk/vim-autoclose.git' " auto add matching bracket or quote when you type one
-  "Plugin 'jiangmiao/auto-pairs' " auto add matching bracket or quote when you type one. has an annoying problem of skipping over the closing brace when i'm trying to actually insert one
+  Plugin 'andymass/vim-matchup' " replacement for builtin matchit
   Plugin 'terryma/vim-multiple-cursors' " sublime-text-like multi cursors
   Plugin 'tpope/vim-surround' " manipulates surrounding brackets and quotes
-  Plugin 'tpope/vim-repeat' " adds . support for the vim-surround maps
-  Plugin 'tpope/vim-fugitive' " a git wrapper
-  Plugin 'ctrlpvim/ctrlp.vim' " fuzzy searching for files
-  Plugin 'Yggdroot/indentLine' " adds a little grey line at each indentation level
-  Plugin 'airblade/vim-gitgutter' " adds git diff symbols on the left hand side
   Plugin 'scrooloose/nerdcommenter' " adds keybindings for easily commenting out lines \c<space> to toggle
-  Plugin 'scrooloose/nerdtree' " a file explorer
+  Plugin 'tpope/vim-repeat' " adds . support for the vim-surround maps
   Plugin 'AndrewRadev/splitjoin.vim' " switch formatting of objects between one-line and multi-line with gj and gS
   Plugin 'skammer/vim-swaplines' " move lines up or down
-  Plugin 'eapache/rainbow_parentheses.vim' " color parentheses based on depth
-  Plugin 'mileszs/ack.vim' " call ack command from vim
-  Plugin 'ryanoasis/vim-devicons' " add icons for specific file types
-  Plugin 'majutsushi/tagbar' " adds a tagbar
 
-  Plugin 'scrooloose/syntastic' " inline syntax checker
+  " appearances
+  Plugin 'Yggdroot/indentLine' " adds a little grey line at each indentation level
+  Plugin 'airblade/vim-gitgutter' " adds git diff symbols on the left hand side
+  Plugin 'eapache/rainbow_parentheses.vim' " color parentheses based on depth
+  Plugin 'ryanoasis/vim-devicons' " add icons for specific file types
+  Plugin 'machakann/vim-highlightedyank' " briefly highlights the text that was just yanked
+
+  " themes
+  Plugin 'NLKNguyen/papercolor-theme' " great for light theme
+  Plugin 'acarl005/vim-gotham' " great for dark theme
+
+  " addon windows/commands
+  Plugin 'tpope/vim-fugitive' " a git wrapper
+  Plugin 'scrooloose/nerdtree' " a file explorer
+  Plugin 'ctrlpvim/ctrlp.vim' " fuzzy searching for files
+  Plugin 'airblade/vim-rooter' " if inside a git repository, opens vim with the root of that repo as the working directory
+  Plugin 'mileszs/ack.vim' " call ack command from vim
+  Plugin 'majutsushi/tagbar' " adds a tagbar
+  Plugin 'vim-airline/vim-airline'
+
+
+  " syntax/language stuff
+  Plugin 'w0rp/ale' " syntax checker
   Plugin 'jelera/vim-javascript-syntax' " better js highlighting
   Plugin 'elzr/vim-json' " better json highlighting
   Plugin 'exu/pgsql.vim' " postgres-specific SQL syntax
   Plugin 'cespare/vim-toml' " TOML syntax
   Plugin 'fatih/vim-go'
 
-  Plugin 'vim-airline/vim-airline'
-
+  " text-object stuff
   Plugin 'kana/vim-textobj-user' " plugin for defining custom text objects
   Plugin 'glts/vim-textobj-comment' " binds a text object to c for comments
   Plugin 'nelstrom/vim-textobj-rubyblock' " binds a text object to r for ruby blocks
   Plugin 'michaeljsmith/vim-indent-object' " binds a text object to i for an indentation level (good for python)
   Plugin 'zandrmartin/vim-textobj-blanklines' " text obj for blank lines to <space>
   Plugin 'sgur/vim-textobj-parameter' " text obj for a function param to ,
-
-  Plugin 'NLKNguyen/papercolor-theme'
-  Plugin 'acarl005/vim-gotham'
 
   " All of your Plugins must be added before the following line
   call vundle#end()            " required
@@ -109,9 +119,6 @@ endtry
   "set background=light
 "endif
 
-" a matching extension for things like ruby blocks
-runtime macros/matchit.vim
-
 " my favorite font. also includes customized unicode characters for making airline look super dope
 set guifont=Inconsolata\ for\ Powerline:h15
 " tell airline to use those custom characters inspired by powerline.
@@ -121,7 +128,7 @@ let g:airline#extensions#tabline#enabled = 1
 set encoding=utf-8
 set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
-set term=xterm-256color
+"set term=xterm-256color
 set termencoding=utf-8
 
 " default leader key is \ which is inconvenient
@@ -179,25 +186,6 @@ let g:go_def_mapping_enabled = 0
 let g:indentLine_color_term = 236
 let g:indentLine_char = '𝄄'
 set list lcs=tab:\𝄄\ 
-" syntastic options
-" this depends on `npm i -g eslint`
-let g:syntastic_javascript_checkers = ['eslint']
-" this depends on `pip3 install flake8 pep8-naming`
-let g:syntastic_python_checkers = ['flake8']
-"let g:syntastic_python_checkers = []
-" this depends on `brew install shellcheck`
-let g:syntaxtic_bash_checkers = ['shellcheck']
-"let g:syntastic_mode_map = { "mode": "passive" }
-let g:jsx_ext_required = 0
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-" hcl-fmt options. disable automatic formatting for some file types
-"let g:hcl_fmt_autosave = 0
-let g:tf_fmt_autosave = 1
-"let g:nomad_fmt_autosave = 0
 
 " set default SQL dialect to postgres. used with 'exu/pgsql.vim'
 let g:sql_type_default = 'pgsql'

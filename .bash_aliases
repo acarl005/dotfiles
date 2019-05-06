@@ -29,8 +29,9 @@ for i in `seq 1 11`; do
 done
 
 alias e=$EDITOR
-if command -v vim >/dev/null; then
-  alias vi=vim
+if command -v nvim >/dev/null; then
+  alias vi=nvim
+  alias vim=nvim
 fi
 
 # jump to commonly used directories
