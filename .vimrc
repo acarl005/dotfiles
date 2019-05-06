@@ -53,9 +53,15 @@ try
   Plugin 'majutsushi/tagbar' " adds a tagbar
   Plugin 'vim-airline/vim-airline'
 
-
   " syntax/language stuff
-  Plugin 'w0rp/ale' " syntax checker
+  Plugin 'w0rp/ale' " syntax checker, has pretty good functionality built in already
+  Plugin 'prabirshrestha/asyncomplete.vim' " asyncronous autocomplete framework
+  Plugin 'prabirshrestha/async.vim' " normalize async job control api for vim and neovim. only needed for compatibility
+  " language server support. ALE is good enough for syntax validation. just use this for autocomplete
+  " note that the actual language servers must be installed separately
+  Plugin 'prabirshrestha/vim-lsp'
+  Plugin 'prabirshrestha/asyncomplete-lsp.vim' " get asyncomplete to integreate with vim-lsp
+
   Plugin 'jelera/vim-javascript-syntax' " better js highlighting
   Plugin 'elzr/vim-json' " better json highlighting
   Plugin 'exu/pgsql.vim' " postgres-specific SQL syntax
@@ -125,6 +131,29 @@ let g:ale_sign_warning = "⚠"
 let g:ale_sign_info = "i"
 let g:ale_sign_hint = "➤"
 
+" disable LSPs reporting in favor of ALE's
+let g:lsp_diagnostics_enabled = 0         " disable diagnostics support
+
+" include the individual language servers if they are installed
+" for more, see https://github.com/prabirshrestha/vim-lsp/wiki/Servers
+" rustup update && rustup component add rls rust-analysis rust-src
+if executable('rls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'rls',
+        \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
+        \ 'workspace_config': {'rust': {'clippy_preference': 'on'}},
+        \ 'whitelist': ['rust'],
+        \ })
+endif
+" pip install python-language-server
+if executable('pyls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+endif
+
 " my favorite font. also includes customized unicode characters for making airline look super dope
 set guifont=Inconsolata\ for\ Powerline:h15
 " tell airline to use those custom characters inspired by powerline.
@@ -132,10 +161,9 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
 set encoding=utf-8
+set termencoding=utf-8
 set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
-"set term=xterm-256color
-set termencoding=utf-8
 
 " default leader key is \ which is inconvenient
 let mapleader = ','
