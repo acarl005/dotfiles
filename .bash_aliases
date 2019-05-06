@@ -74,11 +74,7 @@ alias 1p=op
 alias jn='jupyter-notebook'
 alias jl='jupyter-lab'
 alias rstudio='open -a rstudio'
-alias tf=terraform
-tg() {
-  echo running terragrunt "$1" --terragrunt-source "$(<source)" ${@:2}
-  terragrunt "$1" --terragrunt-source "$(<source)" ${@:2}
-}
+alias tb='tensorboard --logdir'
 alias cls='printf "\033c"'
 
 # work stuff

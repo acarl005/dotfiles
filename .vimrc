@@ -46,7 +46,7 @@ try
   Plugin 'elzr/vim-json' " better json highlighting
   Plugin 'exu/pgsql.vim' " postgres-specific SQL syntax
   Plugin 'cespare/vim-toml' " TOML syntax
-  Plugin 'racer-rust/vim-racer' " Rust autocomplete
+  Plugin 'fatih/vim-go'
 
   Plugin 'vim-airline/vim-airline'
 
@@ -128,14 +128,19 @@ set termencoding=utf-8
 let mapleader = ','
 
 set showcmd " Display commands in the bottom right corner as they are typed
+set number " line numbers
+"set relativenumber " line numbers are relative to where the cursor is (has performance issues on large files > 500 lines)
+
 set expandtab " convert tab to spaces
 set softtabstop=2 " how many spaces to insert for each <tab>
 set tabstop=2 " the width to display a <tab> character
 set shiftwidth=2 " used by commands like =, >, and < to know how much to indent
-"set relativenumber " line numbers are relative to where the cursor is (has performance issues on large files > 500 lines)
-set number " line numbers
 set autoindent
 set smartindent
+let g:pyindent_open_paren = 4
+let g:pyindent_nested_paren = '&sw'
+let g:pyindent_continue = '&sw'
+
 set ignorecase " searches are case insensitive
 set smartcase " searches become case sensitive when you enter capital letters
 set hlsearch " highlight the current search term
@@ -177,8 +182,9 @@ set list lcs=tab:\𝄄\
 " syntastic options
 " this depends on `npm i -g eslint`
 let g:syntastic_javascript_checkers = ['eslint']
-" this depends on `pip install pyflakes`
-let g:syntastic_python_checkers = ['pyflakes']
+" this depends on `pip3 install flake8 pep8-naming`
+let g:syntastic_python_checkers = ['flake8']
+"let g:syntastic_python_checkers = []
 " this depends on `brew install shellcheck`
 let g:syntaxtic_bash_checkers = ['shellcheck']
 "let g:syntastic_mode_map = { "mode": "passive" }
@@ -254,6 +260,8 @@ command Camel %s/\([a-z0-9]\)_\([a-z0-9]\)/\1\u\2/g
 
 command Day :set background=light
 command Night :set background=dark
+
+command F :echo expand('%:p')
 
 " convert 4-space indentation to 2-space
 command Dedent call Dedent()

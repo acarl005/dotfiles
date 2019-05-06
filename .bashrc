@@ -119,6 +119,7 @@ PROMPT_COMMAND='EXIT_STAT=$?; echo -ne "\033]0;$(basename $(pwd))\007"; history 
 export PS2='... '
 
 HISTSIZE=3000
+HISTFILESIZE=100000
 
 generate_prompt() {
   STATUS_BG=196
