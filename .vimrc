@@ -119,6 +119,12 @@ endtry
   "set background=light
 "endif
 
+" ALE config
+let g:ale_sign_error = "✖"
+let g:ale_sign_warning = "⚠"
+let g:ale_sign_info = "i"
+let g:ale_sign_hint = "➤"
+
 " my favorite font. also includes customized unicode characters for making airline look super dope
 set guifont=Inconsolata\ for\ Powerline:h15
 " tell airline to use those custom characters inspired by powerline.
