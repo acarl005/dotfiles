@@ -53,11 +53,19 @@ try
   Plugin 'majutsushi/tagbar' " adds a tagbar
   Plugin 'vim-airline/vim-airline'
 
-
   " syntax/language stuff
-  Plugin 'w0rp/ale' " syntax checker
+  Plugin 'w0rp/ale' " syntax checker, has pretty good functionality built in already
+  Plugin 'prabirshrestha/asyncomplete.vim' " asyncronous autocomplete framework
+  Plugin 'prabirshrestha/async.vim' " normalize async job control api for vim and neovim. only needed for compatibility
+  Plugin 'prabirshrestha/asyncomplete-buffer.vim'
+  " language server support. ALE is good enough for syntax validation. just use this for autocomplete
+  " note that the actual language servers must be installed separately
+  Plugin 'prabirshrestha/vim-lsp'
+  Plugin 'prabirshrestha/asyncomplete-lsp.vim' " get asyncomplete to integreate with vim-lsp
+
   Plugin 'jelera/vim-javascript-syntax' " better js highlighting
   Plugin 'elzr/vim-json' " better json highlighting
+  Plugin 'leafgarland/typescript-vim'
   Plugin 'exu/pgsql.vim' " postgres-specific SQL syntax
   Plugin 'cespare/vim-toml' " TOML syntax
   Plugin 'fatih/vim-go'
@@ -120,6 +128,57 @@ endtry
   "set background=light
 "endif
 
+" ALE config
+let g:ale_sign_error = "✖"
+let g:ale_sign_warning = "⚠"
+let g:ale_sign_info = "i"
+let g:ale_sign_hint = "➤"
+
+" disable LSPs reporting in favor of ALE's
+let g:lsp_diagnostics_enabled = 0         " disable diagnostics support
+
+" register the autocomplete sources for asyncomplete
+call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+    \ 'name': 'buffer',
+    \ 'whitelist': ['*'],
+    \ 'blacklist': ['go'],
+    \ 'completor': function('asyncomplete#sources#buffer#completor'),
+    \ }))
+" include the individual language servers if they are installed
+" for more, see https://github.com/prabirshrestha/vim-lsp/wiki/Servers
+" rustup update && rustup component add rls rust-analysis rust-src
+if executable('rls')
+  au User lsp_setup call lsp#register_server({
+    \ 'name': 'rls',
+    \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
+    \ 'workspace_config': {'rust': {'clippy_preference': 'on'}},
+    \ 'whitelist': ['rust'],
+    \ })
+endif
+" pip install python-language-server
+if executable('pyls')
+  au User lsp_setup call lsp#register_server({
+    \ 'name': 'pyls',
+    \ 'cmd': {server_info->['pyls']},
+    \ 'whitelist': ['python'],
+    \ })
+endif
+" npm install -g typescript typescript-language-server
+if executable('typescript-language-server')
+  au User lsp_setup call lsp#register_server({
+    \ 'name': 'javascript support using typescript-language-server',
+    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+    \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
+    \ 'whitelist': ['javascript', 'javascript.jsx'],
+    \ })
+  au User lsp_setup call lsp#register_server({
+    \ 'name': 'typescript-language-server',
+    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+    \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
+    \ 'whitelist': ['typescript', 'typescript.tsx'],
+    \ })
+endif
+
 " my favorite font. also includes customized unicode characters for making airline look super dope
 set guifont=Inconsolata\ for\ Powerline:h15
 " tell airline to use those custom characters inspired by powerline.
@@ -127,10 +186,9 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
 set encoding=utf-8
+set termencoding=utf-8
 set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
-"set term=xterm-256color
-set termencoding=utf-8
 
 " default leader key is \ which is inconvenient
 let mapleader = ','
