@@ -61,6 +61,7 @@ try
   Plugin 'exu/pgsql.vim' " postgres-specific SQL syntax
   Plugin 'cespare/vim-toml' " TOML syntax
   Plugin 'fatih/vim-go'
+  Plugin 'martinda/Jenkinsfile-vim-syntax' " jenkinsfile is actually Groovy lang
 
   " text-object stuff
   Plugin 'kana/vim-textobj-user' " plugin for defining custom text objects
@@ -169,7 +170,7 @@ set virtualedit=block
 set laststatus=2 " always show the status bar
 
 " these manually configure a nice status line. they are not necessary when powerline is installed
-if (vundle_installed == 0)
+if vundle_installed == 0
   set statusline=   " clear the statusline for when vimrc is reloaded
   set statusline=%f " show filename
   set statusline+=[%{strlen(&fenc)?&fenc:'none'},%{&ff}]  " show encoding
