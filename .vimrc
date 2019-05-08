@@ -57,7 +57,7 @@ try
   Plugin 'w0rp/ale' " syntax checker, has pretty good functionality built in already
   Plugin 'prabirshrestha/asyncomplete.vim' " asyncronous autocomplete framework
   Plugin 'prabirshrestha/async.vim' " normalize async job control api for vim and neovim. only needed for compatibility
-  Plugin 'prabirshrestha/asyncomplete-buffer.vim'
+  Plugin 'prabirshrestha/asyncomplete-buffer.vim' " adds an autocomplete source for tokens in the current buffer
   " language server support. ALE is good enough for syntax validation. just use this for autocomplete
   " note that the actual language servers must be installed separately
   Plugin 'prabirshrestha/vim-lsp'
@@ -138,11 +138,11 @@ let g:lsp_diagnostics_enabled = 0         " disable diagnostics support
 
 " register the autocomplete sources for asyncomplete
 call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
-    \ 'name': 'buffer',
-    \ 'whitelist': ['*'],
-    \ 'blacklist': ['go'],
-    \ 'completor': function('asyncomplete#sources#buffer#completor'),
-    \ }))
+  \ 'name': 'buffer',
+  \ 'whitelist': ['*'],
+  \ 'blacklist': ['go'],
+  \ 'completor': function('asyncomplete#sources#buffer#completor'),
+  \ }))
 " include the individual language servers if they are installed
 " for more, see https://github.com/prabirshrestha/vim-lsp/wiki/Servers
 " rustup update && rustup component add rls rust-analysis rust-src
@@ -226,7 +226,7 @@ set virtualedit=block
 " configure the status line
 set laststatus=2 " always show the status bar
 
-" these manually configure a nice status line. they are not necessary when powerline is installed
+" these manually configure a nice status line. they are not necessary when airline is installed
 if (vundle_installed == 0)
   set statusline=   " clear the statusline for when vimrc is reloaded
   set statusline=%f " show filename
@@ -282,14 +282,14 @@ map <leader>' :s/"/'/g<CR>
 map <leader>j :s/^\(\s*\)"\(\w\+\)"\s*:/\1\2:/g<CR>
 " a more convenient save shortcut. 'update' only writes the file if there are any changes
 map <leader>w :update<CR>
-" a more convenient quit shorcut. ZZ only writes the file if there are changes
-map <leader>q ZZ<CR>
 " dedent block and delete line with surrounding brackets
 map <leader>x <i{]}dd[{dd
-" add comma at the end
-map <leader>, A,<ESC>
+map <leader>d :bprevious<CR>
+map <leader>f :bnext<CR>
+map <leader>q :bdelete<CR>
 " reload .vimrc
 map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+" open the file tree from nerd-tree
 map <C-e> :NERDTreeToggle<CR>
 
 " key mappings for primitivorm/vim-swaplines plugin
