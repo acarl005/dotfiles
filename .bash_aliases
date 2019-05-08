@@ -12,6 +12,8 @@ else
 fi
 alias less='less -XmiJF'
 alias rn='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+# force tmux to use utf8 encoding so emojis and stuff render
+alias tmux='tmux -u'
 # https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo
 alias sudo='sudo '
 
