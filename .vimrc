@@ -178,6 +178,14 @@ if executable('typescript-language-server')
     \ 'whitelist': ['typescript', 'typescript.tsx'],
     \ })
 endif
+" npm install -g vscode-css-languageserver-bin
+if executable('css-languageserver')
+  au User lsp_setup call lsp#register_server({
+    \ 'name': 'css-languageserver',
+    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
+    \ 'whitelist': ['css', 'less', 'sass'],
+    \ })
+endif
 
 " my favorite font. also includes customized unicode characters for making airline look super dope
 set guifont=Inconsolata\ for\ Powerline:h15

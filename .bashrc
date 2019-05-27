@@ -216,8 +216,11 @@ export LS_COLORS='di=1;34:ln=1;36:so=1;35:pi=33:ex=1;32:bd=1;33:cd=1;33:su=30;42
 export GREP_OPTIONS='--color=auto'
 
 
-# Set vim as the default editor
+# Set vim as the default editor, or NeoVim if its installed
 export EDITOR=vim
+if command -v nvim >/dev/null; then
+  export EDITOR=nvim
+fi
 
 if command -v ls-go >/dev/null; then
   alias ll='ls-go -alLRkSn'
