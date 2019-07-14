@@ -78,6 +78,7 @@ alias jn='jupyter-notebook'
 alias jl='jupyter-lab'
 alias rstudio='open -a rstudio'
 alias tb='tensorboard --logdir'
+alias kub=kubectl
 alias cls='printf "\033c"'
 
 # work stuff

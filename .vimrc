@@ -24,7 +24,7 @@ try
   Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
   " editing utilities
-  Plugin 'Townk/vim-autoclose.git' " auto add matching bracket or quote when you type one
+  Plugin 'cohama/lexima.vim' " automatically insert enclosing parentheses
   Plugin 'andymass/vim-matchup' " replacement for builtin matchit
   Plugin 'terryma/vim-multiple-cursors' " sublime-text-like multi cursors
   Plugin 'tpope/vim-surround' " manipulates surrounding brackets and quotes
@@ -111,6 +111,10 @@ filetype plugin indent on    " required
 
 " enable syntax highlighting
 syntax on
+
+" normally, you cannot switch buffers if the current one has unsaved changes.
+" this allows it
+set hidden
 
 " try loading a custom one. fallback to a built-in one
 try
@@ -273,6 +277,8 @@ let g:vim_json_syntax_conceal = 0
 " vim includes a bunch of keybindings in SQL files that overwrite my own. disable those
 let g:omni_sql_no_default_maps = 1
 
+" prevent enter and ecs key from getting hijacked by asyncomplete
+inoremap <expr> <CR> pumvisible() ? asyncomplete#close_popup() . "\<CR>" : "\<CR>"
 " custom key mappings
 " when in insert mode, insert line above
 imap <nowait> <C-l> <C-c>O
