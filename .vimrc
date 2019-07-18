@@ -19,12 +19,11 @@ try
 
   " plugin from http://vim-scripts.org/vim/scripts.html
   Plugin 'L9'
-  " The sparkup vim script is in a subdirectory of this repo called vim.
-  " Pass the path to set the runtimepath properly.
-  Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+
 
   " editing utilities
   Plugin 'cohama/lexima.vim' " automatically insert enclosing parentheses
+  Plugin 'mattn/emmet-vim' " adds snippets and stuff for editint HTML/XML/JSX
   Plugin 'andymass/vim-matchup' " replacement for builtin matchit
   Plugin 'terryma/vim-multiple-cursors' " sublime-text-like multi cursors
   Plugin 'tpope/vim-surround' " manipulates surrounding brackets and quotes
@@ -51,7 +50,7 @@ try
   Plugin 'airblade/vim-rooter' " if inside a git repository, opens vim with the root of that repo as the working directory
   Plugin 'mileszs/ack.vim' " call ack command from vim
   Plugin 'majutsushi/tagbar' " adds a tagbar
-  Plugin 'vim-airline/vim-airline'
+  Plugin 'vim-airline/vim-airline' " an awesome looking status bar
 
   " syntax/language stuff
   Plugin 'w0rp/ale' " syntax checker, has pretty good functionality built in already
@@ -63,7 +62,8 @@ try
   Plugin 'prabirshrestha/vim-lsp'
   Plugin 'prabirshrestha/asyncomplete-lsp.vim' " get asyncomplete to integreate with vim-lsp
 
-  Plugin 'jelera/vim-javascript-syntax' " better js highlighting
+  " syntax plugins
+  Plugin 'neoclide/vim-jsx-improve' " better js AND jsx highlighting
   Plugin 'elzr/vim-json' " better json highlighting
   Plugin 'leafgarland/typescript-vim'
   Plugin 'exu/pgsql.vim' " postgres-specific SQL syntax
