@@ -16,6 +16,9 @@ alias rn='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; c
 alias tmux='tmux -u'
 # https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo
 alias sudo='sudo '
+csv_less() {
+  cat $1 | sed -E 's/^,/␀,/' | sed -E 's/,,/,␀,/g' | column -s, -t | less -#2 -N -S
+}
 
 
 #full recursive directory listing
@@ -63,13 +66,14 @@ fi
 alias u='echo -n `uuid` | pbcopy'
 alias pirate='youtube-dl --extract-audio --audio-format mp3'
 alias probe='ffprobe -of json -show_streams -show_format'
+alias R='R --no-save'
 alias r='r --no-save'
 alias grip='grip -b'
 alias https='http --default-scheme=https'
 alias conk="conky -d -c ~/.conky/conkyrc_seamod"
 alias root='cd $(git root)'
+alias weather='curl wttr.in/?m'
 
-alias fm=foreman
 alias ipy='ipython --no-confirm-exit'
 alias py=python
 alias py3=python3
@@ -80,9 +84,6 @@ alias rstudio='open -a rstudio'
 alias tb='tensorboard --logdir'
 alias kub=kubectl
 alias cls='printf "\033c"'
-
-# work stuff
-alias bastion='ssh -A ec2-user@54.208.41.126'
 
 # compatibility stuff
 if [[ $(uname) = Linux ]]; then

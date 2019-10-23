@@ -12,6 +12,10 @@ from datetime import datetime
 # wrap in try blocks because they may or may not be installed
 try:
     import numpy as np
+    import pandas as pd
+    d = pd.DataFrame({"a": np.random.randn(10),
+                      "b": np.random.randn(10),
+                      "c": np.random.randn(10)})
 except ImportError:
     pass
 
@@ -19,9 +23,3 @@ try:
     from matplotlib import pyplot as plt
 except ImportError:
     pass
-
-try:
-    import pandas as pd
-except ImportError:
-    pass
-
