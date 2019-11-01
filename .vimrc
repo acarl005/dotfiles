@@ -305,8 +305,8 @@ map <leader>x <i{]}dd[{dd
 map <leader>d :bprevious<CR>
 map <leader>f :bnext<CR>
 map <leader>q :bdelete<CR>
-" reload .vimrc
-map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+map <leader>t :Tagbar<CR>
+
 " open the file tree from nerd-tree
 map <C-e> :NERDTreeToggle<CR>
 

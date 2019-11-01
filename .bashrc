@@ -27,31 +27,13 @@ suggest() {
   fi
 }
 
+# if this is an interactive shell
 if [[ $- =~ "i" ]]; then
-  if command -v neofetch >/dev/null; then
+  if [ -d .git ] && command -v onefetch >/dev/null; then
+    onefetch
+  elif command -v neofetch >/dev/null; then
     neofetch
   else
-    # Greet me with a mario and other stuff
-    echo
-    echo -e "[48;5;m          [0m[48;5;9m          [0m[48;5;m    [0m[48;5;224m      [0m[48;5;m  [0m\
-      $(forg 227)username: $(forg 33)$USER"
-    echo -e "[48;5;m        [0m[48;5;9m                  [0m[48;5;224m    [0m[48;5;m  [0m\
-      $(forg 227)date: $(forg 33)$(date)"
-    echo -e "[48;5;m        [0m[48;5;95m      [0m[48;5;224m    [0m[48;5;0m  [0m[48;5;224m  [0m[48;5;m  [0m[48;5;9m      [0m[48;5;m  [0m\
-      $(forg 227)hostname: $(forg 33)$HOSTNAME"
-    echo -e "[48;5;m      [0m[48;5;95m  [0m[48;5;224m  [0m[48;5;95m  [0m[48;5;224m      [0m[48;5;0m  [0m[48;5;224m      [0m[48;5;9m    [0m[48;5;m  [0m\
-      $(forg 227)kernel: $(forg 33)$OSTYPE"
-    echo -e "[48;5;m      [0m[48;5;95m  [0m[48;5;224m  [0m[48;5;95m    [0m[48;5;224m      [0m[48;5;95m  [0m[48;5;224m      [0m[48;5;9m  [0m[48;5;m  [0m"
-    echo -e "[48;5;m      [0m[48;5;95m    [0m[48;5;224m        [0m[48;5;95m        [0m[48;5;9m  [0m[48;5;m    [0m"
-    echo -e "[48;5;m          [0m[48;5;224m              [0m[48;5;9m    [0m[48;5;m    [0m"
-    echo -e "[48;5;m    [0m[48;5;9m        [0m[48;5;33m  [0m[48;5;9m      [0m[48;5;33m  [0m[48;5;9m    [0m[48;5;m    [0m[48;5;95m  [0m"
-    echo -e "[48;5;224m    [0m[48;5;9m          [0m[48;5;33m  [0m[48;5;9m      [0m[48;5;33m  [0m[48;5;m    [0m[48;5;95m    [0m"
-    echo -e "[48;5;224m      [0m[48;5;9m        [0m[48;5;33m        [0m[48;5;11m  [0m[48;5;33m    [0m[48;5;95m    [0m"
-    echo -e "[48;5;m  [0m[48;5;224m  [0m[48;5;m    [0m[48;5;33m  [0m[48;5;9m  [0m[48;5;33m    [0m[48;5;11m  [0m[48;5;33m          [0m[48;5;95m    [0m"
-    echo -e "[48;5;m    [0m[48;5;95m      [0m[48;5;33m                  [0m[48;5;95m    [0m"
-    echo -e "[48;5;m  [0m[48;5;95m      [0m[48;5;33m            [0m[48;5;m            [0m"
-    echo -e "[48;5;m  [0m[48;5;95m    [0m[48;5;m                          [0m"
-    echo
     suggest neofetch https://github.com/dylanaraps/neofetch
   fi
 fi
@@ -84,8 +66,8 @@ fi
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # use the version of Git i installed with homebrew instead of the one that came with the OS
-if brew --prefix git >/dev/null 2>&1; then
-  PATH="$(brew --prefix git)/bin:$PATH"
+if [ -d /usr/local/opt/git/bin ]; then
+  PATH="/usr/local/opt/git/bin:$PATH"
 fi
 
 # Load git completions
@@ -256,28 +238,6 @@ man() {
   LESS_TERMCAP_ue=$'\e[0m' \
   LESS_TERMCAP_us=$'\e[01;32m' \
   command man "$@"
-}
-
-if command -v pygmentize >/dev/null; then
-  export LESSOPEN="| pygmentize %s"
-  export LESS=" -R" 
-  # overwrite cat command so that it uses pygments instead
-  cat() {
-    # only use color if the stdout points to the terminal
-    if [ -t 1 ]; then
-      pygmentize "$@" 2>/dev/null # silence errors
-      [[ $? != 0 ]] && /bin/cat "$@" # if an error occurs, fall back to the regular cat
-    # otherwise, if we're piping to another command, we dont want the color
-    else
-      /bin/cat "$@"
-    fi
-  }
-else
-  suggest pygments http://pygments.org/download/
-fi
-
-local-install() {
-  npm install $(npm pack "$1" | tail -1)
 }
 
 docker-kill() {

@@ -5,7 +5,6 @@ sudo yum install -y epel-release yum-plugin-copr
 # add a COPR dependency
 sudo pip install urllib3 --upgrade
 sudo pip install tldr
-sudo pip install pygments
 sudo pip install ranger-fm
 
 yum copr -y enable konimex/neofetch
