@@ -19,6 +19,7 @@ alias sudo='sudo '
 csv_less() {
   cat $1 | sed -E 's/^,/␀,/' | sed -E 's/,,/,␀,/g' | column -s, -t | less -#2 -N -S
 }
+alias cwd='pwd | tr -d "\n" | pbcopy'
 
 
 #full recursive directory listing

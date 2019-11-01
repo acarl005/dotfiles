@@ -12,6 +12,7 @@ from datetime import datetime
 # wrap in try blocks because they may or may not be installed
 try:
     import numpy as np
+    a = np.random.randn(5, 10)
     import pandas as pd
     d = pd.DataFrame({"a": np.random.randn(10),
                       "b": np.random.randn(10),
