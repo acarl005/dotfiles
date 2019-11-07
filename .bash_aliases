@@ -72,10 +72,17 @@ alias r='r --no-save'
 alias grip='grip -b'
 alias https='http --default-scheme=https'
 alias conk="conky -d -c ~/.conky/conkyrc_seamod"
-alias root='cd $(git root)'
 alias weather='curl wttr.in/?m'
 
-alias ipy='ipython --no-confirm-exit'
+root() {
+  builtin cd $(git root)
+  if [ -d .git ] && command -v onefetch >/dev/null; then
+    onefetch
+  fi
+  ll
+}
+
+alias ipy='python -m IPython --no-confirm-exit'
 alias py=python
 alias py3=python3
 alias 1p=op
