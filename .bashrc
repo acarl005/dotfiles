@@ -56,6 +56,7 @@ export NVM_DIR="$HOME/.nvm"
   . "$NVM_DIR/nvm.sh"  # This loads nvm
   export NODE_PATH="$HOME/.nvm/versions/node/$(node -v)/lib/node_modules"
 }
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # include Golang stuff
 if [ -d "$HOME/go" ]; then
@@ -324,4 +325,3 @@ if [[ `uname -s` = Linux ]]; then
 else
   [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 fi
-
