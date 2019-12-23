@@ -43,10 +43,10 @@ if [ "$USE_SUDO" = true ]; then
 fi
 
 if [ "$HAS_GUI" = true ]; then
-  # install Powerline font
-  git clone https://github.com/powerline/fonts ~/Downloads/fonts
+  # install nerd font
+  git clone https://github.com/ryanoasis/nerd-fonts ~/Downloads/fonts
   pushd ~/Downloads/fonts
-  ./install.sh
+  ./install.sh Inconsolata
   popd
 fi
 
@@ -67,9 +67,6 @@ vim +PluginInstall +qall
 if [[ $(uname) = Darwin ]]; then
   defaults import com.googlecode.iterm2 iterm2.plist
 else
-  echo change preferred font in your terminal emulator to "Inconsolata for Powerline"
+  echo change preferred font in your terminal emulator to "Inconsolata Nerd Font"
   echo also, you might want to change the background to '#2C001E rgb(45, 0, 30)'
 fi
-
-# once atom is installed, run this:
-# apm install apathy-theme color-picker emmet file-icons highlight-selected linter linter-eslint pigments script vim-mode-plus
