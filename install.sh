@@ -69,4 +69,8 @@ if [[ $(uname) = Darwin ]]; then
 else
   echo change preferred font in your terminal emulator to "Inconsolata Nerd Font"
   echo also, you might want to change the background to '#2C001E rgb(45, 0, 30)'
+  # other possible todos
+  # install nvidia drivers https://www.linuxbabe.com/ubuntu/install-nvidia-driver-ubuntu-18-04
+  # enable Night Light https://vitux.com/how-to-activate-night-light-on-ubuntu-desktop/
+  # use Tweaks to: dark theme, startup Guake
 fi
