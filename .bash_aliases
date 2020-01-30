@@ -10,14 +10,14 @@ if [[ `uname -s` = Linux ]]; then
 else
   alias ls='ls -Gp'
 fi
-alias less='less -XmiJF'
+alias less='less -XmiJ'
 alias rn='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 # force tmux to use utf8 encoding so emojis and stuff render
 alias tmux='tmux -u'
 # https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo
 alias sudo='sudo '
 csv_less() {
-  cat $1 | sed -E 's/^,/␀,/' | sed -E 's/,,/,␀,/g' | column -s, -t | less -#2 -N -S
+  sed -e "s/^,/␀,/" -e "s/,,/,␀,/g" -e "s/,$/,␀/" $1 | sed -e "s/,,/,␀,/g" | column -s, -t | less -#2 -N -S
 }
 alias cwd='pwd | tr -d "\n" | pbcopy'
 

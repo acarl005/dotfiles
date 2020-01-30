@@ -1,4 +1,3 @@
-# coding=utf-8
 import sys, platform
 implementation = platform.python_implementation()
 

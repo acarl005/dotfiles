@@ -47,7 +47,6 @@ try
   Plugin 'tpope/vim-fugitive' " a git wrapper
   Plugin 'scrooloose/nerdtree' " a file explorer
   Plugin 'ctrlpvim/ctrlp.vim' " fuzzy searching for files
-  Plugin 'airblade/vim-rooter' " if inside a git repository, opens vim with the root of that repo as the working directory
   Plugin 'mileszs/ack.vim' " call ack command from vim
   Plugin 'majutsushi/tagbar' " adds a tagbar
   Plugin 'vim-airline/vim-airline' " an awesome looking status bar

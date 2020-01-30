@@ -19,7 +19,7 @@
 [alias]
   co = checkout
   br = branch
-  a = add .
+  d = diff
   pick = cherry-pick
   puch = push
   re = remote -v
