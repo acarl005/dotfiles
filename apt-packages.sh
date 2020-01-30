@@ -2,15 +2,22 @@ HAS_GUI=$1
 
 sudo apt-get update
 
-sudo apt-get install -y git python3-dev python3-pip vim-gtk ack-grep autojump ranger tldr curl xclip shellcheck
+sudo apt-get install -y git ack-grep autojump ranger tldr curl xclip shellcheck neofetch
+# enable once ubuntu 20.04 comes out
+# sudo apt-get install -y bat fzf fd-find
 
-if [ "$HAS_GUI" = true ]; then
-  sudo apt-get install -y unity-tweak-tool ubuntu-restricted-extras \
-    redshift redshift-gtk default-jre guake exfat-fuse exfat-utils \
-    ttf-ancient-fonts libxml2-dev libxslt-dev
+if [ "$XDG_CURRENT_DESKTOP" = ubuntu:GNOME ]; then
+  sudo apt-get install -y vim-gnome 
+else
+  sudo apt-get install -y vim-gtk
 fi
 
-sudo add-apt-repository ppa:dawidd0811/neofetch
-sudo apt-get update
-sudo apt-get install -y neofetch
+if [ "$HAS_GUI" = true ]; then
+  sudo apt-get install -y guake
+  if [ "$XDG_CURRENT_DESKTOP" = ubuntu:GNOME ]; then
+    sudo apt-get install -y gnome-tweaks  
+  else
+    sudo apt-get install -y unity-tweak-tool
+  fi
+fi
 

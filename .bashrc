@@ -56,6 +56,7 @@ export NVM_DIR="$HOME/.nvm"
   . "$NVM_DIR/nvm.sh"  # This loads nvm
   export NODE_PATH="$HOME/.nvm/versions/node/$(node -v)/lib/node_modules"
 }
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # include Golang stuff
 if [ -d "$HOME/go" ]; then
@@ -258,27 +259,28 @@ if [ ${BASH_VERSION:0:1} -ge 4 ]; then
 fi
 
 #extract most known archives
-extract() {
-  if [ -f $1 ] ; then
+extract() (
+  if [ -f "$1" ] ; then
+    set -x
     case $1 in
-      *.tar.xz)    tar xvfJ $1    ;;
-      *.tar.bz2)   tar xjf $1     ;;
-      *.tar.gz)    tar xzf $1     ;;
-      *.bz2)       bunzip2 $1     ;;
-      *.rar)       unrar e $1     ;;
-      *.gz)        gunzip $1      ;;
-      *.tar)       tar xf $1      ;;
-      *.tbz2)      tar xjf $1     ;;
-      *.tgz)       tar xzf $1     ;;
-      *.zip)       unzip $1       ;;
-      *.Z)         uncompress $1  ;;
-      *.7z)        7z x $1        ;;
+      *.tar.xz)    tar xfJ "$1"     ;;
+      *.tar.bz2)   tar xjf "$1"     ;;
+      *.tar.gz)    tar xzf "$1"     ;;
+      *.bz2)       bunzip2 "$1"     ;;
+      *.rar)       unrar e "$1"     ;;
+      *.gz)        gunzip "$1"      ;;
+      *.tar)       tar xf "$1"      ;;
+      *.tbz2)      tar xjf "$1"     ;;
+      *.tgz)       tar xzf "$1"     ;;
+      *.zip)       unzip "$1"       ;;
+      *.Z)         uncompress "$1"  ;;
+      *.7z)        7z x "$1"        ;;
       *)     echo "'$1' cannot be extracted via extract()" ;;
     esac
   else
     echo "'$1' is not a valid file"
   fi
-}
+)
 
 
 ##############
@@ -324,4 +326,3 @@ if [[ `uname -s` = Linux ]]; then
 else
   [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 fi
-
