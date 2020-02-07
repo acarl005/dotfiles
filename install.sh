@@ -16,6 +16,7 @@ mkdir ~/.vim
 
 ln -i -s $PWD/bin ~/bin
 ln -i -s $PWD/ftplugin ~/.vim/ftplugin
+ln -i -s $PWD/indent ~/.vim/indent
 ln -i -s $PWD/.ackrc ~/.ackrc
 ln -i -s $PWD/.bashrc ~/.bashrc
 ln -i -s $PWD/.bash_aliases ~/.bash_aliases
