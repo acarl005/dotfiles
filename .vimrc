@@ -319,8 +319,29 @@ noremap <silent> <C-k> :SwapUp<CR>
 noremap <silent> <C-j> :SwapDown<CR>
 
 
+" maximize window and return to previous split structure
+nnoremap <C-W>o :call MaximizeToggle()<CR>
+nnoremap <C-W><C-o> :call MaximizeToggle()<CR>
+
+function! MaximizeToggle()
+  if exists("s:maximize_session")
+    exec "source " . s:maximize_session
+    call delete(s:maximize_session)
+    unlet s:maximize_session
+    let &hidden=s:maximize_hidden_save
+    unlet s:maximize_hidden_save
+  else
+    let s:maximize_hidden_save = &hidden
+    let s:maximize_session = tempname()
+    set hidden
+    exec "mksession! " . s:maximize_session
+    only
+  endif
+endfunction
+
+
 " open the vimrc
-command Conf :tabe ~/.vimrc
+command Conf :badd ~/.vimrc
 " command Trim :%s/\s\+$//g
 command Trim :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s
 " translate snake case to camel case
