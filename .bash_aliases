@@ -19,6 +19,9 @@ alias sudo='sudo '
 csv_less() {
   sed -e "s/^,/␀,/" -e "s/,,/,␀,/g" -e "s/,$/,␀/" $1 | sed -e "s/,,/,␀,/g" | column -s, -t | less -#2 -N -S
 }
+hl() {
+  grep --color -E "$1|$" "${@:2}"
+}
 alias cwd='pwd | tr -d "\n" | pbcopy'
 
 
