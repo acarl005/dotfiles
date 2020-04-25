@@ -43,6 +43,11 @@ if command -v nvim >/dev/null; then
   alias vim=nvim
 fi
 
+
+if command -v batcat >/dev/null; then
+  alias bat=batcat
+fi
+
 # jump to commonly used directories
 alias desk="pushd $HOME/Desktop"
 export desk="$HOME/Desktop"
@@ -88,7 +93,6 @@ root() {
 alias ipy='python -m IPython --no-confirm-exit'
 alias py=python
 alias py3=python3
-alias 1p=op
 alias jn='jupyter-notebook'
 alias jl='jupyter-lab'
 alias rstudio='open -a rstudio'
