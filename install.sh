@@ -28,6 +28,7 @@ ln -i -s $PWD/.pryrc ~/.pryrc
 ln -i -s $PWD/.psqlrc ~/.psqlrc
 ln -i -s $PWD/.mongorc.js ~/.mongorc.js
 ln -i -s $PWD/.pythonrc.py ~/.pythonrc.py
+ln -i -s $PWD/.condarc ~/.condarc
 ln -i -s $PWD/.vimrc ~/.vimrc
 /bin/cp $PWD/.bash_profile ~/.bash_profile
 
