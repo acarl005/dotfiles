@@ -178,6 +178,15 @@ if vundle_installed == 1
       \ 'whitelist': ['dockerfile'],
       \ })
   endif
+  " go get -u golang.org/x/tools/gopls
+  if executable('gopls')
+    au User lsp_setup call lsp#register_server({
+      \ 'name': 'gopls',
+      \ 'cmd': {server_info->['gopls']},
+      \ 'whitelist': ['go'],
+      \ })
+    autocmd BufWritePre *.go LspDocumentFormatSync
+  endif
 endif
 
 " my favorite font. also includes customized unicode characters for making airline look super dope
