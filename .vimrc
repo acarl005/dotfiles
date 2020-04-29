@@ -56,10 +56,12 @@ try
   Plugin 'prabirshrestha/asyncomplete.vim' " asyncronous autocomplete framework
   Plugin 'prabirshrestha/async.vim' " normalize async job control api for vim and neovim. only needed for compatibility
   Plugin 'prabirshrestha/asyncomplete-buffer.vim' " adds an autocomplete source for tokens in the current buffer
+  Plugin 'prabirshrestha/asyncomplete-file.vim'
   " language server support. ALE is good enough for syntax validation. just use this for autocomplete
   " note that the actual language servers must be installed separately
   Plugin 'prabirshrestha/vim-lsp'
   Plugin 'prabirshrestha/asyncomplete-lsp.vim' " get asyncomplete to integreate with vim-lsp
+  Plugin 'ryanolsonx/vim-lsp-javascript' " npm install -g typescript typescript-language-server
 
   " syntax plugins
   Plugin 'neoclide/vim-jsx-improve' " better js AND jsx highlighting
@@ -143,6 +145,12 @@ let g:lsp_diagnostics_enabled = 0         " disable diagnostics support
 
 if vundle_installed == 1
   " register the autocomplete sources for asyncomplete
+  au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+    \ 'name': 'file',
+    \ 'whitelist': ['*'],
+    \ 'priority': 10,
+    \ 'completor': function('asyncomplete#sources#file#completor')
+    \ }))
   call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
     \ 'name': 'buffer',
     \ 'whitelist': ['*'],
@@ -166,21 +174,6 @@ if vundle_installed == 1
       \ 'name': 'pyls',
       \ 'cmd': {server_info->['pyls']},
       \ 'whitelist': ['python'],
-      \ })
-  endif
-  " npm install -g typescript typescript-language-server
-  if executable('typescript-language-server')
-    au User lsp_setup call lsp#register_server({
-      \ 'name': 'javascript support using typescript-language-server',
-      \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-      \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
-      \ 'whitelist': ['javascript', 'javascript.jsx'],
-      \ })
-    au User lsp_setup call lsp#register_server({
-      \ 'name': 'typescript-language-server',
-      \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-      \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
-      \ 'whitelist': ['typescript', 'typescript.tsx'],
       \ })
   endif
   " npm install -g vscode-css-languageserver-bin
