@@ -62,7 +62,8 @@ try
   Plugin 'prabirshrestha/vim-lsp'
   Plugin 'prabirshrestha/asyncomplete-lsp.vim' " get asyncomplete to integreate with vim-lsp
   Plugin 'ryanolsonx/vim-lsp-javascript' " npm install -g typescript typescript-language-server
-  Plugin 'ryanolsonx/vim-lsp-typescript'
+  Plugin 'ryanolsonx/vim-lsp-typescript' " npm install -g typescript typescript-language-server
+  Plugin 'ryanolsonx/vim-lsp-python' " pip install python-language-server
 
   " syntax plugins
   Plugin 'neoclide/vim-jsx-improve' " better js AND jsx highlighting
@@ -169,20 +170,12 @@ if vundle_installed == 1
       \ 'whitelist': ['rust'],
       \ })
   endif
-  " pip install python-language-server
-  if executable('pyls')
+  " npm install -g dockerfile-language-server-nodejs
+  if executable('docker-langserver')
     au User lsp_setup call lsp#register_server({
-      \ 'name': 'pyls',
-      \ 'cmd': {server_info->['pyls']},
-      \ 'whitelist': ['python'],
-      \ })
-  endif
-  " npm install -g vscode-css-languageserver-bin
-  if executable('css-languageserver')
-    au User lsp_setup call lsp#register_server({
-      \ 'name': 'css-languageserver',
-      \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
-      \ 'whitelist': ['css', 'less', 'sass'],
+      \ 'name': 'docker-langserver',
+      \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
+      \ 'whitelist': ['dockerfile'],
       \ })
   endif
 endif
