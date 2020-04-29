@@ -62,6 +62,7 @@ try
   Plugin 'prabirshrestha/vim-lsp'
   Plugin 'prabirshrestha/asyncomplete-lsp.vim' " get asyncomplete to integreate with vim-lsp
   Plugin 'ryanolsonx/vim-lsp-javascript' " npm install -g typescript typescript-language-server
+  Plugin 'ryanolsonx/vim-lsp-typescript'
 
   " syntax plugins
   Plugin 'neoclide/vim-jsx-improve' " better js AND jsx highlighting
