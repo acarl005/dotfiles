@@ -178,11 +178,11 @@ if vundle_installed == 1
       \ 'whitelist': ['dockerfile'],
       \ })
   endif
-  " go get -u golang.org/x/tools/gopls
-  if executable('gopls')
+  " go get -u github.com/sourcegraph/go-langserver
+  if executable('go-langserver')
     au User lsp_setup call lsp#register_server({
-      \ 'name': 'gopls',
-      \ 'cmd': {server_info->['gopls']},
+      \ 'name': 'go-langserver',
+      \ 'cmd': {server_info->['go-langserver', '-gocodecompletion']},
       \ 'whitelist': ['go'],
       \ })
     autocmd BufWritePre *.go LspDocumentFormatSync
