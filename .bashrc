@@ -104,6 +104,11 @@ export PS2='... '
 HISTSIZE=3000
 HISTFILESIZE=100000
 
+remove_parens() {
+  EXPR=$(echo "$1" | xargs)
+  echo "${EXPR:1:$((${#EXPR} - 2))}"
+}
+
 generate_prompt() {
   STATUS_BG=196
   STATUS_STR='✘ '
@@ -115,9 +120,9 @@ generate_prompt() {
   ENV_BG=27
   ENV_STR=
   if [[ $VIRTUAL_ENV ]]; then
-    ENV_STR="$ENV_STR $(basename $VIRTUAL_ENV) "
-  elif [[ $CONDA_PREFIX ]]; then
-    ENV_STR="$ENV_STR $(basename $CONDA_PREFIX)"
+    ENV_STR="$ENV_STR $(basename "$VIRTUAL_ENV") "
+  elif [[ $CONDA_PROMPT_MODIFIER ]]; then
+    ENV_STR="$ENV_STR $(remove_parens "$CONDA_PROMPT_MODIFIER")"
   fi
   if [ ! -z $rvm_bin_path ]; then
     ENV_STR="$ENV_STR $RUBY_VERSION"
