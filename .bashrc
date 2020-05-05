@@ -121,7 +121,7 @@ generate_prompt() {
   ENV_STR=
   if [[ $VIRTUAL_ENV ]]; then
     ENV_STR="$ENV_STR $(basename "$VIRTUAL_ENV") "
-  elif [[ $CONDA_PROMPT_MODIFIER ]]; then
+  elif [[ $CONDA_PROMPT_MODIFIER ]] && [[ $CONDA_PROMPT_MODIFIER != "(base) " ]]; then
     ENV_STR="$ENV_STR $(remove_parens "$CONDA_PROMPT_MODIFIER")"
   fi
   if [ ! -z $rvm_bin_path ]; then
@@ -254,6 +254,10 @@ docker-kill() {
 
 docker-clean() {
   docker rmi $(docker images -q)
+}
+
+docker-danglers() {
+  docker rmi $(docker images -f "dangling=true" -q)
 }
 
 # set some global bash options that i like
