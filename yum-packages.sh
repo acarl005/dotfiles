@@ -12,3 +12,9 @@ yum copr -y enable konimex/neofetch
 sudo yum update -y
 sudo yum install -y vim git tmux ack autojump neofetch curl shellcheck
 
+
+# install nerd font
+git clone https://github.com/ryanoasis/nerd-fonts ~/Downloads/fonts
+pushd ~/Downloads/fonts
+./install.sh Inconsolata
+popd
