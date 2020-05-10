@@ -9,7 +9,7 @@ fi
 if [[ $(uname) = Darwin ]]; then
   . mac-packages.sh
 elif command -v apt-get >/dev/null; then
-  . apt-packages.sh "$HAS_GUI"
+  . apt-packages.sh
 elif command -v yum >/dev/null; then
   . yum-packages.sh
 else

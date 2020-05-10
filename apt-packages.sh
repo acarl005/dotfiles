@@ -1,8 +1,6 @@
-HAS_GUI=$1
-
 sudo apt-get update -y
 
-sudo apt-get install -y git ack-grep autojump ranger tldr curl xclip shellcheck neofetch batcat fzf fd-find
+sudo apt-get install -y git ack-grep autojump ranger tldr curl xclip shellcheck neofetch bat fzf fd-find
 
 if [ "$XDG_CURRENT_DESKTOP" = ubuntu:GNOME ]; then
   sudo apt-get install -y vim-gnome gnome-tweaks  

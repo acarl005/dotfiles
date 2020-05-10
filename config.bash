@@ -42,6 +42,9 @@ if [ -f /usr/share/bash-completion/completions/git ]; then
 elif [ -f /etc/bash_completion.d/git ]; then
   . /etc/bash_completion.d/git
 fi
+if [ -f /usr/lib/git-core/git-sh-prompt ]; then
+  . /usr/lib/git-core/git-sh-prompt
+fi
 
 # Git autocomplete features (MacOS)
 BREW_PREFIX=/usr/local
