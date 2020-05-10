@@ -3,5 +3,6 @@ channels:
   - defaults
 create_default_packages:
   - ipython
-  - python-language-server
   - ipdb
+  - python-language-server
+  - mypy
