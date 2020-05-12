@@ -1,6 +1,6 @@
 # load shared config with Bash
-if [ -f $HOME/common-config.sh ]; then
-  . $HOME/common-config.sh
+if [ -f "$HOME/common-config.sh" ]; then
+  . "$HOME/common-config.sh"
 fi
 
 # generate the prompt-escaped versions of the colors. this indicates which characters are not
@@ -18,9 +18,9 @@ reset_esc='\[\e[0m\]'
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f "$HOME/.fzf.bash" ] && source "$HOME/.fzf.bash"
 
-if [[ `uname -s` = Linux ]]; then
+if [[ $(uname -s) = Linux ]]; then
   [ -f /usr/share/autojump/autojump.bash ] && . /usr/share/autojump/autojump.bash
   [ -f /usr/share/autojump/autojump.sh ] && . /usr/share/autojump/autojump.sh
 else
