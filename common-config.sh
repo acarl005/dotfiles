@@ -102,17 +102,6 @@ man() {
   command man "$@"
 }
 
-docker-kill() {
-  docker rm $(docker ps -a -q)
-}
-
-docker-clean() {
-  docker rmi $(docker images -q)
-}
-
-docker-danglers() {
-  docker rmi $(docker images -f "dangling=true" -q)
-}
 
 #extract most known archives
 extract() (
