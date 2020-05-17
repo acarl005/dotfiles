@@ -242,8 +242,11 @@ set virtualedit=block
 " configure the status line
 set laststatus=2 " always show the status bar
 
-let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
-let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
+" this only works in iTerm
+if $TERM_PROGRAM =~ "iTerm"
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
+endif
 
 " these manually configure a nice status line. they are not necessary when airline is installed
 if vundle_installed == 0
