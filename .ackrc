@@ -1,3 +1,4 @@
 --after-context=2
 --before-context=2
 --ignore-dir=.mypy_cache
+--ignore-dir=.tox
