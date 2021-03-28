@@ -209,6 +209,7 @@ alias rstudio='open -a rstudio'
 alias tb='tensorboard --logdir'
 alias kub=kubectl
 alias cls='printf "\033c"'
+alias nr='npm run'
 
 # compatibility stuff
 if [[ $(uname) = Linux ]]; then

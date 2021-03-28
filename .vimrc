@@ -69,6 +69,7 @@ try
   Plugin 'neoclide/vim-jsx-improve' " better js AND jsx highlighting
   Plugin 'elzr/vim-json' " better json highlighting
   Plugin 'leafgarland/typescript-vim'
+  Plugin 'evanleck/vim-svelte'
   Plugin 'exu/pgsql.vim' " postgres-specific SQL syntax
   Plugin 'cespare/vim-toml' " TOML syntax
   Plugin 'fatih/vim-go'
