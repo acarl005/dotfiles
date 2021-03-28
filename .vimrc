@@ -313,6 +313,7 @@ map <leader>d :bprevious<CR>
 map <leader>f :bnext<CR>
 map <leader>q :bdelete<CR>
 map <leader>t :Tagbar<CR>
+imap ® <C-r>=system('echo $RANDOM \| head -c 3')<CR>
 
 " open the file tree from nerd-tree
 map <C-e> :NERDTreeToggle<CR>

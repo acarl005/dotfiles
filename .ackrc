@@ -2,3 +2,4 @@
 --before-context=2
 --ignore-dir=.mypy_cache
 --ignore-dir=__sapper__
+--ignore-dir=.tox
