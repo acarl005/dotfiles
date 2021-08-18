@@ -61,9 +61,6 @@ try
   " note that the actual language servers must be installed separately
   Plugin 'prabirshrestha/vim-lsp'
   Plugin 'prabirshrestha/asyncomplete-lsp.vim' " get asyncomplete to integreate with vim-lsp
-  Plugin 'ryanolsonx/vim-lsp-javascript' " npm install -g typescript typescript-language-server
-  Plugin 'ryanolsonx/vim-lsp-typescript' " npm install -g typescript typescript-language-server
-  Plugin 'ryanolsonx/vim-lsp-python' " pip install python-language-server
 
   " syntax plugins
   Plugin 'neoclide/vim-jsx-improve' " better js AND jsx highlighting
@@ -162,6 +159,24 @@ if vundle_installed == 1
     \ }))
   " include the individual language servers if they are installed
   " for more, see https://github.com/prabirshrestha/vim-lsp/wiki/Servers
+
+  " pip install python-language-server
+  if executable('pyls')
+    au User lsp_setup call lsp#register_server({
+      \ 'name': 'pyls',
+      \ 'cmd': {server_info->['pyls']},
+      \ 'whitelist': ['python'],
+      \ })
+  endif
+  " npm install -g typescript typescript-language-server
+  if executable('typescript-language-server')
+    au User lsp_setup call lsp#register_server({
+      \ 'name': 'javascript support using typescript-language-server',
+      \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+      \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
+      \ 'whitelist': ['javascript', 'javascript.jsx', 'javascriptreact'],
+      \ })
+  endif
   " rustup update && rustup component add rls rust-analysis rust-src
   if executable('rls')
     au User lsp_setup call lsp#register_server({

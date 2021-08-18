@@ -12,12 +12,8 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 brew tap caskroom/fonts
-brew install ack autojump git vim coreutils neofetch bash ranger fd tldr shellcheck bat fzf onefetch
+brew install ack autojump git vim coreutils neofetch ranger fd tldr shellcheck bat fzf onefetch
 brew cask install font-inconsolata-nerd-font
 brew install acarl005/homebrew-formulas/ls-go
 
 $(brew --prefix)/opt/fzf/install
-
-# tell it to use the new installed version of bash
-chsh -s /usr/local/bin/bash
-
