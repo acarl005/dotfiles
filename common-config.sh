@@ -199,6 +199,7 @@ alias https='http --default-scheme=https'
 alias weather='curl wttr.in/?m'
 
 alias ipy='python -m IPython --no-confirm-exit'
+alias ipy3='python3 -m IPython --no-confirm-exit'
 alias py=python
 alias py3=python3
 alias jn='jupyter-notebook'

@@ -6,4 +6,3 @@ create_default_packages:
   - ipdb
   - python-language-server
   - mypy
-ssl_verify: /Users/acarlson/opt/certs/ca_cert.pem
