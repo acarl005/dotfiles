@@ -176,8 +176,6 @@ alias desk="pushd $HOME/Desktop"
 export desk="$HOME/Desktop"
 alias proj="pushd $HOME/Documents/projects"
 export proj="$HOME/Documents/projects"
-alias stem="pushd $HOME/Documents/stem"
-export stem="$HOME/Documents/stem"
 alias down="pushd $HOME/Downloads"
 export down="$HOME/Downloads"
 alias docs="pushd $HOME/Documents"
@@ -201,6 +199,7 @@ alias https='http --default-scheme=https'
 alias weather='curl wttr.in/?m'
 
 alias ipy='python -m IPython --no-confirm-exit'
+alias ipy3='python3 -m IPython --no-confirm-exit'
 alias py=python
 alias py3=python3
 alias jn='jupyter-notebook'
