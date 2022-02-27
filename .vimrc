@@ -66,19 +66,16 @@ try
   Plugin 'neoclide/vim-jsx-improve' " better js AND jsx highlighting
   Plugin 'elzr/vim-json' " better json highlighting
   Plugin 'leafgarland/typescript-vim'
-  Plugin 'evanleck/vim-svelte'
   Plugin 'exu/pgsql.vim' " postgres-specific SQL syntax
-  Plugin 'cespare/vim-toml' " TOML syntax
   Plugin 'fatih/vim-go'
-  Plugin 'martinda/Jenkinsfile-vim-syntax' " jenkinsfile is actually Groovy lang
 
   " text-object stuff
   Plugin 'kana/vim-textobj-user' " plugin for defining custom text objects
   Plugin 'glts/vim-textobj-comment' " binds a text object to c for comments
   Plugin 'nelstrom/vim-textobj-rubyblock' " binds a text object to r for ruby blocks
   Plugin 'michaeljsmith/vim-indent-object' " binds a text object to i for an indentation level (good for python)
-  Plugin 'zandrmartin/vim-textobj-blanklines' " text obj for blank lines to <space>
   Plugin 'sgur/vim-textobj-parameter' " text obj for a function param to ,
+  Plugin 'zandrmartin/vim-textobj-blanklines' " text obj for blank lines to <space>
 
   " All of your Plugins must be added before the following line
   call vundle#end()            " required
@@ -232,6 +229,12 @@ set smartindent
 let g:pyindent_open_paren = 4
 let g:pyindent_nested_paren = '&sw'
 let g:pyindent_continue = '&sw'
+
+" performance related stuff
+set synmaxcol=128 " Syntax coloring lines that are too long just slows down the world
+set ttyfast " u got a fast terminal
+set ttyscroll=3
+set lazyredraw " to avoid scrolling problems
 
 set ignorecase " searches are case insensitive
 set smartcase " searches become case sensitive when you enter capital letters
