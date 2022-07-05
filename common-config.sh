@@ -69,6 +69,7 @@ if command -v nvim >/dev/null; then
   alias vim=nvim
 fi
 
+export PAGER='less -S'
 
 # Colors ls should use for folders, files, symlinks etc, see `man ls` and
 # search for LSCOLORS
@@ -209,6 +210,7 @@ alias tb='tensorboard --logdir'
 alias kub=kubectl
 alias cls='printf "\033c"'
 alias nr='npm run'
+alias nt='npm test'
 
 # compatibility stuff
 if [[ $(uname) = Linux ]]; then

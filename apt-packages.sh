@@ -1,6 +1,6 @@
 sudo apt-get update -y
 
-sudo apt-get install --ignore-missing -y git ack autojump ranger tldr curl xclip shellcheck neofetch bat fzf fd-find zsh
+sudo apt-get install --ignore-missing -y git ack autojump ranger tldr curl xclip shellcheck neofetch bat fzf fd-find zsh neovim
 
 if [ "$XDG_CURRENT_DESKTOP" = ubuntu:GNOME ]; then
   sudo apt-get install -y vim-gnome gnome-tweaks  

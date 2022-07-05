@@ -16,17 +16,18 @@ else
   echo no known package manager installed
 fi
 
-# install Vundle
+# install Vundle to Vim
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
+
+# install Vim-Plug to NeoVim
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+nvim +PlugInstall +qall
+
 
 # import iTerm preferences if on MacOS
 if [[ $(uname) = Darwin ]]; then
   defaults import com.googlecode.iterm2 iterm2.plist
-else
-  echo change preferred font in your terminal emulator to "Inconsolata Nerd Font"
-  echo also, you might want to change the background to '#2C001E rgb(45, 0, 30)'
-  # other possible todos
-  # enable Night Light https://vitux.com/how-to-activate-night-light-on-ubuntu-desktop/
-  # use Tweaks to: dark theme, startup Guake
 fi
+
+echo change preferred font in your terminal emulator to "Inconsolata Nerd Font" or similar

@@ -289,6 +289,10 @@ set list lcs=tab:\𝄄\
 " set default SQL dialect to postgres. used with 'exu/pgsql.vim'
 let g:sql_type_default = 'pgsql'
 
+" highlights code blocks within markdown
+let g:markdown_fenced_languages = ['bash=sh']
+let g:markdown_syntax_conceal = 0
+
 " nerd commenter align to the left
 let g:NERDDefaultAlign = 'left'
 
