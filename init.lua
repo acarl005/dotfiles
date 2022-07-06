@@ -19,7 +19,6 @@ else
 
   -- appearances
   vim.fn["plug#"]("lukas-reineke/indent-blankline.nvim") -- adds a little grey line at each indentation level
-  vim.fn["plug#"]("frazrepo/vim-rainbow") -- color parentheses based on depth
   vim.fn["plug#"]("machakann/vim-highlightedyank") -- highlight yanked text
   vim.fn["plug#"]("folke/tokyonight.nvim") -- good dark theme which I customized
 
@@ -44,6 +43,7 @@ else
 
   -- syntax
   vim.fn["plug#"]("nvim-treesitter/nvim-treesitter", {["do"] = ":TSUpdate"}) -- better highlighting
+  vim.fn["plug#"]("p00f/nvim-ts-rainbow") -- rainbow colored parentheses based on depth
   vim.fn["plug#"]("williamboman/nvim-lsp-installer") -- manages installation of language servers
   vim.fn["plug#"]("neovim/nvim-lspconfig") -- works with nvim-lsp-installer to use the language server after installation
 
@@ -60,18 +60,18 @@ else
   vim.g.tokyonight_style = "night"
   vim.cmd("colorscheme tokyonight")
 
-  vim.cmd [[highlight IndentBlanklineIndent1 guibg=#16161e gui=nocombine]]
-  vim.cmd [[highlight IndentBlanklineIndent2 guibg=#1e1e1e gui=nocombine]]
+  vim.cmd("highlight IndentBlanklineIndent1 guibg=#16161e gui=nocombine")
+  vim.cmd("highlight IndentBlanklineIndent2 guibg=#1e1e1e gui=nocombine")
 
   require("indent_blankline").setup({
     char = "",
     char_highlight_list = {
-        "IndentBlanklineIndent1",
-        "IndentBlanklineIndent2"
+      "IndentBlanklineIndent1",
+      "IndentBlanklineIndent2"
     },
     space_char_highlight_list = {
-        "IndentBlanklineIndent1",
-        "IndentBlanklineIndent2"
+      "IndentBlanklineIndent1",
+      "IndentBlanklineIndent2"
     },
     show_trailing_blankline_indent = false
   })
@@ -93,6 +93,9 @@ else
     ensure_installed = {"lua", "javascript", "python", "svelte", "html", "css"},
     sync_install = true,
     highlight = {
+      enable = true
+    },
+    rainbow = {
       enable = true
     }
   })
@@ -120,10 +123,10 @@ else
       end
     },
     mapping = cmp.mapping.preset.insert({
-      ["<C-n>"] = cmp.mapping.select_next_item(),
-      ["<C-p>"] = cmp.mapping.select_prev_item(),
-      ["<C-g>"] = cmp.mapping.complete(),
-      ["<C-v>"] = cmp.mapping.abort(),
+      ["<c-n>"] = cmp.mapping.select_next_item(),
+      ["<c-p>"] = cmp.mapping.select_prev_item(),
+      ["<c-g>"] = cmp.mapping.complete(),
+      ["<c-v>"] = cmp.mapping.abort(),
       ["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     }),
   })
@@ -156,10 +159,6 @@ else
       }
     }
   })
-
-  -- frazrepo/vim-rainbow options
-  vim.g.rainbow_active = 1
-  vim.g.rainbow_ctermfgs = {"magenta", "lightblue", "lightgreen", "red", "yellow", "lightgray", "lightcyan"}
 
   -- ctrlpvim/ctrlp.vim options
   vim.g.ctrlp_working_path_mode = "ra"
@@ -197,6 +196,7 @@ vim.o.virtualedit = "block"
 -- copy and paste from system clipboard
 vim.o.clipboard = "unnamedplus"
 
+vim.o.wildignore = "*/node_modules/*,*.swp,*.zip,*/dist/*,*/.ipynb_checkpoints/*,*/.mypy_cache/*,*/.tox/*,*/.cache/*,*/.svelte-kit/*,*/.netlify/*"
 
 -- insert line above in insert mode
 vim.keymap.set("i", "<c-l>", "<Esc>O", {noremap = true})
@@ -236,7 +236,7 @@ vim.api.nvim_create_user_command("Camel", "%s/\\([a-z0-9]\\)_\\([a-z0-9]\\)/\\1\
 -- print absolute file path
 vim.api.nvim_create_user_command(
   "F",
-  function(input)
+  function()
     print(vim.fn.expand("%:p"))
   end,
   {}
@@ -244,7 +244,7 @@ vim.api.nvim_create_user_command(
 -- convert 4-space indentation to 2-space
 vim.api.nvim_create_user_command(
   "Dedent",
-  function(input)
+  function()
     vim.o.tabstop = 4
     vim.o.softtabstop = 4
     vim.o.expandtab = false
