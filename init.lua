@@ -15,12 +15,13 @@ else
   vim.fn["plug#"]("scrooloose/nerdcommenter") -- adds keybindings for easily commenting out lines \c<space> to toggle
   vim.fn["plug#"]("skammer/vim-swaplines") -- move lines up or down
   vim.fn["plug#"]("AndrewRadev/splitjoin.vim") -- switch formatting of objects between one-line and multi-line with gJ and gS
+  vim.fn["plug#"]("mattn/emmet-vim") -- expand Emmet to HTML with <c-y>,
 
   -- appearances
-  vim.fn["plug#"]("Yggdroot/indentLine") -- adds a little grey line at each indentation level
+  vim.fn["plug#"]("lukas-reineke/indent-blankline.nvim") -- adds a little grey line at each indentation level
   vim.fn["plug#"]("frazrepo/vim-rainbow") -- color parentheses based on depth
   vim.fn["plug#"]("machakann/vim-highlightedyank") -- highlight yanked text
-  vim.fn["plug#"]("acarl005/vim-gotham") -- good dark theme which I customized
+  vim.fn["plug#"]("folke/tokyonight.nvim") -- good dark theme which I customized
 
   -- widgets
   vim.fn["plug#"]("nvim-lualine/lualine.nvim") -- dope status line
@@ -55,6 +56,25 @@ else
 
   vim.fn["plug#end"]()
 
+  vim.o.termguicolors = true
+  vim.g.tokyonight_style = "night"
+  vim.cmd("colorscheme tokyonight")
+
+  vim.cmd [[highlight IndentBlanklineIndent1 guibg=#16161e gui=nocombine]]
+  vim.cmd [[highlight IndentBlanklineIndent2 guibg=#1e1e1e gui=nocombine]]
+
+  require("indent_blankline").setup({
+    char = "",
+    char_highlight_list = {
+        "IndentBlanklineIndent1",
+        "IndentBlanklineIndent2"
+    },
+    space_char_highlight_list = {
+        "IndentBlanklineIndent1",
+        "IndentBlanklineIndent2"
+    },
+    show_trailing_blankline_indent = false
+  })
   require("nvim-autopairs").setup()
   require("tabline").setup({enable = false}) -- do not use directly, use with lualine instead
   require("lualine").setup({
@@ -137,14 +157,6 @@ else
     }
   })
 
-  vim.cmd("colorscheme gotham256")
-
-  -- Yggdroot/indentLine options
-  vim.g.indentLine_color_term = 236
-  vim.g.indentLine_char = "𝄄"
-  vim.g.vim_json_conceal = 0 -- prevent it from hiding the double quotes in JSON
-  vim.g.markdown_syntax_conceal = 0 -- prevent it from hiding stuff in markdown
-
   -- frazrepo/vim-rainbow options
   vim.g.rainbow_active = 1
   vim.g.rainbow_ctermfgs = {"magenta", "lightblue", "lightgreen", "red", "yellow", "lightgray", "lightcyan"}
@@ -167,6 +179,7 @@ vim.o.expandtab = true -- convert tabs to spaces
 vim.o.softtabstop = 2 -- how many spaces to insert for each <tab>
 vim.o.tabstop = 2 -- the width to display a <tab> character
 vim.o.shiftwidth = 2 -- used by commands like =, >, and < to know how much to indent
+vim.o.cindent = true
 
 vim.o.ignorecase = true -- searches are case-insens
 vim.o.smartcase = true -- searches become case-sens when you include capital letters
