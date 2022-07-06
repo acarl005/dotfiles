@@ -1,5 +1,7 @@
 mkdir ~/.vim
+mkdir ~/.config
 mkdir ~/.config/nvim
+mkdir ~/.config/ranger
 
 [ -L ~/bin ] && rm ~/bin
 ln -i -s "$PWD/bin" ~/bin
@@ -23,6 +25,8 @@ ln -i -s "$PWD/.pythonrc.py" ~/.pythonrc.py
 ln -i -s "$PWD/.condarc" ~/.condarc
 ln -i -s "$PWD/.vimrc" ~/.vimrc
 ln -i -s "$PWD/init.lua" ~/.config/nvim/init.lua
+ln -i -s "$PWD/rc.conf" ~/.config/nvim/rc.conf
+ln -i -s "$PWD/scope.sh" ~/.config/nvim/scope.sh
 /bin/cp "$PWD/.zshrc" ~/.zshrc
 /bin/cp "$PWD/.bashrc" ~/.bashrc
 /bin/cp "$PWD/.bash_profile" ~/.bash_profile
