@@ -186,18 +186,20 @@ export pg="/usr/local/var/postgres"
 
 # shorten misc things
 alias serv2="python -m SimpleHTTPServer"
-alias serv="python -m http.server"
-if [[ $(uname) = Darwin ]]; then
-  alias chrome="open -a /Applications/Google\ Chrome.app/"
-else
-  alias chrome="google-chrome"
-fi
+alias serv="python3 -m http.server"
 alias pirate='youtube-dl --extract-audio --audio-format mp3'
 alias R='R --no-save'
 alias r='r --no-save'
 alias grip='grip -b'
 alias https='http --default-scheme=https'
 alias weather='curl wttr.in/?m'
+
+if [[ $(uname) = Darwin ]]; then
+  alias chrome="open -a /Applications/Google\ Chrome.app/"
+  alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
+else
+  alias chrome="google-chrome"
+fi
 
 alias ipy='python -m IPython --no-confirm-exit'
 alias ipy3='python3 -m IPython --no-confirm-exit'

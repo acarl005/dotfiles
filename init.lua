@@ -28,7 +28,8 @@ else
   vim.fn["plug#"]("airblade/vim-gitgutter") -- adds git diff symbols on the left hand side
   vim.fn["plug#"]("kyazdani42/nvim-web-devicons") -- icons for file tree viewer
   vim.fn["plug#"]("kyazdani42/nvim-tree.lua") -- file tree viewer
-  vim.fn["plug#"]("preservim/tagbar") -- a class outline viewer
+  vim.fn["plug#"]("preservim/tagbar") -- a ctag/class outline viewer
+  vim.fn["plug#"]("universal-ctags/ctags") -- ctag extractor for all languages
 
   -- commands
   vim.fn["plug#"]("ctrlpvim/ctrlp.vim") -- fuzzy file finder
@@ -42,10 +43,14 @@ else
   vim.fn["plug#"]("zandrmartin/vim-textobj-blanklines") -- text object for consecutive blank lines to <space>
 
   -- syntax
-  vim.fn["plug#"]("nvim-treesitter/nvim-treesitter", {["do"] = ":TSUpdate"}) -- better highlighting
-  vim.fn["plug#"]("p00f/nvim-ts-rainbow") -- rainbow colored parentheses based on depth
+  --vim.fn["plug#"]("nvim-treesitter/nvim-treesitter", {["do"] = ":TSUpdate"}) -- better highlighting
+  --vim.fn["plug#"]("p00f/nvim-ts-rainbow") -- rainbow colored parentheses based on depth
   vim.fn["plug#"]("williamboman/nvim-lsp-installer") -- manages installation of language servers
   vim.fn["plug#"]("neovim/nvim-lspconfig") -- works with nvim-lsp-installer to use the language server after installation
+
+  vim.fn["plug#"]("othree/html5.vim") -- depended upon by evanleck/vim-svelte
+  vim.fn["plug#"]("pangloss/vim-javascript") -- depended upon by evanleck/vim-svelte
+  vim.fn["plug#"]("evanleck/vim-svelte") -- needed for good svelte file indentation
 
   -- completions
   vim.fn["plug#"]("hrsh7th/cmp-nvim-lsp") -- completion source for LSPs
@@ -89,16 +94,19 @@ else
     }
   })
   require("nvim-tree").setup()
-  require("nvim-treesitter.configs").setup({
-    ensure_installed = {"lua", "javascript", "python", "svelte", "html", "css"},
-    sync_install = true,
-    highlight = {
-      enable = true
-    },
-    rainbow = {
-      enable = true
-    }
-  })
+  --require("nvim-treesitter.configs").setup({
+    --ensure_installed = {},
+    --sync_install = true,
+    --highlight = {
+      --enable = true
+    --},
+    --indent = {
+      --enable = false
+    --},
+    --rainbow = {
+      --enable = true
+    --}
+  --})
   require("nvim-lsp-installer").setup({
     automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
     ui = {
@@ -132,7 +140,6 @@ else
   })
 
   local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-
   require("lspconfig").pyright.setup({capabilities = capabilities})
   require("lspconfig").eslint.setup({capabilities = capabilities})
   require("lspconfig").svelte.setup({capabilities = capabilities})
@@ -198,6 +205,9 @@ vim.o.clipboard = "unnamedplus"
 
 vim.o.wildignore = "*/node_modules/*,*.swp,*.zip,*/dist/*,*/.ipynb_checkpoints/*,*/.mypy_cache/*,*/.tox/*,*/.cache/*,*/.svelte-kit/*,*/.netlify/*"
 
+-- automatically try to check for changed files
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, { pattern = "*", command = "checktime" })
+
 -- insert line above in insert mode
 vim.keymap.set("i", "<c-l>", "<Esc>O", {noremap = true})
 -- pretty format JSON file
@@ -214,6 +224,8 @@ vim.keymap.set("n", "<leader>x", "<i{]}dd[{dd", {noremap = true})
 -- handy buffer navigation
 vim.keymap.set("n", "<leader>d", ":bprevious<CR>", {noremap = true})
 vim.keymap.set("n", "<leader>f", ":bnext<CR>", {noremap = true})
+-- indent a line to the correct level
+vim.keymap.set("n", "<leader>i", "O<Left><Esc>J", {noremap = true})
 
 
 -- key mappings for primitivorm/vim-swaplines plugin
