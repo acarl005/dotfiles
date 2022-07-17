@@ -43,7 +43,7 @@ else
   vim.fn["plug#"]("zandrmartin/vim-textobj-blanklines") -- text object for consecutive blank lines to <space>
 
   -- syntax
-  --vim.fn["plug#"]("nvim-treesitter/nvim-treesitter", {["do"] = ":TSUpdate"}) -- better highlighting
+  --vim.fn["plug#"]("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" }) -- better highlighting
   --vim.fn["plug#"]("p00f/nvim-ts-rainbow") -- rainbow colored parentheses based on depth
   vim.fn["plug#"]("williamboman/nvim-lsp-installer") -- manages installation of language servers
   vim.fn["plug#"]("neovim/nvim-lspconfig") -- works with nvim-lsp-installer to use the language server after installation
@@ -81,14 +81,14 @@ else
     show_trailing_blankline_indent = false
   })
   require("nvim-autopairs").setup()
-  require("tabline").setup({enable = false}) -- do not use directly, use with lualine instead
+  require("tabline").setup({ enable = false }) -- do not use directly, use with lualine instead
   require("lualine").setup({
-    options = {theme = "auto"},
+    options = { theme = "auto" },
     tabline = {
       lualine_a = {},
       lualine_b = {},
-      lualine_c = {require("tabline").tabline_buffers},
-      lualine_x = {require("tabline").tabline_tabs},
+      lualine_c = { require("tabline").tabline_buffers },
+      lualine_x = { require("tabline").tabline_tabs },
       lualine_y = {},
       lualine_z = {}
     }
@@ -140,11 +140,11 @@ else
   })
 
   local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-  require("lspconfig").pyright.setup({capabilities = capabilities})
-  require("lspconfig").eslint.setup({capabilities = capabilities})
-  require("lspconfig").svelte.setup({capabilities = capabilities})
-  require("lspconfig").cssls.setup({capabilities = capabilities})
-  require("lspconfig").html.setup({capabilities = capabilities})
+  require("lspconfig").pyright.setup({ capabilities = capabilities })
+  require("lspconfig").eslint.setup({ capabilities = capabilities })
+  require("lspconfig").svelte.setup({ capabilities = capabilities })
+  require("lspconfig").cssls.setup({ capabilities = capabilities })
+  require("lspconfig").html.setup({ capabilities = capabilities })
   require("lspconfig").sumneko_lua.setup({
     capabilities = capabilities,
     settings = {
@@ -153,7 +153,7 @@ else
           version = 'LuaJIT'
         },
         diagnostics = {
-          globals = {'vim'}
+          globals = { 'vim' }
         },
         workspace = {
           -- Make the server aware of Neovim runtime files
@@ -169,7 +169,7 @@ else
 
   -- ctrlpvim/ctrlp.vim options
   vim.g.ctrlp_working_path_mode = "ra"
-  vim.g.ctrlp_user_command = {".git", "cd %s && git ls-files -co --exclude-standard"}
+  vim.g.ctrlp_user_command = { ".git", "cd %s && git ls-files -co --exclude-standard" }
 
   vim.o.completeopt = "menu,menuone,noselect"
 end
@@ -208,35 +208,44 @@ vim.o.wildignore = "*/node_modules/*,*.swp,*.zip,*/dist/*,*/.ipynb_checkpoints/*
 -- automatically try to check for changed files
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, { pattern = "*", command = "checktime" })
 
+-- this is meant to fix this issue with Warp terminal:
+-- https://github.com/warpdotdev/Warp/issues/1451
+vim.api.nvim_create_autocmd({ "VimEnter" }, {
+  callback = function()
+    local pid, WINCH = vim.fn.getpid(), vim.loop.constants.SIGWINCH
+    vim.defer_fn(function() vim.loop.kill(pid, WINCH) end, 20)
+  end
+})
+
 -- insert line above in insert mode
-vim.keymap.set("i", "<c-l>", "<Esc>O", {noremap = true})
+vim.keymap.set("i", "<c-l>", "<Esc>O", { noremap = true })
 -- pretty format JSON file
-vim.keymap.set("n", "=j", ":%!python -m json.tool<CR>", {noremap = true})
+vim.keymap.set("n", "=j", ":%!python -m json.tool<CR>", { noremap = true })
 -- strip double quotes from keys in JSON. useful when pasting JSON into a JS
 -- file and the linter complains about unecessary quoting
-vim.keymap.set("n", "<leader>j", ":s/^\\(\\s*\\)\"\\(\\w\\+\\)\"\\s*:/\\1\\2:/g<CR>", {noremap = true})
+vim.keymap.set("n", "<leader>j", ":s/^\\(\\s*\\)\"\\(\\w\\+\\)\"\\s*:/\\1\\2:/g<CR>", { noremap = true })
 -- select the freshly pasted text
-vim.keymap.set("n", "gV", "`[v`]", {noremap = true})
+vim.keymap.set("n", "gV", "`[v`]", { noremap = true })
 -- convenient save shortcut
-vim.keymap.set("n", "<leader>w", ":update<CR>", {noremap = true})
+vim.keymap.set("n", "<leader>w", ":update<CR>", { noremap = true })
 -- dedent block and delete line with surrounding brackets
-vim.keymap.set("n", "<leader>x", "<i{]}dd[{dd", {noremap = true})
+vim.keymap.set("n", "<leader>x", "<i{]}dd[{dd", { noremap = true })
 -- handy buffer navigation
-vim.keymap.set("n", "<leader>d", ":bprevious<CR>", {noremap = true})
-vim.keymap.set("n", "<leader>f", ":bnext<CR>", {noremap = true})
+vim.keymap.set("n", "<leader>d", ":bprevious<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>f", ":bnext<CR>", { noremap = true })
 -- indent a line to the correct level
-vim.keymap.set("n", "<leader>i", "O<Left><Esc>J", {noremap = true})
+vim.keymap.set("n", "<leader>i", "O<Left><Esc>J", { noremap = true })
 
 
 -- key mappings for primitivorm/vim-swaplines plugin
-vim.keymap.set("n", "<c-k>", ":SwapUp<CR>", {noremap = true})
-vim.keymap.set("n", "<c-j>", ":SwapDown<CR>", {noremap = true})
+vim.keymap.set("n", "<c-k>", ":SwapUp<CR>", { noremap = true })
+vim.keymap.set("n", "<c-j>", ":SwapDown<CR>", { noremap = true })
 
 -- key mappins for kyazdani42/nvim-tree.lua
-vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", {noremap = true})
+vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { noremap = true })
 
 -- key mappings for preservim/tagbar
-vim.keymap.set("n", "<leader>t", ":TagbarToggle<CR>", {noremap = true})
+vim.keymap.set("n", "<leader>t", ":TagbarToggle<CR>", { noremap = true })
 
 
 -- open this file
