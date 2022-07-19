@@ -147,6 +147,7 @@ root() {
 
 # Aliases
 alias grep='grep --exclude-dir=node_modules --color=auto'
+alias rg='rg --hidden --after-context 2 --before-context 2 --type-add "svelte:*.svelte"'
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias mkdir='mkdir -pv'
