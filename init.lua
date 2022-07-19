@@ -100,6 +100,11 @@ else
           ["<c-k>"] = actions.move_selection_previous
         }
       }
+    },
+    pickers = {
+      find_files = {
+        hidden = true
+      }
     }
   })
   telescope.load_extension("file_browser")
@@ -267,19 +272,20 @@ vim.keymap.set("n", "<leader>t", ":TagbarToggle<CR>", { noremap = true })
 
 
 -- open this file
-vim.api.nvim_create_user_command("Conf", ":badd ~/.config/nvim/init.lua", {})
+vim.api.nvim_create_user_command(
+  "Conf",
+  function()
+    vim.cmd("badd ~/.config/nvim/init.lua")
+    vim.cmd("b ~/.config/nvim/init.lua")
+  end,
+  {}
+)
 -- remove trailing whitespace
 vim.api.nvim_create_user_command("Trim", ":let _s=@/<Bar>:%s/\\s\\+$//e<Bar>:let @/=_s", {})
 -- convert snake_case to camelCase
 vim.api.nvim_create_user_command("Camel", "%s/\\([a-z0-9]\\)_\\([a-z0-9]\\)/\\1\\u\\2/g", {})
 -- print absolute file path
-vim.api.nvim_create_user_command(
-  "F",
-  function()
-    print(vim.fn.expand("%:p"))
-  end,
-  {}
-)
+vim.api.nvim_create_user_command("F", ":echo expand('%:p')", {})
 -- convert 4-space indentation to 2-space
 vim.api.nvim_create_user_command(
   "Dedent",
