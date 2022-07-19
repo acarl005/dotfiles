@@ -23,16 +23,20 @@ else
   vim.fn["plug#"]("folke/tokyonight.nvim") -- good dark theme which I customized
 
   -- widgets
+  vim.fn["plug#"]("nvim-lua/plenary.nvim") -- depended upon by nvim-telescope/telescope.nvim
+  vim.fn["plug#"]("nvim-telescope/telescope.nvim") -- fuzzy file finder
+  vim.fn["plug#"]("nvim-telescope/telescope-file-browser.nvim") -- file browser extension for Telescope
+  vim.fn["plug#"]("startup-nvim/startup.nvim") -- dashboard on startup, also integrates with (and so depends on) nvim-telescope/telescope.nvim
   vim.fn["plug#"]("nvim-lualine/lualine.nvim") -- dope status line
   vim.fn["plug#"]("kdheepak/tabline.nvim") -- dope tab line
-  vim.fn["plug#"]("airblade/vim-gitgutter") -- adds git diff symbols on the left hand side
+  vim.fn["plug#"]("petertriho/nvim-scrollbar")
+  vim.fn["plug#"]("lewis6991/gitsigns.nvim") -- adds git diff symbols on the left hand side
   vim.fn["plug#"]("kyazdani42/nvim-web-devicons") -- icons for file tree viewer
-  vim.fn["plug#"]("kyazdani42/nvim-tree.lua") -- file tree viewer
   vim.fn["plug#"]("preservim/tagbar") -- a ctag/class outline viewer
   vim.fn["plug#"]("universal-ctags/ctags") -- ctag extractor for all languages
+  vim.fn["plug#"]("chentoast/marks.nvim") -- show the marks on the left
 
   -- commands
-  vim.fn["plug#"]("ctrlpvim/ctrlp.vim") -- fuzzy file finder
   vim.fn["plug#"]("mileszs/ack.vim") -- call ack from NeoVim
 
   -- text objects
@@ -43,14 +47,13 @@ else
   vim.fn["plug#"]("zandrmartin/vim-textobj-blanklines") -- text object for consecutive blank lines to <space>
 
   -- syntax
-  --vim.fn["plug#"]("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" }) -- better highlighting
-  --vim.fn["plug#"]("p00f/nvim-ts-rainbow") -- rainbow colored parentheses based on depth
   vim.fn["plug#"]("williamboman/nvim-lsp-installer") -- manages installation of language servers
   vim.fn["plug#"]("neovim/nvim-lspconfig") -- works with nvim-lsp-installer to use the language server after installation
 
   vim.fn["plug#"]("othree/html5.vim") -- depended upon by evanleck/vim-svelte
   vim.fn["plug#"]("pangloss/vim-javascript") -- depended upon by evanleck/vim-svelte
   vim.fn["plug#"]("evanleck/vim-svelte") -- needed for good svelte file indentation
+  vim.fn["plug#"]("preservim/vim-markdown")
 
   -- completions
   vim.fn["plug#"]("hrsh7th/cmp-nvim-lsp") -- completion source for LSPs
@@ -80,33 +83,43 @@ else
     },
     show_trailing_blankline_indent = false
   })
+
   require("nvim-autopairs").setup()
-  require("tabline").setup({ enable = false }) -- do not use directly, use with lualine instead
+
+  require("gitsigns").setup()
+  require("scrollbar").setup()
+  require("marks").setup()
+
+  local telescope = require("telescope")
+  local actions = require("telescope.actions")
+  telescope.setup({
+    defaults = {
+      mappings = {
+        i = {
+          ["<c-j>"] = actions.move_selection_next,
+          ["<c-k>"] = actions.move_selection_previous
+        }
+      }
+    }
+  })
+  telescope.load_extension("file_browser")
+
+  require("startup").setup({theme = "dashboard"})
+
+  local tabline = require("tabline")
+  tabline.setup({ enable = false }) -- do not use directly, use with lualine instead
   require("lualine").setup({
     options = { theme = "auto" },
     tabline = {
       lualine_a = {},
       lualine_b = {},
-      lualine_c = { require("tabline").tabline_buffers },
-      lualine_x = { require("tabline").tabline_tabs },
+      lualine_c = { tabline.tabline_buffers },
+      lualine_x = { tabline.tabline_tabs },
       lualine_y = {},
       lualine_z = {}
     }
   })
-  require("nvim-tree").setup()
-  --require("nvim-treesitter.configs").setup({
-    --ensure_installed = {},
-    --sync_install = true,
-    --highlight = {
-      --enable = true
-    --},
-    --indent = {
-      --enable = false
-    --},
-    --rainbow = {
-      --enable = true
-    --}
-  --})
+
   require("nvim-lsp-installer").setup({
     automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
     ui = {
@@ -133,10 +146,12 @@ else
     mapping = cmp.mapping.preset.insert({
       ["<c-n>"] = cmp.mapping.select_next_item(),
       ["<c-p>"] = cmp.mapping.select_prev_item(),
+      ['<c-b>'] = cmp.mapping.scroll_docs(-4),
+      ['<c-f>'] = cmp.mapping.scroll_docs(4),
       ["<c-g>"] = cmp.mapping.complete(),
       ["<c-v>"] = cmp.mapping.abort(),
       ["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    }),
+    })
   })
 
   local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -145,15 +160,16 @@ else
   require("lspconfig").svelte.setup({ capabilities = capabilities })
   require("lspconfig").cssls.setup({ capabilities = capabilities })
   require("lspconfig").html.setup({ capabilities = capabilities })
+  require("lspconfig").tsserver.setup({ capabilities = capabilities })
   require("lspconfig").sumneko_lua.setup({
     capabilities = capabilities,
     settings = {
       Lua = {
         runtime = {
-          version = 'LuaJIT'
+          version = "LuaJIT"
         },
         diagnostics = {
-          globals = { 'vim' }
+          globals = { "vim" }
         },
         workspace = {
           -- Make the server aware of Neovim runtime files
@@ -167,9 +183,9 @@ else
     }
   })
 
-  -- ctrlpvim/ctrlp.vim options
-  vim.g.ctrlp_working_path_mode = "ra"
-  vim.g.ctrlp_user_command = { ".git", "cd %s && git ls-files -co --exclude-standard" }
+  -- preservim/vim-markdown options for working on SQL Scholar
+  vim.g.vim_markdown_fenced_languages = { "c++=cpp", "bash=sh", "sqlx=sql", "sqlres=sql" }
+  vim.g.vim_markdown_folding_disabled = 1
 
   vim.o.completeopt = "menu,menuone,noselect"
 end
@@ -237,12 +253,14 @@ vim.keymap.set("n", "<leader>f", ":bnext<CR>", { noremap = true })
 vim.keymap.set("n", "<leader>i", "O<Left><Esc>J", { noremap = true })
 
 
+-- key mappings for nvim-telescope/telescope.nvim
+vim.keymap.set("n", "<c-p>", ":Telescope find_files<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>a", ":Telescope live_grep<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>e", ":Telescope file_browser<CR>", { noremap = true })
+
 -- key mappings for primitivorm/vim-swaplines plugin
 vim.keymap.set("n", "<c-k>", ":SwapUp<CR>", { noremap = true })
 vim.keymap.set("n", "<c-j>", ":SwapDown<CR>", { noremap = true })
-
--- key mappins for kyazdani42/nvim-tree.lua
-vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { noremap = true })
 
 -- key mappings for preservim/tagbar
 vim.keymap.set("n", "<leader>t", ":TagbarToggle<CR>", { noremap = true })
