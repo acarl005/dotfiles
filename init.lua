@@ -36,9 +36,6 @@ else
   vim.fn["plug#"]("universal-ctags/ctags") -- ctag extractor for all languages
   vim.fn["plug#"]("chentoast/marks.nvim") -- show the marks on the left
 
-  -- commands
-  vim.fn["plug#"]("mileszs/ack.vim") -- call ack from NeoVim
-
   -- text objects
   vim.fn["plug#"]("kana/vim-textobj-user") -- enable user-defined text objects
   vim.fn["plug#"]("glts/vim-textobj-comment") -- text object for comments to "c"

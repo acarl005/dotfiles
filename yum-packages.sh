@@ -7,10 +7,11 @@ sudo pip install urllib3 --upgrade
 sudo pip install tldr
 sudo pip install ranger-fm
 
-yum copr -y enable konimex/neofetch
+sudo yum copr -y enable konimex/neofetch
+sudo yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
 
 sudo yum update -y
-sudo yum install -y vim neovim git tmux ack autojump neofetch curl shellcheck
+sudo yum install -y vim neovim git tmux ack ripgrep autojump neofetch curl shellcheck
 
 
 # install nerd font
