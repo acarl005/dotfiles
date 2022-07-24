@@ -116,7 +116,20 @@ else
   })
   telescope.load_extension("file_browser")
 
-  require("startup").setup({theme = "dashboard"})
+  local startup_settings = require("startup.themes.dashboard")
+  startup_settings.footer.content = { "Hello, " .. (os.getenv("USER") or "user") .. "!" }
+  table.insert(
+    startup_settings.body.content,
+    {
+      " Edit Config",
+      [[
+        Conf
+        cd ~
+      ]],
+      "<leader>fc"
+    }
+  )
+  require("startup").setup(startup_settings)
 
   local tabline = require("tabline")
   tabline.setup({ enable = false }) -- do not use directly, use with lualine instead
@@ -160,20 +173,22 @@ else
       ["<c-p>"] = cmp.mapping.select_prev_item(),
       ['<c-b>'] = cmp.mapping.scroll_docs(-4),
       ['<c-f>'] = cmp.mapping.scroll_docs(4),
-      ["<c-g>"] = cmp.mapping.complete(),
+      ["<c-x>"] = cmp.mapping.complete(),
       ["<c-v>"] = cmp.mapping.abort(),
       ["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     })
   })
 
   local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-  require("lspconfig").pyright.setup({ capabilities = capabilities })
-  require("lspconfig").eslint.setup({ capabilities = capabilities })
-  require("lspconfig").svelte.setup({ capabilities = capabilities })
-  require("lspconfig").cssls.setup({ capabilities = capabilities })
-  require("lspconfig").html.setup({ capabilities = capabilities })
-  require("lspconfig").tsserver.setup({ capabilities = capabilities })
-  require("lspconfig").sumneko_lua.setup({
+  local lspconfig = require("lspconfig")
+  lspconfig.pyright.setup({ capabilities = capabilities })
+  lspconfig.eslint.setup({ capabilities = capabilities })
+  lspconfig.svelte.setup({ capabilities = capabilities })
+  lspconfig.cssls.setup({ capabilities = capabilities })
+  lspconfig.html.setup({ capabilities = capabilities })
+  lspconfig.tsserver.setup({ capabilities = capabilities })
+  lspconfig.rust_analyzer.setup({ capabilities = capabilities })
+  lspconfig.sumneko_lua.setup({
     capabilities = capabilities,
     settings = {
       Lua = {
@@ -259,8 +274,8 @@ vim.keymap.set("n", "<leader>w", ":update<CR>", { noremap = true })
 -- dedent block and delete line with surrounding brackets
 vim.keymap.set("n", "<leader>x", "<i{]}dd[{dd", { noremap = true })
 -- handy buffer navigation
-vim.keymap.set("n", "<leader>d", ":bprevious<CR>", { noremap = true })
-vim.keymap.set("n", "<leader>f", ":bnext<CR>", { noremap = true })
+vim.keymap.set("n", "<c-h>", ":bprevious<CR>", { noremap = true })
+vim.keymap.set("n", "<c-l>", ":bnext<CR>", { noremap = true })
 -- indent a line to the correct level
 vim.keymap.set("n", "<leader>i", "O<Left><Esc>J", { noremap = true })
 

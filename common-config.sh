@@ -62,11 +62,14 @@ export NVM_DIR="$HOME/.nvm"
 # Set vim as the default editor, or NeoVim if its installed
 export EDITOR=vim
 export VISUAL=vim
+alias vimd=vimdiff
 if command -v nvim >/dev/null; then
   export EDITOR=nvim
   export VISUAL=nvim
   alias vi=nvim
   alias vim=nvim
+  alias vimdiff='nvim -d'
+  alias vimd='nvim -d'
 fi
 
 export PAGER='less -S'
@@ -151,6 +154,7 @@ alias rg='rg --hidden --after-context 2 --before-context 2 --type-add "svelte:*.
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias mkdir='mkdir -pv'
+alias chx='chmod +x'
 if [[ $(uname -s) = Linux ]]; then
   alias ls='ls -p --color=auto'
 else
