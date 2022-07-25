@@ -10,8 +10,7 @@ if not success then
 else
   -- editing utilities
   vim.fn["plug#"]("windwp/nvim-autopairs") -- automatically insert enclosing parentheses
-  vim.fn["plug#"]("tpope/vim-surround") -- manipulates surrounding brackets and quotes
-  vim.fn["plug#"]("tpope/vim-repeat") -- adds . support for the vim-surround maps
+  vim.fn["plug#"]("kylechui/nvim-surround") -- manipulates pairs of brackets, tags and quotes
   vim.fn["plug#"]("scrooloose/nerdcommenter") -- adds keybindings for easily commenting out lines \c<space> to toggle
   vim.fn["plug#"]("skammer/vim-swaplines") -- move lines up or down
   vim.fn["plug#"]("AndrewRadev/splitjoin.vim") -- switch formatting of objects between one-line and multi-line with gJ and gS
@@ -82,6 +81,7 @@ else
   })
 
   require("nvim-autopairs").setup()
+  require("nvim-surround").setup()
 
   require("gitsigns").setup()
   require("scrollbar").setup()
