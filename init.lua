@@ -1,5 +1,6 @@
 vim.cmd("colorscheme elflord")
 
+local transparent = true
 local success, error = pcall(vim.fn["plug#begin"], vim.fn.stdpath("data") .. "/plugged")
 
 if not success then
@@ -17,9 +18,15 @@ else
   vim.fn["plug#"]("mattn/emmet-vim") -- expand Emmet to HTML with <c-y>,
 
   -- appearances
-  vim.fn["plug#"]("lukas-reineke/indent-blankline.nvim") -- adds a little grey line at each indentation level
+  if transparent then
+    vim.fn["plug#"]("xiyaowong/nvim-transparent") -- removes background colors from color schemes
+  else
+    vim.fn["plug#"]("lukas-reineke/indent-blankline.nvim") -- adds a little grey line at each indentation level
+  end
   vim.fn["plug#"]("machakann/vim-highlightedyank") -- highlight yanked text
   vim.fn["plug#"]("folke/tokyonight.nvim") -- good dark theme which I customized
+  vim.fn["plug#"]("xiyaowong/nvim-cursorword") -- needed by yamatsum/nvim-cursorline
+  vim.fn["plug#"]("yamatsum/nvim-cursorline") -- underline the word under the cursor
 
   -- widgets
   vim.fn["plug#"]("nvim-lua/plenary.nvim") -- depended upon by nvim-telescope/telescope.nvim
@@ -28,7 +35,7 @@ else
   vim.fn["plug#"]("startup-nvim/startup.nvim") -- dashboard on startup, also integrates with (and so depends on) nvim-telescope/telescope.nvim
   vim.fn["plug#"]("nvim-lualine/lualine.nvim") -- dope status line
   vim.fn["plug#"]("kdheepak/tabline.nvim") -- dope tab line
-  vim.fn["plug#"]("petertriho/nvim-scrollbar")
+  vim.fn["plug#"]("petertriho/nvim-scrollbar") -- adds a scrollbar to the right of the view
   vim.fn["plug#"]("lewis6991/gitsigns.nvim") -- adds git diff symbols on the left hand side
   vim.fn["plug#"]("kyazdani42/nvim-web-devicons") -- icons for file tree viewer
   vim.fn["plug#"]("preservim/tagbar") -- a ctag/class outline viewer
@@ -49,7 +56,9 @@ else
   vim.fn["plug#"]("othree/html5.vim") -- depended upon by evanleck/vim-svelte
   vim.fn["plug#"]("pangloss/vim-javascript") -- depended upon by evanleck/vim-svelte
   vim.fn["plug#"]("evanleck/vim-svelte") -- needed for good svelte file indentation
+  vim.fn["plug#"]("godlygeek/tabular") -- depended upon by preservim/vim-markdown
   vim.fn["plug#"]("preservim/vim-markdown")
+  vim.fn["plug#"]("lifepillar/pgsql.vim") -- postgres-specific SQL (pgsql file extension)
 
   -- completions
   vim.fn["plug#"]("hrsh7th/cmp-nvim-lsp") -- completion source for LSPs
@@ -64,21 +73,28 @@ else
   vim.g.tokyonight_style = "night"
   vim.cmd("colorscheme tokyonight")
 
-  vim.cmd("highlight IndentBlanklineIndent1 guibg=#16161e gui=nocombine")
-  vim.cmd("highlight IndentBlanklineIndent2 guibg=#1e1e1e gui=nocombine")
-
-  require("indent_blankline").setup({
-    char = "",
-    char_highlight_list = {
-      "IndentBlanklineIndent1",
-      "IndentBlanklineIndent2"
-    },
-    space_char_highlight_list = {
-      "IndentBlanklineIndent1",
-      "IndentBlanklineIndent2"
-    },
-    show_trailing_blankline_indent = false
-  })
+  if transparent then
+    require("transparent").setup({
+      enable = true,
+      extra_groups = {}
+    })
+  else
+    -- to configure lukas-reineke/indent-blankline.nvim
+    vim.cmd("highlight IndentBlanklineIndent1 guibg=#16161e gui=nocombine")
+    vim.cmd("highlight IndentBlanklineIndent2 guibg=#1e1e1e gui=nocombine")
+    require("indent_blankline").setup({
+      char = "",
+      char_highlight_list = {
+        "IndentBlanklineIndent1",
+        "IndentBlanklineIndent2"
+      },
+      space_char_highlight_list = {
+        "IndentBlanklineIndent1",
+        "IndentBlanklineIndent2"
+      },
+      show_trailing_blankline_indent = false
+    })
+  end
 
   require("nvim-autopairs").setup()
   require("nvim-surround").setup()
@@ -86,6 +102,11 @@ else
   require("gitsigns").setup()
   require("scrollbar").setup()
   require("marks").setup()
+  require('nvim-cursorline').setup {
+    cursorline = {
+      enable = false
+    }
+  }
 
   local telescope = require("telescope")
   local actions = require("telescope.actions")
@@ -211,13 +232,11 @@ else
   })
 
   -- preservim/vim-markdown options for working on SQL Scholar
-  vim.g.vim_markdown_fenced_languages = { "c++=cpp", "bash=sh", "sqlx=sql", "sqlres=sql" }
+  vim.g.vim_markdown_fenced_languages = { "c++=cpp", "bash=sh", "sqlx=pgsql", "sqlres=pgsql", "js=javascript" }
   vim.g.vim_markdown_folding_disabled = 1
 
   vim.o.completeopt = "menu,menuone,noselect"
 end
-
-
 
 
 vim.g.mapleader = ","
