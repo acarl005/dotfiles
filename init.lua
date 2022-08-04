@@ -76,7 +76,7 @@ else
   if transparent then
     require("transparent").setup({
       enable = true,
-      extra_groups = {}
+      extra_groups = { "lualine_c_normal" }
     })
   else
     -- to configure lukas-reineke/indent-blankline.nvim
@@ -266,6 +266,9 @@ vim.o.virtualedit = "block"
 vim.o.clipboard = "unnamedplus"
 
 vim.o.wildignore = "*/node_modules/*,*.swp,*.zip,*/dist/*,*/.ipynb_checkpoints/*,*/.mypy_cache/*,*/.tox/*,*/.cache/*,*/.svelte-kit/*,*/.netlify/*"
+
+-- prevent SQL ft plugin from causing <c-c> to wait
+vim.g.ftplugin_sql_omni_key = "<c-j>"
 
 -- automatically try to check for changed files
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, { pattern = "*", command = "checktime" })
