@@ -38,8 +38,8 @@ else
   vim.fn["plug#"]("petertriho/nvim-scrollbar") -- adds a scrollbar to the right of the view
   vim.fn["plug#"]("lewis6991/gitsigns.nvim") -- adds git diff symbols on the left hand side
   vim.fn["plug#"]("kyazdani42/nvim-web-devicons") -- icons for file tree viewer
+  -- brew install --HEAD universal-ctags/universal-ctags/universal-ctags
   vim.fn["plug#"]("preservim/tagbar") -- a ctag/class outline viewer
-  vim.fn["plug#"]("universal-ctags/ctags") -- ctag extractor for all languages
   vim.fn["plug#"]("chentoast/marks.nvim") -- show the marks on the left
 
   -- commands

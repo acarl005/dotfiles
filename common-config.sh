@@ -79,7 +79,6 @@ export PAGER='less -S'
 export LSCOLORS=ExGxFxdxCxDxDxaccxaeex
 export LS_COLORS='di=1;34:ln=1;36:so=1;35:pi=33:ex=1;32:bd=1;33:cd=1;33:su=30;42:sg=32:tw=30;44:ow=34'
 
-
 if command -v ls-go >/dev/null; then
   alias ll='ls-go -alLkn'
 else
