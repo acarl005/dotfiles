@@ -20,9 +20,8 @@ else
   -- appearances
   if transparent then
     vim.fn["plug#"]("xiyaowong/nvim-transparent") -- removes background colors from color schemes
-  else
-    vim.fn["plug#"]("lukas-reineke/indent-blankline.nvim") -- adds a little grey line at each indentation level
   end
+  --vim.fn["plug#"]("lukas-reineke/indent-blankline.nvim") -- adds a little grey line at each indentation level
   vim.fn["plug#"]("machakann/vim-highlightedyank") -- highlight yanked text
   vim.fn["plug#"]("folke/tokyonight.nvim") -- good dark theme which I customized
   vim.fn["plug#"]("xiyaowong/nvim-cursorword") -- needed by yamatsum/nvim-cursorline
