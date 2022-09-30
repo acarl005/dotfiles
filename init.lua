@@ -105,7 +105,7 @@ else
   require("gitsigns").setup()
   require("scrollbar").setup()
   require("marks").setup()
-  require('nvim-cursorline').setup({
+  require("nvim-cursorline").setup({
     cursorline = {
       enable = false
     }
@@ -113,7 +113,7 @@ else
 
   local telescope = require("telescope")
   local actions = require("telescope.actions")
-  local action_state = require('telescope.actions.state')
+  local action_state = require("telescope.actions.state")
   local transform_mod = require("telescope.actions.mt").transform_mod
 
   --this is a hack to open all selected files, see this issue for source
@@ -286,8 +286,8 @@ else
     mapping = cmp.mapping.preset.insert({
       ["<c-n>"] = cmp.mapping.select_next_item(),
       ["<c-p>"] = cmp.mapping.select_prev_item(),
-      ['<c-b>'] = cmp.mapping.scroll_docs(-4),
-      ['<c-f>'] = cmp.mapping.scroll_docs(4),
+      ["<c-b>"] = cmp.mapping.scroll_docs(-4),
+      ["<c-f>"] = cmp.mapping.scroll_docs(4),
       ["<c-x>"] = cmp.mapping.complete(),
       ["<c-v>"] = cmp.mapping.abort(),
       ["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
@@ -412,11 +412,12 @@ vim.keymap.set("n", "<c-j>", ":SwapDown<CR>", { noremap = true })
 vim.keymap.set("n", "<leader>t", ":TagbarToggle<CR>", { noremap = true })
 
 -- key mappings for LSP diagnostics
-vim.api.nvim_set_keymap('n', '<leader>do', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>d[', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>d]', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>do", "<cmd>lua vim.diagnostic.open_float()<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>d[", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>d]", "<cmd>lua vim.diagnostic.goto_next()<CR>", { noremap = true })
+vim.keymap.set("n", "K", vim.lsp.buf.hover, { noremap = true })
 -- depends on Telescope
-vim.api.nvim_set_keymap('n', '<leader>dd', '<cmd>Telescope diagnostics<CR>', { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>dd", "<cmd>Telescope diagnostics<CR>", { noremap = true })
 
 
 -- open this file
