@@ -11,6 +11,7 @@ ln -i -s "$PWD/ftplugin" ~/.vim/ftplugin
 ln -i -s "$PWD/indent" ~/.vim/indent
 
 ln -i -s "$PWD/.ackrc" ~/.ackrc
+ln -i -s "$PWD/.ripgreprc" ~/.ripgreprc
 ln -i -s "$PWD/common-config.sh" ~/common-config.sh
 ln -i -s "$PWD/config.bash" ~/config.bash
 ln -i -s "$PWD/config.zsh" ~/config.zsh
