@@ -1,1 +1,1 @@
-imap ç println!("");<C-c>hhi
+imap ç println!("{:?}", );<C-c>hi

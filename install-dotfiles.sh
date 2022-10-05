@@ -9,6 +9,8 @@ ln -i -s "$PWD/bin" ~/bin
 ln -i -s "$PWD/ftplugin" ~/.vim/ftplugin
 [ -L ~/.vim/indent ] && rm ~/.vim/indent
 ln -i -s "$PWD/indent" ~/.vim/indent
+[ -L ~/.config/nvim/ftplugin ] && rm ~/.config/nvim/ftplugin
+ln -i -s "$PWD/ftplugin" ~/.config/nvim/ftplugin
 
 ln -i -s "$PWD/.ackrc" ~/.ackrc
 ln -i -s "$PWD/.ripgreprc" ~/.ripgreprc

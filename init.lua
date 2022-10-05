@@ -43,6 +43,8 @@ else
 
   -- commands
   vim.fn["plug#"]("airblade/vim-rooter") -- adds :Rooter command to change pwd to the project root
+  vim.fn["plug#"]("tyru/open-browser.vim") -- depended upon by tyru/open-browser-github.vim
+  vim.fn["plug#"]("tyru/open-browser-github.vim") -- opens current buffer in GitHub
 
   -- text objects
   vim.fn["plug#"]("kana/vim-textobj-user") -- enable user-defined text objects
@@ -390,13 +392,12 @@ vim.keymap.set("n", "gV", "`[v`]", { noremap = true })
 -- convenient save shortcut
 vim.keymap.set("n", "<leader>w", ":update<CR>", { noremap = true })
 -- dedent block and delete line with surrounding brackets
-vim.keymap.set("n", "<leader>x", "<i{0]}dd[{dd", { noremap = true })
+vim.keymap.set("n", "<leader>x{", "<i{0]}dd[{dd", { noremap = true })
+vim.keymap.set("n", "<leader>x(", "<i(0])dd[(dd", { noremap = true })
+vim.keymap.set("n", "<leader>x[", "<i[0]]dd[[dd", { noremap = true })
 -- handy buffer navigation
 vim.keymap.set("n", "<c-h>", ":bprevious<CR>", { noremap = true })
 vim.keymap.set("n", "<c-l>", ":bnext<CR>", { noremap = true })
--- indent a line to the correct level
-vim.keymap.set("n", "<leader>i", "O<Left><Esc>J", { noremap = true })
-
 
 -- key mappings for nvim-telescope/telescope.nvim
 vim.keymap.set("n", "<c-p>", ":Telescope find_files<CR>", { noremap = true })
