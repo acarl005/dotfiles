@@ -85,7 +85,7 @@ else
   if transparent then
     require("transparent").setup({
       enable = true,
-      extra_groups = { "lualine_c_normal" }
+      extra_groups = { "lualine_c_normal", "GitBackground", "GitHeader" }
     })
   else
     -- to configure lukas-reineke/indent-blankline.nvim
