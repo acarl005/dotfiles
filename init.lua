@@ -234,7 +234,8 @@ else
     },
     extensions = {
       file_browser = {
-        hidden = true
+        hidden = true,
+        grouped = true
       }
     }
   })
