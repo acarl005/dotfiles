@@ -20,8 +20,9 @@ else
   -- appearances
   if transparent then
     vim.fn["plug#"]("xiyaowong/nvim-transparent") -- removes background colors from color schemes
+  else
+    vim.fn["plug#"]("lukas-reineke/indent-blankline.nvim") -- adds a little grey line at each indentation level
   end
-  --vim.fn["plug#"]("lukas-reineke/indent-blankline.nvim") -- adds a little grey line at each indentation level
   vim.fn["plug#"]("machakann/vim-highlightedyank") -- highlight yanked text
   vim.fn["plug#"]("folke/tokyonight.nvim") -- good dark theme which I customized
   vim.fn["plug#"]("xiyaowong/nvim-cursorword") -- needed by yamatsum/nvim-cursorline
@@ -35,7 +36,8 @@ else
   vim.fn["plug#"]("nvim-lualine/lualine.nvim") -- dope status line
   vim.fn["plug#"]("kdheepak/tabline.nvim") -- dope tab line
   vim.fn["plug#"]("petertriho/nvim-scrollbar") -- adds a scrollbar to the right of the view
-  vim.fn["plug#"]("lewis6991/gitsigns.nvim") -- adds git diff symbols on the left hand side
+  vim.fn["plug#"]("tanvirtin/vgit.nvim") -- a bunch of git integration, like diff view
+  vim.fn["plug#"]("lewis6991/gitsigns.nvim") -- adds git diff symbols on the left hand side. vgit has this but it was super shaky due to updating on every keystroke
   vim.fn["plug#"]("kyazdani42/nvim-web-devicons") -- icons for file tree viewer
   -- brew install --HEAD universal-ctags/universal-ctags/universal-ctags
   vim.fn["plug#"]("preservim/tagbar") -- a ctag/class outline viewer
@@ -103,6 +105,9 @@ else
   require("nvim-autopairs").setup()
   require("nvim-surround").setup()
 
+  require("vgit").setup()
+  -- use the gitsigns gutter instead b/c this one is too shaky
+  require("vgit").toggle_live_gutter()
   require("gitsigns").setup()
   require("scrollbar").setup()
   require("marks").setup()
@@ -297,6 +302,8 @@ else
 
   local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
   local lspconfig = require("lspconfig")
+
+  -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#gopls
   lspconfig.pyright.setup({ capabilities = capabilities })
   lspconfig.eslint.setup({ capabilities = capabilities })
   lspconfig.svelte.setup({ capabilities = capabilities })
@@ -304,6 +311,7 @@ else
   lspconfig.html.setup({ capabilities = capabilities })
   lspconfig.tsserver.setup({ capabilities = capabilities })
   lspconfig.rust_analyzer.setup({ capabilities = capabilities })
+  lspconfig.gopls.setup({ capabilities = capabilities })
   lspconfig.sumneko_lua.setup({
     capabilities = capabilities,
     settings = {

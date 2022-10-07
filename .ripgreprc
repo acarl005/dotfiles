@@ -1,3 +1,4 @@
 --glob=!.git/
+--glob=!.npm/
 --hidden
 --type-add=svelte:*.svelte
