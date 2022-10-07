@@ -1,6 +1,9 @@
 vim.cmd("colorscheme elflord")
 
+-- I like a transparent background if my terminal theme is pretty
 local transparent = true
+
+-- attempt to load plugin manager. i don't want this file to crash if not installed
 local success, error = pcall(vim.fn["plug#begin"], vim.fn.stdpath("data") .. "/plugged")
 
 if not success then
