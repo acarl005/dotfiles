@@ -307,7 +307,7 @@ else
   local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
   local lspconfig = require("lspconfig")
 
-  -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#gopls
+  -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
   lspconfig.pyright.setup({ capabilities = capabilities })
   lspconfig.eslint.setup({ capabilities = capabilities })
   lspconfig.svelte.setup({ capabilities = capabilities })

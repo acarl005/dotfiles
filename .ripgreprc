@@ -1,4 +1,10 @@
 --glob=!.git/
 --glob=!.npm/
+--glob=!.ipynb_checkpoints/
+--glob=!.mypy_cache/
+--glob=!.tox/
+--glob=!.cache/
+--glob=!.parcel-cache/
+--glob=!.svelte-kit/
 --hidden
 --type-add=svelte:*.svelte

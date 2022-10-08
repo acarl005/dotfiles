@@ -1,8 +1,7 @@
 if command -v brew >/dev/null; then
   echo Homebrew already installed
 else
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/andy/.zshrc
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 # install oh-my-zsh
@@ -13,7 +12,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 brew tap homebrew/cask-fonts
-brew install ack ripgrep autojump git vim neovim coreutils neofetch ranger fd tldr shellcheck bat fzf onefetch highlight mdcat jq bash-completion
+brew install ripgrep autojump git vim neovim coreutils neofetch ranger fd tldr shellcheck bat fzf onefetch highlight mdcat jq bash-completion starship
 brew install --cask font-inconsolata-nerd-font
 brew install acarl005/homebrew-formulas/ls-go
 

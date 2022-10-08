@@ -191,15 +191,12 @@ export pg="/usr/local/var/postgres"
 alias serv2="python -m SimpleHTTPServer"
 alias serv="python3 -m http.server"
 alias pirate='youtube-dl --extract-audio --audio-format mp3'
-alias R='R --no-save'
-alias r='r --no-save'
 alias grip='grip -b'
 alias https='http --default-scheme=https'
 alias weather='curl wttr.in/?m'
 
 if [[ $(uname) = Darwin ]]; then
   alias chrome="open -a /Applications/Google\ Chrome.app/"
-  alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
 else
   alias chrome="google-chrome"
 fi
@@ -210,8 +207,6 @@ alias py=python
 alias py3=python3
 alias jn='jupyter-notebook'
 alias jl='jupyter-lab'
-alias rstudio='open -a rstudio'
-alias tb='tensorboard --logdir'
 alias kub=kubectl
 alias cls='printf "\033c"'
 alias nr='npm run'

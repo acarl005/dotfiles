@@ -17,7 +17,6 @@ ln -i -s "$PWD/.ripgreprc" ~/.ripgreprc
 ln -i -s "$PWD/common-config.sh" ~/common-config.sh
 ln -i -s "$PWD/config.bash" ~/config.bash
 ln -i -s "$PWD/config.zsh" ~/config.zsh
-ln -i -s "$PWD/.bash_completions" ~/.bash_completions
 ln -i -s "$PWD/.gitconfig" ~/.gitconfig
 ln -i -s "$PWD/.gitignore_global" ~/.gitignore_global
 ln -i -s "$PWD/.inputrc" ~/.inputrc

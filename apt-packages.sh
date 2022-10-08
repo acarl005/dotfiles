@@ -1,6 +1,6 @@
 sudo apt-get update -y
 
-sudo apt-get install --ignore-missing -y git ack ripgrep autojump ranger tldr curl xclip shellcheck neofetch bat fzf fd-find zsh neovim jq libimage-exiftool-perl bash-completion
+sudo apt-get install --ignore-missing -y git ripgrep autojump ranger tldr curl xclip shellcheck neofetch bat fzf fd-find zsh neovim jq libimage-exiftool-perl bash-completion
 
 if [ "$XDG_CURRENT_DESKTOP" = ubuntu:GNOME ]; then
   sudo apt-get install -y vim-gnome gnome-tweaks  
@@ -10,6 +10,9 @@ fi
 
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# install starship
+curl -sS https://starship.rs/install.sh | sh
 
 # custom plugins
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
