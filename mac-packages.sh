@@ -13,7 +13,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 brew tap homebrew/cask-fonts
-brew install ack ripgrep autojump git vim neovim coreutils neofetch ranger fd tldr shellcheck bat fzf onefetch highlight mdcat jq
+brew install ack ripgrep autojump git vim neovim coreutils neofetch ranger fd tldr shellcheck bat fzf onefetch highlight mdcat jq bash-completion
 brew install --cask font-inconsolata-nerd-font
 brew install acarl005/homebrew-formulas/ls-go
 

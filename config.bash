@@ -47,7 +47,7 @@ if [ -f /usr/lib/git-core/git-sh-prompt ]; then
 fi
 
 # Git autocomplete features (MacOS)
-BREW_PREFIX=/usr/local
+BREW_PREFIX=$(brew --prefix)
 if [ -f $BREW_PREFIX/etc/bash_completion ]; then
   . $BREW_PREFIX/etc/bash_completion
 fi
