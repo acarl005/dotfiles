@@ -27,7 +27,7 @@ else
     vim.fn["plug#"]("lukas-reineke/indent-blankline.nvim") -- adds a little grey line at each indentation level
   end
   vim.fn["plug#"]("machakann/vim-highlightedyank") -- highlight yanked text
-  vim.fn["plug#"]("folke/tokyonight.nvim") -- good dark theme which I customized
+  vim.fn["plug#"]("kaicataldo/material.vim") -- good dark theme
   vim.fn["plug#"]("xiyaowong/nvim-cursorword") -- needed by yamatsum/nvim-cursorline
   vim.fn["plug#"]("yamatsum/nvim-cursorline") -- underline the word under the cursor
 
@@ -79,8 +79,8 @@ else
   vim.fn["plug#end"]()
 
   vim.o.termguicolors = true
-  vim.g.tokyonight_style = "night"
-  vim.cmd("colorscheme tokyonight")
+  vim.g.material_theme_style = "darker"
+  vim.cmd("colorscheme material")
 
   if transparent then
     require("transparent").setup({
@@ -428,8 +428,15 @@ vim.api.nvim_set_keymap("n", "<leader>do", "<cmd>lua vim.diagnostic.open_float()
 vim.api.nvim_set_keymap("n", "<leader>d[", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>d]", "<cmd>lua vim.diagnostic.goto_next()<CR>", { noremap = true })
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { noremap = true })
+vim.keymap.set("n", "<leader>r", vim.lsp.buf.references, { noremap = true })
+vim.keymap.set("n", "<leader>i", vim.lsp.buf.implementation, { noremap = true })
 -- depends on Telescope
 vim.api.nvim_set_keymap("n", "<leader>dd", "<cmd>Telescope diagnostics<CR>", { noremap = true })
+
+-- key mappings for VGit
+vim.api.nvim_set_keymap("n", "<leader>gpd", "<cmd>VGit project_diff_preview<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>gbd", "<cmd>VGit buffer_diff_preview<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>gbh", "<cmd>VGit buffer_history_preview<CR>", { noremap = true })
 
 
 -- open this file
@@ -451,7 +458,7 @@ vim.api.nvim_create_user_command("Camel", "%s/\\([a-z0-9]\\)_\\([a-z0-9]\\)/\\1\
 vim.api.nvim_create_user_command("F", ":echo expand('%:p')", {})
 
 -- close all buffers except current
-vim.api.nvim_create_user_command("Purge", "%bd|e#", {})
+vim.api.nvim_create_user_command("Purge", "%bd|e#|bd#", {})
 
 -- convert 4-space indentation to 2-space
 vim.api.nvim_create_user_command(
