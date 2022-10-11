@@ -27,7 +27,7 @@ else
     vim.fn["plug#"]("lukas-reineke/indent-blankline.nvim") -- adds a little grey line at each indentation level
   end
   vim.fn["plug#"]("machakann/vim-highlightedyank") -- highlight yanked text
-  vim.fn["plug#"]("kaicataldo/material.vim") -- good dark theme
+  vim.fn["plug#"]("folke/tokyonight.nvim") -- good dark theme
   vim.fn["plug#"]("xiyaowong/nvim-cursorword") -- needed by yamatsum/nvim-cursorline
   vim.fn["plug#"]("yamatsum/nvim-cursorline") -- underline the word under the cursor
 
@@ -79,8 +79,7 @@ else
   vim.fn["plug#end"]()
 
   vim.o.termguicolors = true
-  vim.g.material_theme_style = "darker"
-  vim.cmd("colorscheme material")
+  vim.cmd("colorscheme tokyonight-night")
 
   if transparent then
     require("transparent").setup({
