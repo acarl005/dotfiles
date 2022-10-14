@@ -315,6 +315,7 @@ else
   lspconfig.tsserver.setup({ capabilities = capabilities })
   lspconfig.rust_analyzer.setup({ capabilities = capabilities })
   lspconfig.gopls.setup({ capabilities = capabilities })
+  lspconfig.taplo.setup({ capabilities = capabilities })
   lspconfig.sumneko_lua.setup({
     capabilities = capabilities,
     settings = {

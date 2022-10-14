@@ -15,7 +15,6 @@ ln -i -s "$PWD/ftplugin" ~/.config/nvim/ftplugin
 ln -i -s "$PWD/.ackrc" ~/.ackrc
 ln -i -s "$PWD/.ripgreprc" ~/.ripgreprc
 ln -i -s "$PWD/common-config.sh" ~/common-config.sh
-ln -i -s "$PWD/config.bash" ~/config.bash
 ln -i -s "$PWD/config.zsh" ~/config.zsh
 ln -i -s "$PWD/.gitconfig" ~/.gitconfig
 ln -i -s "$PWD/.gitignore_global" ~/.gitignore_global
@@ -29,6 +28,5 @@ ln -i -s "$PWD/.vimrc" ~/.vimrc
 ln -i -s "$PWD/init.lua" ~/.config/nvim/init.lua
 ln -i -s "$PWD/rc.conf" ~/.config/ranger/rc.conf
 ln -i -s "$PWD/scope.sh" ~/.config/ranger/scope.sh
+ln -i -s "$PWD/starship.toml" ~/.config/starship.toml
 /bin/cp "$PWD/.zshrc" ~/.zshrc
-/bin/cp "$PWD/.bashrc" ~/.bashrc
-/bin/cp "$PWD/.bash_profile" ~/.bash_profile
