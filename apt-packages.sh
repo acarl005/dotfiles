@@ -2,6 +2,7 @@ sudo apt-get update -y
 
 sudo apt-get install -y software-properties-common
 sudo add-apt-repository -y ppa:aos1/diff-so-fancy
+sudo add-apt-repository -y ppa:neovim-ppa/stable
 sudo apt-get update -y
 sudo apt-get install --ignore-missing -y git ripgrep autojump ranger tldr curl xclip shellcheck neofetch bat fzf fd-find zsh neovim jq diff-so-fancy
 
