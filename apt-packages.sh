@@ -1,6 +1,8 @@
-sudo add-apt-repository ppa:aos1/diff-so-fancy
 sudo apt-get update -y
 
+sudo apt-get install -y software-properties-common
+sudo add-apt-repository -y ppa:aos1/diff-so-fancy
+sudo apt-get update -y
 sudo apt-get install --ignore-missing -y git ripgrep autojump ranger tldr curl xclip shellcheck neofetch bat fzf fd-find zsh neovim jq diff-so-fancy
 
 if [ "$XDG_CURRENT_DESKTOP" = ubuntu:GNOME ]; then
