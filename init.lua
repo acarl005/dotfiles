@@ -30,6 +30,7 @@ else
   vim.fn["plug#"]("folke/tokyonight.nvim") -- good dark theme
   vim.fn["plug#"]("xiyaowong/nvim-cursorword") -- needed by yamatsum/nvim-cursorline
   vim.fn["plug#"]("yamatsum/nvim-cursorline") -- underline the word under the cursor
+  vim.fn["plug#"]("NvChad/nvim-colorizer.lua") -- add in-editor background colors to css colors
 
   -- widgets
   vim.fn["plug#"]("nvim-lua/plenary.nvim") -- depended upon by nvim-telescope/telescope.nvim
@@ -69,6 +70,7 @@ else
   vim.fn["plug#"]("godlygeek/tabular") -- depended upon by preservim/vim-markdown
   vim.fn["plug#"]("preservim/vim-markdown")
   vim.fn["plug#"]("lifepillar/pgsql.vim") -- postgres-specific SQL (pgsql file extension)
+  vim.fn["plug#"]("ray-x/go.nvim") -- some helpful Go commands for formatting and auto-import
 
   -- completions
   vim.fn["plug#"]("hrsh7th/cmp-nvim-lsp") -- completion source for LSPs
@@ -117,6 +119,12 @@ else
   require("nvim-cursorline").setup({
     cursorline = {
       enable = false
+    }
+  })
+
+  require("colorizer").setup({
+    user_default_options = {
+      css = true
     }
   })
 
@@ -340,6 +348,7 @@ else
       }
     }
   })
+  require('go').setup()
 
   -- preservim/vim-markdown options for working on SQL Scholar
   vim.g.vim_markdown_fenced_languages = { "c++=cpp", "bash=sh", "sqlx=pgsql", "sqlres=pgsql", "js=javascript" }
@@ -435,6 +444,10 @@ vim.keymap.set("n", "<leader>r", vim.lsp.buf.references, { noremap = true })
 vim.keymap.set("n", "<leader>i", vim.lsp.buf.implementation, { noremap = true })
 -- depends on Telescope
 vim.api.nvim_set_keymap("n", "<leader>dd", "<cmd>Telescope diagnostics<CR>", { noremap = true })
+
+-- key mappings for Gitsigns
+vim.api.nvim_set_keymap("n", "<leader>gnh", "<cmd>Gitsigns next_hunk<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>gph", "<cmd>Gitsigns prev_hunk<CR>", { noremap = true })
 
 -- key mappings for VGit
 vim.api.nvim_set_keymap("n", "<leader>gpd", "<cmd>VGit project_diff_preview<CR>", { noremap = true })
