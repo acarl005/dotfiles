@@ -1,8 +1,0 @@
-channels:
-  - conda-forge
-  - defaults
-create_default_packages:
-  - ipython
-  - ipdb
-  - python-language-server
-  - mypy

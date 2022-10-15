@@ -13,15 +13,19 @@ else
 fi
 
 # install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-mv -f ~/.zshrc.pre-oh-my-zsh ~/.zshrc
+if [ ! -d ~/.oh-my-zsh ]; then
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  mv -f ~/.zshrc.pre-oh-my-zsh ~/.zshrc
+
+  # custom plugins
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+fi
 
 # install starship
-curl -sS https://starship.rs/install.sh | sh
-
-# custom plugins
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+if ! command -v starship >/dev/null; then
+  curl -sS https://starship.rs/install.sh | sh
+fi
 
 # install nerd font
 git clone https://github.com/ryanoasis/nerd-fonts ~/Downloads/fonts

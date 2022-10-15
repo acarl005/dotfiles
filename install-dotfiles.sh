@@ -12,21 +12,20 @@ ln -i -s "$PWD/indent" ~/.vim/indent
 [ -L ~/.config/nvim/ftplugin ] && rm ~/.config/nvim/ftplugin
 ln -i -s "$PWD/ftplugin" ~/.config/nvim/ftplugin
 
-ln -i -s "$PWD/.ackrc" ~/.ackrc
-ln -i -s "$PWD/.ripgreprc" ~/.ripgreprc
-ln -i -s "$PWD/common-config.sh" ~/common-config.sh
-ln -i -s "$PWD/config.zsh" ~/config.zsh
-ln -i -s "$PWD/.gitconfig" ~/.gitconfig
-ln -i -s "$PWD/.gitignore_global" ~/.gitignore_global
-ln -i -s "$PWD/.inputrc" ~/.inputrc
-ln -i -s "$PWD/.pryrc" ~/.pryrc
-ln -i -s "$PWD/.psqlrc" ~/.psqlrc
-ln -i -s "$PWD/.mongorc.js" ~/.mongorc.js
-ln -i -s "$PWD/.pythonrc.py" ~/.pythonrc.py
-ln -i -s "$PWD/.condarc" ~/.condarc
-ln -i -s "$PWD/.vimrc" ~/.vimrc
-ln -i -s "$PWD/init.lua" ~/.config/nvim/init.lua
-ln -i -s "$PWD/rc.conf" ~/.config/ranger/rc.conf
-ln -i -s "$PWD/scope.sh" ~/.config/ranger/scope.sh
-ln -i -s "$PWD/starship.toml" ~/.config/starship.toml
-/bin/cp "$PWD/.zshrc" ~/.zshrc
+ln -fs "$PWD/.ackrc" ~/.ackrc
+ln -fs "$PWD/.ripgreprc" ~/.ripgreprc
+ln -fs "$PWD/common-config.sh" ~/common-config.sh
+ln -fs "$PWD/config.zsh" ~/config.zsh
+ln -fs "$PWD/.gitconfig" ~/.gitconfig
+ln -fs "$PWD/.gitignore_global" ~/.gitignore_global
+ln -fs "$PWD/.inputrc" ~/.inputrc
+ln -fs "$PWD/.pryrc" ~/.pryrc
+ln -fs "$PWD/.psqlrc" ~/.psqlrc
+ln -fs "$PWD/.mongorc.js" ~/.mongorc.js
+ln -fs "$PWD/.pythonrc.py" ~/.pythonrc.py
+ln -fs "$PWD/.vimrc" ~/.vimrc
+ln -fs "$PWD/init.lua" ~/.config/nvim/init.lua
+ln -fs "$PWD/rc.conf" ~/.config/ranger/rc.conf
+ln -fs "$PWD/scope.sh" ~/.config/ranger/scope.sh
+ln -fs "$PWD/starship.toml" ~/.config/starship.toml
+/bin/cp -f "$PWD/.zshrc" ~/.zshrc

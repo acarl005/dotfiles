@@ -2,10 +2,6 @@
 
 . ./install-dotfiles.sh
 
-if command -v pip >/dev/null; then
-  pip install ipython ipdb python-language-server mypy
-fi
-
 if [[ $(uname) = Darwin ]]; then
   . mac-packages.sh
 elif command -v apt-get >/dev/null; then
