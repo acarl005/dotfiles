@@ -38,6 +38,7 @@ else
   vim.fn["plug#"]("startup-nvim/startup.nvim") -- dashboard on startup, also integrates with (and so depends on) nvim-telescope/telescope.nvim
   vim.fn["plug#"]("nvim-lualine/lualine.nvim") -- dope status line
   vim.fn["plug#"]("kdheepak/tabline.nvim") -- dope tab line
+  vim.fn["plug#"]("folke/which-key.nvim") -- emacs-style index of possible keymaps once you press a key
   vim.fn["plug#"]("petertriho/nvim-scrollbar") -- adds a scrollbar to the right of the view
   vim.fn["plug#"]("tanvirtin/vgit.nvim") -- a bunch of git integration, like diff view
   vim.fn["plug#"]("lewis6991/gitsigns.nvim") -- adds git diff symbols on the left hand side. vgit has this but it was super shaky due to updating on every keystroke
@@ -268,6 +269,8 @@ else
       lualine_z = {}
     }
   })
+
+  require("which-key").setup()
 
   require("nvim-lsp-installer").setup({
     automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)

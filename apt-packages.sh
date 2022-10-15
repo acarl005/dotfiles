@@ -14,6 +14,7 @@ fi
 
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+mv -f ~/.zshrc.pre-oh-my-zsh ~/.zshrc
 
 # install starship
 curl -sS https://starship.rs/install.sh | sh
