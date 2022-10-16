@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if command -v brew >/dev/null; then
   echo Homebrew already installed
 else
@@ -8,12 +10,13 @@ fi
 
 # install oh-my-zsh
 if [ ! -d ~/.oh-my-zsh ]; then
+  export RUNZSH=no 
+  export KEEP_ZSHRC=yes
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  mv -f ~/.zshrc.pre-oh-my-zsh ~/.zshrc
 
   # custom plugins
-  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+  git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
 fi
 
 
@@ -22,4 +25,4 @@ brew install ripgrep autojump git vim neovim coreutils neofetch ranger fd tldr s
 brew install --cask font-inconsolata-nerd-font
 brew install acarl005/homebrew-formulas/ls-go
 
-$(brew --prefix)/opt/fzf/install
+"$(brew --prefix)"/opt/fzf/install

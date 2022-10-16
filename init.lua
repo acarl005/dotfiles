@@ -377,20 +377,22 @@ else
         -- Language servers provide different completion results depending on the capabilities of the client. Neovim's default
         -- omnifunc has basic support for serving completion candidates. nvim-cmp supports more types of completion candidates, so
         -- users must override the capabilities sent to the server such that it can provide these candidates during a completion request.
-        local capabilities = require("cmp_nvim_lsp").default_capabilities()
         local lspconfig = require("lspconfig")
+        local capabilities = require("cmp_nvim_lsp").default_capabilities()
+        local ls_options = { capabilities = capabilities }
 
         -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
         -- or check :LspInstallInfo
-        lspconfig.pyright.setup({ capabilities = capabilities })
-        lspconfig.eslint.setup({ capabilities = capabilities })
-        lspconfig.svelte.setup({ capabilities = capabilities })
-        lspconfig.cssls.setup({ capabilities = capabilities })
-        lspconfig.html.setup({ capabilities = capabilities })
-        lspconfig.tsserver.setup({ capabilities = capabilities })
-        lspconfig.rust_analyzer.setup({ capabilities = capabilities })
-        lspconfig.gopls.setup({ capabilities = capabilities })
-        lspconfig.taplo.setup({ capabilities = capabilities })
+        lspconfig.bashls.setup(ls_options)
+        lspconfig.pyright.setup(ls_options)
+        lspconfig.eslint.setup(ls_options)
+        lspconfig.svelte.setup(ls_options)
+        lspconfig.cssls.setup(ls_options)
+        lspconfig.html.setup(ls_options)
+        lspconfig.tsserver.setup(ls_options)
+        lspconfig.rust_analyzer.setup(ls_options)
+        lspconfig.gopls.setup(ls_options)
+        lspconfig.taplo.setup(ls_options)
         lspconfig.sumneko_lua.setup({
           capabilities = capabilities,
           settings = {

@@ -190,6 +190,7 @@ export pg="/usr/local/var/postgres"
 # shorten misc things
 alias serv2="python -m SimpleHTTPServer"
 alias serv="python3 -m http.server"
+# brew install ffmpeg && pip install youtube-dl
 alias pirate='youtube-dl --extract-audio --audio-format mp3'
 alias grip='grip -b'
 alias https='http --default-scheme=https'

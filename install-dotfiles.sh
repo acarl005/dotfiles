@@ -1,3 +1,5 @@
+#!/bin/bash
+
 mkdir ~/.vim
 mkdir ~/.config
 mkdir ~/.config/nvim

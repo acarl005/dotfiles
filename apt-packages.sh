@@ -1,3 +1,5 @@
+#!/bin/bash
+
 sudo apt-get update -y
 
 sudo apt-get install -y software-properties-common
@@ -14,12 +16,13 @@ fi
 
 # install oh-my-zsh
 if [ ! -d ~/.oh-my-zsh ]; then
+  export RUNZSH=no 
+  export KEEP_ZSHRC=yes
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  mv -f ~/.zshrc.pre-oh-my-zsh ~/.zshrc
 
   # custom plugins
-  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+  git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
 fi
 
 # install starship
@@ -28,7 +31,19 @@ if ! command -v starship >/dev/null; then
 fi
 
 # install nerd font
-git clone https://github.com/ryanoasis/nerd-fonts ~/Downloads/fonts
-pushd ~/Downloads/fonts
-./install.sh Inconsolata
-popd
+while true; do
+  read -rp "Do you want to install nerd fonts? (Y/n): " yn
+  case $yn in
+    [Yy]* ) INSTALL_FONTS=1; break;;
+    [Nn]* ) INSTALL_FONTS=0; break;;
+    '' ) INSTALL_FONTS=1; break;;
+    * ) echo "Please answer y or n";;
+  esac
+done
+
+if [ $INSTALL_FONTS -eq 1 ]; then
+  git clone https://github.com/ryanoasis/nerd-fonts ~/Downloads/fonts
+  pushd ~/Downloads/fonts
+  ./install.sh Inconsolata
+  popd
+fi
