@@ -18,6 +18,7 @@ sudo yum install -y vim neovim git tmux ripgrep autojump neofetch curl shellchec
 if [ ! -d ~/.oh-my-zsh ]; then
   export RUNZSH=no 
   export KEEP_ZSHRC=yes
+  export CHSH=yes
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
   # custom plugins
@@ -27,7 +28,7 @@ fi
 
 # install starship
 if ! command -v starship >/dev/null; then
-  curl -sS https://starship.rs/install.sh | sh
+  curl -sS https://starship.rs/install.sh | sh -s -- --yes
 fi
 
 # install nerd font

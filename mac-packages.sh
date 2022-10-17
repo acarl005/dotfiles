@@ -12,6 +12,7 @@ fi
 if [ ! -d ~/.oh-my-zsh ]; then
   export RUNZSH=no 
   export KEEP_ZSHRC=yes
+  export CHSH=yes
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
   # custom plugins
