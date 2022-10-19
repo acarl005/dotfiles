@@ -139,11 +139,15 @@ hl() {
 }
 
 root() {
-  builtin cd $(git root)
+  builtin cd "$(git root)"
   if [ -d .git ] && command -v onefetch >/dev/null; then
     onefetch
   fi
   ll
+}
+
+cheat() {
+  curl "cheat.sh/$1"
 }
 
 
