@@ -1,87 +1,286 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-[cmd_duration]
-format = " [$duration]($style) "
+format = """\
+[](#B900BE)\
+$username\
+$hostname\
+$sudo\
+$localip\
+$shlvl\
+$kubernetes\
+[](fg:#B900BE bg:#6B2964)\
+$directory\
+[](fg:#6B2964 bg:#37223E)\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+[](fg:#37223E bg:#320824)\
+$container\
+$docker_context\
+$package\
+$c\
+$conda\
+$golang\
+$helm\
+$java\
+$julia\
+$lua\
+$nim\
+$nodejs\
+$php\
+$pulumi\
+$python\
+$rlang\
+$ruby\
+$rust\
+$scala\
+$swift\
+$terraform\
+[](fg:#320824 bg:#173C58)\
+$jobs\
+$memory_usage\
+$battery\
+$time\
+$cmd_duration\
+[](fg:#173C58 bg:#022382)\
+$status\
+$character\
+$line_break
+"""
+
+#============================================================
+# Section 1
+#============================================================
+[username]
+format = "[ $user ]($style)"
+style_user = "fg:#ffffff bg:#B900BE"
+style_root = "fg:#ffc3ee bg:#B900BE"
+show_always = true
+
+[hostname]
+format = "[ $ssh_symbol$hostname ]($style)"
+style = "fg:#ffffff bg:#B900BE"
+
+[sudo]
+format = "[as $symbol]($style)"
+disabled = false
+style = "fg:#ffffff bg:#B900BE"
+
+[localip]
+format = "[ $localipv4 ]($style)"
+disabled = false
+ssh_only = true
+style = "fg:#ffffff bg:#B900BE"
+
+[shlvl]
+format = "[ $symbol$shlvl ]($style)"
+symbol = "↕️"
+disabled = false
+style = "fg:#ffffff bg:#B900BE"
+
+[kubernetes]
+format = '[$symbol$context(\($namespace\))] ($style)'
+disabled = false
+style = "fg:#ffffff bg:#B900BE"
+
+#============================================================
+# Section 2
+#============================================================
 
 [directory]
+format = "[ ﱮ $path]($style)[$read_only ]($read_only_style)"
 fish_style_pwd_dir_length = 1
+style = "fg:#ffffff bg:#6B2964"
 read_only = " "
+read_only_style = "fg:#ffffff bg:#6B2964"
 
-[gcloud]
-symbol = "G "
+# Here is how you can shorten some long paths by text replacement
+# similar to mapped_locations in Oh My Posh:
+[directory.substitutions]
+"Documents" = " "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+
+#============================================================
+# Section 3
+#============================================================
 
 [git_branch]
-format = "[$symbol$branch(:$remote_branch)]($style) "
+format = '[ $symbol$branch(:$remote_branch) ]($style)'
+symbol = " "
+style = "fg:#ffffff bg:#37223E"
+
+[git_commit]
+format = '[ \($hash$tag\) ]($style)'
+style = "fg:#ffffff bg:#37223E"
+
+[git_state]
+format = '\([$state($progress_current/$progress_total) ]($style)\)'
+style = "fg:#ffffff bg:#37223E"
+
+[git_metrics]
+format = "([+$added ]($added_style))([-$deleted ]($deleted_style))"
+added_style = "fg:#C7FFC3 bg:#37223E"
+deleted_style = "fg:#FFA6A6 bg:#37223E"
+disabled = false
+
+[git_status]
+format = '[\[$all_status$ahead_behind\] ]($style)'
+style = "fg:#7dc7ff bg:#37223E"
+
+[hg_branch]
+format = "[ $symbol$branch ]($style)"
 symbol = " "
 
-[aws]
-symbol = " "
+#============================================================
+# Section 4
+#============================================================
 
-[buf]
-symbol = " "
-
-[c]
-symbol = " "
-
-[conda]
-symbol = " "
-
-[dart]
-symbol = " "
+[container]
+format = '[ $symbol \[$name\] ]($style)'
+style = "fg:#ffffff bg:#320824"
 
 [docker_context]
 symbol = " "
-
-[elixir]
-symbol = " "
-
-[elm]
-symbol = " "
-
-[golang]
-symbol = " "
-
-[haskell]
-symbol = " "
-
-[hg_branch]
-symbol = " "
-
-[java]
-symbol = " "
-
-[julia]
-symbol = " "
-
-[lua]
-symbol = " "
-
-[memory_usage]
-symbol = " "
-
-[nim]
-symbol = " "
-
-[nix_shell]
-symbol = " "
-
-[nodejs]
-symbol = " "
+format = '[ $symbol \[$context\] ]($style)'
+style = "fg:#ffffff bg:#320824"
 
 [package]
 symbol = " "
+format = "[ $symbol$version ]($style)"
+style = "fg:#ffffff bg:#320824"
+
+[c]
+symbol = " "
+format = "[ $symbol($version(-$name)) ]($style)"
+style = "fg:#ffffff bg:#320824"
+
+[conda]
+symbol = " "
+format = "[ $symbol$environment ]($style)"
+style = "fg:#ffffff bg:#320824"
+
+[golang]
+symbol = " "
+format = "[ $symbol$version ]($style)"
+style = "fg:#ffffff bg:#320824"
+
+[helm]
+format = "[ $symbol$version ]($style)"
+style = "fg:#ffffff bg:#320824"
+
+[java]
+symbol = " "
+format = "[ ${symbol}$version ]($style)"
+style = "fg:#ffffff bg:#320824"
+
+[julia]
+symbol = " "
+format = "[ $symbol$version ]($style)"
+style = "fg:#ffffff bg:#320824"
+
+[lua]
+symbol = " "
+format = "[ $symbol$version ]($style)"
+style = "fg:#ffffff bg:#320824"
+
+[nim]
+symbol = " "
+format = "[ $symbol$version ]($style)"
+style = "fg:#ffffff bg:#320824"
+
+[nodejs]
+symbol = " "
+format = "[ $symbol$version ]($style)"
+style = "fg:#ffffff bg:#320824"
+
+[php]
+symbol = " "
+format = "[ $symbol$version ]($style)"
+style = "fg:#ffffff bg:#320824"
+
+[pulumi]
+symbol = "⛰️ "
+format = "[ $symbol($username@)$stack ]($style)"
+style = "fg:#ffffff bg:#320824"
 
 [python]
 symbol = " "
+format = '[ $symbol$pyenv_prefix($version )(\($virtualenv\) )]($style)'
+style = "fg:#ffffff bg:#320824"
 
 [rlang]
 symbol = "ﳒ "
+format = "[ $symbol$version ]($style)"
+style = "fg:#ffffff bg:#320824"
 
 [ruby]
 symbol = " "
+format = "[ $symbol$version ]($style)"
+style = "fg:#ffffff bg:#320824"
 
 [rust]
 symbol = " "
+format = "[ $symbol$version ]($style)"
+style = "fg:#ffffff bg:#320824"
 
-[spack]
-symbol = "🅢 "
+[scala]
+symbol = " "
+format = "[ $symbol$version ]($style)"
+style = "fg:#ffffff bg:#320824"
+
+[swift]
+symbol = " "
+format = "[ $symbol$version ]($style)"
+style = "fg:#ffffff bg:#320824"
+
+[terraform]
+symbol = "⛰️ "
+format = "[ $symbol$workspace ]($style)"
+style = "fg:#ffffff bg:#320824"
+
+#============================================================
+# Section 5
+#============================================================
+
+[jobs]
+format = "[ $symbol$number ]($style)"
+style = "fg:#ffffff bg:#173C58"
+
+[memory_usage]
+threshold = 75
+symbol = " "
+format = '[ $symbol$ram( | $swap) ]($style)'
+style = "fg:#ffffff bg:#173C58"
+disabled = false
+
+[battery]
+format = "[ $symbol$percentage ]($style)"
+
+[[battery.display]]
+threshold = 30
+style = "fg:#ffffff bg:#173C58"
+
+[cmd_duration]
+format = "[  $duration ]($style)"
+style = "fg:#ffffff bg:#173C58"
+
+#============================================================
+# Section 6
+#============================================================
+
+[status]
+disabled = false
+format = "[$status]($style)"
+style = "fg:#ffffff bg:#022382"
+
+[character]
+success_symbol = "[](fg:#022382 bg:#00610B)[\\$](fg:#ffffff bg:#00610B)[](#00610B)"
+error_symbol = "[](fg:#022382 bg:#9B351B)[\\$](fg:white bg:#9B351B)[](#9B351B)"
+
+[line_break]
+disabled = false

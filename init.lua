@@ -112,6 +112,9 @@ else
         vim.keymap.set("n", "<c-p>", ":Telescope find_files<CR>", { noremap = true })
         vim.keymap.set("n", "<leader>a", ":Telescope live_grep<CR>", { noremap = true })
         vim.keymap.set("n", "<leader>dd", "<cmd>Telescope diagnostics<CR>", { noremap = true })
+        vim.keymap.set("n", "<leader>tr", "<cmd>Telescope lsp_references<CR>", { noremap = true })
+        vim.keymap.set("n", "<leader>ti", "<cmd>Telescope lsp_implementations<CR>", { noremap = true })
+        vim.keymap.set("n", "<leader>ts", "<cmd>Telescope lsp_document_symbols<CR>", { noremap = true })
 
         local telescope = require("telescope")
         local actions = require("telescope.actions")
@@ -297,6 +300,7 @@ else
         vim.keymap.set("n", "<leader>gpd", "<cmd>VGit project_diff_preview<CR>", { noremap = true })
         vim.keymap.set("n", "<leader>gbd", "<cmd>VGit buffer_diff_preview<CR>", { noremap = true })
         vim.keymap.set("n", "<leader>gbh", "<cmd>VGit buffer_history_preview<CR>", { noremap = true })
+        vim.keymap.set("n", "<leader>ghd", "<cmd>VGit buffer_hunk_preview<CR>", { noremap = true })
         require("vgit").setup()
         require("vgit").toggle_live_gutter()
       end
@@ -315,7 +319,7 @@ else
     use({
       "preservim/tagbar", -- a ctag/class outline viewer
       config = function()
-        vim.keymap.set("n", "<leader>t", ":TagbarToggle<CR>", { noremap = true })
+        vim.keymap.set("n", "<leader>tt", ":TagbarToggle<CR>", { noremap = true })
       end
     })
     use({
@@ -485,7 +489,7 @@ else
 end
 
 
-vim.g.mapleader = ","
+vim.g.mapleader = " "
 
 vim.o.number = true -- line numbers
 
@@ -552,8 +556,8 @@ vim.keymap.set("n", "<leader>do", "<cmd>lua vim.diagnostic.open_float()<CR>", { 
 vim.keymap.set("n", "<leader>d[", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { noremap = true })
 vim.keymap.set("n", "<leader>d]", "<cmd>lua vim.diagnostic.goto_next()<CR>", { noremap = true })
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { noremap = true })
-vim.keymap.set("n", "<leader>r", vim.lsp.buf.references, { noremap = true })
-vim.keymap.set("n", "<leader>i", vim.lsp.buf.implementation, { noremap = true })
+
+vim.keymap.set("n", "<leader>p", '"_dP', { noremap = true })
 
 -- open this file
 vim.api.nvim_create_user_command(
@@ -601,3 +605,13 @@ vim.api.nvim_create_user_command(
   end,
   {}
 )
+
+-- prints the highlight group under the cursor
+vim.cmd([[
+  function! SynStack()
+    if !exists("*synstack")
+      return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+  endfunc
+]])
