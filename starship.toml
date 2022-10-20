@@ -119,18 +119,18 @@ format = '[ \($hash$tag\) ]($style)'
 style = "fg:#ffffff bg:#37223E"
 
 [git_state]
-format = '\([$state($progress_current/$progress_total) ]($style)\)'
-style = "fg:#ffffff bg:#37223E"
+  format = '[<$state($progress_current/$progress_total)> ]($style)'
+  style = "fg:bright-yellow bg:#37223E"
 
-[git_metrics]
-format = "([+$added]($added_style))([-$deleted]($deleted_style)[ ]($added_style))"
-added_style = "fg:#C7FFC3 bg:#37223E"
-deleted_style = "fg:#FFA6A6 bg:#37223E"
-disabled = false
+  [git_metrics]
+  format = "([+$added]($added_style))([-$deleted]($deleted_style)[ ]($added_style))"
+  added_style = "fg:bright-green bg:#37223E"
+  deleted_style = "fg:bright-red bg:#37223E"
+  disabled = false
 
-[git_status]
-format = '[\[$all_status$ahead_behind\] ]($style)'
-style = "fg:#7dc7ff bg:#37223E"
+  [git_status]
+  format = '[\[$all_status$ahead_behind\] ]($style)'
+  style = "fg:bright-blue bg:#37223E"
 
 [hg_branch]
 format = "[ $symbol$branch ]($style)"

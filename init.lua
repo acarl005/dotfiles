@@ -49,7 +49,11 @@ else
         config = function()
           require("transparent").setup({
             enable = true,
-            extra_groups = { "lualine_c_normal", "GitBackground", "GitHeader" }
+            extra_groups = {
+              "GitBackground",
+              "GitHeader",
+              "lualine_c_normal"
+            }
           })
         end
       })
