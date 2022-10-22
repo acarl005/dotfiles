@@ -2,8 +2,12 @@
 
 sudo dnf update -y
 sudo dnf install -y 'dnf-command(copr)'
-sudo dnf copr enable -y varlad/onefetch
-sudo dnf install -y man git neovim python3-neovim ripgrep autojump ranger tldr xclip snapd neofetch onefetch bat fzf fd-find zsh jq tmux
+sudo dnf install -y which man git neovim python3-neovim ripgrep autojump ranger tldr xclip snapd neofetch bat fzf fd-find zsh jq tmux
+
+# TODO - enable when this is fixed
+# https://github.com/o2sh/onefetch/issues/830
+#sudo dnf copr enable -y varlad/onefetch
+#sudo dnf install -y onefetch 
 
 # enable "classic" containment snap support
 sudo ln -s /var/lib/snapd/snap /snap
