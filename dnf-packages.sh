@@ -11,15 +11,15 @@ git clone https://github.com/so-fancy/diff-so-fancy.git "$HOME/src/diff-so-fancy
 ln -s "$HOME/src/diff-so-fancy/diff-so-fancy" "$HOME/.local/bin"
 
 # install oh-my-zsh
-if [ ! -d ~/.oh-my-zsh ]; then
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
   export RUNZSH=no 
   export KEEP_ZSHRC=yes
   export CHSH=yes
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
   # custom plugins
-  git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+  git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
 fi
 
 # install starship
@@ -39,7 +39,7 @@ while true; do
 done
 
 if [ $INSTALL_FONTS -eq 1 ]; then
-  git clone --depth 1 https://github.com/ryanoasis/nerd-fonts ~/Downloads/fonts
+  git clone --depth 1 https://github.com/ryanoasis/nerd-fonts "$HOME/Downloads/fonts"
   pushd ~/Downloads/fonts
   ./install.sh Inconsolata BitstreamVeraSansMono
   popd
