@@ -612,10 +612,25 @@ vim.api.nvim_create_user_command(
 
 -- prints the highlight group under the cursor
 vim.cmd([[
-  function! SynStack()
+  function! s:SynStack()
     if !exists("*synstack")
       return
     endif
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
   endfunc
+  com! SyncStack call s:SynStack()
 ]])
+
+-- shows how the current buffer differs from the file on disk
+vim.cmd([[
+  function! s:DiffWithSaved()
+    let filetype=&ft
+    diffthis
+    vnew | r # | normal! 1Gdd
+    diffthis
+    exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+  endfunc
+  com! DiffSaved call s:DiffWithSaved()
+]])
+
+vim.cmd('let @a="ciwappearance"')

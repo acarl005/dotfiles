@@ -97,14 +97,6 @@ style = "fg:bright-white bg:89"
 read_only = " "
 read_only_style = "fg:bright-red bg:89"
 
-# Here is how you can shorten some long paths by text replacement
-# similar to mapped_locations in Oh My Posh:
-[directory.substitutions]
-"Documents" = ""
-"Downloads" = ""
-"Music" = ""
-"Pictures" = ""
-
 #============================================================
 # Section 3
 #============================================================
@@ -197,6 +189,7 @@ style = "fg:bright-white bg:53"
 symbol = " "
 format = "[ $symbol$version ]($style)"
 style = "fg:bright-white bg:53"
+not_capable_style = "fg:red bg:53"
 
 [php]
 symbol = " "
@@ -275,7 +268,8 @@ style = "fg:bright-white bg:25"
 
 [status]
 disabled = false
-format = "[$status]($style)"
+format = "[$symbol$status]($style)"
+symbol = " "
 style = "fg:bright-white bg:18"
 
 [character]
