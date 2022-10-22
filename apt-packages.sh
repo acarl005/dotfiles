@@ -5,8 +5,9 @@ sudo apt-get update -y
 sudo apt-get install -y software-properties-common
 sudo add-apt-repository -y ppa:aos1/diff-so-fancy
 sudo add-apt-repository -y ppa:neovim-ppa/stable
+sudo add-apt-repository -y ppa:o2sh/onefetch
 sudo apt-get update -y
-sudo apt-get install --ignore-missing -y git ripgrep autojump ranger tldr curl xclip shellcheck neofetch bat fzf fd-find zsh neovim jq diff-so-fancy
+sudo apt-get install --ignore-missing -y git ripgrep autojump ranger tldr curl xclip shellcheck neofetch bat fzf fd-find zsh neovim jq diff-so-fancy onefetch
 
 if [ "$XDG_CURRENT_DESKTOP" = ubuntu:GNOME ]; then
   sudo apt-get install -y vim-gnome gnome-tweaks  
@@ -43,8 +44,8 @@ while true; do
 done
 
 if [ $INSTALL_FONTS -eq 1 ]; then
-  git clone https://github.com/ryanoasis/nerd-fonts ~/Downloads/fonts
+  git clone --depth 1 https://github.com/ryanoasis/nerd-fonts ~/Downloads/fonts
   pushd ~/Downloads/fonts
-  ./install.sh Inconsolata
+  ./install.sh Inconsolata BitstreamVeraSansMono
   popd
 fi

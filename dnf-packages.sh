@@ -1,18 +1,19 @@
-sudo yum update -y
+#!/bin/bash
 
-sudo yum install -y epel-release yum-plugin-copr
+sudo dnf update -y
+sudo dnf install -y 'dnf-command(copr)'
+sudo dnf copr enable -y varlad/onefetch
+sudo dnf install -y man git neovim python3-neovim ripgrep autojump ranger tldr xclip snapd neofetch onefetch bat fzf fd-find zsh jq tmux
 
-# add a COPR dependency
-sudo pip install urllib3 --upgrade
-sudo pip install tldr
-sudo pip install ranger-fm
+# enable "classic" containment snap support
+sudo ln -s /var/lib/snapd/snap /snap
 
-sudo yum copr -y enable konimex/neofetch
-sudo yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
+echo 'after restart, run "sudo snap install shellcheck"'
 
-sudo yum update -y
-sudo yum install -y vim neovim git tmux ripgrep autojump neofetch curl shellcheck zsh
-
+mkdir -p "$HOME/.local/bin"
+mkdir -p "$HOME/src"
+git clone https://github.com/so-fancy/diff-so-fancy.git "$HOME/src/diff-so-fancy"
+ln -s "$HOME/src/diff-so-fancy/diff-so-fancy" "$HOME/.local/bin"
 
 # install oh-my-zsh
 if [ ! -d ~/.oh-my-zsh ]; then
@@ -43,8 +44,8 @@ while true; do
 done
 
 if [ $INSTALL_FONTS -eq 1 ]; then
-  git clone https://github.com/ryanoasis/nerd-fonts ~/Downloads/fonts
+  git clone --depth 1 https://github.com/ryanoasis/nerd-fonts ~/Downloads/fonts
   pushd ~/Downloads/fonts
-  ./install.sh Inconsolata
+  ./install.sh Inconsolata BitstreamVeraSansMono
   popd
 fi

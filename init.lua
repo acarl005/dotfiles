@@ -84,6 +84,7 @@ else
       config = function()
         vim.o.termguicolors = true
         vim.cmd("colorscheme tokyonight-night")
+        vim.api.nvim_set_hl(0, "Todo", { fg = "#DB7093" })
       end
     })
     use({
