@@ -9,12 +9,6 @@ sudo add-apt-repository -y ppa:o2sh/onefetch
 sudo apt-get update -y
 sudo apt-get install --ignore-missing -y git ripgrep autojump ranger tldr curl xclip shellcheck neofetch bat fzf fd-find zsh neovim jq diff-so-fancy onefetch
 
-if [ "$XDG_CURRENT_DESKTOP" = ubuntu:GNOME ]; then
-  sudo apt-get install -y vim-gnome gnome-tweaks  
-else
-  sudo apt-get install -y vim-gtk
-fi
-
 # install oh-my-zsh
 if [ ! -d ~/.oh-my-zsh ]; then
   export RUNZSH=no 
