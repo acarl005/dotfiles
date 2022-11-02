@@ -7,10 +7,6 @@ mkdir ~/.config/ranger
 
 [ -L ~/bin ] && rm ~/bin
 ln -i -s "$PWD/bin" ~/bin
-[ -L ~/.vim/ftplugin ] && rm ~/.vim/ftplugin
-ln -i -s "$PWD/ftplugin" ~/.vim/ftplugin
-[ -L ~/.vim/indent ] && rm ~/.vim/indent
-ln -i -s "$PWD/indent" ~/.vim/indent
 [ -L ~/.config/nvim/ftplugin ] && rm ~/.config/nvim/ftplugin
 ln -i -s "$PWD/ftplugin" ~/.config/nvim/ftplugin
 
