@@ -107,7 +107,7 @@ symbol = "  "
 style = "fg:bright-white bg:235"
 
 [git_commit]
-format = '[ \($hash$tag\) ]($style)'
+format = '[  ﰖ \($hash$tag\) ]($style)'
 style = "fg:bright-white bg:235"
 
 [git_state]

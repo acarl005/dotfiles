@@ -95,13 +95,19 @@ pushd() { builtin pushd "$@" && printf "\033c"; ll; }
 mkcd() { mkdir -p "$1" && cd "$1"; }
 
 # enable colorful man pages
+# md      start bold
+# me      turn off bold, blink and underline
+# so      start standout
+# se      stop standout
+# us      start underline
+# ue      stop underline
 man() {
   LESS_TERMCAP_md=$'\e[01;31m' \
   LESS_TERMCAP_me=$'\e[0m' \
-  LESS_TERMCAP_se=$'\e[0m' \
   LESS_TERMCAP_so=$'\e[01;44;33m' \
-  LESS_TERMCAP_ue=$'\e[0m' \
+  LESS_TERMCAP_se=$'\e[0m' \
   LESS_TERMCAP_us=$'\e[01;32m' \
+  LESS_TERMCAP_ue=$'\e[0m' \
   command man "$@"
 }
 
@@ -198,7 +204,7 @@ alias serv="python3 -m http.server"
 alias pirate='youtube-dl --extract-audio --audio-format mp3'
 alias grip='grip -b'
 alias https='http --default-scheme=https'
-alias weather='curl wttr.in/?m'
+alias weather='curl "wttr.in/?m"'
 
 if [[ $(uname) = Darwin ]]; then
   alias chrome="open -a /Applications/Google\ Chrome.app/"

@@ -26,11 +26,11 @@ else
       end
     })
     use({
-      "kylechui/nvim-surround",
+      "kylechui/nvim-surround", -- manipulates pairs of brackets, tags and quotes
       config = function()
         require("nvim-surround").setup()
       end
-    }) -- manipulates pairs of brackets, tags and quotes
+    })
     use("scrooloose/nerdcommenter") -- adds keybindings for easily commenting out lines \c<space> to toggle
     use({
       "skammer/vim-swaplines", -- move lines up or down
@@ -110,6 +110,8 @@ else
     })
 
     -- widgets
+    -- Mac: brew install ripgrep
+    -- Linux: apt install ripgrep
     use({
       "nvim-telescope/telescope.nvim", -- fuzzy finder/file explorer all-in-one
       requires = { "nvim-lua/plenary.nvim", "kyazdani42/nvim-web-devicons" },
@@ -528,15 +530,6 @@ vim.g.ftplugin_sql_omni_key = "<c-j>"
 -- automatically try to check for changed files
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, { pattern = "*", command = "checktime" })
 
--- this is meant to fix this issue with Warp terminal:
--- https://github.com/warpdotdev/Warp/issues/1451
-vim.api.nvim_create_autocmd({ "VimEnter" }, {
-  callback = function()
-    local pid, WINCH = vim.fn.getpid(), vim.loop.constants.SIGWINCH
-    vim.defer_fn(function() vim.loop.kill(pid, WINCH) end, 20)
-  end
-})
-
 -- insert line above in insert mode
 vim.keymap.set("i", "<c-l>", "<Esc>O", { noremap = true })
 -- pretty format JSON file
@@ -561,6 +554,7 @@ vim.keymap.set("n", "<leader>do", "<cmd>lua vim.diagnostic.open_float()<CR>", { 
 vim.keymap.set("n", "<leader>d[", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { noremap = true })
 vim.keymap.set("n", "<leader>d]", "<cmd>lua vim.diagnostic.goto_next()<CR>", { noremap = true })
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { noremap = true })
+vim.keymap.set("n", "<leader>k", vim.lsp.buf.type_definition, { noremap = true })
 
 vim.keymap.set("n", "<leader>p", '"_dP', { noremap = true })
 
@@ -611,6 +605,14 @@ vim.api.nvim_create_user_command(
   {}
 )
 
+vim.api.nvim_create_user_command(
+  "Rename",
+  function(opts)
+    vim.lsp.buf.rename(opts.args)
+  end,
+  { nargs = 1 }
+)
+
 -- prints the highlight group under the cursor
 vim.cmd([[
   function! s:SynStack()
@@ -619,7 +621,7 @@ vim.cmd([[
     endif
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
   endfunc
-  com! SyncStack call s:SynStack()
+  com! SynStack call s:SynStack()
 ]])
 
 -- shows how the current buffer differs from the file on disk
@@ -634,4 +636,3 @@ vim.cmd([[
   com! DiffSaved call s:DiffWithSaved()
 ]])
 
-vim.cmd('let @a="ciwappearance"')
