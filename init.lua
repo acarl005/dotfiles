@@ -550,11 +550,13 @@ vim.keymap.set("n", "<c-h>", ":bprevious<CR>", { noremap = true })
 vim.keymap.set("n", "<c-l>", ":bnext<CR>", { noremap = true })
 
 -- key mappings for LSP diagnostics
-vim.keymap.set("n", "<leader>do", "<cmd>lua vim.diagnostic.open_float()<CR>", { noremap = true })
-vim.keymap.set("n", "<leader>d[", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { noremap = true })
-vim.keymap.set("n", "<leader>d]", "<cmd>lua vim.diagnostic.goto_next()<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>do", ":lua vim.diagnostic.open_float()<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>d[", ":lua vim.diagnostic.goto_prev()<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>d]", ":lua vim.diagnostic.goto_next()<CR>", { noremap = true })
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { noremap = true })
 vim.keymap.set("n", "<leader>k", vim.lsp.buf.type_definition, { noremap = true })
+vim.keymap.set("n", "<leader>sd", ":vsp<CR>:lua vim.lsp.buf.definition()<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>st", ":vsp<CR>:lua vim.lsp.buf.type_definition()<CR>", { noremap = true })
 
 vim.keymap.set("n", "<leader>p", '"_dP', { noremap = true })
 
