@@ -83,7 +83,7 @@ else
       "folke/tokyonight.nvim", -- good dark theme
       config = function()
         vim.o.termguicolors = true
-        vim.cmd("colorscheme tokyonight-night")
+        vim.cmd.colorscheme("tokyonight-night")
         vim.api.nvim_set_hl(0, "Todo", { fg = "#DB7093" })
       end
     })
@@ -530,35 +530,43 @@ vim.g.ftplugin_sql_omni_key = "<c-j>"
 -- automatically try to check for changed files
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, { pattern = "*", command = "checktime" })
 
+local keymap_opts = { noremap = true }
+
 -- insert line above in insert mode
-vim.keymap.set("i", "<c-l>", "<Esc>O", { noremap = true })
+vim.keymap.set("i", "<c-l>", "<Esc>O", keymap_opts)
 -- pretty format JSON file
-vim.keymap.set("n", "=j", ":%!python -m json.tool<CR>", { noremap = true })
+vim.keymap.set("n", "=j", ":%!python -m json.tool<CR>", keymap_opts)
 -- strip double quotes from keys in JSON. useful when pasting JSON into a JS
 -- file and the linter complains about unecessary quoting
-vim.keymap.set("n", "<leader>j", ":s/^\\(\\s*\\)\"\\(\\w\\+\\)\"\\s*:/\\1\\2:/g<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>j", ":s/^\\(\\s*\\)\"\\(\\w\\+\\)\"\\s*:/\\1\\2:/g<CR>", keymap_opts)
 -- select the freshly pasted text
-vim.keymap.set("n", "gV", "`[v`]", { noremap = true })
+vim.keymap.set("n", "gV", "`[v`]", keymap_opts)
 -- convenient save shortcut
-vim.keymap.set("n", "<leader>w", ":update<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>w", ":update<CR>", keymap_opts)
 -- dedent block and delete line with surrounding brackets
-vim.keymap.set("n", "<leader>x{", "<i{0]}dd[{dd", { noremap = true })
-vim.keymap.set("n", "<leader>x(", "<i(0])dd[(dd", { noremap = true })
-vim.keymap.set("n", "<leader>x[", "<i[0]]dd[[dd", { noremap = true })
+vim.keymap.set("n", "<leader>x{", "<i{0]}dd[{dd", keymap_opts)
+vim.keymap.set("n", "<leader>x(", "<i(0])dd[(dd", keymap_opts)
+vim.keymap.set("n", "<leader>x[", "<i[0]]dd[[dd", keymap_opts)
 -- handy buffer navigation
-vim.keymap.set("n", "<c-h>", ":bprevious<CR>", { noremap = true })
-vim.keymap.set("n", "<c-l>", ":bnext<CR>", { noremap = true })
+vim.keymap.set("n", "<c-h>", ":bprevious<CR>", keymap_opts)
+vim.keymap.set("n", "<c-l>", ":bnext<CR>", keymap_opts)
 
--- key mappings for LSP diagnostics
-vim.keymap.set("n", "<leader>do", ":lua vim.diagnostic.open_float()<CR>", { noremap = true })
-vim.keymap.set("n", "<leader>d[", ":lua vim.diagnostic.goto_prev()<CR>", { noremap = true })
-vim.keymap.set("n", "<leader>d]", ":lua vim.diagnostic.goto_next()<CR>", { noremap = true })
-vim.keymap.set("n", "K", vim.lsp.buf.hover, { noremap = true })
-vim.keymap.set("n", "<leader>k", vim.lsp.buf.type_definition, { noremap = true })
-vim.keymap.set("n", "<leader>sd", ":vsp<CR>:lua vim.lsp.buf.definition()<CR>", { noremap = true })
-vim.keymap.set("n", "<leader>st", ":vsp<CR>:lua vim.lsp.buf.type_definition()<CR>", { noremap = true })
+-- key mappings for LSP
+vim.keymap.set("n", "<leader>do", ":lua vim.diagnostic.open_float()<CR>", keymap_opts)
+vim.keymap.set("n", "<leader>d[", ":lua vim.diagnostic.goto_prev()<CR>", keymap_opts)
+vim.keymap.set("n", "<leader>d]", ":lua vim.diagnostic.goto_next()<CR>", keymap_opts)
+vim.keymap.set("n", "<leader>dl", ":lua vim.diagnostic.setloclist()<CR>", keymap_opts)
 
-vim.keymap.set("n", "<leader>p", '"_dP', { noremap = true })
+vim.keymap.set("n", "K", vim.lsp.buf.hover, keymap_opts)
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, keymap_opts)
+vim.keymap.set("n", "gD", vim.lsp.buf.declaration, keymap_opts)
+vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, keymap_opts)
+vim.keymap.set("n", "gi", vim.lsp.buf.implementation, keymap_opts)
+vim.keymap.set("n", "gr", vim.lsp.buf.references, keymap_opts)
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, keymap_opts)
+vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format { async = true } end, keymap_opts)
+vim.keymap.set("n", "<leader>sd", ":vsp<CR>:lua vim.lsp.buf.definition()<CR>", keymap_opts)
+vim.keymap.set("n", "<leader>st", ":vsp<CR>:lua vim.lsp.buf.type_definition()<CR>", keymap_opts)
 
 -- open this file
 vim.api.nvim_create_user_command(
