@@ -122,6 +122,7 @@ else
         vim.keymap.set("n", "<leader>tr", "<cmd>Telescope lsp_references<CR>", { noremap = true })
         vim.keymap.set("n", "<leader>ti", "<cmd>Telescope lsp_implementations<CR>", { noremap = true })
         vim.keymap.set("n", "<leader>ts", "<cmd>Telescope lsp_document_symbols<CR>", { noremap = true })
+        vim.keymap.set("n", "<leader>tw", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", { noremap = true })
 
         local telescope = require("telescope")
         local actions = require("telescope.actions")
@@ -550,6 +551,8 @@ vim.keymap.set("n", "<leader>x[", "<i[0]]dd[[dd", keymap_opts)
 -- handy buffer navigation
 vim.keymap.set("n", "<c-h>", ":bprevious<CR>", keymap_opts)
 vim.keymap.set("n", "<c-l>", ":bnext<CR>", keymap_opts)
+
+vim.keymap.set("v", "<leader>p", '"_dP', keymap_opts)
 
 -- key mappings for LSP
 vim.keymap.set("n", "<leader>do", ":lua vim.diagnostic.open_float()<CR>", keymap_opts)
