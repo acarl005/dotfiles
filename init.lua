@@ -463,6 +463,7 @@ else
       requires = {
         "hrsh7th/vim-vsnip",
         "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-nvim-lua",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path"
       },
@@ -472,6 +473,7 @@ else
         cmp.setup({
           sources = cmp.config.sources({
             { name = "nvim_lsp" },
+            { name = 'nvim_lua' },
             { name = "buffer" },
             { name = "path" }
           }),
