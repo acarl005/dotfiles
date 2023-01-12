@@ -257,15 +257,15 @@ else
         local startup_settings = require("startup.themes.dashboard")
         startup_settings.footer.content = { "Hello, " .. (os.getenv("USER") or "user") .. "!" }
         table.insert(
-        startup_settings.body.content,
-        {
-          " Edit Config",
-          [[
+          startup_settings.body.content,
+          {
+            " Edit Config",
+            [[
           Conf
           cd ~
-          ]],
-          "<leader>fc"
-        }
+          ]] ,
+            "<leader>fc"
+          }
         )
         require("startup").setup(startup_settings)
       end
@@ -570,8 +570,9 @@ vim.keymap.set("n", "gi", vim.lsp.buf.implementation, keymap_opts)
 vim.keymap.set("n", "gr", vim.lsp.buf.references, keymap_opts)
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, keymap_opts)
 vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format { async = true } end, keymap_opts)
-vim.keymap.set("n", "<leader>sd", ":vsp<CR>:lua vim.lsp.buf.definition()<CR>", keymap_opts)
-vim.keymap.set("n", "<leader>st", ":vsp<CR>:lua vim.lsp.buf.type_definition()<CR>", keymap_opts)
+vim.keymap.set("n", "&d", ":vsp<CR>:lua vim.lsp.buf.definition()<CR>", keymap_opts)
+vim.keymap.set("n", "&D", ":vsp<CR>:lua vim.lsp.buf.declaration()<CR>", keymap_opts)
+vim.keymap.set("n", "&t", ":vsp<CR>:lua vim.lsp.buf.type_definition()<CR>", keymap_opts)
 
 -- open this file
 vim.api.nvim_create_user_command(
@@ -650,4 +651,3 @@ vim.cmd([[
   endfunc
   com! DiffSaved call s:DiffWithSaved()
 ]])
-
