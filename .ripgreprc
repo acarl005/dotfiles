@@ -6,5 +6,6 @@
 --glob=!.cache/
 --glob=!.parcel-cache/
 --glob=!.svelte-kit/
+--glob=!node_modules/
 --hidden
 --type-add=svelte:*.svelte
