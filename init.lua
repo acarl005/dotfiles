@@ -52,7 +52,8 @@ else
             extra_groups = {
               "GitBackground",
               "GitHeader",
-              "lualine_c_normal"
+              "lualine_c_normal",
+              "NvimTreeWinSeparator"
             }
           })
         end
@@ -241,7 +242,6 @@ else
         })
       end
     })
-
     use({
       "nvim-telescope/telescope-file-browser.nvim", -- file browser extension for Telescope
       requires = { "nvim-telescope/telescope.nvim" },
@@ -334,6 +334,17 @@ else
       "chentoast/marks.nvim", -- show the marks on the left
       config = function()
         require("marks").setup()
+      end
+    })
+    use({
+      'nvim-tree/nvim-tree.lua',
+      requires = { 'nvim-tree/nvim-web-devicons' },
+      config = function()
+        require("nvim-tree").setup({
+          filters = {
+            dotfiles = true
+          }
+        })
       end
     })
 
@@ -554,7 +565,11 @@ vim.keymap.set("n", "<leader>x[", "<i[0]]dd[[dd", keymap_opts)
 vim.keymap.set("n", "<c-h>", ":bprevious<CR>", keymap_opts)
 vim.keymap.set("n", "<c-l>", ":bnext<CR>", keymap_opts)
 
+-- paste without yank to default clipboard
 vim.keymap.set("v", "<leader>p", '"_dP', keymap_opts)
+
+-- open file tree view
+vim.keymap.set({"n", "v", "i"}, "<c-e>", ":NvimTreeFindFileToggle<CR><c-w>p", keymap_opts);
 
 -- key mappings for LSP
 vim.keymap.set("n", "<leader>do", ":lua vim.diagnostic.open_float()<CR>", keymap_opts)
