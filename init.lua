@@ -336,17 +336,6 @@ else
         require("marks").setup()
       end
     })
-    use({
-      'nvim-tree/nvim-tree.lua',
-      requires = { 'nvim-tree/nvim-web-devicons' },
-      config = function()
-        require("nvim-tree").setup({
-          filters = {
-            dotfiles = true
-          }
-        })
-      end
-    })
 
     -- commands
     use({
