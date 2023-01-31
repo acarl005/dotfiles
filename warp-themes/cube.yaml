@@ -1,6 +1,6 @@
 accent:
-  top: '#429bf5'
-  bottom: '#8a5cff'
+  left: '#429bf5'
+  right: '#8a5cff'
 background:
   top: '#29004b'
   bottom: '#000000'
