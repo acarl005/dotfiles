@@ -124,6 +124,8 @@ else
         vim.keymap.set("n", "<leader>ti", "<cmd>Telescope lsp_implementations<CR>", { noremap = true })
         vim.keymap.set("n", "<leader>ts", "<cmd>Telescope lsp_document_symbols<CR>", { noremap = true })
         vim.keymap.set("n", "<leader>tw", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", { noremap = true })
+        vim.keymap.set("n", "<leader>tci", "<cmd>Telescope lsp_incoming_calls<CR>", { noremap = true })
+        vim.keymap.set("n", "<leader>tco", "<cmd>Telescope lsp_outgoing_calls<CR>", { noremap = true })
 
         local telescope = require("telescope")
         local actions = require("telescope.actions")
@@ -318,8 +320,8 @@ else
       requires = { "nvim-lua/plenary.nvim" },
       config = function()
         require("gitsigns").setup()
-        vim.keymap.set("n", "<leader>gnh", "<cmd>Gitsigns next_hunk<CR>", { noremap = true })
-        vim.keymap.set("n", "<leader>gph", "<cmd>Gitsigns prev_hunk<CR>", { noremap = true })
+        vim.keymap.set("n", "<leader>g>", "<cmd>Gitsigns next_hunk<CR>", { noremap = true })
+        vim.keymap.set("n", "<leader>g<", "<cmd>Gitsigns prev_hunk<CR>", { noremap = true })
       end
     })
     -- MacOS: brew install --HEAD universal-ctags/universal-ctags/universal-ctags
