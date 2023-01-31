@@ -9,6 +9,8 @@ mkdir ~/.config/ranger
 ln -i -s "$PWD/bin" ~/bin
 [ -L ~/.config/nvim/ftplugin ] && rm ~/.config/nvim/ftplugin
 ln -i -s "$PWD/ftplugin" ~/.config/nvim/ftplugin
+[ -L ~/.warp/themes ] && rm ~/.warp/themes
+ln -i -s "$PWD/warp-themes" ~/.warp/themes
 
 ln -fs "$PWD/.ackrc" ~/.ackrc
 ln -fs "$PWD/.ripgreprc" ~/.ripgreprc

@@ -63,9 +63,11 @@ export NVM_DIR="$HOME/.nvm"
 export EDITOR=vim
 export VISUAL=vim
 alias vimd=vimdiff
+alias v=vim
 if command -v nvim >/dev/null; then
   export EDITOR=nvim
   export VISUAL=nvim
+  alias v=nvim
   alias vi=nvim
   alias vim=nvim
   alias vimdiff='nvim -d'
