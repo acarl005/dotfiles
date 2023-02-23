@@ -10,7 +10,7 @@ foreground: '#ffffff'
 background_image:
   # the path is relative to ~/.warp/themes/
   path: cat.png
-  opacity: 50
+  opacity: 30
 
 terminal_colors:
   bright:
