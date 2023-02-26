@@ -17,19 +17,6 @@ suggest() {
   fi
 }
 
-
-# if this is an interactive shell
-if [[ $- =~ "i" ]]; then
-  if [ -d .git ] && command -v onefetch >/dev/null; then
-    onefetch
-  elif command -v neofetch >/dev/null; then
-    neofetch
-  else
-    suggest neofetch https://github.com/dylanaraps/neofetch
-  fi
-fi
-
-
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ]; then
   PATH="$HOME/bin:$PATH"
@@ -53,11 +40,21 @@ if [ -d /usr/local/opt/git/bin ]; then
   PATH="/usr/local/opt/git/bin:$PATH"
 fi
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && {
-  . "$NVM_DIR/nvm.sh"  # This loads nvm
-  export NODE_PATH="$HOME/.nvm/versions/node/$(node -v)/lib/node_modules"
-}
+# if this is an interactive shell
+if [[ $- =~ "i" ]]; then
+  if [ -d .git ] && command -v onefetch >/dev/null; then
+    onefetch
+  elif command -v neofetch >/dev/null; then
+    neofetch
+  elif command -v pfetch >/dev/null; then
+    # I disabled "packages"
+    export PF_INFO="ascii title os host kernel uptime memory shell editor wm de palette"
+    pfetch
+  else
+    suggest neofetch https://github.com/dylanaraps/neofetch
+  fi
+fi
+
 
 # Set vim as the default editor, or NeoVim if its installed
 export EDITOR=vim
@@ -114,7 +111,7 @@ man() {
 }
 
 
-#extract most known archives
+# extract most known archives
 extract() (
   if [ -f "$1" ] ; then
     set -x
@@ -179,7 +176,7 @@ alias sudo='sudo '
 alias cwd='pwd | tr -d "\n" | pbcopy'
 
 
-#full recursive directory listing
+# full recursive directory listing
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
 
 
@@ -231,7 +228,7 @@ if [[ $(uname) = Linux ]]; then
   alias pbpaste='xclip -selection clipboard -o'
 fi
 
-#typos
+# typos
 alias tit=git
 alias gti=git
 alias npmi='npm i'
