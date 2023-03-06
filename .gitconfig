@@ -18,7 +18,9 @@
 # Aliases are command shortcuts
 [alias]
   co = checkout
+  sw = switch
   br = branch
+  re = rebase
   d = diff
   pick = cherry-pick
   re = remote -v
