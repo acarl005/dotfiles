@@ -18,20 +18,6 @@ suggest() {
 }
 
 
-# if this is an interactive shell
-if [[ $- =~ "i" ]]; then
-  if [ -d .git ] && command -v onefetch >/dev/null; then
-    onefetch
-  elif command -v neofetch >/dev/null; then
-    neofetch
-  elif command -v pfetch >/dev/null; then
-    pfetch
-  else
-    suggest neofetch https://github.com/dylanaraps/neofetch
-  fi
-fi
-
-
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ]; then
   PATH="$HOME/bin:$PATH"
