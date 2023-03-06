@@ -27,5 +27,6 @@ ln -fs "$PWD/.vimrc" ~/.vimrc
 ln -fs "$PWD/init.lua" ~/.config/nvim/init.lua
 ln -fs "$PWD/rc.conf" ~/.config/ranger/rc.conf
 ln -fs "$PWD/scope.sh" ~/.config/ranger/scope.sh
+ln -fs "$PWD/rifle.conf" ~/.config/ranger/rifle.conf
 ln -fs "$PWD/starship.toml" ~/.config/starship.toml
 /bin/cp -f "$PWD/.zshrc" ~/.zshrc
