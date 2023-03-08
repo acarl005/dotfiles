@@ -1,4 +1,7 @@
-function edit_config()
+-- This is not a stand-alone NeoVim config. Rather, it is for customizing the meta-package "AstroNvim"
+-- https://astronvim.github.io/Configuration/manage_user_config
+
+local edit_config = function()
   vim.cmd("badd ~/.config/nvim/lua/user/init.lua")
   vim.cmd("b ~/.config/nvim/lua/user/init.lua")
 end
@@ -145,7 +148,7 @@ local config = {
       config.layout[4].val[7] = {
         val = "  Configure",
         opts = {
-          shortcut = "SPC ,",
+          shortcut = "SPC ,  ",
           hl_shortcut = "DashboardShortcut",
           align_shortcut = "right",
           width = 36,
