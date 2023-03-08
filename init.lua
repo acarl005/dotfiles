@@ -1,34 +1,9 @@
-function serializeTable(val, name, skipnewlines, depth)
-  skipnewlines = skipnewlines or false
-  depth = depth or 0
-
-  local tmp = string.rep(" ", depth)
-
-  if name then tmp = tmp .. name .. " = " end
-
-  if type(val) == "table" then
-    tmp = tmp .. "{" .. (not skipnewlines and "\n" or "")
-
-    for k, v in pairs(val) do
-      tmp = tmp .. serializeTable(v, k, skipnewlines, depth + 1) .. "," .. (not skipnewlines and "\n" or "")
-    end
-
-    tmp = tmp .. string.rep(" ", depth) .. "}"
-  elseif type(val) == "number" then
-    tmp = tmp .. tostring(val)
-  elseif type(val) == "string" then
-    tmp = tmp .. string.format("%q", val)
-  elseif type(val) == "boolean" then
-    tmp = tmp .. (val and "true" or "false")
-  else
-    tmp = tmp .. "\"[inserializeable datatype:" .. type(val) .. "]\""
-  end
-
-  return tmp
+function edit_config()
+  vim.cmd("badd ~/.config/nvim/lua/user/init.lua")
+  vim.cmd("b ~/.config/nvim/lua/user/init.lua")
 end
 
 local config = {
-  -- set vim options here (vim.<first_key>.<second_key> = value)
   options = {
     opt = {
       relativenumber = false,
@@ -39,6 +14,18 @@ local config = {
     g = {
       heirline_bufferline = true,
     },
+  },
+  header = {
+    [[   ,φ≥        ▒                                                                 ]],
+    [[ ,@╬╬▒▒       ╬╬▒╖                                            ▄▄                ]],
+    [[δ▒╠╬╬╠╠╠╦     ╬╬╬╬▓                                           ╙╙                ]],
+    [[╠▒▒╠╬╠╠╠╠▒    ╣╬╬╬╬     ▐QÆT^"▀┐  ,Æ""""▄   Æ"^^▀╗ ╙██    ▐█▌ ██  ██▓▓▀█▓▄▓▀▓█▓ ]],
+    [[╠▒▒▒╠└╠╠╠╠╠ε  ╣╬╬╬╬     ▐▌     █ ]▌      ▌ ▌      ▓ ╙█▓  ▐█▓  ██  ██─  ▐██   ╟██]],
+    [[╠╠╠╠╠  ╠╬╬╬╬▒ ╣▓▓▓▓     ▐▌     ▓ ▐▌‾‾‾‾‾‾ ▐▌      ╟▌ ╟█▌┌██   ██  ██   ▐██   ╞██]],
+    [[╠╠╠╠╠   ╙╬╬╬╬╬╣▓▓▓▓     ▐▌     ▓  ▓        ▓     ,▓   ╟█▓█    ██  ██   ▐██   ╞██]],
+    [[╠╠╠╠╠     ╢╬╬╬╣╬▓▓▓     └^     ╙   └"²²"`   └"²²"└     ╙╙`    ▀▀  ▀▀    ▀▀   └▀╙]],
+    [[`╝╬╬╬      ╙╬╬╣╣╬▓╜                                                             ]],
+    [[   ╚╬        ╣▓▓╙                                                               ]],
   },
   -- Extend LSP configuration
   lsp = {
@@ -56,8 +43,14 @@ local config = {
       },
     },
   },
+  heirline = {
+    separators = {
+      tab = { "", "" },
+    },
+  },
   mappings = {
     n = {
+      ["<leader>,"] = edit_config,
       -- I use this to open my Tagbar instead
       ["<leader>tt"] = false,
       ["gV"] = { "`[v`]", desc = "Select the text you just pasted" },
@@ -146,32 +139,26 @@ local config = {
         astronvim.status.component.mode { surround = { separator = "right" } },
       }
       return config
-    end
-  },
-  -- Customize Heirline options
-  heirline = {
-    -- Customize different separators between sections
-    separators = {
-      tab = { "", "" },
-    },
-    -- -- Customize colors for each element each element has a `_fg` and a `_bg`
-    -- colors = function(colors)
-    --   colors.git_branch_fg = astronvim.get_hlgroup "Conditional"
-    --   return colors
-    -- end,
-    -- -- Customize attributes of highlighting in Heirline components
-    -- attributes = {
-    --   -- styling choices for each heirline element, check possible attributes with `:h attr-list`
-    --   git_branch = { bold = true }, -- bold the git branch statusline component
-    -- },
-    -- -- Customize if icons should be highlighted
-    -- icon_highlights = {
-    --   breadcrumbs = false, -- LSP symbols in the breadcrumbs
-    --   file_icon = {
-    --     winbar = false, -- Filetype icon in the winbar inactive windows
-    --     statusline = true, -- Filetype icon in the statusline
-    --   },
-    -- },
+    end,
+    alpha = function(config)
+      -- add menu option to edit this config file
+      config.layout[4].val[7] = {
+        val = "  Configure",
+        opts = {
+          shortcut = "SPC ,",
+          hl_shortcut = "DashboardShortcut",
+          align_shortcut = "right",
+          width = 36,
+          cursor = 5,
+          hl = "DashboardCenter",
+          text = "  Configure",
+          position = "center",
+        },
+        on_press = edit_config,
+        type = "button",
+      }
+      return config
+    end,
   },
   -- This function is run last and is a good place to configuring
   -- augroups/autocommands and custom filetypes also this just pure lua so
@@ -192,10 +179,7 @@ local config = {
     -- open this file
     vim.api.nvim_create_user_command(
       "Conf",
-      function()
-        vim.cmd("badd ~/.config/nvim/lua/user/init.lua")
-        vim.cmd("b ~/.config/nvim/lua/user/init.lua")
-      end,
+      edit_config,
       {}
     )
 
