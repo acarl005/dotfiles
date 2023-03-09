@@ -65,9 +65,7 @@ local config = {
         },
         mappings = {
                 n = {
-                        ["<leader>,"] = edit_config,
-                        -- I use this to open my Tagbar instead
-                        ["<leader>tt"] = false,
+                        ["<leader>,"] = { edit_config, desc = "Edit user config file" },
                         ["gV"] = { "`[v`]", desc = "Select the text you just pasted" },
                         ["<leader>x{"] = { "<i{0]}dd[{dd", desc = "Remove wrapping curly brace pair" },
                         ["<leader>x("] = { "<i(0])dd[(dd", desc = "Remove wrapping parentheses" },
@@ -81,14 +79,6 @@ local config = {
                         -- You can disable default plugins as follows:
                         -- ["goolord/alpha-nvim"] = { disable = true },
 
-                        -- MacOS: brew install --HEAD universal-ctags/universal-ctags/universal-ctags
-                        -- Linux: sudo snap install universal-ctags
-                        {
-                                "preservim/tagbar", -- a ctag/class outline viewer
-                                config = function()
-                                        vim.keymap.set("n", "<leader>tt", ":TagbarToggle<cr>", { noremap = true })
-                                end
-                        },
                         {
                                 "petertriho/nvim-scrollbar", -- adds a scrollbar to the right of the view
                                 config = function()
