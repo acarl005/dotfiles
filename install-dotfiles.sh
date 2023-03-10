@@ -3,7 +3,7 @@
 mkdir ~/.vim
 mkdir ~/.config
 mkdir ~/.config/ranger
-git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
+git clone --force https://github.com/AstroNvim/AstroNvim ~/.config/nvim
 
 [ -L ~/bin ] && rm ~/bin
 ln -i -s "$PWD/bin" ~/bin
