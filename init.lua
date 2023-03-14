@@ -111,6 +111,52 @@ local config = {
                                         require("nvim-surround").setup()
                                 end
                         },
+                        -- {
+                        --         "simrat39/rust-tools.nvim", -- Only necessary for good in-editor debugging with breakpoints
+                        --         ft = { "rust" },
+                        --         config = function()
+                        --                 local rt = require("rust-tools")
+                        --                 local rt_dap = require('rust-tools.dap')
+                        --                 local opts = {
+                        --                         server = {
+                        --                                 on_attach = function(_, bufnr)
+                        --                                         vim.keymap.set("n", "<leader>r",
+                        --                                                 rt.hover_actions.hover_actions,
+                        --                                                 { buffer = bufnr })
+                        --                                         vim.keymap.set("n", "<leader>a",
+                        --                                                 rt.code_action_group.code_action_group,
+                        --                                                 { buffer = bufnr })
+                        --                                 end,
+                        --                         },
+                        --                 }
+                        --
+                        --                 -- Sadly rust-tools is not aware of mason or mason-nvim-dap, so we need to tell
+                        --                 -- rust-tools explicitly where the codelldb debugger executable is. In case
+                        --                 -- codelldb is not installed via Mason, but is installed with VSCode, look
+                        --                 -- for it there as a backup
+                        --                 local codelldb_pkg = vim.fn.glob(
+                        --                             vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/"
+                        --                     ) or vim.fn.glob(
+                        --                             vim.env.HOME .. "/.vscode/extensions/vadimcn.vscode-lldb-*/"
+                        --                     )
+                        --                 local codelldb_path = codelldb_pkg .. "adapter/codelldb"
+                        --                 local liblldb_path = codelldb_pkg .. "lldb/lib/liblldb.so"
+                        --
+                        --                 if vim.fn.has("mac") == 1 then
+                        --                         liblldb_path = codelldb_pkg .. "lldb/lib/liblldb.dylib"
+                        --                 end
+                        --
+                        --                 if vim.fn.filereadable(codelldb_path) and vim.fn.filereadable(liblldb_path) then
+                        --                         opts.dap = {
+                        --                                 adapter = rt_dap.get_codelldb_adapter(
+                        --                                         codelldb_path,
+                        --                                         liblldb_path
+                        --                                 ),
+                        --                         }
+                        --                 end
+                        --                 rt.setup(opts)
+                        --         end
+                        -- }
                 },
                 treesitter = {
                         ensure_installed = { "lua" },
@@ -201,6 +247,10 @@ local config = {
                         endfunc
                         com! DiffSaved call s:DiffWithSaved()
                 ]])
+
+                -- AstroNvim normally binds "K" to vim.lsp.buf.hover(), but for some reason loading rust-tools
+                -- disables that keybinding. Add it back
+                vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { desc = "Show LSP hover panel" })
         end,
 }
 
