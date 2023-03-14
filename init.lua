@@ -14,21 +14,6 @@ local config = {
                         wrap = true,
                         cmdheight = 1,
                 },
-                g = {
-                        heirline_bufferline = true,
-                },
-        },
-        header = {
-                [[   ,φ≥        ▒                                                                 ]],
-                [[ ,@╬╬▒▒       ╬╬▒╖                                            ▄▄                ]],
-                [[δ▒╠╬╬╠╠╠╦     ╬╬╬╬▓                                           ╙╙                ]],
-                [[╠▒▒╠╬╠╠╠╠▒    ╣╬╬╬╬     ▐QÆT^"▀┐  ,Æ""""▄   Æ"^^▀╗ ╙██    ▐█▌ ██  ██▓▓▀█▓▄▓▀▓█▓ ]],
-                [[╠▒▒▒╠└╠╠╠╠╠ε  ╣╬╬╬╬     ▐▌     █ ]▌      ▌ ▌      ▓ ╙█▓  ▐█▓  ██  ██─  ▐██   ╟██]],
-                [[╠╠╠╠╠  ╠╬╬╬╬▒ ╣▓▓▓▓     ▐▌     ▓ ▐▌‾‾‾‾‾‾ ▐▌      ╟▌ ╟█▌┌██   ██  ██   ▐██   ╞██]],
-                [[╠╠╠╠╠   ╙╬╬╬╬╬╣▓▓▓▓     ▐▌     ▓  ▓        ▓     ,▓   ╟█▓█    ██  ██   ▐██   ╞██]],
-                [[╠╠╠╠╠     ╢╬╬╬╣╬▓▓▓     └^     ╙   └"²²"`   └"²²"└     ╙╙`    ▀▀  ▀▀    ▀▀   └▀╙]],
-                [[`╝╬╬╬      ╙╬╬╣╣╬▓╜                                                             ]],
-                [[   ╚╬        ╣▓▓╙                                                               ]],
         },
         -- Extend LSP configuration
         lsp = {
@@ -71,151 +56,166 @@ local config = {
                         ["<leader>x("] = { "<i(0])dd[(dd", desc = "Remove wrapping parentheses" },
                         ["<leader>x["] = { "<i[0]]dd[[dd", desc = "Remove wrapping square bracket pair" },
                         ["<c-p>"] = { ":Telescope find_files<CR>", desc = "Search files" },
+                        L = {
+                                function()
+                                        require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1)
+                                end,
+                                desc = "Next buffer",
+                        },
+                        H = {
+                                function()
+                                        require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1))
+                                end,
+                                desc = "Previous buffer",
+                        },
                 },
         },
         -- Configure plugins
         plugins = {
-                init = {
-                        -- You can disable default plugins as follows:
-                        -- ["goolord/alpha-nvim"] = { disable = true },
-
-                        {
-                                "petertriho/nvim-scrollbar", -- adds a scrollbar to the right of the view
-                                config = function()
-                                        require("scrollbar").setup()
-                                end
-                        },
-                        {
-                                "chentoast/marks.nvim", -- show the marks on the left
-                                config = function()
-                                        require("marks").setup()
-                                end
-                        },
-                        {
-                                "airblade/vim-rooter", -- adds :Rooter command to change pwd to the project root
-                                config = function()
-                                        vim.g.rooter_manual_only = 1
-                                end
-                        },
-                        {
-                                "tyru/open-browser-github.vim", -- opens current buffer in GitHub
-                                requires = { "tyru/open-browser.vim" }
-                        },
-                        {
-                                "sgur/vim-textobj-parameter", -- text object for function params to ","
-                                requires = { "kana/vim-textobj-user" }
-                        },
-                        {
-                                "kylechui/nvim-surround", -- manipulates pairs of brackets, tags and quotes
-                                config = function()
-                                        require("nvim-surround").setup()
-                                end
-                        },
-                        -- {
-                        --         "simrat39/rust-tools.nvim", -- Only necessary for good in-editor debugging with breakpoints
-                        --         ft = { "rust" },
-                        --         config = function()
-                        --                 local rt = require("rust-tools")
-                        --                 local rt_dap = require('rust-tools.dap')
-                        --                 local opts = {
-                        --                         server = {
-                        --                                 on_attach = function(_, bufnr)
-                        --                                         vim.keymap.set("n", "<leader>r",
-                        --                                                 rt.hover_actions.hover_actions,
-                        --                                                 { buffer = bufnr })
-                        --                                         vim.keymap.set("n", "<leader>a",
-                        --                                                 rt.code_action_group.code_action_group,
-                        --                                                 { buffer = bufnr })
-                        --                                 end,
-                        --                         },
-                        --                 }
-                        --
-                        --                 -- Sadly rust-tools is not aware of mason or mason-nvim-dap, so we need to tell
-                        --                 -- rust-tools explicitly where the codelldb debugger executable is. In case
-                        --                 -- codelldb is not installed via Mason, but is installed with VSCode, look
-                        --                 -- for it there as a backup
-                        --                 local codelldb_pkg = vim.fn.glob(
-                        --                             vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/"
-                        --                     ) or vim.fn.glob(
-                        --                             vim.env.HOME .. "/.vscode/extensions/vadimcn.vscode-lldb-*/"
-                        --                     )
-                        --                 local codelldb_path = codelldb_pkg .. "adapter/codelldb"
-                        --                 local liblldb_path = codelldb_pkg .. "lldb/lib/liblldb.so"
-                        --
-                        --                 if vim.fn.has("mac") == 1 then
-                        --                         liblldb_path = codelldb_pkg .. "lldb/lib/liblldb.dylib"
-                        --                 end
-                        --
-                        --                 if vim.fn.filereadable(codelldb_path) and vim.fn.filereadable(liblldb_path) then
-                        --                         opts.dap = {
-                        --                                 adapter = rt_dap.get_codelldb_adapter(
-                        --                                         codelldb_path,
-                        --                                         liblldb_path
-                        --                                 ),
-                        --                         }
-                        --                 end
-                        --                 rt.setup(opts)
-                        --         end
-                        -- }
+                {
+                        "goolord/alpha-nvim",
+                        opts = function(_, opts)
+                                opts.config.layout[4].val[7] = {
+                                        val = "  Configure",
+                                        opts = {
+                                                shortcut = "SPC ,",
+                                                hl_shortcut = "DashboardShortcut",
+                                                align_shortcut = "right",
+                                                width = 36,
+                                                cursor = 5,
+                                                hl = "DashboardCenter",
+                                                text = "  Configure",
+                                                position = "center",
+                                        },
+                                        on_press = edit_config,
+                                        type = "button",
+                                }
+                                opts.section.header.val = {
+                                        [[   ,φ≥        ▒                                                                 ]],
+                                        [[ ,@╬╬▒▒       ╬╬▒╖                                            ▄▄                ]],
+                                        [[δ▒╠╬╬╠╠╠╦     ╬╬╬╬▓                                           ╙╙                ]],
+                                        [[╠▒▒╠╬╠╠╠╠▒    ╣╬╬╬╬     ▐QÆT^"▀┐  ,Æ""""▄   Æ"^^▀╗ ╙██    ▐█▌ ██  ██▓▓▀█▓▄▓▀▓█▓ ]],
+                                        [[╠▒▒▒╠└╠╠╠╠╠ε  ╣╬╬╬╬     ▐▌     █ ]▌      ▌ ▌      ▓ ╙█▓  ▐█▓  ██  ██─  ▐██   ╟██]],
+                                        [[╠╠╠╠╠  ╠╬╬╬╬▒ ╣▓▓▓▓     ▐▌     ▓ ▐▌‾‾‾‾‾‾ ▐▌      ╟▌ ╟█▌┌██   ██  ██   ▐██   ╞██]],
+                                        [[╠╠╠╠╠   ╙╬╬╬╬╬╣▓▓▓▓     ▐▌     ▓  ▓        ▓     ,▓   ╟█▓█    ██  ██   ▐██   ╞██]],
+                                        [[╠╠╠╠╠     ╢╬╬╬╣╬▓▓▓     └^     ╙   └"²²"`   └"²²"└     ╙╙`    ▀▀  ▀▀    ▀▀   └▀╙]],
+                                        [[`╝╬╬╬      ╙╬╬╣╣╬▓╜                                                             ]],
+                                        [[   ╚╬        ╣▓▓╙                                                               ]],
+                                }
+                        end,
                 },
-                treesitter = {
-                        ensure_installed = { "lua" },
+                {
+                        "rebelot/heirline.nvim",
+                        opts = function(_, opts)
+                                local file_path = {
+                                        {
+                                                provider = function()
+                                                        return vim.fn.expand("%")
+                                                end
+                                        },
+                                        padding = { left = 1, right = 1 },
+                                }
+                                table.insert(opts.statusline, 4, file_path)
+                                return opts
+                        end,
                 },
-                ["mason-lspconfig"] = {
-                        ensure_installed = { "sumneko_lua" },
+                {
+                        "nvim-treesitter/nvim-treesitter",
+                        opts = {
+                                auto_install = vim.fn.executable "tree-sitter" == 1,
+                                ensure_installed = { "lua" },
+                        },
                 },
-                heirline = function(config)
-                        local file_path = {
-                                {
-                                        provider = function()
-                                                return vim.fn.expand("%")
-                                        end
-                                },
-                                padding = { left = 1, right = 1 },
-                        }
-
-                        config[1] = {
-                                -- statusline
-                                hl = { fg = "fg", bg = "bg" },
-                                astronvim.status.component.mode(),
-                                astronvim.status.component.git_branch(),
-                                astronvim.status.component.file_info(
-                                        (astronvim.is_available "bufferline.nvim" or vim.g.heirline_bufferline)
-                                        and { filetype = {}, filename = false, file_modified = false }
-                                        or nil
-                                ),
-                                file_path,
-                                astronvim.status.component.git_diff(),
-                                astronvim.status.component.diagnostics(),
-                                astronvim.status.component.fill(),
-                                astronvim.status.component.cmd_info(),
-                                astronvim.status.component.fill(),
-                                astronvim.status.component.lsp(),
-                                astronvim.status.component.treesitter(),
-                                astronvim.status.component.nav(),
-                                astronvim.status.component.mode { surround = { separator = "right" } },
-                        }
-                        return config
-                end,
-                alpha = function(config)
-                        -- add menu option to edit this config file
-                        config.layout[4].val[7] = {
-                                val = "  Configure",
-                                opts = {
-                                        shortcut = "SPC ,  ",
-                                        hl_shortcut = "DashboardShortcut",
-                                        align_shortcut = "right",
-                                        width = 36,
-                                        cursor = 5,
-                                        hl = "DashboardCenter",
-                                        text = "  Configure",
-                                        position = "center",
-                                },
-                                on_press = edit_config,
-                                type = "button",
-                        }
-                        return config
-                end,
+                {
+                        "williamboman/mason-lspconfig.nvim",
+                        opts = {
+                                ensure_installed = { "lua_ls" },
+                        },
+                },
+                {
+                        "kylechui/nvim-surround", -- manipulates pairs of brackets, tags and quotes
+                        lazy = false,
+                        config = function()
+                                require("nvim-surround").setup()
+                        end,
+                },
+                {
+                        "petertriho/nvim-scrollbar", -- adds a scrollbar to the right of the view
+                        lazy = false,
+                        config = function()
+                                require("scrollbar").setup()
+                        end,
+                },
+                {
+                        "chentoast/marks.nvim", -- show the marks on the left
+                        lazy = false,
+                        config = function()
+                                require("marks").setup()
+                        end,
+                },
+                {
+                        "airblade/vim-rooter", -- adds :Rooter command to change pwd to the project root
+                        lazy = false,
+                        config = function()
+                                vim.g.rooter_manual_only = 1
+                        end,
+                },
+                {
+                        "tyru/open-browser-github.vim", -- opens current buffer in GitHub
+                        lazy = false,
+                        dependencies = { "tyru/open-browser.vim" },
+                },
+                {
+                        "sgur/vim-textobj-parameter", -- text object for function params to ","
+                        lazy = false,
+                        dependencies = { "kana/vim-textobj-user" },
+                },
+                -- {
+                --         "simrat39/rust-tools.nvim", -- Only necessary for good in-editor debugging with breakpoints
+                --         ft = { "rust" },
+                --         config = function()
+                --                 local rt = require("rust-tools")
+                --                 local rt_dap = require('rust-tools.dap')
+                --                 local opts = {
+                --                         server = {
+                --                                 on_attach = function(_, bufnr)
+                --                                         vim.keymap.set("n", "<leader>r",
+                --                                                 rt.hover_actions.hover_actions,
+                --                                                 { buffer = bufnr })
+                --                                         vim.keymap.set("n", "<leader>a",
+                --                                                 rt.code_action_group.code_action_group,
+                --                                                 { buffer = bufnr })
+                --                                 end,
+                --                         },
+                --                 }
+                --
+                --                 -- Sadly rust-tools is not aware of mason or mason-nvim-dap, so we need to tell
+                --                 -- rust-tools explicitly where the codelldb debugger executable is. In case
+                --                 -- codelldb is not installed via Mason, but is installed with VSCode, look
+                --                 -- for it there as a backup
+                --                 local codelldb_pkg = vim.fn.glob(
+                --                             vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/"
+                --                     ) or vim.fn.glob(
+                --                             vim.env.HOME .. "/.vscode/extensions/vadimcn.vscode-lldb-*/"
+                --                     )
+                --                 local codelldb_path = codelldb_pkg .. "adapter/codelldb"
+                --                 local liblldb_path = codelldb_pkg .. "lldb/lib/liblldb.so"
+                --
+                --                 if vim.fn.has("mac") == 1 then
+                --                         liblldb_path = codelldb_pkg .. "lldb/lib/liblldb.dylib"
+                --                 end
+                --
+                --                 if vim.fn.filereadable(codelldb_path) and vim.fn.filereadable(liblldb_path) then
+                --                         opts.dap = {
+                --                                 adapter = rt_dap.get_codelldb_adapter(
+                --                                         codelldb_path,
+                --                                         liblldb_path
+                --                                 ),
+                --                         }
+                --                 end
+                --                 rt.setup(opts)
+                --         end
+                -- },
         },
         -- This function is run last and is a good place to configuring
         -- augroups/autocommands and custom filetypes also this just pure lua so
@@ -247,10 +247,6 @@ local config = {
                         endfunc
                         com! DiffSaved call s:DiffWithSaved()
                 ]])
-
-                -- AstroNvim normally binds "K" to vim.lsp.buf.hover(), but for some reason loading rust-tools
-                -- disables that keybinding. Add it back
-                vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { desc = "Show LSP hover panel" })
         end,
 }
 
