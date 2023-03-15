@@ -22,7 +22,7 @@ fi
 
 
 brew tap homebrew/cask-fonts
-brew install ripgrep autojump git gh neovim coreutils neofetch ranger fd tldr shellcheck bat fzf onefetch highlight mdcat jq starship diff-so-fancy
+brew install ripgrep autojump git gh neovim coreutils neofetch ranger fd tldr shellcheck bat fzf onefetch highlight mdcat jq starship diff-so-fancy tree-sitter
 brew install --cask font-inconsolata-nerd-font font-bitstream-vera-sans-mono-nerd-font
 brew install acarl005/homebrew-formulas/ls-go
 
