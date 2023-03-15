@@ -7,6 +7,7 @@ local edit_config = function()
 end
 
 local config = {
+        colorscheme = "catppuccin",
         options = {
                 opt = {
                         relativenumber = false,
@@ -15,7 +16,28 @@ local config = {
                         cmdheight = 1,
                 },
         },
-        -- Extend LSP configuration
+        mappings = {
+                n = {
+                        ["<leader>,"] = { edit_config, desc = "Edit user config file" },
+                        ["gV"] = { "`[v`]", desc = "Select the text you just pasted" },
+                        ["<leader>x{"] = { "<i{0]}dd[{dd", desc = "Remove wrapping curly brace pair" },
+                        ["<leader>x("] = { "<i(0])dd[(dd", desc = "Remove wrapping parentheses" },
+                        ["<leader>x["] = { "<i[0]]dd[[dd", desc = "Remove wrapping square bracket pair" },
+                        ["<c-p>"] = { ":Telescope find_files<CR>", desc = "Search files" },
+                        L = {
+                                function()
+                                        require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1)
+                                end,
+                                desc = "Next buffer",
+                        },
+                        H = {
+                                function()
+                                        require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1))
+                                end,
+                                desc = "Previous buffer",
+                        },
+                },
+        },
         lsp = {
                 -- easily add or disable built in mappings added during LSP attaching
                 mappings = {
@@ -48,30 +70,8 @@ local config = {
                         tab = { "", "" },
                 },
         },
-        mappings = {
-                n = {
-                        ["<leader>,"] = { edit_config, desc = "Edit user config file" },
-                        ["gV"] = { "`[v`]", desc = "Select the text you just pasted" },
-                        ["<leader>x{"] = { "<i{0]}dd[{dd", desc = "Remove wrapping curly brace pair" },
-                        ["<leader>x("] = { "<i(0])dd[(dd", desc = "Remove wrapping parentheses" },
-                        ["<leader>x["] = { "<i[0]]dd[[dd", desc = "Remove wrapping square bracket pair" },
-                        ["<c-p>"] = { ":Telescope find_files<CR>", desc = "Search files" },
-                        L = {
-                                function()
-                                        require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1)
-                                end,
-                                desc = "Next buffer",
-                        },
-                        H = {
-                                function()
-                                        require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1))
-                                end,
-                                desc = "Previous buffer",
-                        },
-                },
-        },
-        -- Configure plugins
         plugins = {
+                -- override included plugin config
                 {
                         "goolord/alpha-nvim",
                         opts = function(_, opts)
@@ -105,6 +105,23 @@ local config = {
                         end,
                 },
                 {
+                        "jay-babu/mason-nvim-dap.nvim",
+                        opts = {
+                                automatic_setup = {
+                                        configurations = function(default)
+                                                default.codelldb[1].program = function()
+                                                        return vim.fn.input(
+                                                                "Path to executable: ",
+                                                                vim.fn.getcwd() .. "/target/debug/warp",
+                                                                "file"
+                                                        )
+                                                end
+                                                return default
+                                        end,
+                                }
+                        }
+                },
+                {
                         "rebelot/heirline.nvim",
                         opts = function(_, opts)
                                 local file_path = {
@@ -123,7 +140,7 @@ local config = {
                         "nvim-treesitter/nvim-treesitter",
                         opts = {
                                 auto_install = vim.fn.executable "tree-sitter" == 1,
-                                ensure_installed = { "lua" },
+                                ensure_installed = { "lua", "vim" },
                         },
                 },
                 {
@@ -131,6 +148,14 @@ local config = {
                         opts = {
                                 ensure_installed = { "lua_ls" },
                         },
+                },
+                -- custom plugins
+                {
+                        "catppuccin/nvim",
+                        as = "catppuccin",
+                        config = function()
+                                require("catppuccin").setup()
+                        end,
                 },
                 {
                         "kylechui/nvim-surround", -- manipulates pairs of brackets, tags and quotes
@@ -170,52 +195,6 @@ local config = {
                         lazy = false,
                         dependencies = { "kana/vim-textobj-user" },
                 },
-                -- {
-                --         "simrat39/rust-tools.nvim", -- Only necessary for good in-editor debugging with breakpoints
-                --         ft = { "rust" },
-                --         config = function()
-                --                 local rt = require("rust-tools")
-                --                 local rt_dap = require('rust-tools.dap')
-                --                 local opts = {
-                --                         server = {
-                --                                 on_attach = function(_, bufnr)
-                --                                         vim.keymap.set("n", "<leader>r",
-                --                                                 rt.hover_actions.hover_actions,
-                --                                                 { buffer = bufnr })
-                --                                         vim.keymap.set("n", "<leader>a",
-                --                                                 rt.code_action_group.code_action_group,
-                --                                                 { buffer = bufnr })
-                --                                 end,
-                --                         },
-                --                 }
-                --
-                --                 -- Sadly rust-tools is not aware of mason or mason-nvim-dap, so we need to tell
-                --                 -- rust-tools explicitly where the codelldb debugger executable is. In case
-                --                 -- codelldb is not installed via Mason, but is installed with VSCode, look
-                --                 -- for it there as a backup
-                --                 local codelldb_pkg = vim.fn.glob(
-                --                             vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/"
-                --                     ) or vim.fn.glob(
-                --                             vim.env.HOME .. "/.vscode/extensions/vadimcn.vscode-lldb-*/"
-                --                     )
-                --                 local codelldb_path = codelldb_pkg .. "adapter/codelldb"
-                --                 local liblldb_path = codelldb_pkg .. "lldb/lib/liblldb.so"
-                --
-                --                 if vim.fn.has("mac") == 1 then
-                --                         liblldb_path = codelldb_pkg .. "lldb/lib/liblldb.dylib"
-                --                 end
-                --
-                --                 if vim.fn.filereadable(codelldb_path) and vim.fn.filereadable(liblldb_path) then
-                --                         opts.dap = {
-                --                                 adapter = rt_dap.get_codelldb_adapter(
-                --                                         codelldb_path,
-                --                                         liblldb_path
-                --                                 ),
-                --                         }
-                --                 end
-                --                 rt.setup(opts)
-                --         end
-                -- },
         },
         -- This function is run last and is a good place to configuring
         -- augroups/autocommands and custom filetypes also this just pure lua so
