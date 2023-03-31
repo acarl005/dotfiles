@@ -1,6 +1,9 @@
-prompt = function() { return "🐺 [" + db + "] > "; };
-var exit = quit;
+function prompt() {
+  return `🐺 [${db}] > `
+}
 
 function newUser(username, password) {
-  db.createUser({ user: username, pwd: password, roles: [] });
+  db.createUser({ user: username, pwd: password, roles: [] })
 }
+
+const exit = quit

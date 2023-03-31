@@ -2,8 +2,7 @@
 -- https://astronvim.github.io/Configuration/manage_user_config
 
 local edit_config = function()
-        vim.cmd("badd ~/.config/nvim/lua/user/init.lua")
-        vim.cmd("b ~/.config/nvim/lua/user/init.lua")
+        vim.cmd("e ~/.config/nvim/lua/user/init.lua")
 end
 
 local config = {

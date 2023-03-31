@@ -27,4 +27,6 @@ ln -fs "$PWD/scope.sh" ~/.config/ranger/scope.sh
 ln -fs "$PWD/rifle.conf" ~/.config/ranger/rifle.conf
 ln -fs "$PWD/starship.toml" ~/.config/starship.toml
 ln -fs "$PWD/init.lua" ~/.config/nvim/lua/user/init.lua
-/bin/cp -f "$PWD/.zshrc" ~/.zshrc
+ln -fs "$PWD/.bashrc" ~/.bashrc
+command cp -f "$PWD/.zshrc" ~/.zshrc
+command cp -f "$PWD/.bash_profile" ~/.bash_profile
