@@ -121,6 +121,12 @@ local config = {
                         }
                 },
                 {
+                        "stevearc/aerial.nvim",
+                        opts = function(_, opts)
+                                opts.disable_max_lines = 20000
+                        end,
+                },
+                {
                         "rebelot/heirline.nvim",
                         opts = function(_, opts)
                                 local file_path = {
