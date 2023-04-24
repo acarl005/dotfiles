@@ -2,6 +2,11 @@
 
 . ./install-dotfiles.sh
 
+# install Rustup mainly for cargo packages
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
+
+cargo install joshuto
+
 if [[ $(uname) = Darwin ]]; then
   . mac-packages.sh
 elif command -v apt-get >/dev/null; then
@@ -11,10 +16,6 @@ elif command -v dnf >/dev/null; then
 else
   echo no known package manager installed
 fi
-
-# install Packer to NeoVim
-git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
 # import iTerm preferences if on MacOS
 if [[ $(uname) = Darwin ]]; then

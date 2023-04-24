@@ -17,6 +17,8 @@ local config = {
         },
         mappings = {
                 n = {
+                        ["<s-tab>"] = { ":ToggleTerm float<cr>", desc = "Open terminal" },
+                        ["<tab>"] = { ":wincmd w<cr>", desc = "Next window" },
                         ["<leader>,"] = { edit_config, desc = "Edit user config file" },
                         ["gV"] = { "`[v`]", desc = "Select the text you just pasted" },
                         ["<leader>x{"] = { "<i{0]}dd[{dd", desc = "Remove wrapping curly brace pair" },
