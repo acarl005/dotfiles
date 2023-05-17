@@ -9,7 +9,6 @@ local config = {
         colorscheme = "catppuccin",
         options = {
                 opt = {
-                        relativenumber = false,
                         scrolloff = 15,
                         wrap = true,
                         cmdheight = 1,
@@ -62,6 +61,17 @@ local config = {
                                 ["&T"] = {
                                         ":vsp<cr>:lua vim.lsp.buf.type_definition()<cr>",
                                         desc = "Open type definition in a vsplit"
+                                },
+                        },
+                },
+                config = {
+                        lua_ls = {
+                                settings = {
+                                        Lua = {
+                                                diagnostics = {
+                                                        globals = { "vim" },
+                                                },
+                                        },
                                 },
                         },
                 },
@@ -225,6 +235,10 @@ local config = {
                         lazy = false,
                         dependencies = { "kana/vim-textobj-user" },
                 },
+                {
+                        "AndrewRadev/splitjoin.vim",
+                        lazy = false,
+                }
         },
         -- This function is run last and is a good place to configuring
         -- augroups/autocommands and custom filetypes also this just pure lua so

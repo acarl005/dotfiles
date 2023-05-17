@@ -44,9 +44,10 @@ $battery\
 $cmd_duration\
 $jobs\
 $status\
-$character\
-$line_break
+$character
 """
+
+right_format = "$time"
 
 #============================================================
 # Section 1
@@ -74,7 +75,7 @@ style = "fg:bright-white bg:163"
 
 [shlvl]
 format = "[$symbol$shlvl ]($style)"
-symbol = "↕️"
+symbol = " "
 disabled = false
 style = "fg:bright-white bg:163"
 
@@ -88,10 +89,10 @@ style = "fg:bright-white bg:163"
 #============================================================
 
 [directory]
-format = "[ ﱮ $path]($style)[$read_only ]($read_only_style)"
+format = "[  $path]($style)[$read_only ]($read_only_style)"
 fish_style_pwd_dir_length = 1
 style = "fg:bright-white bg:89"
-read_only = " "
+read_only = " "
 read_only_style = "fg:bright-red bg:89"
 
 #============================================================
@@ -104,7 +105,7 @@ symbol = "  "
 style = "fg:bright-white bg:235"
 
 [git_commit]
-format = '[  ﰖ \($hash$tag\) ]($style)'
+format = '[  󰜘 \($hash$tag\) ]($style)'
 style = "fg:bright-white bg:235"
 
 [git_state]
@@ -134,12 +135,12 @@ format = '[ $symbol \[$name\] ]($style)'
 style = "fg:bright-white bg:25"
 
 [docker_context]
-symbol = " "
+symbol = "󰡨 "
 format = '[ $symbol \[$context\] ]($style)'
 style = "fg:bright-white bg:25"
 
 [package]
-symbol = " "
+symbol = "󰏗 "
 format = "[ $symbol$version ]($style)"
 style = "fg:bright-white bg:25"
 
@@ -178,7 +179,7 @@ format = "[ $symbol$version ]($style)"
 style = "fg:bright-white bg:25"
 
 [nim]
-symbol = " "
+symbol = " "
 format = "[ $symbol$version ]($style)"
 style = "fg:bright-white bg:25"
 
@@ -204,7 +205,7 @@ format = '[ $symbol$pyenv_prefix($version )(\($virtualenv\) )]($style)'
 style = "fg:bright-white bg:25"
 
 [rlang]
-symbol = "ﳒ "
+symbol = "󰟔 "
 format = "[ $symbol$version ]($style)"
 style = "fg:bright-white bg:25"
 
@@ -239,7 +240,7 @@ style = "fg:bright-white bg:25"
 
 [memory_usage]
 threshold = 70
-symbol = " "
+symbol = "󰍛 "
 format = '[ $symbol$ram( | $swap) ]($style)'
 style = "fg:bright-white bg:25"
 disabled = false
@@ -252,7 +253,7 @@ threshold = 40
 style = "fg:bright-white bg:18"
 
 [cmd_duration]
-format = "[  $duration ]($style)"
+format = "[ 󱑎 $duration ]($style)"
 style = "fg:bright-white bg:18"
 
 [jobs]
@@ -262,12 +263,16 @@ style = "fg:bright-white bg:18"
 [status]
 disabled = false
 format = "[$symbol$status]($style)"
-symbol = " "
+symbol = "󰗼 "
 style = "fg:bright-white bg:18"
 
 [character]
 success_symbol = '[](fg:18 bg:28)[\$](fg:bright-white bg:28)[](28)'
 error_symbol = '[](fg:18 bg:124)[\$](fg:bright-white bg:124)[](124)'
 
-[line_break]
+#============================================================
+# Right Prompt
+#============================================================
+
+[time]
 disabled = false
