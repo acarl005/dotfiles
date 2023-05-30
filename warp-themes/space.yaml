@@ -1,0 +1,33 @@
+accent:
+  left: "#429bf5"
+  right: "#8a5cff"
+background:
+  top: "#29004b"
+  bottom: "#000000"
+details: darker
+foreground: "#ffffff"
+
+background_image:
+  # the path is relative to ~/.warp/themes/
+  path: space.png
+  opacity: 90
+
+terminal_colors:
+  bright:
+    black: "#8E8E8E"
+    red: "#FFC4BD"
+    green: "#D6FCB9"
+    yellow: "#FEFDD5"
+    cyan: "#C1E3FE"
+    magenta: "#FFB1FE"
+    blue: "#E5E6FE"
+    white: "#FEFFFF"
+  normal:
+    black: "#616161"
+    red: "#FF8272"
+    green: "#B4FA72"
+    yellow: "#FEFDC2"
+    cyan: "#A5D5FE"
+    magenta: "#FF8FFD"
+    blue: "#D0D1FE"
+    white: "#F1F1F1"
