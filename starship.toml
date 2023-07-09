@@ -1,26 +1,26 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
+#============================================================
+# Left Prompt
+#============================================================
+
 format = """\
-[](163)\
+[](bg1)\
+$os\
 $username\
-$hostname\
 $sudo\
-$localip\
+$hostname\
 $shlvl\
 $kubernetes\
-[](fg:163 bg:89)\
+[](fg:bg1 bg:bg2)\
 $directory\
-[](fg:89 bg:235)\
+[](fg:bg2 bg:bg3)\
 $git_branch\
 $git_commit\
 $git_state\
 $git_metrics\
 $git_status\
 $hg_branch\
-[](fg:235 bg:25)\
-$container\
-$docker_context\
-$package\
 $c\
 $conda\
 $golang\
@@ -39,50 +39,76 @@ $rust\
 $scala\
 $swift\
 $terraform\
-[](fg:25 bg:18)\
-$battery\
-$cmd_duration\
-$jobs\
-$status\
 $character
 """
 
-right_format = "$time"
+right_format = """\
+[](bg3)
+$status\
+$memory_usage\
+$battery\
+$jobs\
+$cmd_duration\
+$time\
+[](bg3)
+"""
+
+palette = "main"
+
+[palettes.main]
+text = "bright-white"
+text_sep = "#5D7B7F"
+bg1 = "#146064"
+bg2 = "#02292E"
+bg3 = "#221E25"
+success = "#004212"
+fail = "#420019"
+
+[palettes.fallback]
+text = "bright-white"
+text_sep = "66"
+bg1 = "23"
+bg2 = "237"
+bg3 = "233"
+success = "22"
+fail = "52"
 
 #============================================================
 # Section 1
 #============================================================
+
+[os]
+disabled = false
+format = "[$symbol](fg:text bg:bg1)[ ](fg:text_sep bg:bg1)"
+style = ""
+
 [username]
 format = "[ $user ]($style)"
-style_user = "fg:bright-white bg:163"
-style_root = "fg:bright-yellow bg:163"
+style_user = "fg:text bg:bg1"
+style_root = "fg:bright-red bg:bg1"
 show_always = true
-
-[hostname]
-format = "[$ssh_symbol$hostname ]($style)"
-style = "fg:bright-white bg:163"
 
 [sudo]
 format = "[as $symbol]($style)"
 disabled = false
-style = "fg:bright-white bg:163"
+symbol = "󱑷 "
+style = "fg:text bg:bg1"
 
-[localip]
-format = "[$localipv4 ]($style)"
-disabled = false
-ssh_only = true
-style = "fg:bright-white bg:163"
+[hostname]
+format = "[ ](fg:text_sep bg:bg1)[$ssh_symbol$hostname ]($style)"
+ssh_symbol = " "
+style = "fg:text bg:bg1"
 
 [shlvl]
-format = "[$symbol$shlvl ]($style)"
+format = "[ ](fg:text_sep bg:bg1)[$symbol$shlvl ]($style)"
 symbol = " "
 disabled = false
-style = "fg:bright-white bg:163"
+style = "fg:text bg:bg1"
 
 [kubernetes]
-format = '[$symbol$context(\($namespace\)) ]($style)'
+format = '[ ](fg:text_sep bg:bg1)[$symbol$context(\($namespace\)) ]($style)'
 disabled = false
-style = "fg:bright-white bg:163"
+style = "fg:text bg:bg1"
 
 #============================================================
 # Section 2
@@ -91,9 +117,9 @@ style = "fg:bright-white bg:163"
 [directory]
 format = "[  $path]($style)[$read_only ]($read_only_style)"
 fish_style_pwd_dir_length = 1
-style = "fg:bright-white bg:89"
+style = "fg:text bg:bg2"
 read_only = " "
-read_only_style = "fg:bright-red bg:89"
+read_only_style = "fg:bright-red bg:bg2"
 
 #============================================================
 # Section 3
@@ -102,177 +128,207 @@ read_only_style = "fg:bright-red bg:89"
 [git_branch]
 format = '[ $symbol$branch(:$remote_branch) ]($style)'
 symbol = "  "
-style = "fg:bright-white bg:235"
+style = "fg:text bg:bg3"
 
 [git_commit]
 format = '[  󰜘 \($hash$tag\) ]($style)'
-style = "fg:bright-white bg:235"
+style = "fg:text bg:bg3"
 
 [git_state]
 format = '[<$state($progress_current/$progress_total)> ]($style)'
-style = "fg:bright-yellow bg:235"
+style = "fg:bright-yellow bg:bg3"
 
 [git_metrics]
 format = "([+$added]($added_style))([-$deleted]($deleted_style)[ ]($added_style))"
-added_style = "fg:bright-green bg:235"
-deleted_style = "fg:bright-red bg:235"
+added_style = "fg:bright-green bg:bg3"
+deleted_style = "fg:bright-red bg:bg3"
 disabled = false
 
 [git_status]
 format = '[\[$all_status$ahead_behind\] ]($style)'
-style = "fg:bright-blue bg:235"
-
-[hg_branch]
-format = "[ $symbol$branch ]($style)"
-symbol = " "
+style = "fg:bright-blue bg:bg3"
 
 #============================================================
 # Section 4
 #============================================================
 
-[container]
-format = '[ $symbol \[$name\] ]($style)'
-style = "fg:bright-white bg:25"
-
-[docker_context]
-symbol = "󰡨 "
-format = '[ $symbol \[$context\] ]($style)'
-style = "fg:bright-white bg:25"
-
-[package]
-symbol = "󰏗 "
-format = "[ $symbol$version ]($style)"
-style = "fg:bright-white bg:25"
-
 [c]
-symbol = " "
-format = "[ $symbol($version(-$name)) ]($style)"
-style = "fg:bright-white bg:25"
+symbol = ""
+format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
+style = "fg:text bg:bg3"
 
 [conda]
-symbol = " "
-format = "[ $symbol$environment ]($style)"
-style = "fg:bright-white bg:25"
+symbol = "󰄦"
+format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
+style = "fg:text bg:bg3"
 
 [golang]
-symbol = " "
-format = "[ $symbol$version ]($style)"
-style = "fg:bright-white bg:25"
+symbol = ""
+format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
+style = "fg:text bg:bg3"
 
 [helm]
-format = "[ $symbol$version ]($style)"
-style = "fg:bright-white bg:25"
+symbol = "󱃾"
+format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
+style = "fg:text bg:bg3"
 
 [java]
-symbol = " "
-format = "[ ${symbol}$version ]($style)"
-style = "fg:bright-white bg:25"
+symbol = ""
+format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
+style = "fg:text bg:bg3"
 
 [julia]
-symbol = " "
-format = "[ $symbol$version ]($style)"
-style = "fg:bright-white bg:25"
+symbol = ""
+format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
+style = "fg:text bg:bg3"
 
 [lua]
-symbol = " "
-format = "[ $symbol$version ]($style)"
-style = "fg:bright-white bg:25"
+symbol = ""
+format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
+style = "fg:text bg:bg3"
 
 [nim]
-symbol = " "
-format = "[ $symbol$version ]($style)"
-style = "fg:bright-white bg:25"
+symbol = ""
+format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
+style = "fg:text bg:bg3"
 
 [nodejs]
-symbol = " "
-format = "[ $symbol$version ]($style)"
-style = "fg:bright-white bg:25"
-not_capable_style = "fg:red bg:25"
+symbol = ""
+format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
+style = "fg:text bg:bg3"
+not_capable_style = "fg:red bg:bg3"
 
 [php]
-symbol = " "
-format = "[ $symbol$version ]($style)"
-style = "fg:bright-white bg:25"
+symbol = ""
+format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
+style = "fg:text bg:bg3"
 
 [pulumi]
-symbol = "⛰️ "
-format = "[ $symbol($username@)$stack ]($style)"
-style = "fg:bright-white bg:25"
+symbol = "⛰️"
+format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
+style = "fg:text bg:bg3"
 
 [python]
-symbol = " "
-format = '[ $symbol$pyenv_prefix($version )(\($virtualenv\) )]($style)'
-style = "fg:bright-white bg:25"
+symbol = ""
+format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
+style = "fg:text bg:bg3"
 
 [rlang]
-symbol = "󰟔 "
-format = "[ $symbol$version ]($style)"
-style = "fg:bright-white bg:25"
+symbol = "󰟔"
+format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
+style = "fg:text bg:bg3"
 
 [ruby]
-symbol = " "
-format = "[ $symbol$version ]($style)"
-style = "fg:bright-white bg:25"
+symbol = ""
+format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
+style = "fg:text bg:bg3"
 
 [rust]
-symbol = " "
-format = "[ $symbol$version ]($style)"
-style = "fg:bright-white bg:25"
+symbol = ""
+format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
+style = "fg:text bg:bg3"
 
 [scala]
-symbol = " "
-format = "[ $symbol$version ]($style)"
-style = "fg:bright-white bg:25"
+symbol = ""
+format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
+style = "fg:text bg:bg3"
 
 [swift]
-symbol = " "
-format = "[ $symbol$version ]($style)"
-style = "fg:bright-white bg:25"
+symbol = ""
+format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
+style = "fg:text bg:bg3"
 
 [terraform]
-symbol = "⛰️ "
-format = "[ $symbol$workspace ]($style)"
-style = "fg:bright-white bg:25"
+symbol = ""
+format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
+style = "fg:text bg:bg3"
 
 #============================================================
 # Section 5
 #============================================================
 
-[memory_usage]
-threshold = 70
-symbol = "󰍛 "
-format = '[ $symbol$ram( | $swap) ]($style)'
-style = "fg:bright-white bg:25"
-disabled = false
-
-[battery]
-format = "[ $symbol$percentage ]($style)"
-
-[[battery.display]]
-threshold = 40
-style = "fg:bright-white bg:18"
-
-[cmd_duration]
-format = "[ 󱑎 $duration ]($style)"
-style = "fg:bright-white bg:18"
-
-[jobs]
-format = "[ $symbol$number ]($style)"
-style = "fg:bright-white bg:18"
-
-[status]
-disabled = false
-format = "[$symbol$status]($style)"
-symbol = "󰗼 "
-style = "fg:bright-white bg:18"
-
 [character]
-success_symbol = '[](fg:18 bg:28)[\$](fg:bright-white bg:28)[](28)'
-error_symbol = '[](fg:18 bg:124)[\$](fg:bright-white bg:124)[](124)'
+success_symbol = '[](fg:bg3 bg:success)[\$](fg:text bg:success)[](success)'
+error_symbol = '[](fg:bg3 bg:fail)[\$](fg:text bg:fail)[](fail)'
 
 #============================================================
 # Right Prompt
 #============================================================
 
-[time]
+[status]
+format = "[ $status $symbol ]($style)[](fg:text_sep bg:bg3)"
+symbol = "󰁜"
+style = "fg:text bg:bg3"
 disabled = false
+
+[memory_usage]
+threshold = 80
+symbol = "󰍛 "
+format = "[ $ram $symbol]($style)[](fg:text_sep bg:bg3)"
+style = "fg:text bg:bg3"
+disabled = false
+
+[battery]
+format = "[ $percentage $symbol]($style)[](fg:text_sep bg:bg3)"
+
+[[battery.display]]
+threshold = 40
+style = "fg:text bg:bg3"
+
+[jobs]
+format = "[ $number$symbol ]($style)[](fg:text_sep bg:bg3)"
+style = "fg:text bg:bg3"
+
+[cmd_duration]
+format = "[ $duration  ]($style)[](fg:text_sep bg:bg3)"
+style = "fg:text bg:bg3"
+
+[time]
+format = "[ $time  ]($style)"
+style = "bg:bg3"
+disabled = false
+
+#============================================================
+# OS Symbols
+#============================================================
+
+[os.symbols]
+Alpaquita = " "
+Alpine = " "
+Amazon = " "
+Android = " "
+Arch = " "
+Artix = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Illumos = "󰈸 "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+OpenBSD = "󰈺 "
+openSUSE = " "
+OracleLinux = "󰌷 "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+Redox = "󰀘 "
+Solus = "󰠳 "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Windows = "󰍲 "
