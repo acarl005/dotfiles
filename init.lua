@@ -16,7 +16,6 @@ local config = {
         },
         mappings = {
                 n = {
-                        ["<s-tab>"] = { ":ToggleTerm float<cr>", desc = "Open terminal" },
                         ["<tab>"] = { ":wincmd w<cr>", desc = "Next window" },
                         ["<leader>,"] = { edit_config, desc = "Edit user config file" },
                         ["gV"] = { "`[v`]", desc = "Select the text you just pasted" },
@@ -74,11 +73,6 @@ local config = {
                                         },
                                 },
                         },
-                },
-        },
-        heirline = {
-                separators = {
-                        tab = { "", "" },
                 },
         },
         plugins = {
@@ -168,8 +162,8 @@ local config = {
                                                         iA = "@attribute.inner",
                                                         aB = "@block.outer",
                                                         iB = "@block.inner",
-                                                        aD = "@conditional.outer",
-                                                        iD = "@conditional.inner",
+                                                        aC = "@conditional.outer",
+                                                        iC = "@conditional.inner",
                                                         aF = "@function.outer",
                                                         iF = "@function.inner",
                                                         aL = "@loop.outer",
@@ -184,8 +178,6 @@ local config = {
                                                         iS = "@statement.outer",
                                                         aN = "@number.inner",
                                                         iN = "@number.inner",
-                                                        aC = "@comment.outer",
-                                                        iC = "@comment.outer",
                                                 },
                                         },
                                         move = {
@@ -198,7 +190,8 @@ local config = {
                                                         ["]p"] = { query = "@parameter.outer", desc =
                                                         "Next parameter start" },
                                                         ["]x"] = { query = "@class.outer", desc = "Next class start" },
-                                                        ["]c"] = { query = "@comment.outer", desc = "Next comment start" },
+                                                        ["]c"] = { query = "@conditional.outer", desc =
+                                                        "Next conditional start" },
                                                 },
                                                 goto_next_end = {
                                                         ["]B"] = { query = "@block.outer", desc = "Next block end" },
@@ -206,7 +199,8 @@ local config = {
                                                         ["]P"] = { query = "@parameter.outer", desc =
                                                         "Next parameter end" },
                                                         ["]X"] = { query = "@class.outer", desc = "Next class end" },
-                                                        ["]C"] = { query = "@comment.outer", desc = "Next comment end" },
+                                                        ["]C"] = { query = "@conditional.outer", desc =
+                                                        "Next conditional end" },
                                                 },
                                                 goto_previous_start = {
                                                         ["[b"] = { query = "@block.outer", desc = "Previous block start" },
@@ -215,8 +209,8 @@ local config = {
                                                         ["[p"] = { query = "@parameter.outer", desc =
                                                         "Previous parameter start" },
                                                         ["[x"] = { query = "@class.outer", desc = "Previous class start" },
-                                                        ["[c"] = { query = "@comment.outer", desc =
-                                                        "Previous comment start" },
+                                                        ["[c"] = { query = "@conditional.outer", desc =
+                                                        "Previous conditional start" },
                                                 },
                                                 goto_previous_end = {
                                                         ["[B"] = { query = "@block.outer", desc = "Previous block end" },
@@ -225,8 +219,8 @@ local config = {
                                                         ["[P"] = { query = "@parameter.outer", desc =
                                                         "Previous parameter end" },
                                                         ["[X"] = { query = "@class.outer", desc = "Previous class end" },
-                                                        ["[C"] = { query = "@comment.outer", desc =
-                                                        "Previous comment end" },
+                                                        ["[C"] = { query = "@conditional.outer", desc =
+                                                        "Previous conditional end" },
                                                 },
                                         },
                                         swap = {
@@ -274,9 +268,11 @@ local config = {
                                 local multi_open = function(pb)
                                         local picker = action_state.get_current_picker(pb)
                                         local multi = picker:get_multi_selection()
-                                        actions.select_default(pb)    -- the normal enter behaviour
+                                        -- the normal enter behaviour
+                                        actions.select_default(pb)
                                         for _, j in pairs(multi) do
-                                                if j.path ~= nil then -- is it a file -> open it as well:
+                                                -- is it a file -> open it as well
+                                                if j.path ~= nil then
                                                         vim.cmd(string.format("%s %s", "edit", j.path))
                                                 end
                                         end
@@ -331,7 +327,12 @@ local config = {
                 {
                         "AndrewRadev/splitjoin.vim",
                         lazy = false,
-                }
+                },
+                {
+                        "sgur/vim-textobj-parameter", -- text object for function params to ","
+                        lazy = false,
+                        dependencies = { "kana/vim-textobj-user" },
+                },
         },
         -- This function is run last and is a good place to configuring
         -- augroups/autocommands and custom filetypes also this just pure lua so
