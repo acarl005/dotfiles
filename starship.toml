@@ -57,19 +57,19 @@ palette = "main"
 
 [palettes.main]
 text = "bright-white"
-text_sep = "#5D7B7F"
-bg1 = "#146064"
-bg2 = "#02292E"
+text_sep = "#A08CE1"
+bg1 = "#6653E0"
+bg2 = "#1D0A94"
 bg3 = "#221E25"
 success = "#004212"
 fail = "#420019"
 
 [palettes.fallback]
 text = "bright-white"
-text_sep = "66"
-bg1 = "23"
-bg2 = "237"
-bg3 = "233"
+text_sep = "146"
+bg1 = "98"
+bg2 = "56"
+bg3 = "234"
 success = "22"
 fail = "52"
 
