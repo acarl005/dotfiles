@@ -36,6 +36,10 @@ local config = {
                                 desc = "Previous buffer",
                         },
                 },
+                i = {
+
+                        ["<c-l>"] = { "<c-o>O", desc = "Enter newline above current line" }
+                }
         },
         lsp = {
                 -- easily add or disable built in mappings added during LSP attaching
@@ -45,11 +49,11 @@ local config = {
                                         "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
                                         desc = "Show symbols in the whole workspace"
                                 },
-                                ["<leader>lci"] = {
+                                ["<leader>lc"] = {
                                         "<cmd>Telescope lsp_incoming_calls<cr>",
                                         desc = "Show incoming calls for this function"
                                 },
-                                ["<leader>lco"] = {
+                                ["<leader>lC"] = {
                                         "<cmd>Telescope lsp_outgoing_calls<cr>",
                                         desc = "Show outgoing calls in this function"
                                 },
@@ -128,9 +132,9 @@ local config = {
                 },
                 {
                         "stevearc/aerial.nvim",
-                        opts = function(_, opts)
-                                opts.disable_max_lines = 20000
-                        end,
+                        opts = {
+                                disable_max_lines = 20000,
+                        },
                 },
                 {
                         "rebelot/heirline.nvim",

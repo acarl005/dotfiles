@@ -256,7 +256,7 @@ error_symbol = '[](fg:bg3 bg:fail)[\$](fg:text bg:fail)[](fail)'
 #============================================================
 
 [status]
-format = "[ $status $symbol ]($style)[](fg:text_sep bg:bg3)"
+format = "[ $status$symbol ]($style)[](fg:text_sep bg:bg3)"
 symbol = "󰁜"
 style = "fg:text bg:bg3"
 disabled = false
