@@ -134,6 +134,8 @@ local config = {
                         "stevearc/aerial.nvim",
                         opts = {
                                 disable_max_lines = 20000,
+                                -- 4 MiB
+                                disable_max_size = 4194304,
                         },
                 },
                 {
