@@ -20,7 +20,8 @@ return {
       ["<leader>x{"] = { "<i{0]}dd[{dd", desc = "Remove wrapping curly brace pair" },
       ["<leader>x("] = { "<i(0])dd[(dd", desc = "Remove wrapping parentheses" },
       ["<leader>x["] = { "<i[0]]dd[[dd", desc = "Remove wrapping square bracket pair" },
-      ["<c-p>"] = { ":Telescope find_files<CR>", desc = "Search files" },
+      ["<leader>gB"] = { ":ToggleBlame<cr>", desc = "Show git blame gutter" },
+      ["<c-p>"] = { ":Telescope find_files<cr>", desc = "Search files" },
       L = {
         function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
         desc = "Next buffer",
@@ -245,9 +246,10 @@ return {
     {
       "AstroNvim/astrocommunity",
       { import = "astrocommunity.colorscheme.catppuccin" },
+      { import = "astrocommunity.editing-support.mini-splitjoin" },
+      { import = "astrocommunity.git.blame-nvim" },
       { import = "astrocommunity.motion.nvim-surround" },
       { import = "astrocommunity.motion.marks-nvim" },
-      { import = "astrocommunity.editing-support.mini-splitjoin" },
       { import = "astrocommunity.scrolling.nvim-scrollbar" },
     },
     {
