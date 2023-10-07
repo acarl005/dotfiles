@@ -226,8 +226,12 @@ return {
           end
         end
 
-        opts.defaults.mappings.i["<cr>"] = multi_open
         opts.defaults.mappings.n["<cr>"] = multi_open
+        opts.defaults.mappings.i["<cr>"] = multi_open
+
+        opts.defaults.mappings.i["<C-n>"] = actions.move_selection_next
+        opts.defaults.mappings.i["<C-p>"] = actions.move_selection_previous
+
         return opts
       end,
     },
