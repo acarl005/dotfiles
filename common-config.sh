@@ -184,6 +184,8 @@ fi
 
 
 # Aliases
+alias f='fortune | cowsay -f tux'
+alias pony='fortune | ponysay -b round'
 alias grep='grep --exclude-dir=node_modules --color=auto'
 alias cp='cp -iv'
 alias mv='mv -iv'

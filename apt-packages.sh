@@ -7,7 +7,7 @@ sudo add-apt-repository -y ppa:aos1/diff-so-fancy
 sudo add-apt-repository -y ppa:neovim-ppa/stable
 sudo add-apt-repository -y ppa:o2sh/onefetch
 sudo apt-get update -y
-sudo apt-get install --ignore-missing -y git ripgrep autojump ranger tldr curl xclip shellcheck neofetch bat fzf fd-find zsh neovim jq diff-so-fancy onefetch
+sudo apt-get install --ignore-missing -y git ripgrep autojump tldr curl xclip shellcheck neofetch bat fzf fd-find zsh neovim jq diff-so-fancy onefetch
 
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
   && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
@@ -25,6 +25,7 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
   # custom plugins
   git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+  git clone https://github.com/jeffreytse/zsh-vi-mode "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-vi-mode"
 fi
 
 # install starship
@@ -46,6 +47,6 @@ done
 if [ $INSTALL_FONTS -eq 1 ]; then
   git clone --depth 1 https://github.com/ryanoasis/nerd-fonts "$HOME/Downloads/fonts"
   pushd ~/Downloads/fonts
-  ./install.sh Inconsolata BitstreamVeraSansMono
+  ./install.sh Inconsolata
   popd
 fi

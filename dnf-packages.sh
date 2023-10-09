@@ -3,7 +3,7 @@
 sudo dnf update -y
 sudo dnf install -y 'dnf-command(copr)'
 sudo dnf copr enable -y varlad/onefetch
-sudo dnf install -y which man git neovim python3-neovim ripgrep autojump ranger tldr xclip neofetch bat fzf fd-find zsh jq tmux onefetch 
+sudo dnf install -y which man git neovim python3-neovim ripgrep autojump tldr xclip neofetch bat fzf fd-find zsh jq tmux onefetch 
 
 mkdir -p "$HOME/.local/bin"
 mkdir -p "$HOME/src"
@@ -20,6 +20,7 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
   # custom plugins
   git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+  git clone https://github.com/jeffreytse/zsh-vi-mode "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-vi-mode"
 fi
 
 # install starship
@@ -41,6 +42,6 @@ done
 if [ $INSTALL_FONTS -eq 1 ]; then
   git clone --depth 1 https://github.com/ryanoasis/nerd-fonts "$HOME/Downloads/fonts"
   pushd ~/Downloads/fonts
-  ./install.sh Inconsolata BitstreamVeraSansMono
+  ./install.sh Inconsolata
   popd
 fi
