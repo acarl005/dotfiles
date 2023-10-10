@@ -2,12 +2,12 @@
 
 sudo apt-get update -y
 
-sudo apt-get install -y software-properties-common
-sudo add-apt-repository -y ppa:aos1/diff-so-fancy
+# https://askubuntu.com/questions/1480616/adding-opencpn-repository-attributeerror-nonetype-object-has-no-attribute
+sudo apt-get install -y software-properties-common python3-launchpadlib
 sudo add-apt-repository -y ppa:neovim-ppa/stable
 sudo add-apt-repository -y ppa:o2sh/onefetch
 sudo apt-get update -y
-sudo apt-get install --ignore-missing -y git ripgrep autojump tldr curl xclip shellcheck neofetch bat fzf fd-find zsh neovim jq diff-so-fancy onefetch
+sudo apt-get install --ignore-missing -y git ripgrep autojump tldr curl xclip shellcheck neofetch bat fzf fd-find zsh neovim jq onefetch
 
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
   && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \

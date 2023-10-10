@@ -7,8 +7,6 @@ sudo dnf install -y which man git neovim python3-neovim ripgrep autojump tldr xc
 
 mkdir -p "$HOME/.local/bin"
 mkdir -p "$HOME/src"
-git clone https://github.com/so-fancy/diff-so-fancy.git "$HOME/src/diff-so-fancy"
-ln -s "$HOME/src/diff-so-fancy/diff-so-fancy" "$HOME/.local/bin"
 
 # install oh-my-zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
