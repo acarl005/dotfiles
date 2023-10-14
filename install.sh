@@ -4,11 +4,6 @@ set -e
 
 . ./install-dotfiles.sh
 
-# install Rustup mainly for cargo packages
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
-
-"$HOME/.cargo/bin/cargo" install joshuto git-delta
-
 if [[ $(uname) = Darwin ]]; then
   . mac-packages.sh
 elif command -v apt-get >/dev/null; then

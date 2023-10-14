@@ -2,21 +2,7 @@
   # Excludesfiles allows us to set a global list of things to ignore
   excludesfile = ~/.gitignore_global
   editor = nvim
-  # pager = diff-so-fancy | less --tabs=4 -RFX
-  pager = delta
-
-[delta]
-  navigate = true    # use n and N to move between diff sections
-  light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
-
-[interactive]
-  diffFilter = delta --color-only
-
-[diff]
-  colorMoved = default
-
-[merge]
-  conflictstyle = diff3
+  pager = diff-so-fancy | less --tabs=4 -RFX
 
 [rebase]
   instructionFormat = ">%h (%an <%ae>) %s"
@@ -63,11 +49,9 @@
   # Edit the last commit
   amend= commit --verbose --amend
 
-
 [user]
   name = Andy Carlson
-  email = andy@warp.dev
-
+  email = 2yinyang2@gmail.com
 
 [credential]
   helper = store

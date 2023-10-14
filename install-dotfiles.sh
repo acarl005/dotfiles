@@ -5,7 +5,9 @@ set -e
 mkdir -p ~/.vim
 mkdir -p ~/.warp
 mkdir -p ~/.config
-git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
+
+rm -rf ~/.config/nvim
+git clone --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim
 mkdir ~/.config/nvim/lua/user/
 
 [ -L ~/bin ] && rm ~/bin
@@ -23,9 +25,7 @@ ln -fs "$PWD/config.zsh" ~/config.zsh
 ln -fs "$PWD/.gitconfig" ~/.gitconfig
 ln -fs "$PWD/.gitignore_global" ~/.gitignore_global
 ln -fs "$PWD/.inputrc" ~/.inputrc
-ln -fs "$PWD/.pryrc" ~/.pryrc
 ln -fs "$PWD/.psqlrc" ~/.psqlrc
-ln -fs "$PWD/.mongorc.js" ~/.mongorc.js
 ln -fs "$PWD/.pythonrc.py" ~/.pythonrc.py
 ln -fs "$PWD/starship.toml" ~/.config/starship.toml
 ln -fs "$PWD/init.lua" ~/.config/nvim/lua/user/init.lua
