@@ -11,7 +11,8 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo 
   && sudo apt update \
   && sudo apt install -y gh
 
-sudo snap install nvim onefetch
+sudo snap install onefetch
+sudo snap install --classic nvim
 
 # install oh-my-zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
