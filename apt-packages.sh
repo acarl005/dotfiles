@@ -7,13 +7,15 @@ sudo apt-get install -y software-properties-common python3-launchpadlib
 sudo add-apt-repository -y ppa:neovim-ppa/stable
 sudo add-apt-repository -y ppa:o2sh/onefetch
 sudo apt-get update -y
-sudo apt-get install --ignore-missing -y git ripgrep autojump tldr curl xclip shellcheck neofetch bat fzf fd-find zsh neovim jq onefetch
+sudo apt-get install --ignore-missing -y git ripgrep autojump tldr curl xclip shellcheck neofetch bat fzf fd-find zsh jq
 
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
   && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
   && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
   && sudo apt update \
   && sudo apt install -y gh
+
+sudo snap install nvim onefetch
 
 # install oh-my-zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
