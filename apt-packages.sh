@@ -3,7 +3,9 @@
 sudo apt-get update -y
 
 sudo apt-get install -y software-properties-common
-sudo apt-get install --ignore-missing -y git ripgrep autojump tldr curl xclip shellcheck neofetch bat fzf fd-find zsh jq
+sudo add-apt-repository ppa:aos1/diff-so-fancy
+sudo apt-get update -y
+sudo apt-get install --ignore-missing -y git ripgrep autojump tldr curl xclip shellcheck neofetch bat fzf fd-find zsh jq diff-so-fancy
 
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
   && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
