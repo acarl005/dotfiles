@@ -155,33 +155,16 @@ cheat() {
   curl "cheat.sh/$1"
 }
 
-if command -v joshuto >/dev/null; then
-  function jo() {
-	  ID="$$"
-	  mkdir -p /tmp/$USER
-	  OUTPUT_FILE="/tmp/$USER/joshuto-cwd-$ID"
-	  env joshuto --output-file "$OUTPUT_FILE" $@
-	  exit_code=$?
-
-	  case "$exit_code" in
-		  # regular exit
-		  0)
-			  ;;
-		  # output contains current directory
-		  101)
-			  JOSHUTO_CWD=$(cat "$OUTPUT_FILE")
-			  cd "$JOSHUTO_CWD"
-			  ;;
-		  # output selected files
-		  102)
-			  ;;
-		  *)
-			  echo "Exit code: $exit_code"
-			  ;;
-	  esac
+if command -v yazi >/dev/null; then
+  function ya() {
+    tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+    yazi --cwd-file="$tmp"
+    if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+      cd -- "$cwd"
+    fi
+    rm -f -- "$tmp"
   }
 fi
-
 
 # Aliases
 alias f='fortune | cowsay -f tux'
@@ -250,6 +233,8 @@ alias kub=kubectl
 alias cls='printf "\033c"'
 alias nr='npm run'
 alias nt='npm test'
+alias cr='cargo run'
+alias vidu='vi $(git du)'
 
 # compatibility stuff
 if [[ $(uname) = Linux ]]; then
