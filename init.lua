@@ -252,6 +252,14 @@ return {
         close_fold_kinds = { "imports" },
       },
     },
+    {
+      "rcarriga/nvim-notify",
+      opts = {
+        -- Hack to silence a warning caused by nvim-transparent
+        -- https://github.com/AstroNvim/astrocommunity/issues/598
+        background_colour = "#1e222d",
+      },
+    },
     -- custom plugins
     {
       "AstroNvim/astrocommunity",
@@ -291,14 +299,6 @@ return {
           "EndOfBuffer",
         },
         exclude_groups = {},
-      },
-    },
-    {
-      "rcarriga/nvim-notify",
-      opts = {
-        -- Hack to silence a warning caused by nvim-transparent
-        -- https://github.com/AstroNvim/astrocommunity/issues/598
-        background_colour = "#1e222d",
       },
     },
     {
