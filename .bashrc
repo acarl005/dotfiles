@@ -1,5 +1,3 @@
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
 . ~/common-config.sh
 
 HISTSIZE=3000

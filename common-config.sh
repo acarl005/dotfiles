@@ -35,9 +35,8 @@ if [ -d "$HOME/go" ]; then
   PATH="$GOPATH/bin:$PATH"
 fi
 
-# use the version of Git i installed with homebrew instead of the one that came with the OS
-if [ -d /usr/local/opt/git/bin ]; then
-  PATH="/usr/local/opt/git/bin:$PATH"
+if command -v brew >/dev/null; then
+  eval "$(brew shellenv)"
 fi
 
 # if this is an interactive shell
