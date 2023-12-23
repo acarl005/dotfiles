@@ -9,6 +9,7 @@ return {
     opt = {
       scrolloff = 20,
       wrap = true,
+      title = false,
       cmdheight = 1,
     },
   },
@@ -249,12 +250,6 @@ return {
             L = "next_source",
           },
         },
-      },
-    },
-    {
-      "kevinhwang91/nvim-ufo",
-      opts = {
-        close_fold_kinds = { "imports" },
       },
     },
     -- custom plugins
