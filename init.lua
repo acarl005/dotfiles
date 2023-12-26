@@ -9,6 +9,7 @@ return {
     opt = {
       scrolloff = 20,
       wrap = true,
+      title = false,
       cmdheight = 1,
     },
   },
@@ -232,6 +233,11 @@ return {
         opts.defaults.mappings.i["<C-n>"] = actions.move_selection_next
         opts.defaults.mappings.i["<C-p>"] = actions.move_selection_previous
 
+        opts.pickers = {
+          find_files = {
+            hidden = true,
+          },
+        }
         return opts
       end,
     },

@@ -16,8 +16,6 @@ ln -i -s "$PWD/bin" ~/bin
 ln -i -s "$PWD/ftplugin" ~/.config/nvim/ftplugin
 [ -L ~/.warp/themes ] && rm ~/.warp/themes
 ln -i -s "$PWD/warp-themes" ~/.warp/themes
-[ -L ~/.config/joshuto ] && rm ~/.config/joshuto
-ln -i -s "$PWD/joshuto" ~/.config/joshuto
 
 ln -fs "$PWD/.ripgreprc" ~/.ripgreprc
 ln -fs "$PWD/common-config.sh" ~/common-config.sh

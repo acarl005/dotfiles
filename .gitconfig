@@ -18,6 +18,9 @@
   changed = green bold
   added = yellow bold
 
+[merge]
+  conflictstyle = diff3
+
 # Aliases are command shortcuts
 [alias]
   co = checkout
@@ -25,6 +28,7 @@
   br = branch
   re = rebase
   d = diff
+  du = diff --name-only --diff-filter=U
   pick = cherry-pick
   re = remote -v
   ci = commit --verbose
