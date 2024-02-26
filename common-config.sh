@@ -83,9 +83,9 @@ if command -v ls-go >/dev/null; then
 else
   suggest ls-go https://github.com/acarl005/ls-go
   if [[ `uname -s` = Linux ]]; then
-    alias ll='/bin/ls -FlAhp --color=auto'
+    alias ll='command -p ls -FlAhp --color=auto'
   else
-    alias ll='/bin/ls -FGlAhp'
+    alias ll='command -p ls -FGlAhp'
   fi
 fi
 
