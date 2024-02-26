@@ -1,26 +1,14 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-#============================================================
-# Left Prompt
-#============================================================
-
-format = """\
-[](bg1)\
+format = """
 $os\
-$username\
-$sudo\
 $hostname\
 $shlvl\
-$kubernetes\
-[](fg:bg1 bg:bg2)\
 $directory\
-[](fg:bg2 bg:bg3)\
-$git_branch\
-$git_commit\
-$git_state\
-$git_metrics\
-$git_status\
-$hg_branch\
+$nix_shell\
+
+$fill\
+
 $c\
 $conda\
 $golang\
@@ -39,254 +27,197 @@ $rust\
 $scala\
 $swift\
 $terraform\
-$character
-"""
 
-right_format = """\
-[](bg3)
-$status\
-$memory_usage\
-$battery\
-$jobs\
+$git_state\
+$git_branch\
+$git_commit\
+$git_status\
 $cmd_duration\
-$time\
-[](bg3)
-"""
+$jobs\
+$line_break\
+$character"""
 
-palette = "main"
+# Disable the blank line at the start of the prompt
+add_newline = true
 
-[palettes.main]
-text = "bright-white"
-text_sep = "#A08CE1"
-bg1 = "#6653E0"
-bg2 = "#1D0A94"
-bg3 = "#221E25"
-success = "#004212"
-fail = "#420019"
-
-[palettes.fallback]
-text = "bright-white"
-text_sep = "146"
-bg1 = "98"
-bg2 = "56"
-bg3 = "234"
-success = "22"
-fail = "52"
-
-#============================================================
-# Section 1
-#============================================================
 
 [os]
 disabled = false
-format = "[$symbol](fg:text bg:bg1)[ ](fg:text_sep bg:bg1)"
-style = ""
-
-[username]
-format = "[ $user ]($style)"
-style_user = "fg:text bg:bg1"
-style_root = "fg:bright-red bg:bg1"
-show_always = true
-
-[sudo]
-format = "[as $symbol]($style)"
-disabled = false
-symbol = "󱑷 "
-style = "fg:text bg:bg1"
-
-[hostname]
-format = "[ ](fg:text_sep bg:bg1)[$ssh_symbol$hostname ]($style)"
-ssh_symbol = " "
-style = "fg:text bg:bg1"
+format = "[](fg:#252525 bg:none)[$symbol]($style)[ ](fg:#252525 bg:none)"
+style = "fg:#E8E3E3 bg:#252525 bold"
 
 [shlvl]
-format = "[ ](fg:text_sep bg:bg1)[$symbol$shlvl ]($style)"
-symbol = " "
 disabled = false
-style = "fg:text bg:bg1"
+format = "[](fg:#252525 bg:none)[$shlvl](fg:#E8E3E3 bg:#252525)[█](fg:#252525 bg:#252525)[](fg:#81C19B bg:#252525)[$symbol](fg:#252525 bg:#81C19B)[ ](fg:#81C19B bg:none)"
+symbol = " "
 
-[kubernetes]
-format = '[ ](fg:text_sep bg:bg1)[$symbol$context(\($namespace\)) ]($style)'
+[hostname]
 disabled = false
-style = "fg:text bg:bg1"
-
-#============================================================
-# Section 2
-#============================================================
+ssh_only = true
+ssh_symbol = " "
+format = "[](fg:#252525 bg:none)[$hostname](fg:#E8E3E3 bg:#252525)[█](fg:#252525 bg:#252525)[](fg:#C397D8 bg:#252525)[$ssh_symbol](fg:#252525 bg:#C397D8)[ ](fg:#C397D8 bg:none)"
 
 [directory]
-format = "[  $path]($style)[$read_only ]($read_only_style)"
+format = "[](fg:#252525 bg:none)[$path]($style)[█](fg:#252525 bg:#252525)[](fg:#6791C9 bg:#252525)[ ](fg:#252525 bg:#6791C9)[ ](fg:#6791C9 bg:none)"
+style = "fg:#E8E3E3 bg:#252525 bold"
 fish_style_pwd_dir_length = 1
-style = "fg:text bg:bg2"
-read_only = " "
-read_only_style = "fg:bright-red bg:bg2"
+truncate_to_repo=false
 
-#============================================================
-# Section 3
-#============================================================
+[nix_shell]
+disabled = false
+format = "[](fg:#252525 bg:none)[$name]($style)[█](fg:#252525 bg:#252525)[](fg:#6791C9 bg:#252525)[$symbol](fg:#252525 bg:#6791C9)[](fg:#6791C9 bg:none)"
+symbol = " "
+style = "fg:#E8E3E3 bg:#252525 bold"
+
+[fill]
+symbol = ' '
+style = 'bold green'
+
 
 [git_branch]
-format = '[ $symbol$branch(:$remote_branch) ]($style)'
-symbol = "  "
-style = "fg:text bg:bg3"
+format = "[](fg:#252525 bg:none)[$branch]($style)[](fg:#252525 bg:#252525)[](fg:#81C19B bg:#252525)[$symbol](fg:#252525 bg:#81C19B)[](fg:#81C19B bg:none) "
+style = "fg:#E8E3E3 bg:#252525"
+symbol = " "
 
 [git_commit]
-format = '[  󰜘 \($hash$tag\) ]($style)'
-style = "fg:text bg:bg3"
-
-[git_state]
-format = '[<$state($progress_current/$progress_total)> ]($style)'
-style = "fg:bright-yellow bg:bg3"
-
-[git_metrics]
-format = "([+$added]($added_style))([-$deleted]($deleted_style)[ ]($added_style))"
-added_style = "fg:bright-green bg:bg3"
-deleted_style = "fg:bright-red bg:bg3"
-disabled = false
+format = "[](fg:#252525 bg:none)[\\($hash\\)]($style)[](fg:#252525 bg:#252525)[](fg:#81C19B bg:#252525)[](fg:#252525 bg:#81C19B)[](fg:#81C19B bg:none) "
+style = "fg:#E8E3E3 bg:#252525"
+symbol = ""
 
 [git_status]
-format = '[\[$all_status$ahead_behind\] ]($style)'
-style = "fg:bright-blue bg:bg3"
+format="[](fg:#252525 bg:none)[$all_status$ahead_behind]($style)[](fg:#252525 bg:#252525)[](fg:#6791C9 bg:#252525)[ ](fg:#252525 bg:#6791C9)[](fg:#6791C9 bg:none) "
+style = "fg:#E8E3E3 bg:#252525"
+conflicted = "="
+ahead =	"⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+up_to_date = " 󰄸 "
+untracked = "?${count}"
+stashed = ""
+modified = "!${count}"
+staged = "+${count}"
+renamed = "»${count}"
+deleted = " ${count}"
+
+[git_state]
+rebase = "REBASING"
+merge =	"MERGING"
+revert = "REVERTING"
+cherry_pick = "CHERRY-PICKING"
+bisect = "BISECTING"
+am = "AM"
+am_or_rebase = "AM/REBASE"
+style =	"yellow"
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+
+[cmd_duration]
+disabled = false
+min_time = 1000
+format = "[](fg:#252525 bg:none)[$duration]($style)[](fg:#252525 bg:#252525)[](fg:#C397D8 bg:#252525)[󱑂 ](fg:#252525 bg:#C397D8)[](fg:#C397D8 bg:none)"
+style = "fg:#E8E3E3 bg:#252525 bold"
+
+[line_break]
+disabled = false
+
+[character]
+success_symbol = "[❯](#6791C9 bold)"
+error_symbol = "[❯](#B66467 bold)"
+
 
 #============================================================
-# Section 4
+# Languages
 #============================================================
 
 [c]
 symbol = ""
-format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
-style = "fg:text bg:bg3"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+style = "fg:#E8E3E3 bg:#252525 bold"
 
 [conda]
 symbol = "󰄦"
-format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
-style = "fg:text bg:bg3"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+style = "fg:#E8E3E3 bg:#252525 bold"
 
 [golang]
 symbol = ""
-format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
-style = "fg:text bg:bg3"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+style = "fg:#E8E3E3 bg:#252525 bold"
 
 [helm]
 symbol = "󱃾"
-format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
-style = "fg:text bg:bg3"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+style = "fg:#E8E3E3 bg:#252525 bold"
 
 [java]
 symbol = ""
-format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
-style = "fg:text bg:bg3"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+style = "fg:#E8E3E3 bg:#252525 bold"
 
 [julia]
 symbol = ""
-format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
-style = "fg:text bg:bg3"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+style = "fg:#E8E3E3 bg:#252525 bold"
 
 [lua]
 symbol = ""
-format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
-style = "fg:text bg:bg3"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+style = "fg:#E8E3E3 bg:#252525 bold"
 
 [nim]
 symbol = ""
-format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
-style = "fg:text bg:bg3"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+style = "fg:#E8E3E3 bg:#252525 bold"
 
 [nodejs]
 symbol = ""
-format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
-style = "fg:text bg:bg3"
-not_capable_style = "fg:red bg:bg3"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+style = "fg:#E8E3E3 bg:#252525 bold"
 
 [php]
 symbol = ""
-format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
-style = "fg:text bg:bg3"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+style = "fg:#E8E3E3 bg:#252525 bold"
 
 [pulumi]
 symbol = "⛰️"
-format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
-style = "fg:text bg:bg3"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+style = "fg:#E8E3E3 bg:#252525 bold"
 
 [python]
 symbol = ""
-format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
-style = "fg:text bg:bg3"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+style = "fg:#E8E3E3 bg:#252525 bold"
 
 [rlang]
 symbol = "󰟔"
-format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
-style = "fg:text bg:bg3"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+style = "fg:#E8E3E3 bg:#252525 bold"
 
 [ruby]
 symbol = ""
-format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
-style = "fg:text bg:bg3"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+style = "fg:#E8E3E3 bg:#252525 bold"
 
 [rust]
 symbol = ""
-format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
-style = "fg:text bg:bg3"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+style = "fg:#E8E3E3 bg:#252525 bold"
 
 [scala]
 symbol = ""
-format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
-style = "fg:text bg:bg3"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+style = "fg:#E8E3E3 bg:#252525 bold"
 
 [swift]
 symbol = ""
-format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
-style = "fg:text bg:bg3"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+style = "fg:#E8E3E3 bg:#252525 bold"
 
 [terraform]
 symbol = ""
-format = "[](fg:text_sep bg:bg3)[ $symbol ]($style)"
-style = "fg:text bg:bg3"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+style = "fg:#E8E3E3 bg:#252525 bold"
 
-#============================================================
-# Section 5
-#============================================================
-
-[character]
-success_symbol = '[](fg:bg3 bg:success)[\$](fg:text bg:success)[](success)'
-error_symbol = '[](fg:bg3 bg:fail)[\$](fg:text bg:fail)[](fail)'
-
-#============================================================
-# Right Prompt
-#============================================================
-
-[status]
-format = "[ $status$symbol ]($style)[](fg:text_sep bg:bg3)"
-symbol = "󰁜"
-style = "fg:text bg:bg3"
-disabled = false
-
-[memory_usage]
-threshold = 80
-symbol = "󰍛 "
-format = "[ $ram $symbol]($style)[](fg:text_sep bg:bg3)"
-style = "fg:text bg:bg3"
-disabled = false
-
-[battery]
-format = "[ $percentage $symbol]($style)[](fg:text_sep bg:bg3)"
-
-[[battery.display]]
-threshold = 40
-style = "fg:text bg:bg3"
-
-[jobs]
-format = "[ $number$symbol ]($style)[](fg:text_sep bg:bg3)"
-style = "fg:text bg:bg3"
-
-[cmd_duration]
-format = "[ $duration  ]($style)[](fg:text_sep bg:bg3)"
-style = "fg:text bg:bg3"
-
-[time]
-format = "[ $time  ]($style)"
-style = "bg:bg3"
-disabled = false
 
 #============================================================
 # OS Symbols
