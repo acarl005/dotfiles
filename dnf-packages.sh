@@ -3,7 +3,7 @@
 sudo dnf update -y
 sudo dnf install -y 'dnf-command(copr)'
 sudo dnf copr enable -y varlad/onefetch
-sudo dnf install -y which man git neovim python3-neovim ripgrep autojump tldr xclip neofetch bat fd-find zsh jq tmux onefetch 
+sudo dnf install -y which man git neovim python3-neovim ripgrep autojump tldr xclip fastfetch bat fd-find zsh jq tmux onefetch 
 
 mkdir -p "$HOME/.local/bin"
 mkdir -p "$HOME/src"
