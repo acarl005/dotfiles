@@ -7,13 +7,10 @@ mkdir -p ~/.warp
 mkdir -p ~/.config
 
 rm -rf ~/.config/nvim
-git clone --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim
-mkdir ~/.config/nvim/lua/user/
+ln -i -s "$PWD/nvim" ~/.config/nvim
 
 [ -L ~/bin ] && rm ~/bin
 ln -i -s "$PWD/bin" ~/bin
-[ -L ~/.config/nvim/ftplugin ] && rm ~/.config/nvim/ftplugin
-ln -i -s "$PWD/ftplugin" ~/.config/nvim/ftplugin
 [ -L ~/.warp/themes ] && rm ~/.warp/themes
 ln -i -s "$PWD/warp-themes" ~/.warp/themes
 
