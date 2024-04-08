@@ -44,14 +44,14 @@ fi
 if [[ $- =~ "i" ]]; then
   if [ -d .git ] && command -v onefetch >/dev/null; then
     onefetch
-  elif command -v neofetch >/dev/null; then
-    neofetch
+  elif command -v fastfetch >/dev/null; then
+    fastfetch
   elif command -v pfetch >/dev/null; then
     # I disabled "packages"
     export PF_INFO="ascii title os host kernel uptime memory shell editor wm de palette"
     pfetch
   else
-    suggest neofetch https://github.com/dylanaraps/neofetch
+    suggest fastfetch https://github.com/fastfetch-cli/fastfetch
   fi
 fi
 
