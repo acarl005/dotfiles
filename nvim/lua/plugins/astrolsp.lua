@@ -1,8 +1,3 @@
--- AstroLSP allows you to customize the features in AstroNvim's LSP configuration engine
--- Configuration documentation can be found with `:h astrolsp`
--- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
---       as this provides autocomplete and documentation while editing
-
 ---@type LazySpec
 return {
   "AstroNvim/astrolsp",
@@ -17,17 +12,10 @@ return {
     formatting = {
       format_on_save = {
         enabled = true,
-        allow_filetypes = {
-          -- "go",
-        },
-        ignore_filetypes = {
-          -- "python",
-        },
+        allow_filetypes = {},
+        ignore_filetypes = {},
       },
-      disabled = {
-        -- disable lua_ls formatting capability if you want to use StyLua to format your lua code
-        -- "lua_ls",
-      },
+      disabled = {},
       timeout_ms = 1000,
     },
     -- enable servers that you already have installed without mason
@@ -36,15 +24,6 @@ return {
     },
     ---@diagnostic disable: missing-fields
     config = {
-      -- lua_ls = {
-      --   settings = {
-      --     Lua = {
-      --       diagnostics = {
-      --         globals = { "vim" },
-      --       },
-      --     },
-      --   },
-      -- },
       rust_analyzer = {
         settings = {
           ["rust-analyzer"] = {
