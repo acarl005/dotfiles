@@ -10,7 +10,7 @@ return {
           hl_shortcut = "DashboardShortcut",
           align_shortcut = "right",
           width = 36,
-          cursor = 5,
+          cursor = -2,
           hl = "DashboardCenter",
           text = "  Configure",
           position = "center",
