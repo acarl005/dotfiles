@@ -24,6 +24,15 @@ return {
     },
     ---@diagnostic disable: missing-fields
     config = {
+      powershell_es = {
+        settings = {
+          powershell = {
+            codeFormatting = {
+              openBraceOnSameLine = true,
+            },
+          },
+        },
+      },
       rust_analyzer = {
         settings = {
           ["rust-analyzer"] = {

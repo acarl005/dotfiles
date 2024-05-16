@@ -39,7 +39,7 @@ return {
 
       local file_path = {
         {
-          provider = function() return vim.fn.expand "%" end,
+          provider = function() return vim.fn.fnamemodify(vim.fn.expand "%", ":~") end,
         },
         padding = { left = 1, right = 1 },
       }
