@@ -2,35 +2,24 @@
 return {
   {
     "goolord/alpha-nvim",
-    opts = function(_, opts)
-      opts.config.layout[4].val[7] = {
-        val = "  Configure",
-        opts = {
-          shortcut = "LDR ,  ",
-          hl_shortcut = "DashboardShortcut",
-          align_shortcut = "right",
-          width = 36,
-          cursor = -2,
-          hl = "DashboardCenter",
-          text = "  Configure",
-          position = "center",
+    opts = {
+      section = {
+        header = {
+          val = {
+            [[   ,φ≥        ▒                                                                 ]],
+            [[ ,@╬╬▒▒       ╬╬▒╖                                            ▄▄                ]],
+            [[δ▒╠╬╬╠╠╠╦     ╬╬╬╬▓                                           ╙╙                ]],
+            [[╠▒▒╠╬╠╠╠╠▒    ╣╬╬╬╬     ▐QÆT^"▀┐  ,Æ""""▄   Æ"^^▀╗ ╙██    ▐█▌ ██  ██▓▓▀█▓▄▓▀▓█▓ ]],
+            [[╠▒▒▒╠└╠╠╠╠╠ε  ╣╬╬╬╬     ▐▌     █ ]▌      ▌ ▌      ▓ ╙█▓  ▐█▓  ██  ██─  ▐██   ╟██]],
+            [[╠╠╠╠╠  ╠╬╬╬╬▒ ╣▓▓▓▓     ▐▌     ▓ ▐▌‾‾‾‾‾‾ ▐▌      ╟▌ ╟█▌┌██   ██  ██   ▐██   ╞██]],
+            [[╠╠╠╠╠   ╙╬╬╬╬╬╣▓▓▓▓     ▐▌     ▓  ▓        ▓     ,▓   ╟█▓█    ██  ██   ▐██   ╞██]],
+            [[╠╠╠╠╠     ╢╬╬╬╣╬▓▓▓     └^     ╙   └"²²"`   └"²²"└     ╙╙`    ▀▀  ▀▀    ▀▀   └▀╙]],
+            [[`╝╬╬╬      ╙╬╬╣╣╬▓╜                                                             ]],
+            [[   ╚╬        ╣▓▓╙                                                               ]],
+          },
         },
-        on_press = function() vim.cmd ":tabnew ~/.config/nvim" end,
-        type = "button",
-      }
-      opts.section.header.val = {
-        [[   ,φ≥        ▒                                                                 ]],
-        [[ ,@╬╬▒▒       ╬╬▒╖                                            ▄▄                ]],
-        [[δ▒╠╬╬╠╠╠╦     ╬╬╬╬▓                                           ╙╙                ]],
-        [[╠▒▒╠╬╠╠╠╠▒    ╣╬╬╬╬     ▐QÆT^"▀┐  ,Æ""""▄   Æ"^^▀╗ ╙██    ▐█▌ ██  ██▓▓▀█▓▄▓▀▓█▓ ]],
-        [[╠▒▒▒╠└╠╠╠╠╠ε  ╣╬╬╬╬     ▐▌     █ ]▌      ▌ ▌      ▓ ╙█▓  ▐█▓  ██  ██─  ▐██   ╟██]],
-        [[╠╠╠╠╠  ╠╬╬╬╬▒ ╣▓▓▓▓     ▐▌     ▓ ▐▌‾‾‾‾‾‾ ▐▌      ╟▌ ╟█▌┌██   ██  ██   ▐██   ╞██]],
-        [[╠╠╠╠╠   ╙╬╬╬╬╬╣▓▓▓▓     ▐▌     ▓  ▓        ▓     ,▓   ╟█▓█    ██  ██   ▐██   ╞██]],
-        [[╠╠╠╠╠     ╢╬╬╬╣╬▓▓▓     └^     ╙   └"²²"`   └"²²"└     ╙╙`    ▀▀  ▀▀    ▀▀   └▀╙]],
-        [[`╝╬╬╬      ╙╬╬╣╣╬▓╜                                                             ]],
-        [[   ╚╬        ╣▓▓╙                                                               ]],
-      }
-    end,
+      },
+    },
   },
   {
     "rebelot/heirline.nvim",
@@ -39,7 +28,24 @@ return {
 
       local file_path = {
         {
-          provider = function() return vim.fn.fnamemodify(vim.fn.expand "%", ":~") end,
+          provider = function()
+            local path = vim.fn.expand "%:~:."
+            if path == "" then return "" end
+
+            local root_info = require("astrocore.rooter").detect(0, false)[1] or {}
+            local root_path = (root_info.paths or {})[1]
+            if root_path then
+              local root = vim.fn.fnamemodify(root_path, ":~")
+              if path:find(root, 1, true) == 1 then path = path:sub(#root + 2) end
+            end
+            local max_length = 4
+            local sep = package.config:sub(1, 1)
+            local parts = vim.split(path, "[\\/]")
+            if #parts > max_length then
+              parts = { parts[1], "…", table.concat({ unpack(parts, #parts - max_length + 2, #parts) }, sep) }
+            end
+            return table.concat(parts, sep)
+          end,
         },
         padding = { left = 1, right = 1 },
       }
@@ -104,11 +110,6 @@ return {
       },
       exclude_groups = {},
     },
-  },
-  {
-    "airblade/vim-rooter", -- adds :Rooter command to change pwd to the project root
-    cmd = { "Rooter", "RooterToggle" },
-    config = function() vim.g.rooter_manual_only = 1 end,
   },
   {
     "tyru/open-browser-github.vim", -- opens current buffer in GitHub

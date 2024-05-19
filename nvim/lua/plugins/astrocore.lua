@@ -21,7 +21,6 @@ return {
       opt = {
         wrap = true,
         title = false,
-        cmdheight = 1,
         scrolloff = 9001,
       },
     },
@@ -34,7 +33,7 @@ return {
         ["<leader>x("] = { "<i(0])dd[(dd", desc = "Remove wrapping parentheses" },
         ["<leader>x["] = { "<i[0]]dd[[dd", desc = "Remove wrapping square bracket pair" },
         ["<leader>gB"] = { ":ToggleBlame<cr>", desc = "Show git blame gutter" },
-        ["<c-p>"] = { ":Telescope find_files<cr>", desc = "Search files" },
+        ["<c-p>"] = { require("telescope.builtin").find_files, desc = "Search files" },
         L = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
         H = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
       },
