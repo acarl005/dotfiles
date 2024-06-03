@@ -32,10 +32,10 @@ return {
         ["<leader>x{"] = { "<i{0]}dd[{dd", desc = "Remove wrapping curly brace pair" },
         ["<leader>x("] = { "<i(0])dd[(dd", desc = "Remove wrapping parentheses" },
         ["<leader>x["] = { "<i[0]]dd[[dd", desc = "Remove wrapping square bracket pair" },
-        ["<leader>gB"] = { ":ToggleBlame<cr>", desc = "Show git blame gutter" },
+        ["<leader>gB"] = { ":BlameToggle<cr>", desc = "Show git blame gutter" },
         ["<c-p>"] = { require("telescope.builtin").find_files, desc = "Search files" },
-        L = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
-        H = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
+        L = { function() require("bufferline.commands").cycle(1) end, desc = "Next buffer" },
+        H = { function() require("bufferline.commands").cycle(-1) end, desc = "Previous buffer" },
       },
       i = {
         ["<c-l>"] = { "<c-o>O", desc = "Enter newline above current line" },

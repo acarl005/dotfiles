@@ -121,4 +121,8 @@ return {
     lazy = false,
     dependencies = { "kana/vim-textobj-user" },
   },
+  {
+    "FabijanZulj/blame.nvim",
+    cmd = { "BlameToggle" },
+  },
 }
