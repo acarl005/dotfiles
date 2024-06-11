@@ -3,6 +3,6 @@
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins+=(zsh-syntax-highlighting zsh-autosuggestions git colored-man-pages colorize pip autojump npm nvm gcloud docker)
+plugins+=(zsh-syntax-highlighting zsh-autosuggestions zsh-vi-mode git colored-man-pages colorize pip autojump npm nvm gcloud)
 
 . "$HOME/config.zsh"

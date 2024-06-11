@@ -2,9 +2,9 @@
 
 set -e
 
-mkdir -p ~/.vim
 mkdir -p ~/.warp
 mkdir -p ~/.config
+mkdir ~/.config/{powershell,fish}
 
 rm -rf ~/.config/nvim
 ln -i -s "$PWD/nvim" ~/.config/nvim
@@ -17,6 +17,8 @@ ln -i -s "$PWD/warp-themes" ~/.warp/themes
 ln -fs "$PWD/.ripgreprc" ~/.ripgreprc
 ln -fs "$PWD/common-config.sh" ~/common-config.sh
 ln -fs "$PWD/config.zsh" ~/config.zsh
+ln -fs "$PWD/config.fish" ~/.config/fish
+ln -fs "$PWD/Microsoft.PowerShell_profile.ps1" ~/.config/powershell
 ln -fs "$PWD/.gitconfig" ~/.gitconfig
 ln -fs "$PWD/.gitignore_global" ~/.gitignore_global
 ln -fs "$PWD/.inputrc" ~/.inputrc

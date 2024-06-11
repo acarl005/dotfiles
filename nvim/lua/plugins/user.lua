@@ -27,31 +27,27 @@ return {
       local status = require "astroui.status"
 
       local file_path = {
-        {
-          provider = function()
-            local path = vim.fn.expand "%:~:."
-            if path == "" then return "" end
+        provider = function()
+          local path = vim.fn.expand "%:~:."
+          if path == "" then return "" end
 
-            local root_info = require("astrocore.rooter").detect(0, false)[1] or {}
-            local root_path = (root_info.paths or {})[1]
-            if root_path then
-              local root = vim.fn.fnamemodify(root_path, ":~")
-              if path:find(root, 1, true) == 1 then path = path:sub(#root + 2) end
-            end
-            local max_length = 4
-            local sep = package.config:sub(1, 1)
-            local parts = vim.split(path, "[\\/]")
-            if #parts > max_length then
-              parts = { parts[1], "…", table.concat({ unpack(parts, #parts - max_length + 2, #parts) }, sep) }
-            end
-            return table.concat(parts, sep)
-          end,
-        },
-        padding = { left = 1, right = 1 },
+          local root_info = require("astrocore.rooter").detect(0, false)[1] or {}
+          local root_path = (root_info.paths or {})[1]
+          if root_path then
+            local root = vim.fn.fnamemodify(root_path, ":~")
+            if path:find(root, 1, true) == 1 then path = path:sub(#root + 2) end
+          end
+          local max_length = 4
+          local sep = package.config:sub(1, 1)
+          local parts = vim.split(path, "[\\/]")
+          if #parts > max_length then
+            parts = { parts[1], "…", table.concat({ unpack(parts, #parts - max_length + 2, #parts) }, sep) }
+          end
+          return table.concat(parts, sep)
+        end,
       }
 
       opts.statusline = {
-        hl = { fg = "fg", bg = "bg" },
         status.component.mode { mode_text = { padding = { left = 1, right = 1 } } },
         status.component.git_branch(),
         status.component.file_info { filetype = {}, filename = false, file_modified = false },
