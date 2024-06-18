@@ -3,7 +3,12 @@ try {
 } catch {
 }
 
-Set-PSReadLineOption -EditMode Vi
+# Set-PSReadLineOption -EditMode Vi
+
+function cd {
+  &(Get-Command -CommandType Application cd) $args
+  ll
+}
 
 if (Test-Path /opt/homebrew/bin/brew) {
   $(/opt/homebrew/bin/brew shellenv) | Invoke-Expression
@@ -13,6 +18,21 @@ try {
   Get-Command -ErrorAction Stop -Type Application nvim 2>&1>$null
   Set-Alias -Name vi -Value nvim
 } catch {
+}
+
+try {
+  Get-Command -ErrorAction Stop -Type Application ls-go 2>&1>$null
+  function ll {
+    ls-go -alLkn $args
+  }
+} catch {
+  function ll {
+    if ($isLinux) {
+      ls -FlAhp --color=auto $args
+    } else {
+      ls -FGlAhp $args
+    }o
+  }
 }
 
 try {
@@ -28,4 +48,3 @@ try {
   }
 } catch {
 }
-
