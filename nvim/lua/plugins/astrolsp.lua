@@ -39,6 +39,16 @@ return {
             cargo = {
               features = { "skip_login", "windowing-winit", "integration_tests" },
             },
+            assist = {
+              importEnforceGranularity = true,
+              importPrefix = "crate",
+            },
+            inlayHints = {
+              lifetimeElisionHints = {
+                enable = "skip_trivial",
+                useParameterNames = true,
+              },
+            },
           },
         },
       },

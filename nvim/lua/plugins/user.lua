@@ -118,6 +118,12 @@ return {
     dependencies = { "kana/vim-textobj-user" },
   },
   {
+    "nvim-treesitter-context",
+    config = function()
+      vim.keymap.set("n", "[x", function() require("treesitter-context").go_to_context(vim.v.count1) end)
+    end,
+  },
+  {
     "Saecki/crates.nvim",
     lazy = true,
     dependencies = {
@@ -147,5 +153,13 @@ return {
         name = "crates.nvim",
       },
     },
+    config = function()
+      local crates = require "crates"
+      crates.setup()
+      vim.keymap.set("n", "<leader>Gc", crates.show_crate_popup, { desc = "Crates: show crate metadata popup" })
+      vim.keymap.set("n", "<leader>Gv", crates.show_versions_popup, { desc = "Crates: show versions popup" })
+      vim.keymap.set("n", "<leader>Gf", crates.show_features_popup, { desc = "Crates: show features popup" })
+      vim.keymap.set("n", "<leader>Gd", crates.show_dependencies_popup, { desc = "Crates: show dependencies popup" })
+    end,
   },
 }
