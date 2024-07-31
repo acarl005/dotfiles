@@ -34,6 +34,8 @@ return {
         ["<leader>x["] = { "<i[0]]dd[[dd", desc = "Remove wrapping square bracket pair" },
         ["<leader>gB"] = { ":BlameToggle<cr>", desc = "Show git blame gutter" },
         ["<c-p>"] = { require("telescope.builtin").find_files, desc = "Search files" },
+        ["<leader>fgf"] = { require("telescope.builtin").git_files, desc = "Search git files" },
+        ["<leader>fgs"] = { require("telescope.builtin").git_status, desc = "Search git status" },
         L = { function() require("bufferline.commands").cycle(1) end, desc = "Next buffer" },
         H = { function() require("bufferline.commands").cycle(-1) end, desc = "Previous buffer" },
       },

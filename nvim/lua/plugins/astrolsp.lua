@@ -20,7 +20,8 @@ return {
     },
     -- enable servers that you already have installed without mason
     servers = {
-      -- "pyright"
+      "gleam",
+      -- "rust_analyzer",
     },
     ---@diagnostic disable: missing-fields
     config = {
@@ -36,9 +37,6 @@ return {
       rust_analyzer = {
         settings = {
           ["rust-analyzer"] = {
-            cargo = {
-              features = { "skip_login", "windowing-winit", "integration_tests" },
-            },
             assist = {
               importEnforceGranularity = true,
               importPrefix = "crate",

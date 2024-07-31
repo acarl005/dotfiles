@@ -80,7 +80,7 @@ style = "fg:#E8E3E3 bg:#252525"
 symbol = " "
 
 [git_commit]
-format = "[](fg:#252525 bg:none)[\\($hash\\)]($style)[](fg:#252525 bg:#252525)[](fg:#81C19B bg:#252525)[](fg:#252525 bg:#81C19B)[](fg:#81C19B bg:none) "
+format = "[](fg:#252525 bg:none)[\\($hash\\)]($style)[](fg:#252525 bg:#252525)[](fg:#81C19B bg:#252525)[ ](fg:#252525 bg:#81C19B)[](fg:#81C19B bg:none) "
 style = "fg:#E8E3E3 bg:#252525"
 
 [git_status]
@@ -112,7 +112,7 @@ format = '\([$state( $progress_current/$progress_total)]($style)\) '
 [cmd_duration]
 disabled = false
 min_time = 1000
-format = "[](fg:#252525 bg:none)[$duration]($style)[](fg:#252525 bg:#252525)[](fg:#C397D8 bg:#252525)[󱑂 ](fg:#252525 bg:#C397D8)[](fg:#C397D8 bg:none)"
+format = "[](fg:#252525 bg:none)[$duration]($style)[](fg:#252525 bg:#252525)[](fg:#C397D8 bg:#252525)[󱑂 ](fg:#252525 bg:#C397D8)[](fg:#C397D8 bg:none) "
 style = "fg:#E8E3E3 bg:#252525 bold"
 
 [line_break]

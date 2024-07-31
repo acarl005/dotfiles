@@ -2,6 +2,7 @@ eval (/opt/homebrew/bin/brew shellenv)
 
 if status is-interactive
   starship init fish | source
+  fastfetch
 end
 
 set EDITOR nvim
@@ -19,7 +20,7 @@ function mkcd
 end
 
 function root
-  builtin cd "$(git root)"
+  builtin cd (git root)
   if [ -d .git ] && command -v onefetch >/dev/null
     onefetch
   end
@@ -30,7 +31,7 @@ function ya
   set tmp (mktemp -t "yazi-cwd.XXXXXX")
   yazi $argv --cwd-file="$tmp"
   if set cwd (cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-    cd -- "$cwd"
+    cd "$cwd"
   end
   rm -f -- "$tmp"
 end
@@ -56,7 +57,7 @@ alias less='less -miJ'
 alias rn='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 alias desk='cd ~/Desktop'
 alias cr='cargo run'
-alias vidu='vi $(git du)'
+alias vidu='vi (git du)'
 
 [ -f "$HOMEBREW_PREFIX/share/google-cloud-sdk/path.fish.inc" ]; and source "$HOMEBREW_PREFIX/share/google-cloud-sdk/path.fish.inc"
 [ -f "$HOMEBREW_PREFIX/share/autojump/autojump.fish" ]; and source "$HOMEBREW_PREFIX/share/autojump/autojump.fish"
