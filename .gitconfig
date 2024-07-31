@@ -4,6 +4,9 @@
   editor = nvim
   pager = diff-so-fancy | less --tabs=4 -RFX
 
+[merge]
+  conflictstyle = diff3
+
 [rebase]
   instructionFormat = ">%h (%an <%ae>) %s"
 
@@ -28,13 +31,13 @@
   br = branch
   re = rebase
   d = diff
-  du = diff --name-only --diff-filter=U
+  du = diff --diff-filter U --name-only
   pick = cherry-pick
   re = remote -v
   ci = commit --verbose
   s = status --short
-  psm = push origin master
-  plm = pull origin master
+  psm = "!git push origin $(basename $(git symbolic-ref --short refs/remotes/origin/HEAD))"
+  plm = "!git pull origin $(basename $(git symbolic-ref --short refs/remotes/origin/HEAD))"
   ass = "!git add . ; git s"
   rr = "!git ls-files -dz | xargs -0 git rm"
   logo = log --oneline
