@@ -39,7 +39,7 @@ end
 [ -d "$HOME/bin" ]; and fish_add_path "$HOME/bin"
 [ -d "$HOME/.local/bin" ]; and fish_add_path "$HOME/.local/bin"
 [ -d "$HOME/go/bin" ]; and fish_add_path "$HOME/go/bin"
-[ -d "$HOME/.cargo/bin" ]; and fish_add_path "$HOME/.cargo/bin"
+[ -d "$HOME/.cargo"]; and source "$HOME/.cargo/env.fish"
 
 alias py3=python3
 alias ipy3='python3 -m IPython --no-confirm-exit'
