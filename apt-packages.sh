@@ -46,6 +46,18 @@ while true; do
   esac
 done
 
+readarray -t ASSETS < <(curl -s https://api.github.com/repos/dandavison/delta/releases/latest | jq -r '.assets[].browser_download_url' | grep deb)
+
+PS3='Select a deb to install: '
+select ASSET in "${ASSETS[@]}"
+do
+  echo $ASSET
+  curl -LO $ASSET
+  sudo apt install ./git-delta*.deb
+  rm ./git-delta*.deb
+  break
+done
+
 if [ $INSTALL_FONTS -eq 1 ]; then
   git clone --depth 1 https://github.com/ryanoasis/nerd-fonts "$HOME/Downloads/fonts"
   pushd ~/Downloads/fonts
