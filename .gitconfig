@@ -31,9 +31,6 @@
   changed = green bold
   added = yellow bold
 
-[merge]
-  conflictstyle = diff3
-
 # Aliases are command shortcuts
 [alias]
   co = checkout
