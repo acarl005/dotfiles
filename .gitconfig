@@ -43,6 +43,7 @@
   re = remote -v
   ci = commit --verbose
   s = status --short
+  ma = "!git switch $(basename $(git symbolic-ref --short refs/remotes/origin/HEAD))"
   psm = "!git push origin $(basename $(git symbolic-ref --short refs/remotes/origin/HEAD))"
   plm = "!git pull origin $(basename $(git symbolic-ref --short refs/remotes/origin/HEAD))"
   ass = "!git add . ; git s"
