@@ -37,9 +37,14 @@ return {
       rust_analyzer = {
         settings = {
           ["rust-analyzer"] = {
-            assist = {
-              importEnforceGranularity = true,
-              importPrefix = "crate",
+            cfg = {
+              setTest = false,
+            },
+            cargo = {
+              features = { "local_tty" },
+            },
+            granularity = {
+              enforce = true,
             },
             inlayHints = {
               lifetimeElisionHints = {

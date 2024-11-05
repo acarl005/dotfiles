@@ -108,11 +108,6 @@ return {
     },
   },
   {
-    "tyru/open-browser-github.vim", -- opens current buffer in GitHub
-    lazy = false,
-    dependencies = { "tyru/open-browser.vim" },
-  },
-  {
     "sgur/vim-textobj-parameter", -- text object for function params to ","
     lazy = false,
     dependencies = { "kana/vim-textobj-user" },

@@ -18,7 +18,7 @@ if (Get-Alias cd -ErrorAction SilentlyContinue) {
 }
 
 function cd {
-  Set-Location $args[0]
+  Set-Location $args[0] -ErrorAction Stop
   ll
 }
 
@@ -34,12 +34,24 @@ function gits {
   git s
 }
 
+function desk {
+  cd ~/Desktop
+}
+
+function down {
+  cd ~/Downloads
+}
+
 Set-Alias -Name gti -Value git
 
 if (Get-Command -Name nvim -Type Application -ErrorAction SilentlyContinue) {
   Set-Alias -Name vim -Value nvim
   Set-Alias -Name vi -Value nvim
   Set-Alias -Name v -Value nvim
+}
+
+if (Get-Command -Name fastfetch -Type Application -ErrorAction SilentlyContinue) {
+  Set-Alias -Name ff -Value fastfetch
 }
 
 if (Get-Command -Name ls-go -Type Application -ErrorAction SilentlyContinue) {
@@ -72,21 +84,4 @@ if (Get-Command -Name Invoke-ZLocation -ErrorAction SilentlyContinue) {
   Set-Alias -Name j -Value Invoke-ZLocation
 }
 
-function foobar {
-  sleep 10
-  'foobar'
-}
-
-$someVar = 'hi, I exist'
-
-function prompt {
-  $status = if ($true -eq $?) {
-    ':large_green_circle:' 
-  } else {
-    ':red_circle:' 
-  }
-  $e = "$([char]0x1b)"
-  "$e[33mDAN PROMPT$e[39m $($executionContext.SessionState.Path.CurrentLocation) ($status)$('>' * ($nestedPromptLevel + 1)) "
-}
-
-# Invoke-Expression (&starship init powershell)
+Invoke-Expression (&starship init powershell)
