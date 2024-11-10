@@ -75,16 +75,16 @@ style = 'bold green'
 
 
 [git_branch]
-format = "[](fg:#252525 bg:none)[$branch]($style)[](fg:#252525 bg:#252525)[](fg:#81C19B bg:#252525)[$symbol](fg:#252525 bg:#81C19B)[](fg:#81C19B bg:none) "
+format = " [](fg:#252525 bg:none)[$branch]($style)[](fg:#252525 bg:#252525)[](fg:#81C19B bg:#252525)[$symbol](fg:#252525 bg:#81C19B)[](fg:#81C19B bg:none)"
 style = "fg:#E8E3E3 bg:#252525"
 symbol = " "
 
 [git_commit]
-format = "[](fg:#252525 bg:none)[\\($hash\\)]($style)[](fg:#252525 bg:#252525)[](fg:#81C19B bg:#252525)[ ](fg:#252525 bg:#81C19B)[](fg:#81C19B bg:none) "
+format = " [](fg:#252525 bg:none)[\\($hash\\)]($style)[](fg:#252525 bg:#252525)[](fg:#81C19B bg:#252525)[ ](fg:#252525 bg:#81C19B)[](fg:#81C19B bg:none)"
 style = "fg:#E8E3E3 bg:#252525"
 
 [git_status]
-format="[](fg:#252525 bg:none)[$all_status$ahead_behind]($style)[](fg:#252525 bg:#252525)[](fg:#6791C9 bg:#252525)[ ](fg:#252525 bg:#6791C9)[](fg:#6791C9 bg:none) "
+format=" [](fg:#252525 bg:none)[$all_status$ahead_behind]($style)[](fg:#252525 bg:#252525)[](fg:#6791C9 bg:#252525)[ ](fg:#252525 bg:#6791C9)[](fg:#6791C9 bg:none)"
 style = "fg:#E8E3E3 bg:#252525"
 conflicted = "="
 ahead =	"⇡${count}"
@@ -107,12 +107,12 @@ bisect = "BISECTING"
 am = "AM"
 am_or_rebase = "AM/REBASE"
 style =	"yellow"
-format = '\([$state( $progress_current/$progress_total)]($style)\) '
+format = ' \([$state( $progress_current/$progress_total)]($style)\)'
 
 [cmd_duration]
 disabled = false
 min_time = 1000
-format = "[](fg:#252525 bg:none)[$duration]($style)[](fg:#252525 bg:#252525)[](fg:#C397D8 bg:#252525)[󱑂 ](fg:#252525 bg:#C397D8)[](fg:#C397D8 bg:none) "
+format = " [](fg:#252525 bg:none)[$duration]($style)[](fg:#252525 bg:#252525)[](fg:#C397D8 bg:#252525)[󱑂 ](fg:#252525 bg:#C397D8)[](fg:#C397D8 bg:none)"
 style = "fg:#E8E3E3 bg:#252525 bold"
 
 [line_break]
@@ -129,92 +129,92 @@ error_symbol = "[❯](#B66467 bold)"
 
 [c]
 symbol = ""
-format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
 style = "fg:#E8E3E3 bg:#252525 bold"
 
 [conda]
 symbol = "󰄦"
-format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
 style = "fg:#E8E3E3 bg:#252525 bold"
 
 [golang]
 symbol = ""
-format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
 style = "fg:#E8E3E3 bg:#252525 bold"
 
 [helm]
 symbol = "󱃾"
-format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
 style = "fg:#E8E3E3 bg:#252525 bold"
 
 [java]
 symbol = ""
-format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
 style = "fg:#E8E3E3 bg:#252525 bold"
 
 [julia]
 symbol = ""
-format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
 style = "fg:#E8E3E3 bg:#252525 bold"
 
 [lua]
 symbol = ""
-format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
 style = "fg:#E8E3E3 bg:#252525 bold"
 
 [nim]
 symbol = ""
-format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
 style = "fg:#E8E3E3 bg:#252525 bold"
 
 [nodejs]
 symbol = ""
-format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
 style = "fg:#E8E3E3 bg:#252525 bold"
 
 [php]
 symbol = ""
-format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
 style = "fg:#E8E3E3 bg:#252525 bold"
 
 [pulumi]
 symbol = "⛰️"
-format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
 style = "fg:#E8E3E3 bg:#252525 bold"
 
 [python]
 symbol = ""
-format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
 style = "fg:#E8E3E3 bg:#252525 bold"
 
 [rlang]
 symbol = "󰟔"
-format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
 style = "fg:#E8E3E3 bg:#252525 bold"
 
 [ruby]
 symbol = ""
-format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
 style = "fg:#E8E3E3 bg:#252525 bold"
 
 [rust]
 symbol = ""
-format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
 style = "fg:#E8E3E3 bg:#252525 bold"
 
 [scala]
 symbol = ""
-format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
 style = "fg:#E8E3E3 bg:#252525 bold"
 
 [swift]
 symbol = ""
-format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
 style = "fg:#E8E3E3 bg:#252525 bold"
 
 [terraform]
 symbol = ""
-format = "[](fg:#252525 bg:none)[$symbol ]($style)[ ](fg:#252525 bg:none)"
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
 style = "fg:#E8E3E3 bg:#252525 bold"
 
 

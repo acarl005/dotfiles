@@ -53,8 +53,7 @@ select ASSET in "${ASSETS[@]}"
 do
   echo $ASSET
   curl -LO $ASSET
-  sudo apt install ./git-delta*.deb
-  rm ./git-delta*.deb
+  sudo dpkg -i ./git-delta*.deb && rm ./git-delta*.deb
   break
 done
 
