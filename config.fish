@@ -36,7 +36,6 @@ function ya
   rm -f -- "$tmp"
 end
 
-[ -d "$HOME/bin" ]; and fish_add_path "$HOME/bin"
 [ -d "$HOME/.local/bin" ]; and fish_add_path "$HOME/.local/bin"
 [ -d "$HOME/go/bin" ]; and fish_add_path "$HOME/go/bin"
 [ -d "$HOME/.cargo" ]; and source "$HOME/.cargo/env.fish"

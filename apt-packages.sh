@@ -57,6 +57,18 @@ do
   break
 done
 
+readarray -t ASSETS < <(curl -s https://api.github.com/repos/acarl005/ls-go/releases/latest | jq -r '.assets[].browser_download_url')
+
+PS3='Select a bin to install: '
+select ASSET in "${ASSETS[@]}"
+do
+  echo $ASSET
+  curl -LO $ASSET
+  mkdir ~/.local/bin
+  mv ls-go-* ~/.local/bin
+  break
+done
+
 if [ $INSTALL_FONTS -eq 1 ]; then
   git clone --depth 1 https://github.com/ryanoasis/nerd-fonts "$HOME/Downloads/fonts"
   pushd ~/Downloads/fonts
