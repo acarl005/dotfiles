@@ -11,8 +11,14 @@ ln -i -s "$PWD/nvim" ~/.config/nvim
 
 [ -L ~/bin ] && rm ~/bin
 ln -i -s "$PWD/bin" ~/bin
-[ -L ~/.warp/themes ] && rm ~/.warp/themes
-ln -i -s "$PWD/warp-themes" ~/.warp/themes
+
+if [[ $(uname) = Darwin ]]; then
+  [ -L ~/.warp/themes ] && rm ~/.warp/themes
+  ln -i -s "$PWD/warp-themes" ~/.warp/themes
+else
+  [ -L ~/.local/share/warp-terminal/themes ] && rm ~/.local/share/warp-terminal/themes
+  ln -i -s "$PWD/warp-themes" ~/.local/share/warp-terminal/themes
+fi
 
 ln -fs "$PWD/.ripgreprc" ~/.ripgreprc
 ln -fs "$PWD/common-config.sh" ~/common-config.sh
