@@ -9,9 +9,6 @@ mkdir ~/.config/{powershell,fish}
 rm -rf ~/.config/nvim
 ln -i -s "$PWD/nvim" ~/.config/nvim
 
-[ -L ~/bin ] && rm ~/bin
-ln -i -s "$PWD/bin" ~/bin
-
 if [[ $(uname) = Darwin ]]; then
   [ -L ~/.warp/themes ] && rm ~/.warp/themes
   ln -i -s "$PWD/warp-themes" ~/.warp/themes

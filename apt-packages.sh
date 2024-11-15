@@ -53,8 +53,19 @@ select ASSET in "${ASSETS[@]}"
 do
   echo $ASSET
   curl -LO $ASSET
-  sudo apt install ./git-delta*.deb
-  rm ./git-delta*.deb
+  sudo dpkg -i ./git-delta*.deb && rm ./git-delta*.deb
+  break
+done
+
+readarray -t ASSETS < <(curl -s https://api.github.com/repos/acarl005/ls-go/releases/latest | jq -r '.assets[].browser_download_url')
+
+PS3='Select a bin to install: '
+select ASSET in "${ASSETS[@]}"
+do
+  echo $ASSET
+  curl -LO $ASSET
+  mkdir ~/.local/bin
+  mv ls-go-* ~/.local/bin
   break
 done
 
