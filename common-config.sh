@@ -164,6 +164,8 @@ if command -v yazi >/dev/null; then
 fi
 
 # Aliases
+alias ff=fastfetch
+alias of=onefetch
 alias f='fortune | cowsay -f tux'
 alias pony='fortune | ponysay -b round'
 alias grep='grep --exclude-dir=node_modules --color=auto'
