@@ -64,8 +64,9 @@ select ASSET in "${ASSETS[@]}"
 do
   echo $ASSET
   curl -LO $ASSET
-  mkdir ~/.local/bin
-  mv ls-go-* ~/.local/bin
+  chmod +x ls-go-*
+  mkdir -p ~/.local/bin
+  mv ls-go-* ~/.local/bin/ls-go
   break
 done
 

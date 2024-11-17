@@ -11,6 +11,8 @@ $fill\
 
 $c\
 $conda\
+$crystal\
+$gleam\
 $golang\
 $helm\
 $java\
@@ -27,6 +29,7 @@ $rust\
 $scala\
 $swift\
 $terraform\
+$zig\
 
 $git_state\
 $git_branch\
@@ -76,11 +79,12 @@ style = 'bold green'
 
 [git_branch]
 format = " [](fg:#252525 bg:none)[$branch]($style)[](fg:#252525 bg:#252525)[](fg:#81C19B bg:#252525)[$symbol](fg:#252525 bg:#81C19B)[](fg:#81C19B bg:none)"
+only_attached = true
 style = "fg:#E8E3E3 bg:#252525"
-symbol = " "
+symbol = ""
 
 [git_commit]
-format = " [](fg:#252525 bg:none)[\\($hash\\)]($style)[](fg:#252525 bg:#252525)[](fg:#81C19B bg:#252525)[ ](fg:#252525 bg:#81C19B)[](fg:#81C19B bg:none)"
+format = " [](fg:#252525 bg:none)[\\($hash\\)]($style)[](fg:#252525 bg:#252525)[](fg:#81C19B bg:#252525)[󰜘](fg:#252525 bg:#81C19B)[](fg:#81C19B bg:none)"
 style = "fg:#E8E3E3 bg:#252525"
 
 [git_status]
@@ -135,6 +139,15 @@ style = "fg:#E8E3E3 bg:#252525 bold"
 [conda]
 symbol = "󰄦"
 format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
+style = "fg:#E8E3E3 bg:#252525 bold"
+
+[crystal]
+symbol = ""
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
+style = "fg:#E8E3E3 bg:#252525 bold"
+
+[gleam]
+format = "[](fg:#252525 bg:none)[$symbol]($style)[](fg:#252525 bg:none)"
 style = "fg:#E8E3E3 bg:#252525 bold"
 
 [golang]
@@ -214,6 +227,11 @@ style = "fg:#E8E3E3 bg:#252525 bold"
 
 [terraform]
 symbol = ""
+format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
+style = "fg:#E8E3E3 bg:#252525 bold"
+
+[zig]
+symbol = ""
 format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
 style = "fg:#E8E3E3 bg:#252525 bold"
 
