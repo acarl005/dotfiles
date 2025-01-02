@@ -5,6 +5,9 @@
 defaults write NSGlobalDomain KeyRepeat -int 2
 defaults write NSGlobalDomain InitialKeyRepeat -int 25
 
+# autohide the dock
+defaults write com.apple.dock autohide -int 1
+
 if command -v brew >/dev/null; then
   echo Homebrew already installed
 else
