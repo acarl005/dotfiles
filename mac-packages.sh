@@ -1,5 +1,10 @@
 #!/bin/bash
 
+
+# set preferred keyboard sensitivity settings
+defaults write NSGlobalDomain KeyRepeat -int 2
+defaults write NSGlobalDomain InitialKeyRepeat -int 25
+
 if command -v brew >/dev/null; then
   echo Homebrew already installed
 else
@@ -22,7 +27,5 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
 fi
 
 
-brew tap homebrew/cask-fonts
-brew install ripgrep autojump git gh neovim coreutils fastfetch fd tldr shellcheck bat onefetch highlight mdcat jq starship tree-sitter diff-so-fancy git-delta
-brew install font-inconsolata-nerd-font
+brew install ripgrep autojump git gh neovim coreutils fastfetch fd tldr shellcheck bat onefetch highlight mdcat jq starship tree-sitter diff-so-fancy git-delta font-inconsolata-nerd-font
 brew install acarl005/homebrew-formulas/ls-go

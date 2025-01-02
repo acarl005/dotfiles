@@ -4,7 +4,7 @@ set -e
 
 mkdir -p ~/.warp
 mkdir -p ~/.config
-mkdir ~/.config/{powershell,fish}
+mkdir -p ~/.config/{powershell,fish}
 
 rm -rf ~/.config/nvim
 ln -i -s "$PWD/nvim" ~/.config/nvim
