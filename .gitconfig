@@ -18,7 +18,29 @@
   instructionFormat = ">%h (%an <%ae>) %s"
 
 [diff]
+  algorithm = histogram
   colorMoved = default
+  mnemonicPrefix = true
+  renames = true
+
+[push]
+  default = simple
+  autoSetupRemote = true
+  followTags = true
+
+[column]
+  ui = auto
+
+[branch]
+  sort = -committerdate
+
+[tag]
+  sort = version:refname
+
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
 
 # These are custom color options for the console
 [color]
@@ -70,3 +92,6 @@
 
 [credential]
   helper = store
+
+[help]
+  autocorrect = prompt

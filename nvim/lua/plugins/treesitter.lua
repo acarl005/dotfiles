@@ -2,8 +2,7 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   opts = {
-    auto_install = vim.fn.executable "tree-sitter" == 1,
-    ensure_installed = { "lua", "luadoc", "vim" },
+    ensure_installed = { "lua", "luadoc", "vim", "vimdoc" },
     textobjects = {
       move = {
         goto_next_start = {
@@ -27,14 +26,6 @@ return {
           ["[C"] = { query = "@class.outer", desc = "Previous class end" },
           ["[F"] = { query = "@function.outer", desc = "Previous function end" },
           ["[L"] = { query = "@loop.outer", desc = "Previous loop end" },
-        },
-      },
-      select = {
-        keymaps = {
-          ["af"] = "@function.outer",
-          ["if"] = "@function.inner",
-          ["ac"] = "@comment.outer",
-          ["ic"] = "@comment.inner",
         },
       },
       lsp_interop = {
