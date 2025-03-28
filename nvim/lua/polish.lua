@@ -33,8 +33,3 @@ vim.cmd [[
 		endfunc
 	com! DiffSaved call s:DiffWithSaved()
 ]]
-
-vim.diagnostic.config {
-  virtual_text = { severity = { min = vim.diagnostic.severity.WARN } },
-  signs = { severity = { min = vim.diagnostic.severity.HINT } },
-}

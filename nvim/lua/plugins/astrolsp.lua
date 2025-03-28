@@ -1,3 +1,7 @@
+local cwd = vim.fn.getcwd()
+local features = {}
+if cwd:find "warp-internal" then features = { "local_tty" } end
+
 ---@type LazySpec
 return {
   "AstroNvim/astrolsp",
@@ -38,10 +42,10 @@ return {
         settings = {
           ["rust-analyzer"] = {
             cfg = {
-              setTest = false,
+              setTest = true,
             },
             cargo = {
-              features = { "local_tty" },
+              features = features,
             },
             granularity = {
               enforce = true,
@@ -84,34 +88,29 @@ return {
     -- mappings to be set up on attaching of a language server
     mappings = {
       n = {
-        gl = { function() vim.diagnostic.open_float() end, desc = "Hover diagnostics" },
         ["<leader>lw"] = {
-          "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+          function() require("snacks").picker.lsp_workspace_symbols() end,
           desc = "Show symbols in the whole workspace",
         },
         ["<leader>lc"] = {
-          "<cmd>Telescope lsp_incoming_calls<cr>",
+          function() vim.lsp.buf.incoming_calls() end,
           desc = "Show incoming calls for this function",
         },
-        ["<leader>lC"] = {
-          "<cmd>Telescope lsp_outgoing_calls<cr>",
-          desc = "Show outgoing calls in this function",
-        },
         ["&d"] = {
-          ":vsp<cr>:lua vim.lsp.buf.definition()<cr>",
+          function()
+            vim.api.nvim_command "vsp"
+            vim.lsp.buf.definition()
+          end,
           desc = "Open definition in a vsplit",
         },
         ["&y"] = {
-          ":vsp<cr>:lua vim.lsp.buf.type_definition()<cr>",
+          function()
+            vim.api.nvim_command "vsp"
+            vim.lsp.buf.type_definition()
+          end,
           desc = "Open type definition in a vsplit",
         },
       },
     },
-    -- A custom `on_attach` function to be run after the default `on_attach` function
-    -- takes two parameters `client` and `bufnr`  (`:h lspconfig-setup`)
-    on_attach = function(client, bufnr)
-      -- this would disable semanticTokensProvider for all clients
-      -- client.server_capabilities.semanticTokensProvider = nil
-    end,
   },
 }

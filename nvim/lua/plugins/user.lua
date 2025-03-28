@@ -1,11 +1,11 @@
 ---@type LazySpec
 return {
   {
-    "goolord/alpha-nvim",
+    "folke/snacks.nvim",
     opts = {
-      section = {
-        header = {
-          val = {
+      dashboard = {
+        preset = {
+          header = table.concat({
             [[   ,φ≥        ▒                                                                 ]],
             [[ ,@╬╬▒▒       ╬╬▒╖                                            ▄▄                ]],
             [[δ▒╠╬╬╠╠╠╦     ╬╬╬╬▓                                           ╙╙                ]],
@@ -16,7 +16,7 @@ return {
             [[╠╠╠╠╠     ╢╬╬╬╣╬▓▓▓     └^     ╙   └"²²"`   └"²²"└     ╙╙`    ▀▀  ▀▀    ▀▀   └▀╙]],
             [[`╝╬╬╬      ╙╬╬╣╣╬▓╜                                                             ]],
             [[   ╚╬        ╣▓▓╙                                                               ]],
-          },
+          }, "\n"),
         },
       },
     },
@@ -111,12 +111,6 @@ return {
     "sgur/vim-textobj-parameter", -- text object for function params to ","
     lazy = false,
     dependencies = { "kana/vim-textobj-user" },
-  },
-  {
-    "nvim-treesitter-context",
-    config = function()
-      vim.keymap.set("n", "[x", function() require("treesitter-context").go_to_context(vim.v.count1) end)
-    end,
   },
   {
     "Saecki/crates.nvim",
