@@ -22,3 +22,4 @@ for i in `seq 1 11`; do
 done
 
 eval "$(starship init bash)"
+. "$HOME/.cargo/env"

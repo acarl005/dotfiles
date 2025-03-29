@@ -1,3 +1,5 @@
+require "snacks"
+
 local cwd = vim.fn.getcwd()
 local features = {}
 if cwd:find "warp-internal" then features = { "local_tty" } end
@@ -88,25 +90,46 @@ return {
     -- mappings to be set up on attaching of a language server
     mappings = {
       n = {
+        gd = {
+          Snacks.picker.lsp_definitions,
+          desc = "Show the definition of current symbol",
+        },
+        gD = {
+          Snacks.picker.lsp_declarations,
+          desc = "Show the declaration of current symbol",
+        },
+        gy = {
+          Snacks.picker.lsp_type_definitions,
+          desc = "Show the type definition of current symbol",
+        },
+        grr = {
+          Snacks.picker.lsp_references,
+          desc = "Search references",
+        },
+        gri = {
+          Snacks.picker.lsp_implementations,
+          desc = "Search implementations",
+        },
+        ["<c-p>"] = { Snacks.picker.files, desc = "Search files" },
         ["<leader>lw"] = {
-          function() require("snacks").picker.lsp_workspace_symbols() end,
+          Snacks.picker.lsp_workspace_symbols,
           desc = "Show symbols in the whole workspace",
         },
         ["<leader>lc"] = {
-          function() vim.lsp.buf.incoming_calls() end,
+          vim.lsp.buf.incoming_calls,
           desc = "Show incoming calls for this function",
         },
         ["&d"] = {
           function()
             vim.api.nvim_command "vsp"
-            vim.lsp.buf.definition()
+            Snacks.picker.lsp_definitions()
           end,
           desc = "Open definition in a vsplit",
         },
         ["&y"] = {
           function()
             vim.api.nvim_command "vsp"
-            vim.lsp.buf.type_definition()
+            Snacks.picker.lsp_type_definitions()
           end,
           desc = "Open type definition in a vsplit",
         },

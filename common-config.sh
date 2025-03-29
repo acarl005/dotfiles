@@ -74,7 +74,7 @@ if command -v nvim >/dev/null; then
   alias vimd='nvim -d'
 fi
 
-export PAGER='less -S'
+export PAGER='less -SX'
 
 # Colors ls should use for folders, files, symlinks etc, see `man ls` and
 # search for LSCOLORS
@@ -184,7 +184,7 @@ if [[ $(uname -s) = Linux ]]; then
 else
   alias ls='ls -Gp'
 fi
-alias less='less -miJ'
+alias less='less -miJX'
 alias rn='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 # force tmux to use utf8 encoding so emojis and stuff render
 alias tmux='tmux -u'
