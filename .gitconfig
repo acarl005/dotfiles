@@ -3,6 +3,7 @@
   excludesfile = ~/.gitignore_global
   editor = nvim
   pager = delta
+  sshCommand = C:/Windows/System32/OpenSSH/ssh.exe
 
 [interactive]
   diffFilter = delta --color-only
