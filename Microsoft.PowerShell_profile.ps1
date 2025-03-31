@@ -18,12 +18,12 @@ if (Get-Alias cd -ErrorAction SilentlyContinue) {
 }
 
 function cd {
-  Set-Location $args[0] -ErrorAction Stop
-  ll
+  Set-Location "$($args[0])" -ErrorAction Stop
+  ls
 }
 
 function mkcd {
-  mkdir -p $args[0] && cd $args[0]
+  mkdir -p "$($args[0])" && cd $args[0]
 }
 
 function gitd {
@@ -54,20 +54,6 @@ if (Get-Command -Name fastfetch -Type Application -ErrorAction SilentlyContinue)
   Set-Alias -Name ff -Value fastfetch
 }
 
-if (Get-Command -Name ls-go -Type Application -ErrorAction SilentlyContinue) {
-  function ll {
-    ls-go -alLkn $args
-  }
-} else {
-  function ll {
-    if ($isLinux) {
-      ls -FlAhp --color=auto $args
-    } else {
-      ls -FGlAhp $args
-    }
-  }
-}
-
 if (Get-Command -Name yazi -Type Application -ErrorAction SilentlyContinue) {
   function ya {
     $tmp = [System.IO.Path]::GetTempFileName()
@@ -85,3 +71,5 @@ if (Get-Command -Name Invoke-ZLocation -ErrorAction SilentlyContinue) {
 }
 
 Invoke-Expression (&starship init powershell)
+
+Import-Module Terminal-Icons
