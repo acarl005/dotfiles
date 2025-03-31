@@ -23,7 +23,7 @@ function cd {
 }
 
 function mkcd {
-  mkdir -p "$($args[0])" && cd $args[0]
+  mkdir -p "$($args[0])" && cd "$($args[0])"
 }
 
 function gitd {
@@ -42,8 +42,6 @@ function down {
   cd ~/Downloads
 }
 
-Set-Alias -Name gti -Value git
-
 if (Get-Command -Name nvim -Type Application -ErrorAction SilentlyContinue) {
   Set-Alias -Name vim -Value nvim
   Set-Alias -Name vi -Value nvim
@@ -53,6 +51,23 @@ if (Get-Command -Name nvim -Type Application -ErrorAction SilentlyContinue) {
 if (Get-Command -Name fastfetch -Type Application -ErrorAction SilentlyContinue) {
   Set-Alias -Name ff -Value fastfetch
 }
+
+if (Get-Command -Name ls-go -Type Application -ErrorAction SilentlyContinue) {
+  function ll {
+    ls-go -alLkn $args
+  }
+} else {
+  function ll {
+    if ($isLinux) {
+      ls -FlAhp --color=auto $args
+    } else {
+      ls -FGlAhp $args
+    }
+  }
+}
+
+Set-Alias -Name gti -Value git
+Set-Alias -Name j -Value Invoke-ZLocation
 
 if (Get-Command -Name yazi -Type Application -ErrorAction SilentlyContinue) {
   function ya {
@@ -66,10 +81,16 @@ if (Get-Command -Name yazi -Type Application -ErrorAction SilentlyContinue) {
   }
 }
 
-if (Get-Command -Name Invoke-ZLocation -ErrorAction SilentlyContinue) {
-  Set-Alias -Name j -Value Invoke-ZLocation
-}
 
 Invoke-Expression (&starship init powershell)
+# oh-my-posh init pwsh --config $HOME\ohmyposh-aj.json | Invoke-Expression
+# Set-PoshPrompt -Theme paradox
+# oh-my-posh init pwsh --config C:\Users\andy\Downloads\minimal.toml.txt | Invoke-Expression
+
+function dev {
+  Import-Module 'C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\Microsoft.VisualStudio.DevShell.dll'
+  Enter-VsDevShell b31daaa6 -SkipAutomaticLocation -DevCmdArguments '-arch=x64 -host_arch=x64'
+}
 
 Import-Module Terminal-Icons
+# Import-Module ZLocation
