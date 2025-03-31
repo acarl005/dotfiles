@@ -31,6 +31,7 @@ return {
         ["<leader>x{"] = { "<i{0]}dd[{dd", desc = "Remove wrapping curly brace pair" },
         ["<leader>x("] = { "<i(0])dd[(dd", desc = "Remove wrapping parentheses" },
         ["<leader>x["] = { "<i[0]]dd[[dd", desc = "Remove wrapping square bracket pair" },
+        ["<c-p>"] = { require("snacks").picker.files, desc = "Search files" },
         L = {
           function() require("bufferline.commands").cycle(1) end,
           desc = "Next buffer",
