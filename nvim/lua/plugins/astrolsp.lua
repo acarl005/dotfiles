@@ -90,30 +90,15 @@ return {
     -- mappings to be set up on attaching of a language server
     mappings = {
       n = {
-        gd = {
-          Snacks.picker.lsp_definitions,
-          desc = "Show the definition of current symbol",
-        },
-        gD = {
-          Snacks.picker.lsp_declarations,
-          desc = "Show the declaration of current symbol",
-        },
-        gy = {
-          Snacks.picker.lsp_type_definitions,
-          desc = "Show the type definition of current symbol",
-        },
         grr = {
           Snacks.picker.lsp_references,
           desc = "Search references",
+          cond = "textDocument/references",
         },
         gri = {
           Snacks.picker.lsp_implementations,
           desc = "Search implementations",
-        },
-        ["<c-p>"] = { Snacks.picker.files, desc = "Search files" },
-        ["<leader>lw"] = {
-          Snacks.picker.lsp_workspace_symbols,
-          desc = "Show symbols in the whole workspace",
+          cond = "textDocument/implementation",
         },
         ["<leader>lc"] = {
           vim.lsp.buf.incoming_calls,
@@ -125,6 +110,7 @@ return {
             Snacks.picker.lsp_definitions()
           end,
           desc = "Open definition in a vsplit",
+          cond = "textDocument/definition",
         },
         ["&y"] = {
           function()
@@ -132,6 +118,7 @@ return {
             Snacks.picker.lsp_type_definitions()
           end,
           desc = "Open type definition in a vsplit",
+          cond = "textDocument/typeDefinition",
         },
       },
     },
