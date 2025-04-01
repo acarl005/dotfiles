@@ -17,6 +17,8 @@ fi
 # import iTerm preferences if on MacOS
 if [[ $(uname) = Darwin ]]; then
   defaults import com.googlecode.iterm2 iterm2.plist
+  defaults write dev.warp.Warp-Stable FontName '"\"Inconsolata Nerd Font\""'
+else
+  echo change preferred font in your terminal emulator to "Inconsolata Nerd Font" or similar
 fi
 
-echo change preferred font in your terminal emulator to "Inconsolata Nerd Font" or similar
