@@ -151,4 +151,9 @@ return {
       vim.keymap.set("n", "<leader>Gd", crates.show_dependencies_popup, { desc = "Crates: show dependencies popup" })
     end,
   },
+  -- {
+  --   "marcomayer/calltree.nvim",
+  --   lazy = false,
+  --   config = function() require("calltree").setup {} end,
+  -- },
 }
