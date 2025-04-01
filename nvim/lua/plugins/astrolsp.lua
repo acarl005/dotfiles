@@ -90,16 +90,6 @@ return {
     -- mappings to be set up on attaching of a language server
     mappings = {
       n = {
-        grr = {
-          Snacks.picker.lsp_references,
-          desc = "Search references",
-          cond = "textDocument/references",
-        },
-        gri = {
-          Snacks.picker.lsp_implementations,
-          desc = "Search implementations",
-          cond = "textDocument/implementation",
-        },
         ["<leader>lc"] = {
           vim.lsp.buf.incoming_calls,
           desc = "Show incoming calls for this function",
