@@ -90,14 +90,14 @@ return {
     -- mappings to be set up on attaching of a language server
     mappings = {
       n = {
-        ["<leader>lc"] = {
-          vim.lsp.buf.incoming_calls,
-          desc = "Show incoming calls for this function",
-        },
-        ["<leader>lC"] = {
-          vim.lsp.buf.outgoing_calls,
-          desc = "Show outgoing calls for this function",
-        },
+        -- ["<leader>lc"] = {
+        --   vim.lsp.buf.incoming_calls,
+        --   desc = "Show incoming calls for this function",
+        -- },
+        -- ["<leader>lC"] = {
+        --   vim.lsp.buf.outgoing_calls,
+        --   desc = "Show outgoing calls for this function",
+        -- },
         ["&d"] = {
           function()
             vim.api.nvim_command "vsp"

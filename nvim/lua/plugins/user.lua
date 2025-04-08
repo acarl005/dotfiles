@@ -2,6 +2,7 @@
 return {
   {
     "folke/snacks.nvim",
+    ---@type snacks.Config
     opts = {
       dashboard = {
         preset = {
@@ -151,9 +152,9 @@ return {
       vim.keymap.set("n", "<leader>Gd", crates.show_dependencies_popup, { desc = "Crates: show dependencies popup" })
     end,
   },
-  -- {
-  --   "marcomayer/calltree.nvim",
-  --   lazy = false,
-  --   config = function() require("calltree").setup {} end,
-  -- },
+  {
+    "augmentcode/augment.vim",
+    lazy = false,
+    config = function() vim.g.augment_workspace_folders = { "~/warp/warp-internal/" } end,
+  },
 }
