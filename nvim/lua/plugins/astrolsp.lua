@@ -1,8 +1,6 @@
-require "snacks"
-
 local cwd = vim.fn.getcwd()
 local features = {}
-if cwd:find "warp-internal" then features = { "local_tty" } end
+if cwd:find "warp%-internal" then features = { "local_tty", "agent_mode_debug" } end
 
 ---@type LazySpec
 return {
@@ -101,7 +99,7 @@ return {
         ["&d"] = {
           function()
             vim.api.nvim_command "vsp"
-            Snacks.picker.lsp_definitions()
+            require("snacks").picker.lsp_definitions()
           end,
           desc = "Open definition in a vsplit",
           cond = "textDocument/definition",
@@ -109,7 +107,7 @@ return {
         ["&y"] = {
           function()
             vim.api.nvim_command "vsp"
-            Snacks.picker.lsp_type_definitions()
+            require("snacks").picker.lsp_type_definitions()
           end,
           desc = "Open type definition in a vsplit",
           cond = "textDocument/typeDefinition",
