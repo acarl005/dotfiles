@@ -4,6 +4,8 @@ set -e
 
 . ./install-dotfiles.sh
 
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
 if [[ $(uname) = Darwin ]]; then
   . mac-packages.sh
 elif command -v apt-get >/dev/null; then

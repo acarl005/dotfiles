@@ -10,6 +10,7 @@ alias v=nvim
 alias vi=nvim
 alias vim=nvim
 alias ll='ls-go -alLkn'
+alias ff=fastfetch
 
 function cd
   builtin cd "$argv" && ll

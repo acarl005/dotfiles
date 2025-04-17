@@ -2,7 +2,8 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   opts = {
-    ensure_installed = { "lua", "luadoc", "vim", "vimdoc" },
+    ensure_installed = { "diff", "lua", "luadoc", "vim", "vimdoc" },
+    auto_install = vim.fn.executable "tree-sitter" == 1,
     textobjects = {
       move = {
         enable = true,
