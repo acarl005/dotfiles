@@ -152,9 +152,4 @@ return {
       vim.keymap.set("n", "<leader>Gd", crates.show_dependencies_popup, { desc = "Crates: show dependencies popup" })
     end,
   },
-  {
-    "augmentcode/augment.vim",
-    lazy = false,
-    config = function() vim.g.augment_workspace_folders = { "~/warp/warp-internal/" } end,
-  },
 }

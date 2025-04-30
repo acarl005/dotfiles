@@ -79,11 +79,12 @@ vim.keymap.set("n", "<leader>lc", function()
                     function(_, calls)
                       if calls then
                         for _, call in ipairs(calls) do
+                          local detail = call.from.detail or call.from.name or ""
                           ---@type snacks.picker.finder.Item
                           local item = {
-                            text = call.from.name .. "    " .. call.from.detail,
+                            text = detail,
                             kind = lsp.symbol_kind(call.from.kind),
-                            line = "    " .. call.from.detail,
+                            line = "    " .. detail,
                           }
                           local loc = {
                             uri = call.from.uri,
@@ -91,7 +92,7 @@ vim.keymap.set("n", "<leader>lc", function()
                           }
                           lsp.add_loc(item, loc, client)
                           item.buf = bufmap[item.file]
-                          item.text = item.file .. "    " .. call.from.detail
+                          item.text = item.file .. "    " .. detail
                           ---@diagnostic disable-next-line: await-in-sync
                           cb(item)
                         end

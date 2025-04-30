@@ -19,7 +19,7 @@ return {
     },
     options = {
       opt = {
-        wrap = true,
+        wrap = false,
         title = false,
         scrolloff = 9001,
       },
@@ -40,12 +40,6 @@ return {
           function() require("bufferline.commands").cycle(-1) end,
           desc = "Previous buffer",
         },
-      },
-      i = {
-        ["<c-l>"] = { "<c-o>O", desc = "Enter newline above current line" },
-        ["<c-r>"] = { "<cmd>call augment#Accept()<CR>", desc = "Accept Augment suggestion" },
-        ["<c-.>"] = { "<cmd>echo 'himom'<cr>", desc = "test" },
-        ["<c-t>"] = { "<cmd>echo 'himom'<cr>", desc = "test" },
       },
     },
   },
