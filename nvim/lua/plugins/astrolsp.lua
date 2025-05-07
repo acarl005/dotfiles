@@ -88,14 +88,6 @@ return {
     -- mappings to be set up on attaching of a language server
     mappings = {
       n = {
-        -- ["<leader>lc"] = {
-        --   vim.lsp.buf.incoming_calls,
-        --   desc = "Show incoming calls for this function",
-        -- },
-        -- ["<leader>lC"] = {
-        --   vim.lsp.buf.outgoing_calls,
-        --   desc = "Show outgoing calls for this function",
-        -- },
         ["&d"] = {
           function()
             vim.api.nvim_command "vsp"
@@ -103,6 +95,14 @@ return {
           end,
           desc = "Open definition in a vsplit",
           cond = "textDocument/definition",
+        },
+        ["&D"] = {
+          function()
+            vim.api.nvim_command "vsp"
+            require("snacks").picker.lsp_declarations()
+          end,
+          desc = "Open declaration in a vsplit",
+          cond = "textDocument/declaration",
         },
         ["&y"] = {
           function()

@@ -6,7 +6,7 @@ sudo apt-get install -y software-properties-common
 sudo add-apt-repository ppa:aos1/diff-so-fancy
 sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
 sudo apt-get update -y
-sudo apt-get install --ignore-missing -y git ripgrep autojump tldr curl xclip shellcheck fastfetch bat fd-find zsh jq diff-so-fancy build-essential ffmpeg
+sudo apt-get install --ignore-missing -y git ripgrep autojump tldr curl xclip shellcheck fastfetch bat fd-find fzf zsh jq diff-so-fancy build-essential ffmpeg
 
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
   && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
