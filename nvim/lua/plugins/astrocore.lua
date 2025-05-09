@@ -26,7 +26,6 @@ return {
     },
     mappings = {
       n = {
-        ["<tab>"] = { ":wincmd w<cr>", desc = "Next window" },
         ["gV"] = { "`[v`]", desc = "Select the text you just pasted" },
         ["<leader>x{"] = { "<i{0]}dd[{dd", desc = "Remove wrapping curly brace pair" },
         ["<leader>x("] = { "<i(0])dd[(dd", desc = "Remove wrapping parentheses" },
