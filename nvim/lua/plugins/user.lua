@@ -78,74 +78,28 @@ return {
     },
   },
   {
-    "xiyaowong/transparent.nvim",
-    lazy = false,
-    opts = {
-      groups = {
-        "Normal",
-        "NormalNC",
-        "Comment",
-        "Constant",
-        "Special",
-        "Identifier",
-        "Statement",
-        "PreProc",
-        "Type",
-        "Underlined",
-        "Todo",
-        "String",
-        "Function",
-        "Conditional",
-        "Repeat",
-        "Operator",
-        "Structure",
-        "LineNr",
-        "NonText",
-        "SignColumn",
-        "CursorLineNr",
-        "EndOfBuffer",
-      },
-      exclude_groups = {},
-    },
-  },
-  {
     "sgur/vim-textobj-parameter", -- text object for function params to ","
     lazy = false,
     dependencies = { "kana/vim-textobj-user" },
   },
   {
     "Saecki/crates.nvim",
-    lazy = true,
-    dependencies = {
-      "AstroNvim/astrocore",
-      opts = {
-        autocmds = {
-          CmpSourceCargo = {
-            {
-              event = "BufRead",
-              desc = "Load crates.nvim into Cargo buffers",
-              pattern = "Cargo.toml",
-              callback = function()
-                require("cmp").setup.buffer { sources = { { name = "crates" } } }
-                require "crates"
-              end,
-            },
-          },
-        },
-      },
-    },
+    event = { "BufRead Cargo.toml" },
     opts = {
       completion = {
-        cmp = { enabled = true },
+        crates = { enabled = true },
       },
-      null_ls = {
+      lsp = {
         enabled = true,
-        name = "crates.nvim",
+        on_attach = function(...) require("astrolsp").on_attach(...) end,
+        actions = true,
+        completion = true,
+        hover = true,
       },
     },
-    config = function()
+    config = function(_, opts)
       local crates = require "crates"
-      crates.setup()
+      crates.setup(opts)
       vim.keymap.set("n", "<leader>Gc", crates.show_crate_popup, { desc = "Crates: show crate metadata popup" })
       vim.keymap.set("n", "<leader>Gv", crates.show_versions_popup, { desc = "Crates: show versions popup" })
       vim.keymap.set("n", "<leader>Gf", crates.show_features_popup, { desc = "Crates: show features popup" })

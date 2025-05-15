@@ -24,4 +24,14 @@ return {
   { import = "astrocommunity.motion.nvim-surround" },
   { import = "astrocommunity.scrolling.nvim-scrollbar" },
   { import = "astrocommunity.utility.noice-nvim" },
+  { import = "astrocommunity.completion.avante-nvim" },
+  {
+    "avante.nvim",
+    opts = {
+      provider = "openai",
+      openai = {
+        model = "gpt-4o",
+      },
+    },
+  },
 }
