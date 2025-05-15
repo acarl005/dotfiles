@@ -78,11 +78,13 @@ return {
     },
   },
   {
-    "sgur/vim-textobj-parameter", -- text object for function params to ","
+    -- text object for function params to ","
+    "sgur/vim-textobj-parameter",
     lazy = false,
     dependencies = { "kana/vim-textobj-user" },
   },
   {
+    -- https://github.com/AstroNvim/astrocommunity/blob/a93944a58433b2daef83342bb9ea24b02376fee7/lua/astrocommunity/pack/rust/init.lua#L57-L70
     "Saecki/crates.nvim",
     event = { "BufRead Cargo.toml" },
     opts = {
