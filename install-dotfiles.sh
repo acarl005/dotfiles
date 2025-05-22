@@ -29,5 +29,6 @@ ln -fs "$PWD/.psqlrc" ~/.psqlrc
 ln -fs "$PWD/.pythonrc.py" ~/.pythonrc.py
 ln -fs "$PWD/starship.toml" ~/.config/starship.toml
 ln -fs "$PWD/.bashrc" ~/.bashrc
+ln -fs "$PWD/.tmux.conf" ~/.tmux.conf
 command cp -f "$PWD/.zshrc" ~/.zshrc
 command cp -f "$PWD/.bash_profile" ~/.bash_profile

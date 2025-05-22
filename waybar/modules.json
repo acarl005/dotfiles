@@ -1,0 +1,94 @@
+{
+  "custom/appmenu": {
+    "format": "󰣇",
+    "tooltip-format": "Open the application launcher",
+    "on-click": "albert toggle"
+  },
+  "hyprland/window": {
+    "rewrite": {
+      "(.*) — Mozilla Firefox": "$1",
+      "(.*) - Google Chrome": "$1"
+    },
+    "separate-outputs": true
+  },
+  "hyprland/workspaces": {
+    "on-click": "activate",
+    "active-only": false,
+    "all-outputs": true,
+    "format": "{windows}",
+    "format-window-separator": "",
+    "window-rewrite-default": "",
+    "window-rewrite": {
+      "class<firefox>": "󰈹 ",
+      "class<google-chrome>": " ",
+      "class<kitty>": " ",
+      "class<org.kde.dolphin>": " ",
+      "class<Cursor>": "󰆧 ",
+      "class<Spotify>": " "
+    },
+    "persistent-workspaces": {
+      "*": 5
+    }
+  },
+  // Keyboard State
+  //"keyboard-state": {
+  //  //"numlock": true,
+  //  //"capslock": true,
+  //  //"format": "{name} {icon}",
+  //  //"format-icons": {
+  //  //  //"locked": "",
+  //  //  //"unlocked": ""
+  //  //}
+  //},
+  "network": {
+    "format": "{ifname}",
+    "format-wifi": "  {signalStrength}%",
+    "format-ethernet": " ",
+    "format-disconnected": "Not connected",
+    "tooltip-format": "  {ifname} via {gwaddri}",
+    "tooltip-format-wifi": "   {essid} ({signalStrength}%)  {bandwidthDownBytes}  {bandwidthUpBytes}",
+    "tooltip-format-ethernet": "  {ifname} ({ipaddr}/{cidr})  {bandwidthDownBytes}  {bandwidthUpBytes}",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50,
+    "interval": 1,
+    "on-click": "kitty nmtui"
+  },
+  // Bluetooth
+  "bluetooth": {
+    "format-disabled": "",
+    "format-off": "",
+    "interval": 30,
+    "on-click": "kitty bluetoothctl",
+    "format-no-controller": ""
+  },
+  "wireplumber": {
+    "format": "{icon} {volume}%",
+    "format-muted": "  --",
+    "on-click": "kitty fish -c 'wpctl status; exec fish'",
+    "format-icons": [
+      "",
+      " ",
+      " "
+    ]
+  },
+  "clock": {
+    "format-alt": "󰥔 {0:%H:%M}",
+    "format": "󰥔 {0:%H:%M}  {0:%m/%d}",
+    "tooltip-format": "{calendar}",
+    "calendar": {
+      "format": {
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
+    }
+  },
+  // Idle Inhibator
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "tooltip": true,
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    },
+    "on-click-right": "hyprlock"
+  }
+}

@@ -1,19 +1,44 @@
-eval (/opt/homebrew/bin/brew shellenv)
+set fish_greeting
+fish_vi_key_bindings
 
-if status is-interactive
-  starship init fish | source
-  fastfetch
+if test -x /opt/homebrew/bin/brew
+  eval (/opt/homebrew/bin/brew shellenv)
 end
 
-set EDITOR nvim
-alias v=nvim
-alias vi=nvim
-alias vim=nvim
-alias ll='ls-go -alLkn'
-alias ff=fastfetch
+if status is-interactive
+  if type -q starship
+    starship init fish | source
+  end
+  if type -q fastfetch
+    alias ff=fastfetch
+    fastfetch
+  end
+end
+
+if type -q nvim
+  set EDITOR nvim
+else if type -q vim
+  set EDITOR vim
+else
+  set EDITOR vi
+end
+
+alias v=$EDITOR
+alias vi=$EDITOR
+alias vim=$EDITOR
+
+if type -q ls-go
+  alias ll='ls-go -alLkn'
+else
+  if test (uname -s) = Linux
+    alias ll='command ls -FlAhp --color=auto'
+  else
+    alias ll='command ls -FGlAhp'
+  end
+end
 
 function cd
-  builtin cd "$argv" && ll
+  builtin cd $argv && ll
 end
 
 function mkcd
@@ -22,7 +47,7 @@ end
 
 function root
   builtin cd (git root)
-  if [ -d .git ] && command -v onefetch >/dev/null
+  if test -d .git && command -v onefetch >/dev/null
     onefetch
   end
   ll
@@ -37,27 +62,35 @@ function ya
   rm -f -- "$tmp"
 end
 
-[ -d "$HOME/.local/bin" ]; and fish_add_path "$HOME/.local/bin"
-[ -d "$HOME/go/bin" ]; and fish_add_path "$HOME/go/bin"
-[ -d "$HOME/.cargo" ]; and source "$HOME/.cargo/env.fish"
+if test -d ~/.local/bin
+  fish_add_path ~/.local/bin
+end
+if test -d ~/go/bin
+  fish_add_path ~/go/bin
+end
+if test -d ~/.cargo/bin
+  fish_add_path ~/.cargo/bin
+end
+if test -d ~/.volta
+  set -gx VOLTA_HOME "$HOME/.volta"
+  fish_add_path "$VOLTA_HOME/bin"
+end
 
 alias py3=python3
 alias ipy3='python3 -m IPython --no-confirm-exit'
 
 alias gits="git s"
 alias gitd="git d"
-alias f='fortune | cowsay -f tux'
-alias pony='fortune | ponysay -b round'
 alias grep='grep --exclude-dir=node_modules --color=auto'
 alias cp='cp -iv'
 alias mv='mv -iv'
-alias mkdir='mkdir -pv'
-alias chx='chmod +x'
 alias less='less -miJ'
-alias rn='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 alias desk='cd ~/Desktop'
-alias cr='cargo run'
 alias vidu='vi (git du)'
 
-[ -f "$HOMEBREW_PREFIX/share/google-cloud-sdk/path.fish.inc" ]; and source "$HOMEBREW_PREFIX/share/google-cloud-sdk/path.fish.inc"
-[ -f "$HOMEBREW_PREFIX/share/autojump/autojump.fish" ]; and source "$HOMEBREW_PREFIX/share/autojump/autojump.fish"
+if test -f "$HOMEBREW_PREFIX/share/autojump/autojump.fish"
+  source "$HOMEBREW_PREFIX/share/autojump/autojump.fish"
+end
+if test -f /usr/share/autojump/autojump.fish
+  source /usr/share/autojump/autojump.fish
+end

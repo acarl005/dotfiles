@@ -1,0 +1,29 @@
+{
+  "layer": "top",
+  "position": "top",
+  "spacing": 8, // Gaps between modules
+  "margin-top": 8,
+  "margin-left": 8,
+  "margin-right": 8,
+  "mode": "dock",
+  "reload_style_on_change": true,
+  "include": [
+    "~/.config/waybar/modules.json",
+    "~/.config/waybar/hardware.json",
+    "~/.config/waybar/media.json",
+    "~/.config/waybar/sound.json"
+  ],
+  "modules-left": [
+    "custom/appmenu",
+    "hyprland/window"
+  ],
+  "modules-center": [
+    "hyprland/workspaces"
+  ],
+  "modules-right": [
+    "network",
+    "group/hardware",
+    "wireplumber",
+    "clock"
+  ]
+}
