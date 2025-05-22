@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
+  { import = "astrocommunity.colorscheme.cyberdream-nvim" },
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.recipes.picker-lsp-mappings" },
   { import = "astrocommunity.lsp.actions-preview-nvim" },
