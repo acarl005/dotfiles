@@ -45,10 +45,12 @@ fi
 
 # if this is an interactive shell
 if [[ $- =~ "i" ]]; then
+  alias of=onefetch
+  alias ff='fastfetch --logo-color-1 94 --logo-color-2 94 --color-keys 94 --color-title 94'
   if [ -d .git ] && command -v onefetch >/dev/null; then
-    onefetch
+    of
   elif command -v fastfetch >/dev/null; then
-    fastfetch
+    ff
   elif command -v pfetch >/dev/null; then
     # I disabled "packages"
     export PF_INFO="ascii title os host kernel uptime memory shell editor wm de palette"
@@ -60,19 +62,17 @@ fi
 
 
 # Set vim as the default editor, or NeoVim if its installed
-export EDITOR=vim
-export VISUAL=vim
-alias vimd=vimdiff
-alias v=vim
+export EDITOR=vi
 if command -v nvim >/dev/null; then
   export EDITOR=nvim
-  export VISUAL=nvim
-  alias v=nvim
-  alias vi=nvim
-  alias vim=nvim
-  alias vimdiff='nvim -d'
-  alias vimd='nvim -d'
+elif command -v vim >/dev/null; then
+  export EDITOR=vim
 fi
+
+export VISUAL=$EDITOR
+alias v=$EDITOR
+alias vi=$EDITOR
+alias vim=$EDITOR
 
 export PAGER='less -SX'
 
@@ -170,22 +170,15 @@ if command -v yazi >/dev/null; then
 fi
 
 # Aliases
-alias ff=fastfetch
-alias of=onefetch
-alias f='fortune | cowsay -f tux'
-alias pony='fortune | ponysay -b round'
 alias grep='grep --exclude-dir=node_modules --color=auto'
 alias cp='cp -iv'
 alias mv='mv -iv'
-alias mkdir='mkdir -pv'
-alias chx='chmod +x'
 if [[ $(uname -s) = Linux ]]; then
   alias ls='ls -p --color=auto'
 else
   alias ls='ls -Gp'
 fi
 alias less='less -miJX'
-alias rn='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 # force tmux to use utf8 encoding so emojis and stuff render
 alias tmux='tmux -u'
 # https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo
@@ -248,7 +241,6 @@ if [[ $(uname) = Linux ]]; then
 fi
 
 # typos
-alias tit=git
 alias gti=git
 alias npmi='npm i'
 alias gits='git s'

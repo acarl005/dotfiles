@@ -29,7 +29,7 @@
     "states": {
       "good": 90,
       "warning": 30,
-      "critical": 15
+      "critical": 20
     },
     "format-icons": [
       "",

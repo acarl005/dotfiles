@@ -6,23 +6,30 @@ if test -x /opt/homebrew/bin/brew
 end
 
 if status is-interactive
+  alias ff='fastfetch --logo-color-1 94 --logo-color-2 94 --color-keys 94 --color-title 94'
+  alias of=onefetch
   if type -q starship
     starship init fish | source
   end
-  if type -q fastfetch
-    alias ff=fastfetch
-    fastfetch
+  if test -d .git && type -q onefetch
+    of
+  else if type -q fastfetch
+    ff
+  else if type -q pfetch
+    # I disabled "packages"
+    set PF_INFO "ascii title os host kernel uptime memory shell editor wm de palette"
+    pfetch
   end
 end
 
+set EDITOR vi
 if type -q nvim
   set EDITOR nvim
 else if type -q vim
   set EDITOR vim
-else
-  set EDITOR vi
 end
 
+set VISUAL $EDITOR
 alias v=$EDITOR
 alias vi=$EDITOR
 alias vim=$EDITOR
@@ -90,7 +97,6 @@ alias vidu='vi (git du)'
 
 if test -f "$HOMEBREW_PREFIX/share/autojump/autojump.fish"
   source "$HOMEBREW_PREFIX/share/autojump/autojump.fish"
-end
-if test -f /usr/share/autojump/autojump.fish
+else if test -f /usr/share/autojump/autojump.fish
   source /usr/share/autojump/autojump.fish
 end

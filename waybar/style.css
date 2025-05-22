@@ -1,24 +1,14 @@
-@define-color rosewater #f5e0dc;
-@define-color flamingo #f2cdcd;
-@define-color pink #f5c2e7;
-@define-color mauve #cba6f7;
-@define-color red #f38ba8;
-@define-color maroon #eba0ac;
-@define-color peach #fab387;
-@define-color yellow #f9e2af;
-@define-color green #a6e3a1;
-@define-color teal #94e2d5;
-@define-color sky #89dceb;
-@define-color sapphire #74c7ec;
-@define-color blue #89b4fa;
-@define-color lavender #b4befe;
+@define-color magenta #bd5eff;
+@define-color red #ff6e5e;
+@define-color lavender #d08fff;
+@define-color brightRed #ff9a8f;
 
 @define-color base alpha(#000000, 0.1);
 @define-color surface alpha(#000000, 0.5);
-@define-color text #cdd6f4;
-@define-color hoverBg alpha(@mauve, 1);
+@define-color text #ffe8e5;
+@define-color hoverBg alpha(@lavender, 1);
 @define-color hoverFg #000000;
-@define-color activeBg alpha(@mauve, 1);
+@define-color activeBg alpha(@lavender, 1);
 @define-color activeFg #000000;
 @define-color shadow alpha(@lavender, 0.25);
 
@@ -33,13 +23,14 @@
     Arial,
     sans-serif;
   background-clip: border-box;
+  color: @text;
 }
 
 button {
   min-width: 32px;
   border-radius: 999px;
   color: @text;
-  box-shadow: 0px 0px 8px 4px @shadow inset;
+  box-shadow: 0px 0px 4px 2px @shadow inset;
   transition:
     all 50ms cubic-bezier(0.55, 0, 0.28, 1.682),
     box-shadow 50ms ease-in-out,
@@ -47,13 +38,19 @@ button {
 }
 
 button:hover {
-  color: @hoverFg;
   background: @hoverBg;
 }
 
+button:hover label {
+  color: @hoverFg;
+}
+
 button.active {
-  color: @activeFg;
   background: @activeBg;
+}
+
+button.active label {
+  color: @activeFg;
 }
 
 tooltip {
@@ -69,6 +66,7 @@ window#waybar.empty #window {
 
 #window {
   margin-right: 8px;
+  text-shadow: 0px 0px 4px @red, 0px 0px 8px @brightRed;
 }
 
 #workspaces,
@@ -91,8 +89,13 @@ window#waybar.empty #window {
 
 #cpu,
 #memory,
+#battery,
 #disk {
   padding-right: 0.5rem;
+}
+
+#hardware {
+  text-shadow: 0px 0px 4px @red, 0px 0px 8px @brightRed;
 }
 
 #custom-appmenu {
@@ -122,24 +125,8 @@ window#waybar.empty #window {
   }
 }
 
-#cpu.critical:not(.charging) {
-  color: @red;
-  animation-name: blink;
-  animation-duration: 2.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-
-#battery.critical:not(.charging) {
-  color: @red;
-  animation-name: blink;
-  animation-duration: 2.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-
+#cpu.critical,
+#battery.critical:not(.charging),
 #temperature.critical {
   color: @red;
   animation-name: blink;
@@ -153,6 +140,6 @@ label:focus {
   background-color: @activeBg;
 }
 
-#backlight {
-  background-color: @activeBg;
+#today {
+  color: @red;
 }
