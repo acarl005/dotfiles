@@ -30,16 +30,6 @@
       "*": 5
     }
   },
-  // Keyboard State
-  //"keyboard-state": {
-  //  //"numlock": true,
-  //  //"capslock": true,
-  //  //"format": "{name} {icon}",
-  //  //"format-icons": {
-  //  //  //"locked": "",
-  //  //  //"unlocked": ""
-  //  //}
-  //},
   "network": {
     "format": "{ifname}",
     "format-wifi": "  {signalStrength}%",
@@ -53,7 +43,6 @@
     "interval": 1,
     "on-click": "kitty nmtui"
   },
-  // Bluetooth
   "bluetooth": {
     "format-disabled": "",
     "format-off": "",
@@ -80,15 +69,5 @@
         "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
       }
     }
-  },
-  // Idle Inhibator
-  "idle_inhibitor": {
-    "format": "{icon}",
-    "tooltip": true,
-    "format-icons": {
-      "activated": "",
-      "deactivated": ""
-    },
-    "on-click-right": "hyprlock"
   }
 }

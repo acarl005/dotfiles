@@ -28,8 +28,6 @@
   font-weight: 900;
   font-family:
     InconsolataNerdFont,
-    JetBrainsMonoNerdFont,
-    Font Awesome,
     Roboto,
     Helvetica,
     Arial,
@@ -60,6 +58,9 @@ button.active {
 
 tooltip {
   opacity: 1;
+  background-color: alpha(#000000, 0.8);
+  text-shadow: none;
+  border-radius: 8px;
 }
 
 window#waybar.empty #window {
@@ -72,8 +73,7 @@ window#waybar.empty #window {
 
 #workspaces,
 #custom-appmenu,
-#quicklinks,
-#hardware,
+#network,
 #clock,
 #bluetooth,
 #wireplumber {
@@ -82,28 +82,11 @@ window#waybar.empty #window {
   box-shadow: 0px 0px 8px 4px @shadow inset;
 }
 
-#hardware,
+#network,
 #wireplumber,
 #bluetooth,
 #clock {
   padding: 0 8px;
-}
-
-#custom-quicklink1,
-#custom-quicklink2,
-#custom-quicklink3,
-#custom-quicklink4,
-#custom-quicklink5,
-#custom-quicklink6,
-#custom-quicklink7,
-#custom-quicklink8,
-#custom-quicklink9,
-#custom-quicklink10 {
-  font-size: 1.5rem;
-  margin: 0 0.5rem;
-}
-#custom-quicklink1 {
-  /* margin-left: 0; */
 }
 
 #cpu,
@@ -112,8 +95,7 @@ window#waybar.empty #window {
   padding-right: 0.5rem;
 }
 
-#custom-appmenu,
-#custom-notification {
+#custom-appmenu {
   font-size: 1.2rem;
   min-width: 32px;
   min-height: 32px;
@@ -124,6 +106,7 @@ window#waybar.empty #window {
 #workspaces button {
   margin-right: 2px;
 }
+
 #workspaces button:last-child {
   margin-right: 0;
 }
@@ -139,6 +122,15 @@ window#waybar.empty #window {
   }
 }
 
+#cpu.critical:not(.charging) {
+  color: @red;
+  animation-name: blink;
+  animation-duration: 2.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
 #battery.critical:not(.charging) {
   color: @red;
   animation-name: blink;
@@ -148,13 +140,13 @@ window#waybar.empty #window {
   animation-direction: alternate;
 }
 
-#tray > .passive {
-  -gtk-icon-effect: dim;
-}
-
-#tray > .needs-attention {
-  -gtk-icon-effect: highlight;
-  background-color: @activeBg;
+#temperature.critical {
+  color: @red;
+  animation-name: blink;
+  animation-duration: 2.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 label:focus {
@@ -163,10 +155,4 @@ label:focus {
 
 #backlight {
   background-color: @activeBg;
-}
-
-tooltip {
-  background-color: alpha(#000000, 0.8);
-  text-shadow: none;
-  border-radius: 8px;
 }

@@ -9,9 +9,7 @@
   "reload_style_on_change": true,
   "include": [
     "~/.config/waybar/modules.json",
-    "~/.config/waybar/hardware.json",
-    "~/.config/waybar/media.json",
-    "~/.config/waybar/sound.json"
+    "~/.config/waybar/hardware.json"
   ],
   "modules-left": [
     "custom/appmenu",
@@ -21,8 +19,8 @@
     "hyprland/workspaces"
   ],
   "modules-right": [
-    "network",
     "group/hardware",
+    "network",
     "wireplumber",
     "clock"
   ]

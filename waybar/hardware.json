@@ -1,6 +1,9 @@
 {
   "cpu": {
     "format": " {usage}%",
+    "states": {
+      "critical": 95
+    },
     "on-click": "kitty -e htop"
   },
   "memory": {
@@ -20,7 +23,8 @@
     ]
   },
   "battery": {
-    "format": " {icon} {capacity}%",
+    "format": " {icon}  {capacity}%",
+    "format-charging": " {icon}  {capacity}%󱐋",
     "interval": 10,
     "states": {
       "good": 90,

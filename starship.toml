@@ -116,7 +116,7 @@ format = ' \([$state( $progress_current/$progress_total)]($style)\)'
 [cmd_duration]
 disabled = false
 min_time = 1000
-format = " [](fg:#252525 bg:none)[$duration]($style)[](fg:#252525 bg:#252525)[](fg:#D08FFF bg:#252525)[󱑂 ](fg:#252525 bg:#D08FFF)[](fg:#D08FFF bg:none)"
+format = " [](fg:#252525 bg:none)[$duration]($style)[](fg:#252525 bg:#252525)[](fg:#8FFF98 bg:#252525)[󱑂 ](fg:#252525 bg:#8FFF98)[](fg:#8FFF98 bg:none)"
 style = "fg:#E8E3E3 bg:#252525 bold"
 
 [line_break]
