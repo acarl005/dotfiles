@@ -7,7 +7,8 @@
   "hyprland/window": {
     "rewrite": {
       "(.*) — Mozilla Firefox": "$1",
-      "(.*) - Google Chrome": "$1"
+      "(.*) - Google Chrome": "$1",
+      "(.*) - Cursor": "$1"
     },
     "separate-outputs": true
   },
@@ -39,7 +40,7 @@
     "format": "{ifname}",
     "format-wifi": "  {signalStrength}%",
     "format-ethernet": " ",
-    "format-disconnected": "Not connected",
+    "format-disconnected": "󰖪 ",
     "tooltip-format": "  {ifname} via {gwaddri}",
     "tooltip-format-wifi": "   {essid} ({signalStrength}%)  {bandwidthDownBytes}  {bandwidthUpBytes}",
     "tooltip-format-ethernet": "  {ifname} ({ipaddr}/{cidr})  {bandwidthDownBytes}  {bandwidthUpBytes}",

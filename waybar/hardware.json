@@ -7,7 +7,7 @@
     "on-click": "kitty -e htop"
   },
   "memory": {
-    "format": " {}%",
+    "format": " {}%",
     "tooltip-format": "Physical: {used:0.1f}/{total:0.1f}GiB used\nSwap: {swapUsed:0.1f}/{swapTotal:0.1f}GiB used",
     "on-click": "kitty -e htop"
   },

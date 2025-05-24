@@ -6,8 +6,6 @@
 @define-color base alpha(#000000, 0.1);
 @define-color surface alpha(#000000, 0.5);
 @define-color text #ffe8e5;
-@define-color hoverBg alpha(@lavender, 1);
-@define-color hoverFg #000000;
 @define-color activeBg alpha(@lavender, 1);
 @define-color activeFg #000000;
 @define-color shadow alpha(@lavender, 0.25);
@@ -36,19 +34,13 @@ button {
     background-color 200ms ease-in-out;
 }
 
+button.active.hosting-monitor,
 button:hover {
-  background: @hoverBg;
-}
-
-button:hover label {
-  color: @hoverFg;
-}
-
-button.active.hosting-monitor {
   background: @activeBg;
 }
 
-button.active.hosting-monitor label {
+button.active.hosting-monitor label,
+button:hover label {
   color: @activeFg;
   text-shadow: 0px 0px 2px @magenta;
 }
