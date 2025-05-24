@@ -30,7 +30,6 @@ button {
   min-width: 32px;
   border-radius: 999px;
   color: @text;
-  box-shadow: 0px 0px 4px 2px @shadow inset;
   transition:
     all 50ms cubic-bezier(0.55, 0, 0.28, 1.682),
     box-shadow 50ms ease-in-out,
@@ -45,12 +44,17 @@ button:hover label {
   color: @hoverFg;
 }
 
-button.active {
+button.active.hosting-monitor {
   background: @activeBg;
 }
 
-button.active label {
+button.active.hosting-monitor label {
   color: @activeFg;
+  text-shadow: 0px 0px 2px @magenta;
+}
+
+button.hosting-monitor {
+  box-shadow: 0px 0px 4px 2px @shadow inset;
 }
 
 tooltip {
@@ -78,6 +82,7 @@ window#waybar.empty #window {
   background-color: @surface;
   border-radius: 999px;
   box-shadow: 0px 0px 8px 4px @shadow inset;
+  text-shadow: 0px 0px 2px @red;
 }
 
 #network,
@@ -138,8 +143,4 @@ window#waybar.empty #window {
 
 label:focus {
   background-color: @activeBg;
-}
-
-#today {
-  color: @red;
 }

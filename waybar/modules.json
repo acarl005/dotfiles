@@ -18,16 +18,21 @@
     "format": "{windows}",
     "format-window-separator": "",
     "window-rewrite-default": "",
+    "move-to-monitor": true,
+    "persistent-workspaces": {
+      // NOTE: Hard-coded monitor name!
+      "eDP-1": 5
+    },
     "window-rewrite": {
       "class<firefox>": "󰈹 ",
       "class<google-chrome>": " ",
       "class<kitty>": " ",
       "class<org.kde.dolphin>": " ",
       "class<Cursor>": "󰆧 ",
-      "class<Spotify>": " "
-    },
-    "persistent-workspaces": {
-      "*": 5
+      "class<Spotify>": " ",
+      "class<albert>": "󰀫 ",
+      "class<vlc>": "󰕼 ",
+      "class<1Password>": "󰯅 "
     }
   },
   "network": {
@@ -66,7 +71,7 @@
     "tooltip-format": "{calendar}",
     "calendar": {
       "format": {
-        "today": "<span id='today'><b><u>{}</u></b></span>"
+        "today": "<span color='#ff6e5e'><b><u>{}</u></b></span>"
       }
     }
   }
