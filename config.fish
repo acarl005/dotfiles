@@ -1,6 +1,18 @@
 set fish_greeting
 fish_vi_key_bindings
 
+bind -M insert ctrl-r history-pager
+bind U redo
+bind -M insert ctrl-delete kill-word
+bind -M insert ctrl-backspace backward-kill-word
+bind -M insert alt-backspace backward-kill-word
+bind -M insert ctrl-right forward-word
+bind -M insert ctrl-left backward-word
+bind -M insert alt-right nextd-or-forward-word
+bind -M insert alt-left prevd-or-backward-word
+bind -M insert shift-right forward-bigword
+bind -M insert shift-left backward-bigword
+
 if test -x /opt/homebrew/bin/brew
   eval (/opt/homebrew/bin/brew shellenv)
 end
