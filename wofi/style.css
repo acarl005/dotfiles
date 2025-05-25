@@ -27,7 +27,7 @@ window {
   border: none;
   color: @text;
   background: none;
-  box-shadow: 0px 0px 4px 2px @shadow inset;
+  box-shadow: 0px 0px 6px 3px @shadow inset;
   text-shadow: 0px 0px 2px @red;
 }
 

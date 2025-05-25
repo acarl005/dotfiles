@@ -46,7 +46,7 @@ button:hover label {
 }
 
 button.hosting-monitor {
-  box-shadow: 0px 0px 4px 2px @shadow inset;
+  box-shadow: 0px 0px 6px 3px @shadow inset;
 }
 
 tooltip {
@@ -73,7 +73,7 @@ window#waybar.empty #window {
 #wireplumber {
   background-color: @surface;
   border-radius: 999px;
-  box-shadow: 0px 0px 8px 4px @shadow inset;
+  box-shadow: 0px 0px 6px 3px @shadow inset;
   text-shadow: 0px 0px 2px @red;
 }
 
