@@ -29,9 +29,10 @@
       "class<google-chrome>": " ",
       "class<kitty>": " ",
       "class<org.kde.dolphin>": " ",
+      "class<Thunar>": " ",
       "class<Cursor>": "󰆧 ",
       "class<Spotify>": " ",
-      "class<albert>": "󰀫 ",
+      "title<Settings — Albert>": "󰀫 ",
       "class<vlc>": "󰕼 ",
       "class<1Password>": "󰯅 "
     }

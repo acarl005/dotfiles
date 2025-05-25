@@ -3,6 +3,8 @@ fish_vi_key_bindings
 
 bind -M insert ctrl-r history-pager
 bind U redo
+bind -M insert ctrl-a beginning-of-line
+bind -M insert ctrl-e end-of-line
 bind -M insert ctrl-delete kill-word
 bind -M insert ctrl-backspace backward-kill-word
 bind -M insert alt-backspace backward-kill-word
@@ -12,6 +14,11 @@ bind -M insert alt-right nextd-or-forward-word
 bind -M insert alt-left prevd-or-backward-word
 bind -M insert shift-right forward-bigword
 bind -M insert shift-left backward-bigword
+bind -M insert ctrl-f forward-char
+bind -M insert ctrl-p up-or-search
+bind -M insert ctrl-n down-or-search
+bind -M insert ctrl-z undo
+bind -M insert ctrl-Z redo
 
 if test -x /opt/homebrew/bin/brew
   eval (/opt/homebrew/bin/brew shellenv)
@@ -79,6 +86,42 @@ function ya
     cd "$cwd"
   end
   rm -f -- "$tmp"
+end
+
+function extract
+  if test -f "$argv[1]"
+    set fish_trace 1
+    switch "$argv[1]"
+      case '*.tar.xz'
+        tar xfJ "$argv[1]"
+      case '*.tar.bz2'
+        tar xjf "$argv[1]"
+      case '*.tar.gz'
+        tar xzf "$argv[1]"
+      case '*.bz2'
+        bunzip2 "$argv[1]"
+      case '*.rar'
+        unrar e "$argv[1]"
+      case '*.gz'
+        gunzip "$argv[1]"
+      case '*.tar'
+        tar xf "$argv[1]"
+      case '*.tbz2'
+        tar xjf "$argv[1]"
+      case '*.tgz'
+        tar xzf "$argv[1]"
+      case '*.zip'
+        unzip "$argv[1]"
+      case '*.Z'
+        uncompress "$argv[1]"
+      case '*.7z'
+        7z x "$argv[1]"
+      case '*'
+        echo "'$argv[1]' cannot be extracted via extract()"
+    end
+  else
+    echo "'$argv[1]' is not a valid file"
+  end
 end
 
 if test -d ~/.local/bin

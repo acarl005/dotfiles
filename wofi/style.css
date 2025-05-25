@@ -1,0 +1,73 @@
+@define-color magenta #bd5eff;
+@define-color red #ff6e5e;
+@define-color lavender #d08fff;
+@define-color brightRed #ff9a8f;
+@define-color text #ffe8e5;
+
+@define-color surface alpha(#000000, 0.5);
+@define-color text #ffe8e5;
+/* @define-color activeBg alpha(@lavender, 1); */
+/* @define-color activeFg #000000; */
+@define-color shadow alpha(@lavender, 0.25);
+
+window {
+  margin: 0px;
+  background-color: @surface;
+  border-radius: 4px;
+  font-family:
+    InconsolataNerdFont,
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+}
+
+#input {
+  margin: 5px;
+  border: none;
+  color: @text;
+  background: none;
+  box-shadow: 0px 0px 4px 2px @shadow inset;
+  text-shadow: 0px 0px 2px @red;
+}
+
+#inner-box {
+  margin: 5px;
+  border: none;
+}
+
+#outer-box {
+  margin: 5px;
+  border: none;
+  border-radius: 4px;
+}
+
+#scroll {
+  margin: 0px;
+  border: none;
+}
+
+#text {
+  margin: 5px;
+  border: none;
+  color: @text;
+}
+
+#entry>* {
+  color: @text;
+  text-shadow: 0px 0px 2px @red;
+}
+
+#entry:selected {
+  background-color: alpha(@lavender, 0.2);
+  outline: none;
+}
+
+#entry:selected #text {
+  font-weight: bold;
+  text-shadow: 0px 0px 4px @red, 0px 0px 8px @brightRed;
+}
+
+#expander-box {
+  background: none;
+}
