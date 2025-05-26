@@ -24,7 +24,7 @@ if test -x /opt/homebrew/bin/brew
   eval (/opt/homebrew/bin/brew shellenv)
 end
 
-if status is-interactive
+if status is-interactive && test (tty) != /dev/tty1
   alias ff='fastfetch --logo-color-1 94 --logo-color-2 94 --color-keys 94 --color-title 94'
   alias of=onefetch
   if type -q starship

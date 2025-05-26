@@ -2,7 +2,7 @@
   "custom/appmenu": {
     "format": "󰣇",
     "tooltip-format": "Open the application launcher",
-    "on-click": "albert toggle"
+    "on-click": "wofi --allow-images --normal-window --no-actions --show drun"
   },
   "hyprland/window": {
     "rewrite": {
