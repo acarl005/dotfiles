@@ -27,7 +27,7 @@ cargo install --locked tree-sitter-cli mdcat
 sudo ln -s /usr/bin/kitty /usr/bin/gnome-terminal
 
 mkdir -p ~/.config/fcitx5/
-lm -fs "$DIR/fcitx5.profile" ~/.config/fcitx5/profile
+ln -fs "$DIR/fcitx5.profile" ~/.config/fcitx5/profile
 
 sudo cp "$DIR/greetd-config.toml" /etc/greetd/config.toml
 sudo systemctl enable greetd.service
