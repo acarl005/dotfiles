@@ -24,3 +24,9 @@ done
 if command -v starship >/dev/null && [[ $(tty) != '/dev/tty1' ]]; then
   eval "$(starship init bash)"
 fi
+
+if [ -f "$HOMEBREW_PREFIX/share/autojump/autojump.bash" ]; then
+  . "$HOMEBREW_PREFIX/share/autojump/autojump.bash"
+elif [ -f /usr/share/autojump/autojump.bash ]; then
+  . /usr/share/autojump/autojump.bash
+fi

@@ -3,8 +3,11 @@ sudo usermod -aG libvirt $USER
 sudo systemctl start libvirtd.service
 sudo systemctl start virtlogd.service
 
+# This needs to be one of the DRM devices in $(ls /dev/dri/render*)
+# /dev/dri/renderD129 was my Intel iGPU. I tried my Nvidia GPU, but that caused Hyprland to fail to start.
+RENDER_NODE=/dev/dri/renderD129
 virt-install --name arch --ram 4096 --vcpus 2 --cpu host --disk size=50,format=qcow2 --os-variant archlinux --network user \
-  --graphics spice,listen=none,gl.enable=yes,rendernode=/dev/dri/renderD128 \
+  --graphics spice,listen=none,gl.enable=yes,rendernode=$RENDER_NODE \
   --cdrom /var/lib/libvirt/isos/archlinux-2025.05.01-x86_64.iso \
   --console pty,target_type=serial \
   --boot useserial=on,loader=/usr/share/edk2-ovmf/x64/OVMF_CODE.4m.fd,loader.readonly=yes,loader.type=pflash,nvram.template=/usr/share/edk2-ovmf/x64/OVMF_VARS.4m.fd
@@ -37,7 +40,7 @@ mkfs.fat -F 32 /dev/sda1
 mount /dev/sda2 /mnt
 
 pacstrap -K /mnt base base-devel linux linux-headers linux-firmware \
-  efibootmgr grub os-prober intel-media-driver nvidia-open-dkms nvidia-utils libva-nvidia-driver nvidia-prime bolt \
+  efibootmgr grub os-prober intel-media-driver mesa-utils nvidia-open-dkms nvidia-utils libva-nvidia-driver nvidia-prime bolt \
   bluez bluez-utils networkmanager sof-firmware pipewire pipewire-jack pipewire-alsa alsa-utils pipewire-libcamera libcamera libcamera-ipa rtkit \
   vim sudo git make cmake curl gcc
 
@@ -47,10 +50,11 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 arch-chroot /mnt
 
-ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
+# Find your applicable /usr/share/zoneinfo/Region/City
+ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
 hwclock --systohc
 
-# Edit /etc/locale.gen and uncomment en_US.UTF-8 UTF-8 and other needed UTF-8 locales.
+# Edit /etc/locale.gen and uncomment "en_US.UTF-8 UTF-8" and other needed UTF-8 locales, e.g. "zh_CN.UTF-8 UTF-8".
 locale-gen
 
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
@@ -61,6 +65,8 @@ passwd
 
 useradd -m -g users -G wheel,storage,video,audio -s /bin/bash andy
 passwd andy
+# edit /etc/sudoers to uncomment "%wheel ALL=(ALL:ALL) ALL"
 
 grub-install --target x86_64-efi --efi-directory /boot/efi --bootloader-id GRUB
+# edit /etc/default/grub, e.g. GRUB_DISABLE_OS_PROBER=false or GRUB_TIMEOUT=30
 grub-mkconfig -o /boot/grub/grub.cfg
