@@ -19,6 +19,7 @@ fi
 
 ln -s "$PWD/gtk" ~/.config/gtk-3.0
 ln -s "$PWD/gtk" ~/.config/gtk-4.0
+ln -s "$PWD/kitty" ~/.config/kitty
 ln -fs "$PWD/.ripgreprc" ~/.ripgreprc
 ln -fs "$PWD/common-config.sh" ~/common-config.sh
 ln -fs "$PWD/config.zsh" ~/config.zsh
