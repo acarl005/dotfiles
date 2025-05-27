@@ -1,0 +1,12 @@
+[terminal]
+# The VT to run the greeter on. Can be "next", "current" or a number
+# designating the VT.
+vt = 1
+
+[default_session]
+command = "tuigreet --cmd hyprland --greeting 'Welcome to Arch Linux!' --time --asterisks --remember --theme 'border=lightmagenta;text=cyan;prompt=white;time=cyan;action=lightblue;container=darkgrey;input=lightred'"
+
+# The user to run the command as. The privileges this user must have depends
+# on the greeter. A graphical greeter may for example require the user to be
+# in the `video` group.
+user = "greeter"
