@@ -17,6 +17,8 @@ else
   ln -i -s "$PWD/warp-themes" ~/.local/share/warp-terminal/themes
 fi
 
+ln -s "$PWD/gtk" ~/.config/gtk-3.0
+ln -s "$PWD/gtk" ~/.config/gtk-4.0
 ln -fs "$PWD/.ripgreprc" ~/.ripgreprc
 ln -fs "$PWD/common-config.sh" ~/common-config.sh
 ln -fs "$PWD/config.zsh" ~/config.zsh

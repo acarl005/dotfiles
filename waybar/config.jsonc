@@ -8,8 +8,8 @@
   "mode": "dock",
   "reload_style_on_change": true,
   "include": [
-    "~/.config/waybar/modules.json",
-    "~/.config/waybar/hardware.json"
+    "~/.config/waybar/modules.jsonc",
+    "~/.config/waybar/hardware.jsonc"
   ],
   "modules-left": [
     "custom/appmenu",

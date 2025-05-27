@@ -21,5 +21,6 @@ for i in `seq 1 11`; do
   ARG="${ARG}/.."
 done
 
-eval "$(starship init bash)"
-. "$HOME/.cargo/env"
+if command -v starship >/dev/null && [[ $(tty) != '/dev/tty1' ]]; then
+  eval "$(starship init bash)"
+fi

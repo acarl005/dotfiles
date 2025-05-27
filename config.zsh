@@ -12,4 +12,6 @@ zstyle ':omz:lib:directories' aliases no
 
 . "$ZSH/oh-my-zsh.sh"
 
-eval "$(starship init zsh)"
+if command -v starship >/dev/null && [[ $(tty) != '/dev/tty1' ]]; then
+  eval "$(starship init zsh)"
+fi

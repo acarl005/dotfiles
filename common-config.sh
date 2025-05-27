@@ -23,18 +23,12 @@ set -o vi
 if [ -d "$HOME/.local/bin" ]; then
   PATH="$HOME/.local/bin:$PATH"
 fi
-if [ -f "$HOME/.cargo/env" ]; then
-  . "$HOME/.cargo/env"
+if [ -d "$HOME/.cargo" ]; then
+  PATH="$HOME/.cargo/bin:$PATH"
 fi
-
-# include Golang stuff
 if [ -d "$HOME/go" ]; then
   export GOPATH="$HOME/go"
   PATH="$GOPATH/bin:$PATH"
-fi
-
-if command -v brew >/dev/null; then
-  eval "$(brew shellenv)"
 fi
 
 if [[ -x "/opt/homebrew/bin/brew" ]]; then
@@ -43,10 +37,10 @@ elif command -v brew >/dev/null; then
   eval "$(brew shellenv)"
 fi
 
+alias of=onefetch
+alias ff='fastfetch --logo-color-1 94 --logo-color-2 94 --color-keys 94 --color-title 94'
 # if this is an interactive shell
 if [[ $- =~ "i" ]]; then
-  alias of=onefetch
-  alias ff='fastfetch --logo-color-1 94 --logo-color-2 94 --color-keys 94 --color-title 94'
   if [ -d .git ] && command -v onefetch >/dev/null; then
     of
   elif command -v fastfetch >/dev/null; then

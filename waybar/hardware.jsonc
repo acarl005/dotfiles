@@ -23,7 +23,7 @@
     ]
   },
   "battery": {
-    "format": " {icon}  {capacity}%",
+    "format": " {icon} {capacity}%",
     "format-charging": " {icon}  {capacity}%󱐋",
     "interval": 10,
     "states": {
@@ -38,6 +38,11 @@
       "",
       ""
     ]
+  },
+  "custom/fcitx5": {
+    "format": " {}",
+    "exec": "~/.config/waybar/scripts/fcitx5.sh",
+    "interval": 5
   },
   "group/hardware": {
     "orientation": "horizontal",
