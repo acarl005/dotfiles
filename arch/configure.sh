@@ -2,9 +2,9 @@
 
 set -e
 
-DIR=$(dirname $(readlink -f $0))
+DIR=$(dirname $(dirname $(readlink -f $0)))
 
-$DIR/../install-dotfiles.sh
+$DIR/install-dotfiles.sh
 
 mkdir -p ~/.config/hypr
 ln -fs "$DIR/hypr/hyprland.conf" ~/.config/hypr/hyprland.conf
