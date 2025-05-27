@@ -24,7 +24,7 @@ sudo pacman -Syu kitty fish neovim fastfetch man-pages man-db hyprland hyprpaper
 rustup default stable
 cargo install --locked tree-sitter-cli mdcat
 
-sudo ln -s /usr/bin/kitty /usr/bin/gnome-terminal
+sudo ln -fs /usr/bin/kitty /usr/bin/gnome-terminal
 
 mkdir -p ~/.config/fcitx5/
 ln -fs "$DIR/fcitx5.profile" ~/.config/fcitx5/profile
