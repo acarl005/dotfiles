@@ -1,10 +1,11 @@
-sudo pacman -S libvirt qemu virt-viewer virt-install dnsmasq openbsd-netcat dmidecode edk2-ovmf
+sudo pacman -S libvirt qemu virt-viewer virt-install dnsmasq openbsd-netcat dmidecode edk2-ovmf virglrenderer
 sudo usermod -aG libvirt $USER
 sudo systemctl start libvirtd.service
 sudo systemctl start virtlogd.service
 
 cp /usr/share/edk2-ovmf/x64/OVMF_VARS.4m.fd ~/.local/share/libvirt/nvram/arch-vars.4m.fd
-virt-install --name arch --ram 4096 --vcpus 2 --cpu host --disk size=50,format=qcow2 --os-variant archlinux --network user --graphics spice \
+virt-install --name arch --ram 4096 --vcpus 2 --cpu host --disk size=50,format=qcow2 --os-variant archlinux --network user \
+  --graphics spice,gl=on --video virtio,3d=on \
   --cdrom /var/lib/libvirt/isos/archlinux-2025.05.01-x86_64.iso \
   --console pty,target_type=serial \
   --boot useserial=on,loader=/usr/share/edk2-ovmf/x64/OVMF_CODE.4m.fd,loader.readonly=yes,loader.type=pflash,nvram.template=/usr/share/edk2-ovmf/x64/OVMF_VARS.4m.fd,nvram="$HOME/.local/share/libvirt/nvram/arch-vars.4m.fd"
