@@ -21,6 +21,7 @@ sudo pacman -Syu kitty fish neovim fastfetch man-pages man-db hyprland hyprpaper
   adobe-source-han-sans-cn-fonts fcitx5 fcitx5-configtool fcitx5-chinese-addons \
   greetd greetd-tuigreet gnome-themes-extra
 
+rustup default stable
 cargo install --locked tree-sitter-cli mdcat
 
 sudo ln -s /usr/bin/kitty /usr/bin/gnome-terminal
