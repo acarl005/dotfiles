@@ -16,7 +16,7 @@
     "on-click": "activate",
     "active-only": false,
     "all-outputs": true,
-    "format": "{windows}",
+    "format": "<small>{id}</small><big>{windows}</big>",
     "format-window-separator": "",
     "window-rewrite-default": "",
     "move-to-monitor": true,

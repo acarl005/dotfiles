@@ -25,13 +25,17 @@
 }
 
 button {
-  min-width: 32px;
+  min-width: 24px;
   border-radius: 999px;
   color: @text;
   transition:
     all 50ms cubic-bezier(0.55, 0, 0.28, 1.682),
     box-shadow 50ms ease-in-out,
     background-color 200ms ease-in-out;
+}
+
+button.visible.hosting-monitor:not(.active) {
+  border: 0.3px solid @activeBg;
 }
 
 button.active.hosting-monitor,
@@ -63,6 +67,14 @@ window#waybar.empty #window {
 #window {
   margin-right: 8px;
   text-shadow: 0px 0px 4px @red, 0px 0px 8px @brightRed;
+}
+
+#workspaces label {
+  font-size: 0.9rem;
+}
+
+#workspaces button {
+  padding: 0 4px;
 }
 
 #workspaces,
