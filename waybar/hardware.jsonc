@@ -24,7 +24,7 @@
   },
   "battery": {
     "format": " {icon} {capacity}%",
-    "format-charging": " {icon}  {capacity}%󱐋",
+    "format-charging": " {icon} {capacity}%󱐋",
     "interval": 10,
     "states": {
       "good": 90,
