@@ -13,9 +13,9 @@ ln -s "$DIR/waybar" ~/.config/waybar
 [ -L ~/.config/wofi ] && rm ~/.config/wofi
 ln -s "$DIR/wofi" ~/.config/wofi
 
-sudo pacman -Syu kitty fish neovim fastfetch man-pages man-db hyprland hyprpaper hyprcursor waybar egl-wayland wl-clipboard \
-  swayidle xdg-desktop-portal xdg-desktop-portal-hyprland tmux thunar tumbler firefox htop brightnessctl unzip wofi \
-  ripgrep fd fzf tldr bat onefetch jq jless starship rustup git-delta ttf-inconsolata-nerd yazi mpv vlc less \
+sudo pacman -Syu kitty fish neovim fastfetch man-pages man-db hyprland hyprpaper hypridle hyprlock hyprcursor waybar egl-wayland wl-clipboard \
+  xdg-desktop-portal xdg-desktop-portal-hyprland tmux thunar tumbler firefox htop powertop brightnessctl unzip wofi \
+  ripgrep fd fzf tldr bat onefetch jq jless starship rustup git-delta ttf-inconsolata ttf-inconsolata-nerd yazi mpv vlc less \
   adobe-source-han-sans-cn-fonts fcitx5 fcitx5-configtool fcitx5-chinese-addons \
   greetd greetd-tuigreet gnome-themes-extra
 
@@ -31,9 +31,6 @@ ln -fs "$DIR/fcitx5.profile" ~/.config/fcitx5/profile
 
 sudo cp "$DIR/greetd-config.toml" /etc/greetd/config.toml
 sudo systemctl enable greetd.service
-
-sudo mkdir -p /etc/systemd/logind.conf.d/
-sudo cp "$DIR/logind/69-enable-suspend.conf" /etc/systemd/logind.conf.d/
 
 mkdir -p ~/src
 cd ~/src

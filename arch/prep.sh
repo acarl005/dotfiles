@@ -1,16 +1,4 @@
-sudo pacman -S libvirt qemu virt-viewer virt-install dnsmasq openbsd-netcat dmidecode edk2-ovmf virglrenderer
-sudo usermod -aG libvirt $USER
-sudo systemctl start libvirtd.service
-sudo systemctl start virtlogd.service
-
-# This needs to be one of the DRM devices in $(ls /dev/dri/render*)
-# /dev/dri/renderD129 was my Intel iGPU. I tried my Nvidia GPU, but that caused Hyprland to fail to start.
-RENDER_NODE=/dev/dri/renderD129
-virt-install --name arch --ram 4096 --vcpus 2 --cpu host --disk size=50,format=qcow2 --os-variant archlinux --network user \
-  --graphics spice,listen=none,gl.enable=yes,rendernode=$RENDER_NODE \
-  --cdrom /var/lib/libvirt/isos/archlinux-2025.05.01-x86_64.iso \
-  --console pty,target_type=serial \
-  --boot useserial=on,loader=/usr/share/edk2-ovmf/x64/OVMF_CODE.4m.fd,loader.readonly=yes,loader.type=pflash,nvram.template=/usr/share/edk2-ovmf/x64/OVMF_VARS.4m.fd
+# This script contains setup command to install Arch from the live environment.
 
 # make sure this returns "64". if "efi" subdir doesn't exist, need to boot in EFI mode.
 cat /sys/firmware/efi/fw_platform_size

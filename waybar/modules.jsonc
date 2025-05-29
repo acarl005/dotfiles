@@ -21,8 +21,7 @@
     "window-rewrite-default": "",
     "move-to-monitor": true,
     "persistent-workspaces": {
-      // NOTE: Hard-coded monitor name!
-      "eDP-1": 5
+      "*": 3
     },
     "window-rewrite": {
       "class<firefox>": "󰈹 ",
@@ -60,7 +59,7 @@
   "wireplumber": {
     "format": "{icon} {volume}%",
     "format-muted": "  --",
-    "on-click": "kitty fish -c 'wpctl status; exec fish'",
+    "on-click": "kitty alsamixer",
     "format-icons": [
       "",
       " ",

@@ -14,6 +14,7 @@
   "temperature": {
     "hwmon-path-abs": "/sys/devices/platform/coretemp.0/hwmon",
     "input-filename": "temp1_input",
+    "on-click": "kitty fish -c 'sensors | less'",
     "critical-threshold": 80,
     "format": "{icon} {temperatureC}°C",
     "format-icons": [
@@ -25,6 +26,7 @@
   "battery": {
     "format": " {icon} {capacity}%",
     "format-charging": " {icon} {capacity}%󱐋",
+    "on-click": "kitty sudo powertop",
     "interval": 10,
     "states": {
       "good": 90,
