@@ -5,4 +5,8 @@ set -e
 ARTIST=$(playerctl metadata artist)
 TITLE=$(playerctl metadata title)
 
-echo "  ${ARTIST} — ${TITLE}"
+if [ -z "$ARTIST" ]; then
+  echo "  $TITLE"
+else
+  echo "  $ARTIST — $TITLE"
+fi

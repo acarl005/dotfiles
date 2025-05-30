@@ -4,10 +4,8 @@
 @define-color brightRed #ff9a8f;
 @define-color text #ffe8e5;
 
-@define-color surface alpha(#000000, 0.5);
+@define-color surface alpha(#000000, 0.6);
 @define-color text #ffe8e5;
-/* @define-color activeBg alpha(@lavender, 1); */
-/* @define-color activeFg #000000; */
 @define-color shadow alpha(@lavender, 0.25);
 
 window {
@@ -59,7 +57,7 @@ window {
 }
 
 #entry:selected {
-  background-color: alpha(@lavender, 0.2);
+  background-color: alpha(@magenta, 0.2);
   outline: none;
 }
 

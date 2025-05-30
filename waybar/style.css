@@ -4,9 +4,9 @@
 @define-color brightRed #ff9a8f;
 
 @define-color base alpha(#000000, 0.1);
-@define-color surface alpha(#000000, 0.5);
+@define-color surface alpha(#000000, 0.6);
 @define-color text #ffe8e5;
-@define-color activeBg alpha(@lavender, 1);
+@define-color activeBg @magenta;
 @define-color activeFg #000000;
 @define-color shadow alpha(@lavender, 0.25);
 
@@ -46,7 +46,7 @@ button:hover {
 button.active.hosting-monitor label,
 button:hover label {
   color: @activeFg;
-  text-shadow: 0px 0px 2px @magenta;
+  text-shadow: none;
 }
 
 button.hosting-monitor {
