@@ -12,6 +12,8 @@ ln -s "$DIR/hypr" ~/.config/hypr
 ln -s "$DIR/waybar" ~/.config/waybar
 [ -L ~/.config/wofi ] && rm ~/.config/wofi
 ln -s "$DIR/wofi" ~/.config/wofi
+[ -L ~/.config/swaync ] && rm ~/.config/swaync
+ln -s "$DIR/swaync" ~/.config/swaync
 
 sudo pacman -Syu kitty fish neovim fastfetch man-pages man-db hyprland hyprpaper hypridle hyprlock hyprcursor waybar egl-wayland wl-clipboard \
   xdg-desktop-portal xdg-desktop-portal-hyprland tmux thunar tumbler firefox htop powertop brightnessctl unzip wofi \
