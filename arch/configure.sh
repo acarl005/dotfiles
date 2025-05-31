@@ -19,7 +19,7 @@ sudo pacman -Syu kitty fish neovim fastfetch man-pages man-db hyprland hyprpaper
   xdg-desktop-portal xdg-desktop-portal-hyprland tmux thunar tumbler firefox htop powertop brightnessctl unzip wofi \
   ripgrep fd fzf tldr bat onefetch jq jless starship rustup git-delta ttf-inconsolata ttf-inconsolata-nerd yazi mpv vlc less \
   adobe-source-han-sans-cn-fonts fcitx5 fcitx5-configtool fcitx5-chinese-addons \
-  greetd greetd-tuigreet gnome-themes-extra
+  greetd greetd-tuigreet gnome-themes-extra swaync gvfs
 
 chsh -s /bin/fish
 
