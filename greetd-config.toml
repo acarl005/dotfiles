@@ -4,7 +4,7 @@
 vt = 1
 
 [default_session]
-command = "tuigreet --cmd hyprland --greeting 'Welcome to Arch Linux!' --time --asterisks --remember --theme 'border=lightmagenta;text=cyan;prompt=white;time=cyan;action=lightblue;container=darkgrey;input=lightred'"
+command = "tuigreet --cmd hyprland --time --asterisks --remember --theme 'border=lightmagenta;text=cyan;prompt=white;time=cyan;action=lightblue;container=darkgrey;input=lightred' --greeting ' -`\n .o+`\n `ooo/\n `+oooo:\n `+oooooo:\n -+oooooo+:\n `/:-:++oooo+:\n `/++++/+++++++:\n `/++++++++++++++:\n `/+++ooooooooooooo/`\n ./ooosssso++osssssso+`\n .oossssso-````/ossssss+`\n -osssssso.      :ssssssso.\n :osssssss/        osssso+++.\n /ossssssss/        +ssssooo/-\n `/ossssso+/:-        -:/+osssso+-\n `+sso+:-`                 `.-/+oso:\n `++:.                           `-/+/\n .`                                 `/\n\nWelcome to Arch Linux!'"
 
 # The user to run the command as. The privileges this user must have depends
 # on the greeter. A graphical greeter may for example require the user to be
