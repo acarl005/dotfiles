@@ -34,6 +34,12 @@ ln -fs "$DIR/fcitx5.profile" ~/.config/fcitx5/profile
 sudo cp "$DIR/greetd-config.toml" /etc/greetd/config.toml
 sudo systemctl enable greetd.service
 
+sudo cp "$DIR/grub/space.jpg" /boot/grub
+sudo grub-mkfont -s 32 -o /boot/grub/fonts/Inconsolata32.pf2 /usr/share/fonts/TTF/Inconsolata-Regular.ttf
+sudo sh -c 'echo GRUB_BACKGROUND="/boot/grub/space.jpg" >> /etc/default/grub'
+sudo sh -c 'echo GRUB_FONT="/boot/grub/fonts/Inconsolata32.pf2" >> /etc/default/grub'
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+
 mkdir -p ~/src
 cd ~/src
 git clone https://aur.archlinux.org/yay.git
