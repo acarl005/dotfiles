@@ -3,6 +3,7 @@
 import json
 import subprocess
 import os
+import re
 from pathlib import Path
 
 import gi
@@ -12,7 +13,7 @@ from gi.repository import Gtk
 
 def get_icon_path(icon_name):
     theme = Gtk.IconTheme.get_default()
-    for size in [256, 128, 64, 48, 32, 24, 22, 16]:
+    for size in [256, 128, 64, 48, 32, 24, 16]:
         info = theme.lookup_icon(icon_name, size, 0)
         if info:
             return info.get_filename()
@@ -36,9 +37,9 @@ def find_desktop_file(binary):
             try:
                 with open(path, encoding="utf-8", errors="ignore") as f:
                     for line in f:
-                        if line.startswith("Exec=") and binary in line:
+                        if line.startswith("Exec=") and re.search(rf'\b{re.escape(binary)}\b', line):
                             return path
-            except Exception as e:
+            except Exception:
                 pass
     return None
 
