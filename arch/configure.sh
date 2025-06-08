@@ -26,6 +26,7 @@ chsh -s /bin/fish
 rustup default stable
 cargo install --locked tree-sitter-cli mdcat
 
+# Unfortunate hack that is necesssary for opening `.desktop` files where `Terminal=true`.
 sudo ln -fs /usr/bin/kitty /usr/bin/gnome-terminal
 
 mkdir -p ~/.config/fcitx5/
@@ -39,6 +40,14 @@ sudo grub-mkfont -s 32 -o /boot/grub/fonts/Inconsolata32.pf2 /usr/share/fonts/TT
 sudo sh -c 'echo GRUB_BACKGROUND="/boot/grub/space.jpg" >> /etc/default/grub'
 sudo sh -c 'echo GRUB_FONT="/boot/grub/fonts/Inconsolata32.pf2" >> /etc/default/grub'
 sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+# I prefer to have systemd-resolved, rather than NetworkManager, handle hostnames since it supports mDNS out of the box.
+sudo systemctl enable --now systemd-resolved
+sudo ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+sudo sh -c 'echo MulticastDNS=yes >> /etc/systemd/resolved.conf'
+sudo sh -c 'echo LLMNR=no >> /etc/systemd/resolved.conf'
+sudo sh -c 'echo DNSStubListener=yes >> /etc/systemd/resolved.conf'
+sudo systemctl restart systemd-resolved
 
 mkdir -p ~/src
 cd ~/src
