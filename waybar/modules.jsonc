@@ -2,7 +2,7 @@
   "custom/appmenu": {
     "format": "󰣇",
     "tooltip-format": "Open the application launcher",
-    "on-click": "wofi --allow-images --normal-window --no-actions --show drun"
+    "on-click": "$HOME/.config/waybar/scripts/power-menu.sh"
   },
   "hyprland/window": {
     "rewrite": {

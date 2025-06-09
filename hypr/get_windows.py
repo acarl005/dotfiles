@@ -13,10 +13,9 @@ from gi.repository import Gtk
 
 def get_icon_path(icon_name):
     theme = Gtk.IconTheme.get_default()
-    for size in [256, 128, 64, 48, 32, 24, 16]:
-        info = theme.lookup_icon(icon_name, size, 0)
-        if info:
-            return info.get_filename()
+    info = theme.lookup_icon(icon_name, 128, 0)
+    if info:
+        return info.get_filename()
     return None
 
 
