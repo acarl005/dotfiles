@@ -19,7 +19,7 @@ sudo pacman -Syu kitty fish neovim fastfetch man-pages man-db hyprland hyprpaper
   xdg-desktop-portal xdg-desktop-portal-hyprland tmux thunar tumbler firefox htop powertop brightnessctl unzip wofi \
   ripgrep fd fzf tldr bat onefetch jq jless starship rustup git-delta ttf-inconsolata ttf-inconsolata-nerd yazi mpv vlc less \
   adobe-source-han-sans-cn-fonts fcitx5 fcitx5-configtool fcitx5-chinese-addons \
-  greetd greetd-tuigreet gnome-themes-extra swaync gvfs grim slurp
+  greetd greetd-tuigreet gnome-themes-extra swaync gvfs grim slurp blueman
 
 chsh -s /bin/fish
 
@@ -40,6 +40,8 @@ sudo grub-mkfont -s 32 -o /boot/grub/fonts/Inconsolata32.pf2 /usr/share/fonts/TT
 sudo sh -c 'echo GRUB_BACKGROUND="/boot/grub/space.jpg" >> /etc/default/grub'
 sudo sh -c 'echo GRUB_FONT="/boot/grub/fonts/Inconsolata32.pf2" >> /etc/default/grub'
 sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+sudo systemctl enable --now blueman-mechanism.service
 
 # I prefer to have systemd-resolved, rather than NetworkManager, handle hostnames since it supports mDNS out of the box.
 sudo systemctl enable --now systemd-resolved
