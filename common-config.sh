@@ -38,13 +38,13 @@ elif command -v brew >/dev/null; then
 fi
 
 alias of=onefetch
-alias ff='fastfetch --logo-color-1 94 --logo-color-2 94 --color-keys 94 --color-title 94'
+alias ff=fastfetch
 # if this is an interactive shell
 if [[ $- =~ "i" ]]; then
   if [ -d .git ] && command -v onefetch >/dev/null; then
-    of
+    onefetch
   elif command -v fastfetch >/dev/null; then
-    ff
+    fastfetch
   elif command -v pfetch >/dev/null; then
     # I disabled "packages"
     export PF_INFO="ascii title os host kernel uptime memory shell editor wm de palette"
