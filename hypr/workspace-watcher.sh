@@ -23,16 +23,23 @@ ICONS["kbd-layout-viewer"]=" "
 handle() {
   IFS=',' read -ra FIELDS <<< "${1#*>>}"
   case $1 in
-    monitoraddedv2*) # 2,DP-2,BNQ BenQ SW271 A7L01657SL0
+    monitoraddedv2*)
       grep closed /proc/acpi/button/lid/LID0/state 
       LID_OPEN=$?
       if [[ $LID_OPEN = 0 ]]; then
-        echo "${FIELDS[@]}"
         MONITOR_ID="${FIELDS[0]}"
-        WORKSPACE_IDS=$(hyprctl -j workspaces | jq -r ".[] | select(.monitorID == $MONITOR_ID) | .id")
-        echo "$WORKSPACE_IDS"
+
+        # Wait for Hyprland IPC to become available
+        for _ in {1..20}; do
+          if hyprctl -j workspaces >/dev/null 2>&1; then
+            break
+          fi
+          echo "Waiting for Hyprland IPC..."
+          sleep 0.2
+        done
+
+        WORKSPACE_IDS=$(hyprctl -j workspaces | jq -r ".[] | select(.monitorID == 0) | .id")
         for WORKSPACE_ID in $WORKSPACE_IDS; do
-          echo hyprctl dispatch moveworkspacetomonitor "$WORKSPACE_ID" "$MONITOR_ID"
           hyprctl dispatch moveworkspacetomonitor "$WORKSPACE_ID" "$MONITOR_ID"
         done
       fi
@@ -90,4 +97,4 @@ get_window_by_addr() {
   hyprctl -j clients | jq ".[] | select(.address == \"$1\")"
 }
 
-socat -U - UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock | while read -r line; do handle "$line"; done
+socat -U - "UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock" | while read -r LINE; do handle "$LINE"; done
