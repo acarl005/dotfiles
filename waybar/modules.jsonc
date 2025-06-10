@@ -14,15 +14,9 @@
   },
   "hyprland/workspaces": {
     "on-click": "activate",
-    "active-only": false,
     "all-outputs": true,
-    "format": "<small>{id}</small><big>{windows}</big>",
-    "format-window-separator": "",
-    "window-rewrite-default": "",
+    "format": "{name}",
     "move-to-monitor": true,
-    "persistent-workspaces": {
-      "*": 3
-    },
     "window-rewrite": {
       "class<firefox>": "󰈹 ",
       "class<google-chrome>": " ",
@@ -36,7 +30,8 @@
       "class<1Password>": "󰯅 ",
       "class<qdbusviewer>": " ",
       "class<mpv>": " ",
-      "class<qvidcap>": " "
+      "class<qvidcap>": " ",
+      "class<Audacity>": " "
     }
   },
   "network": {

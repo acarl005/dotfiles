@@ -70,10 +70,12 @@ def main():
 
         desktop_file = find_desktop_file(bin_name)
         if not desktop_file:
+            print(f"{class_}   {title} @ {address}")
             continue
 
         icon_name = get_icon_name_from_desktop(desktop_file)
         if not icon_name:
+            print(f"{class_}   {title} @ {address}")
             continue
 
         icon_path = get_icon_path(icon_name)
