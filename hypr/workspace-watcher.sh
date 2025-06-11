@@ -21,37 +21,42 @@ ICONS["kbd-layout-viewer"]=" "
 
 
 handle() {
+  # Chop off event name and split comma-delimited args to an array.
   IFS=',' read -ra FIELDS <<< "${1#*>>}"
   case $1 in
-    monitoraddedv2*)
-      grep closed /proc/acpi/button/lid/LID0/state 
-      LID_OPEN=$?
-      if [[ $LID_OPEN = 0 ]]; then
-        MONITOR_ID="${FIELDS[0]}"
-
-        # Wait for Hyprland IPC to become available
-        for _ in {1..20}; do
-          if hyprctl -j workspaces >/dev/null 2>&1; then
-            break
-          fi
-          echo "Waiting for Hyprland IPC..."
-          sleep 0.2
-        done
-
-        WORKSPACE_IDS=$(hyprctl -j workspaces | jq -r ".[] | select(.monitorID == 0) | .id")
-        for WORKSPACE_ID in $WORKSPACE_IDS; do
-          hyprctl dispatch moveworkspacetomonitor "$WORKSPACE_ID" "$MONITOR_ID"
-        done
-      fi
-      ;;
+    # monitoraddedv2*)
+    #   grep closed /proc/acpi/button/lid/LID0/state 
+    #   LID_OPEN=$?
+    #   if [[ $LID_OPEN = 1 ]]; then
+    #     return
+    #   fi
+    #   MONITOR_ID="${FIELDS[0]}"
+    #
+    #   # Wait for Hyprland IPC to become available. It lags a lot when my thunderbolt dock is plugged in.
+    #   # It errors out rather than waiting on a blocking read.
+    #   for _ in {1..20}; do
+    #     if hyprctl -j workspaces >/dev/null 2>&1; then
+    #       break
+    #     fi
+    #     echo "Waiting for Hyprland IPC..."
+    #     sleep 0.2
+    #   done
+    #
+    #   # Get all workspaces on the built-in monitor (assuming it has ID 0).
+    #   WORKSPACE_IDS=$(hyprctl -j workspaces | jq -r ".[] | select(.monitorID == 0) | .id")
+    #   for WORKSPACE_ID in $WORKSPACE_IDS; do
+    #     hyprctl dispatch moveworkspacetomonitor "$WORKSPACE_ID" "$MONITOR_ID"
+    #   done
+    #   ;;
     activewindowv2*|openwindow*|windowtitlev2*)
-      if [[ "${#FIELDS[@]}" -gt 0 ]]; then
-        CHANGED_WINDOW_ADDR="${FIELDS[0]}"
-        CHANGED_WINDOW=$(get_window_by_addr "0x$CHANGED_WINDOW_ADDR")
-        WORKSPACE_ID=$(echo "$CHANGED_WINDOW" | jq -r '.workspace.id')
-        if [[ -n "$WORKSPACE_ID" ]]; then
-          update_workspace_name "$WORKSPACE_ID"
-        fi
+      if [[ "${#FIELDS[@]}" = 0 ]]; then
+        return
+      fi
+      CHANGED_WINDOW_ADDR="${FIELDS[0]}"
+      CHANGED_WINDOW=$(get_window_by_addr "0x$CHANGED_WINDOW_ADDR")
+      WORKSPACE_ID=$(echo "$CHANGED_WINDOW" | jq -r '.workspace.id')
+      if [[ -n "$WORKSPACE_ID" ]]; then
+        update_workspace_name "$WORKSPACE_ID"
       fi
       ;;
     closewindow*|movewindowv2*)

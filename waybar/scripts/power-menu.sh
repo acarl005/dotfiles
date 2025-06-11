@@ -17,7 +17,7 @@ for i in "${!DISPLAY_NAMES[@]}"; do
   MENU_ITEMS+=("img:${ICON_PATHS[i]}:text:${DISPLAY_NAMES[i]}")
 done
 
-CHOICE=$(printf '%s\n' "${MENU_ITEMS[@]}" | wofi --normal-window --show dmenu --allow-images --prompt "Choose an action")
+CHOICE=$(printf '%s\n' "${MENU_ITEMS[@]}" | wofi --conf ~/.config/wofi/power_menu.conf)
 
 # Extract label from `text:...`
 SELECTED_NAME="${CHOICE#*:text:}"
