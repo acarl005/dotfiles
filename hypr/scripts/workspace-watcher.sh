@@ -69,6 +69,11 @@ handle() {
   esac
 }
 
+# Custom naming for each workspace based on the last active window. The name will be as follows:
+# - If the last active window (in the workspace) has an icon entry in the `ICONS` map, use that icon.
+# - If any window in the workspace has an icon entry in the `ICONS` map, use that icon.
+# - If the workspace has at least one window, but none with an icon entry in the `ICONS` map, use a generic  .
+# - Otherwise, name the workspace its ID.
 update_workspace_name() {
   WORKSPACE_ID="$1"
   WORKSPACE=$(hyprctl -j workspaces | jq ".[] | select(.id == $WORKSPACE_ID)")

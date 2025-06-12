@@ -2,7 +2,7 @@
   "custom/appmenu": {
     "format": "󰣇",
     "tooltip-format": "Open the application launcher",
-    "on-click": "$HOME/.config/waybar/scripts/power-menu.sh"
+    "on-click": "$HOME/.config/waybar/scripts/power_menu.py"
   },
   "hyprland/window": {
     "rewrite": {

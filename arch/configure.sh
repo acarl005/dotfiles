@@ -56,5 +56,5 @@ cd ~/src
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
-yay -S autojump bibata-cursor-theme-bin
+yay -S autojump bibata-cursor-theme-bin resvg
 
