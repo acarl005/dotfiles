@@ -25,6 +25,8 @@ ln -s "$DIR/gtk" ~/.config/gtk-3.0
 ln -s "$DIR/gtk" ~/.config/gtk-4.0
 [ -L ~/.config/kitty ] && rm ~/.config/kitty
 ln -s "$DIR/kitty" ~/.config/kitty
+[ -L ~/.config/ghostty ] && rm ~/.config/ghostty
+ln -s "$DIR/ghostty" ~/.config/ghostty
 [ -L ~/.config/fastfetch ] && rm ~/.config/fastfetch
 ln -s "$DIR/fastfetch" ~/.config/fastfetch
 

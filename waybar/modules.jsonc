@@ -45,19 +45,19 @@
     "tooltip-format-disconnected": "Disconnected",
     "max-length": 50,
     "interval": 1,
-    "on-click": "kitty nmtui"
+    "on-click": "ghostty -e nmtui"
   },
   "bluetooth": {
     "format-disabled": "",
     "format-off": "",
     "interval": 30,
-    "on-click": "kitty bluetoothctl",
+    "on-click": "ghostty -e bluetoothctl",
     "format-no-controller": ""
   },
   "wireplumber": {
     "format": "{icon} {volume}%",
     "format-muted": "  --",
-    "on-click": "kitty alsamixer",
+    "on-click": "ghostty -e alsamixer",
     "format-icons": [
       "",
       " ",

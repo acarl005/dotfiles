@@ -1,0 +1,30 @@
+@define-color red #ff6e5e;
+@define-color brightRed #ff9a8f;
+@define-color magenta #bd5eff;
+@define-color lavender #d08fff;
+
+@define-color text #ffe8e5;
+@define-color shadow alpha(@lavender, 0.25);
+
+.top-bar,
+.bottom-bar {
+  background: alpha(#000000, 0.5);
+}
+
+tab {
+  color: @text;
+  font-family: 'Inconsolata Nerd Font';
+  text-shadow: 0px 0px 4px @red, 0px 0px 8px @brightRed;
+}
+
+tab:selected {
+  box-shadow: 0px 0px 6px 3px @shadow inset;
+  background: none;
+}
+
+tab:hover {
+  box-shadow: 0px 0px 6px 3px @shadow inset;
+  color: #000000;
+  background: @magenta;
+  text-shadow: none;
+}

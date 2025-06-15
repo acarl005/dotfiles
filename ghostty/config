@@ -1,0 +1,32 @@
+font-family = "Inconsolata Nerd Font"
+
+keybind = ctrl+shift+left=move_tab:-1
+keybind = ctrl+shift+right=move_tab:+1
+
+foreground = #ffe8e5
+background = #000000
+background-opacity = 0.5
+cursor-color = #ff9a8f
+selection-background = #ffbd5e
+
+gtk-wide-tabs = false
+gtk-custom-css = ./style.css
+
+background-opacity = 0.5
+
+palette = 0=#16181a
+palette = 1=#ff6e5e
+palette = 2=#5eff6c
+palette = 3=#f1ff5e
+palette = 4=#5ea1ff
+palette = 5=#bd5eff
+palette = 6=#5ef1ff
+palette = 7=#c2c5cc
+palette = 8=#545964
+palette = 9=#ff9a8f
+palette = 10=#8fff98
+palette = 11=#f6ff8f
+palette = 12=#8fbeff
+palette = 13=#d08fff
+palette = 14=#8ff6ff
+palette = 15=#ffffff

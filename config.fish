@@ -25,7 +25,7 @@ if test -x /opt/homebrew/bin/brew
 end
 
 if status is-interactive
-  alias ff='fastfetch --logo-color-1 94 --logo-color-2 94 --color-keys 94 --color-title 94'
+  alias ff=fastfetch
   alias of=onefetch
   if type -q starship && not string match '/dev/tty*' (tty)
     starship init fish | source
@@ -33,6 +33,7 @@ if status is-interactive
   if test -d .git && type -q onefetch
     of
   else if type -q fastfetch
+    sleep 0.1 # ghostty has size issues if we run fastfetch too quickly
     ff
   else if type -q pfetch
     # I disabled "packages"

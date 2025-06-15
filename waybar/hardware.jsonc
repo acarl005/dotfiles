@@ -4,17 +4,17 @@
     "states": {
       "critical": 95
     },
-    "on-click": "kitty -e htop"
+    "on-click": "ghostty -e htop"
   },
   "memory": {
     "format": " {}%",
     "tooltip-format": "Physical: {used:0.1f}/{total:0.1f}GiB used\nSwap: {swapUsed:0.1f}/{swapTotal:0.1f}GiB used",
-    "on-click": "kitty -e htop"
+    "on-click": "ghostty -e htop"
   },
   "temperature": {
     "hwmon-path-abs": "/sys/devices/platform/coretemp.0/hwmon",
     "input-filename": "temp1_input",
-    "on-click": "kitty fish -c 'sensors | less'",
+    "on-click": "ghostty -e fish -c 'sensors | less'",
     "critical-threshold": 80,
     "format": "{icon} {temperatureC}°C",
     "format-icons": [
@@ -26,7 +26,7 @@
   "battery": {
     "format": " {icon} {capacity}%",
     "format-charging": " {icon} {capacity}%󱐋",
-    "on-click": "kitty sudo powertop",
+    "on-click": "ghostty -e sudo powertop",
     "interval": 10,
     "states": {
       "good": 90,

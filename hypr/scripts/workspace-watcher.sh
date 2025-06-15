@@ -4,6 +4,7 @@ declare -A ICONS
 ICONS["firefox"]="󰈹 "
 ICONS["google-chrome"]=" "
 ICONS["kitty"]=" "
+ICONS["com.mitchellh.ghostty"]=" "
 ICONS["org.kde.dolphin"]=" "
 ICONS["thunar"]=" "
 ICONS["Cursor"]="󰆧 "

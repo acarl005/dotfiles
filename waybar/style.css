@@ -69,10 +69,6 @@ window#waybar.empty #window {
   text-shadow: 0px 0px 4px @red, 0px 0px 8px @brightRed;
 }
 
-#workspaces label {
-  font-size: 0.9rem;
-}
-
 #workspaces button {
   padding: 0 4px;
 }
