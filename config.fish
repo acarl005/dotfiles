@@ -49,7 +49,11 @@ else if type -q vim
   set EDITOR vim
 end
 
-set VISUAL $EDITOR
+if type -q neovide
+  set VISUAL neovide
+else
+  set VISUAL $EDITOR
+end
 alias v=$EDITOR
 alias vi=$EDITOR
 alias vim=$EDITOR

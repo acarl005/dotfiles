@@ -15,19 +15,20 @@ ln -s "$DIR/wofi" ~/.config/wofi
 [ -L ~/.config/swaync ] && rm ~/.config/swaync
 ln -s "$DIR/swaync" ~/.config/swaync
 
-sudo pacman -Syu kitty fish neovim fastfetch man-pages man-db hyprland hyprpaper hypridle hyprlock hyprcursor waybar egl-wayland wl-clipboard \
+sudo pacman -Syu kitty fish neovim neovide fastfetch man-pages man-db hyprland hyprpaper hypridle hyprlock hyprcursor waybar egl-wayland wl-clipboard \
   xdg-desktop-portal xdg-desktop-portal-hyprland tmux thunar tumbler firefox htop powertop brightnessctl unzip wofi \
   ripgrep fd fzf tldr bat onefetch jq jless starship rustup git-delta ttf-inconsolata ttf-inconsolata-nerd yazi mpv vlc less \
   adobe-source-han-sans-cn-fonts fcitx5 fcitx5-configtool fcitx5-chinese-addons \
   greetd greetd-tuigreet gnome-themes-extra swaync gvfs grim slurp blueman
 
 chsh -s /bin/fish
+xdg-mime default neovide.desktop text/plain
 
 rustup default stable
 cargo install --locked tree-sitter-cli mdcat
 
 # Unfortunate hack that is necesssary for opening `.desktop` files where `Terminal=true`.
-sudo ln -fs /usr/bin/kitty /usr/bin/gnome-terminal
+sudo ln -fs /usr/bin/ghotty /usr/bin/gnome-terminal
 
 mkdir -p ~/.config/fcitx5/
 ln -fs "$DIR/fcitx5.profile" ~/.config/fcitx5/profile

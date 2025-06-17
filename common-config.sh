@@ -63,7 +63,11 @@ elif command -v vim >/dev/null; then
   export EDITOR=vim
 fi
 
-export VISUAL=$EDITOR
+if command -v neovide >/dev/null; then
+  export VISUAL=neovide
+else
+  export VISUAL=$EDITOR
+fi
 alias v=$EDITOR
 alias vi=$EDITOR
 alias vim=$EDITOR
