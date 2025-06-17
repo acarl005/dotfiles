@@ -1,7 +1,10 @@
 font-family = "Inconsolata Nerd Font"
+# Disable font ligatures
+font-feature = "-calt, -liga, -dlig"
 
 keybind = ctrl+shift+left=move_tab:-1
 keybind = ctrl+shift+right=move_tab:+1
+keybind = ctrl+shift+k=clear_screen
 
 foreground = #ffe8e5
 background = #000000

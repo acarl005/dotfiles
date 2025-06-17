@@ -8,7 +8,7 @@ if [[ -z "$devices" ]]; then
 fi
 
 # Present interactive selector
-selection=$(echo "$devices" | fzf --prompt "Select Bluetooth device: ")
+selection=$(echo "$devices" | wofi --show dmenu --normal-window --prompt "Select Bluetooth device")
 
 if [[ -z "$selection" ]]; then
     echo "No selection made."

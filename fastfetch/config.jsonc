@@ -17,7 +17,11 @@
   "modules": [
     {
       "type": "title",
-      "format": "󰟀  {user-name-colored}@{host-name-colored}"
+      "format": "󰟀  {user-name-colored}@{host-name-colored}",
+      "color": {
+        "user": "94",
+        "host": "94"
+      }
     },
     {
       "type": "separator",

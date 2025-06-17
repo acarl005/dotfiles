@@ -108,4 +108,20 @@ get_window_by_addr() {
   hyprctl -j clients | jq ".[] | select(.address == \"$1\")"
 }
 
+to_superscript() {
+  local input="$1"
+  local output=""
+  local -A superscript=(
+    [0]='⁰' [1]='¹' [2]='²' [3]='³' [4]='⁴'
+    [5]='⁵' [6]='⁶' [7]='⁷' [8]='⁸' [9]='⁹'
+  )
+
+  for (( i=0; i<${#input}; i++ )); do
+    char="${input:$i:1}"
+    output+="${superscript[$char]}"
+  done
+
+  echo "$output"
+}
+
 socat -U - "UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock" | while read -r LINE; do handle "$LINE"; done
