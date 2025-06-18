@@ -6,7 +6,7 @@ sudo apt-get install -y software-properties-common
 sudo add-apt-repository ppa:aos1/diff-so-fancy
 sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
 sudo apt-get update -y
-sudo apt-get install --ignore-missing -y git ripgrep autojump tldr curl xclip shellcheck fastfetch bat fd-find fzf zsh jq diff-so-fancy build-essential ffmpeg
+sudo apt-get install --ignore-missing -y git ripgrep autojump tldr curl xclip shellcheck fastfetch bat fd-find fzf fish jq diff-so-fancy build-essential ffmpeg
 
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
   && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
@@ -14,21 +14,10 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo 
   && sudo apt update \
   && sudo apt install -y gh
 
+chsh -s /bin/fish
+
 sudo snap install onefetch
 sudo snap install --classic nvim
-
-# install oh-my-zsh
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
-  export RUNZSH=no 
-  export KEEP_ZSHRC=yes
-  export CHSH=yes
-  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-  # custom plugins
-  git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
-  git clone https://github.com/jeffreytse/zsh-vi-mode "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-vi-mode"
-fi
 
 # install starship
 if ! command -v starship >/dev/null; then
