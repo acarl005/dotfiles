@@ -23,6 +23,7 @@ sudo pacman -Syu kitty fish neovim neovide fastfetch man-pages man-db hyprland h
 
 chsh -s /bin/fish
 xdg-mime default neovide.desktop text/plain
+xdg-mime default thunar.desktop inode/directory
 
 rustup default stable
 cargo install --locked tree-sitter-cli mdcat
