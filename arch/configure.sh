@@ -14,6 +14,8 @@ ln -s "$DIR/waybar" ~/.config/waybar
 ln -s "$DIR/wofi" ~/.config/wofi
 [ -L ~/.config/swaync ] && rm ~/.config/swaync
 ln -s "$DIR/swaync" ~/.config/swaync
+[ -L ~/.config/fastfetch ] && rm ~/.config/fastfetch
+ln -s "$DIR/fastfetch" ~/.config/fastfetch
 
 sudo pacman -Syu kitty fish neovim neovide fastfetch man-pages man-db hyprland hyprpaper hypridle hyprlock hyprcursor waybar egl-wayland wl-clipboard \
   xdg-desktop-portal xdg-desktop-portal-hyprland tmux thunar tumbler firefox htop powertop brightnessctl unzip wofi \

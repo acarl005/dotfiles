@@ -6,7 +6,7 @@ sudo apt-get install -y software-properties-common
 sudo add-apt-repository ppa:aos1/diff-so-fancy
 sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
 sudo apt-get update -y
-sudo apt-get install --ignore-missing -y git ripgrep autojump tldr curl xclip shellcheck fastfetch bat fd-find fzf fish jq diff-so-fancy build-essential ffmpeg
+sudo apt-get install --ignore-missing -y git ripgrep autojump tldr curl xclip shellcheck fastfetch bat fd-find fzf fish jq diff-so-fancy build-essential ffmpeg unzip
 
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
   && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
@@ -14,7 +14,7 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo 
   && sudo apt update \
   && sudo apt install -y gh
 
-chsh -s /bin/fish
+chsh -s /usr/bin/fish
 
 sudo snap install onefetch
 sudo snap install --classic nvim

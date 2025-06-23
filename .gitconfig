@@ -84,7 +84,11 @@
     --date=relative
 
   # Edit the last commit
-  amend= commit --verbose --amend
+  amend = commit --verbose --amend
+
+  # Squashes the HEAD commit into its parent and take the commit message of the parent.
+  sqdown = "!git reset --soft HEAD^ && git commit --amend --no-edit"
+
 
 [user]
   name = Andy Carlson

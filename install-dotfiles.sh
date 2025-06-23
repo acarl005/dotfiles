@@ -27,8 +27,6 @@ ln -s "$DIR/gtk" ~/.config/gtk-4.0
 ln -s "$DIR/kitty" ~/.config/kitty
 [ -L ~/.config/ghostty ] && rm ~/.config/ghostty
 ln -s "$DIR/ghostty" ~/.config/ghostty
-[ -L ~/.config/fastfetch ] && rm ~/.config/fastfetch
-ln -s "$DIR/fastfetch" ~/.config/fastfetch
 
 ln -fs "$DIR/.ripgreprc" ~/.ripgreprc
 ln -fs "$DIR/common-config.sh" ~/common-config.sh
