@@ -154,6 +154,7 @@ alias mv='mv -iv'
 alias less='less -miJ'
 alias desk='cd ~/Desktop'
 alias vidu='vi (git du)'
+alias bat=batcat
 
 if test -f "$HOMEBREW_PREFIX/share/autojump/autojump.fish"
   source "$HOMEBREW_PREFIX/share/autojump/autojump.fish"
