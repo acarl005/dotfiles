@@ -1,6 +1,15 @@
 ---@type LazySpec
 return {
   {
+    "mason-org/mason.nvim",
+    ---@class MasonSettings
+    opts = {
+      ui = {
+        border = "rounded",
+      },
+    },
+  },
+  {
     "folke/snacks.nvim",
     ---@type snacks.Config
     opts = {

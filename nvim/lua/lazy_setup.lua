@@ -15,7 +15,7 @@ require("lazy").setup({
 } --[[@as LazySpec]], {
   -- Configure any other `lazy.nvim` configuration options here
   install = { colorscheme = { "astrodark" } },
-  ui = { backdrop = 100 },
+  ui = { backdrop = 100, border = "rounded" },
   -- super long `git clone` timeout for plugins (10 min) so that we can update plugins while on an airplane
   git = { timeout = 600 },
   performance = {
