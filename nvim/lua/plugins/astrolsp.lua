@@ -7,6 +7,10 @@ return {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
   opts = {
+    -- Overridden by folke/noice.nvim config
+    -- defaults = {
+    --   hover = { border = "rounded", silent = true },
+    -- },
     features = {
       autoformat = true,
       codelens = true,

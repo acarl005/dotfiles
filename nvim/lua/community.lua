@@ -25,4 +25,12 @@ return {
   { import = "astrocommunity.motion.nvim-surround" },
   { import = "astrocommunity.scrolling.nvim-scrollbar" },
   { import = "astrocommunity.utility.noice-nvim" },
+  {
+    "folke/noice.nvim",
+    opts = {
+      presets = {
+        lsp_doc_border = true,
+      },
+    },
+  },
 }
