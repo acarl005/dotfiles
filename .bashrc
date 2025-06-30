@@ -21,7 +21,7 @@ for i in `seq 1 11`; do
   ARG="${ARG}/.."
 done
 
-if command -v starship >/dev/null && [[ $(tty) != '/dev/tty1' ]]; then
+if command -v starship >/dev/null && [[ $(tty) != /dev/tty* ]]; then
   eval "$(starship init bash)"
 fi
 

@@ -44,7 +44,11 @@ if [[ $- =~ "i" ]]; then
   if [ -d .git ] && command -v onefetch >/dev/null; then
     onefetch
   elif command -v fastfetch >/dev/null; then
-    fastfetch
+    if [[ $(tty) != /dev/tty* ]]; then
+      fastfetch
+    else
+      fastfetch -c ~/.config/fastfetch/clean.jsonc
+    fi
   elif command -v pfetch >/dev/null; then
     # I disabled "packages"
     export PF_INFO="ascii title os host kernel uptime memory shell editor wm de palette"

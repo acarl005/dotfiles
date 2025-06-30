@@ -27,14 +27,18 @@ end
 if status is-interactive
   alias ff=fastfetch
   alias of=onefetch
-  if type -q starship && not string match '/dev/tty*' (tty)
+  if type -q starship && not string match '/dev/tty*' (tty) >/dev/null
     starship init fish | source
   end
   if test -d .git && type -q onefetch
-    of
+    onefetch
   else if type -q fastfetch
     sleep 0.1 # ghostty has size issues if we run fastfetch too quickly
-    ff
+  if not string match '/dev/tty*' (tty) >/dev/null
+    fastfetch
+  else
+    fastfetch -c ~/.config/fastfetch/clean.jsonc
+  end
   else if type -q pfetch
     # I disabled "packages"
     set PF_INFO "ascii title os host kernel uptime memory shell editor wm de palette"
