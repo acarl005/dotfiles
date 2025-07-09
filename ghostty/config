@@ -13,7 +13,7 @@ app-notifications = no-clipboard-copy
 foreground = #ffe8e5
 background = #000000
 background-opacity = 0.5
-cursor-color = #ff9a8f
+cursor-color = #ff5ea0
 selection-background = #ffbd5e
 
 gtk-wide-tabs = false

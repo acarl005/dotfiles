@@ -20,6 +20,7 @@ ICONS["Audacity"]=" "
 ICONS["blueman-manager"]=" "
 ICONS["kbd-layout-viewer"]=" "
 ICONS["neovide"]=" "
+ICONS["io.missioncenter.MissionCenter"]=" "
 
 
 handle() {
