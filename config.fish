@@ -33,12 +33,14 @@ if status is-interactive
   if test -d .git && type -q onefetch
     onefetch
   else if type -q fastfetch
-    sleep 0.1 # ghostty has size issues if we run fastfetch too quickly
-  if not string match '/dev/tty*' (tty) >/dev/null
-    fastfetch
-  else
-    fastfetch -c ~/.config/fastfetch/clean.jsonc
-  end
+    if [ "$TERM" = xterm-ghostty ]
+      sleep 0.1 # ghostty has size issues if we run fastfetch too quickly
+    end
+    if not string match '/dev/tty*' (tty) >/dev/null
+      fastfetch
+    else
+      fastfetch -c ~/.config/fastfetch/clean.jsonc
+    end
   else if type -q pfetch
     # I disabled "packages"
     set PF_INFO "ascii title os host kernel uptime memory shell editor wm de palette"
@@ -164,4 +166,10 @@ if test -f "$HOMEBREW_PREFIX/share/autojump/autojump.fish"
   source "$HOMEBREW_PREFIX/share/autojump/autojump.fish"
 else if test -f /usr/share/autojump/autojump.fish
   source /usr/share/autojump/autojump.fish
+end
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -d "$HOME/src/google-cloud-sdk" ]
+  . "$HOME/src/google-cloud-sdk/path.fish.inc"
+  fish_add_path "$HOME/src/google-cloud-sdk/bin"
 end

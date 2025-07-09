@@ -44,6 +44,9 @@ if [[ $- =~ "i" ]]; then
   if [ -d .git ] && command -v onefetch >/dev/null; then
     onefetch
   elif command -v fastfetch >/dev/null; then
+    if [[ "$TERM" == xterm-ghostty ]]; then
+      sleep 0.1 # ghostty has size issues if we run fastfetch too quickly
+    fi
     if [[ $(tty) != /dev/tty* ]]; then
       fastfetch
     else
