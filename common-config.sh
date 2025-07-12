@@ -274,3 +274,7 @@ listening() {
 export PYTHONSTARTUP=$HOME/.pythonrc.py
 
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
+
+if [ -d "$HOME/src/google-cloud-sdk" ]; then
+  PATH="$HOME/src/google-cloud-sdk/bin:$PATH"
+fi

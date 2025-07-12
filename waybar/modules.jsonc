@@ -16,6 +16,10 @@
     "on-click": "activate",
     "all-outputs": true,
     "format": "{name}",
+    // TODO: https://github.com/Alexays/Waybar/issues/3912
+    // "persistent-workspaces": {
+    //   "*": 3
+    // },
     "move-to-monitor": true,
     "window-rewrite": {
       "class<firefox>": "󰈹 ",

@@ -16,9 +16,11 @@ ln -s "$DIR/wofi" ~/.config/wofi
 ln -s "$DIR/swaync" ~/.config/swaync
 [ -L ~/.config/fastfetch ] && rm ~/.config/fastfetch
 ln -s "$DIR/fastfetch" ~/.config/fastfetch
+[ -L ~/.config/xdg-desktop-portal ] && rm ~/.config/xdg-desktop-portal
+ln -s "$DIR/xdg-desktop-portal" ~/.config/xdg-desktop-portal
 
 sudo pacman -Syu kitty fish neovim neovide fastfetch man-pages man-db hyprland hyprpaper hypridle hyprlock hyprcursor waybar egl-wayland wl-clipboard \
-  xdg-desktop-portal xdg-desktop-portal-hyprland tmux thunar tumbler firefox htop powertop brightnessctl unzip wofi \
+  xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk tmux thunar tumbler firefox htop powertop brightnessctl unzip wofi \
   ripgrep fd fzf tldr bat onefetch jq jless starship rustup git-delta ttf-inconsolata ttf-inconsolata-nerd yazi mpv vlc less \
   adobe-source-han-sans-cn-fonts fcitx5 fcitx5-configtool fcitx5-chinese-addons \
   greetd greetd-tuigreet gnome-themes-extra swaync gvfs grim slurp blueman
