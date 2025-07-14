@@ -60,7 +60,7 @@
   },
   "wireplumber": {
     "format": "{icon} {volume}%",
-    "format-muted": "  --",
+    "format-muted": " ",
     "on-click": "ghostty -e alsamixer",
     "format-icons": [
       "",
