@@ -33,5 +33,5 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
 fi
 
 
-brew install ripgrep autojump git gh neovim coreutils fastfetch fd fzf tldr bat onefetch highlight mdcat jq starship tree-sitter diff-so-fancy git-delta font-inconsolata-nerd-font yazi ffmpeg
+brew install ripgrep autojump git gh neovim coreutils fastfetch fd fzf tldr bat onefetch highlight mdcat jq starship tree-sitter diff-so-fancy git-delta font-inconsolata-nerd-font yazi ffmpeg resvg
 brew install acarl005/homebrew-formulas/ls-go

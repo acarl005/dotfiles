@@ -23,7 +23,7 @@ sudo pacman -Syu kitty fish neovim neovide fastfetch man-pages man-db hyprland h
   xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk tmux thunar tumbler firefox htop powertop brightnessctl unzip wofi \
   ripgrep fd fzf tldr bat onefetch jq jless starship rustup git-delta ttf-inconsolata ttf-inconsolata-nerd yazi mpv vlc less \
   adobe-source-han-sans-cn-fonts fcitx5 fcitx5-configtool fcitx5-chinese-addons \
-  greetd greetd-tuigreet gnome-themes-extra swaync gvfs grim slurp blueman
+  greetd greetd-tuigreet gnome-themes-extra swaync gvfs grim slurp blueman resvg
 
 chsh -s /bin/fish
 xdg-mime default neovide.desktop text/plain
@@ -62,5 +62,5 @@ cd ~/src
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
-yay -S autojump bibata-cursor-theme-bin resvg
+yay -S autojump bibata-cursor-theme-bin
 
