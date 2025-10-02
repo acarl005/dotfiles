@@ -1,7 +1,7 @@
 {
   "custom/appmenu": {
     "format": "󰣇",
-    "tooltip-format": "Open the application launcher",
+    "tooltip-format": "Open the power menu",
     "on-click": "$HOME/.config/waybar/scripts/power_menu.py"
   },
   "hyprland/window": {

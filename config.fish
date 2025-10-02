@@ -1,24 +1,14 @@
 set fish_greeting
-fish_vi_key_bindings
 
-bind -M insert ctrl-r history-pager
-bind U redo
-bind -M insert ctrl-a beginning-of-line
-bind -M insert ctrl-e end-of-line
-bind -M insert ctrl-delete kill-word
-bind -M insert ctrl-backspace backward-kill-word
-bind -M insert alt-backspace backward-kill-word
-bind -M insert ctrl-right forward-word
-bind -M insert ctrl-left backward-word
-bind -M insert alt-right nextd-or-forward-word
-bind -M insert alt-left prevd-or-backward-word
-bind -M insert shift-right forward-bigword
-bind -M insert shift-left backward-bigword
-bind -M insert ctrl-f forward-char
-bind -M insert ctrl-p up-or-search
-bind -M insert ctrl-n down-or-search
-bind -M insert ctrl-z undo
-bind -M insert ctrl-Z redo
+if [ "$TERM_PROGRAM" != "WarpTerminal" ]
+  set -U fish_key_bindings fish_vi_key_bindings
+  set -U fish_bind_mode insert
+  function fish_user_key_bindings
+    set -g fish_key_bindings fish_vi_key_bindings
+    fish_default_key_bindings -M insert
+    fish_vi_key_bindings --no-erase insert
+  end
+end
 
 if test -x /opt/homebrew/bin/brew
   eval (/opt/homebrew/bin/brew shellenv)

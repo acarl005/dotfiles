@@ -3,6 +3,7 @@
 declare -A ICONS
 ICONS["firefox"]="󰈹 "
 ICONS["google-chrome"]=" "
+ICONS["glide-glide"]=" "
 ICONS["kitty"]=" "
 ICONS["com.mitchellh.ghostty"]=" "
 ICONS["dev.warp.Warp"]=" "
@@ -23,7 +24,8 @@ ICONS["blueman-manager"]=" "
 ICONS["kbd-layout-viewer"]=" "
 ICONS["neovide"]=" "
 ICONS["io.missioncenter.MissionCenter"]=" "
-
+ICONS["xdg-desktop-portal-gtk"]=" "
+ICONS["Slack"]=" "
 
 handle() {
   # Chop off event name and split comma-delimited args to an array.
