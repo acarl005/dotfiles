@@ -14,6 +14,13 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo 
   && sudo apt update \
   && sudo apt install -y gh
 
+sudo mkdir -p /etc/apt/keyrings
+wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
+sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+sudo apt update
+sudo apt install -y eza
+
 chsh -s /usr/bin/fish
 
 sudo snap install onefetch
@@ -37,20 +44,7 @@ while true; do
   esac
 done
 
-readarray -t ASSETS < <(curl -s https://api.github.com/repos/acarl005/ls-go/releases/latest | jq -r '.assets[].browser_download_url')
-
-PS3='Select a bin to install: '
-select ASSET in "${ASSETS[@]}"
-do
-  echo $ASSET
-  curl -LO $ASSET
-  chmod +x ls-go-*
-  mkdir -p ~/.local/bin
-  mv ls-go-* ~/.local/bin/ls-go
-  break
-done
-
-if [ $INSTALL_FONTS -eq 1 ]; then
+if [ "$INSTALL_FONTS" -eq 1 ]; then
   git clone --depth 1 https://github.com/ryanoasis/nerd-fonts "$HOME/Downloads/fonts"
   pushd ~/Downloads/fonts
   ./install.sh Inconsolata

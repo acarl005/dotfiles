@@ -1,22 +1,3 @@
-# generate the right ANSI escape sequences for the 256 color codes (foreground and background)
-forg() {
-  echo "\\033[38;5;${1}m"
-}
-backg() {
-  echo "\\033[48;5;${1}m"
-}
-# set color back to normal
-reset='\033[0m'
-
-
-# print a message if a dependency is missing
-suggest() {
-  # but only print if interactive
-  if [[ $- =~ "i" ]]; then
-    echo -e "$(backg 52)You can \033[4menhance\033[24m the experience by installing $(forg 51)$1$reset$(backg 52). Install here $(forg 199)$2$reset."
-  fi
-}
-
 set -o vi
 
 # set PATH so it includes user's private bin if it exists
@@ -32,7 +13,7 @@ if [ -d "$HOME/go" ]; then
 fi
 
 if [[ -x "/opt/homebrew/bin/brew" ]]; then
-  eval $(/opt/homebrew/bin/brew shellenv)
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 elif command -v brew >/dev/null; then
   eval "$(brew shellenv)"
 fi
@@ -56,8 +37,6 @@ if [[ $- =~ "i" ]]; then
     # I disabled "packages"
     export PF_INFO="ascii title os host kernel uptime memory shell editor wm de palette"
     pfetch
-  else
-    suggest fastfetch https://github.com/fastfetch-cli/fastfetch
   fi
 fi
 
@@ -86,11 +65,12 @@ export PAGER='less -SX'
 export LSCOLORS=ExGxFxdxCxDxDxaccxaeex
 export LS_COLORS='di=1;34:ln=1;36:so=1;35:pi=33:ex=1;32:bd=1;33:cd=1;33:su=30;42:sg=32:tw=30;44:ow=34'
 
-if command -v ls-go >/dev/null; then
+if command -v eza >/dev/null; then
+  alias ll='eza -al --icons --group-directories-first --sort extension'
+elif command -v ls-go >/dev/null; then
   alias ll='ls-go -alLkn'
 else
-  suggest ls-go https://github.com/acarl005/ls-go
-  if [[ `uname -s` = Linux ]]; then
+  if [[ $(uname -s) = Linux ]]; then
     alias ll='command -p ls -FlAhp --color=auto'
   else
     alias ll='command -p ls -FGlAhp'

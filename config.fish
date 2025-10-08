@@ -54,7 +54,9 @@ alias v=$EDITOR
 alias vi=$EDITOR
 alias vim=$EDITOR
 
-if type -q ls-go
+if type -q eza
+  alias ll='eza -al --icons --group-directories-first --sort extension'
+else if type -q ls-go
   alias ll='ls-go -alLkn'
 else
   if test (uname -s) = Linux

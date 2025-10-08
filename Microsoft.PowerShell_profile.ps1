@@ -2,12 +2,12 @@ if (Test-Path /opt/homebrew/bin/brew) {
   $(/opt/homebrew/bin/brew shellenv) | Invoke-Expression
 }
 
-# try {
-#   fastfetch 
-# } catch {
-# }
+try {
+  fastfetch 
+} catch {
+}
 
-# Set-PSReadLineOption -EditMode Vi
+Set-PSReadLineOption -EditMode Vi
 
 if (Test-Path -PathType Container "$HOME/.cargo/bin/") {
   $env:PATH += ":$HOME/.cargo/bin/" 
@@ -52,7 +52,11 @@ if (Get-Command -Name fastfetch -Type Application -ErrorAction SilentlyContinue)
   Set-Alias -Name ff -Value fastfetch
 }
 
-if (Get-Command -Name ls-go -Type Application -ErrorAction SilentlyContinue) {
+if (Get-Command -Name eza -Type Application -ErrorAction SilentlyContinue) {
+  function ll {
+    eza -al --icons --group-directories-first --sort extension
+  }
+} else if (Get-Command -Name ls-go -Type Application -ErrorAction SilentlyContinue) {
   function ll {
     ls-go -alLkn $args
   }
@@ -83,9 +87,6 @@ if (Get-Command -Name yazi -Type Application -ErrorAction SilentlyContinue) {
 
 
 Invoke-Expression (&starship init powershell)
-# oh-my-posh init pwsh --config $HOME\ohmyposh-aj.json | Invoke-Expression
-# Set-PoshPrompt -Theme paradox
-# oh-my-posh init pwsh --config C:\Users\andy\Downloads\minimal.toml.txt | Invoke-Expression
 
 function dev {
   Import-Module 'C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\Microsoft.VisualStudio.DevShell.dll'
@@ -93,4 +94,4 @@ function dev {
 }
 
 Import-Module Terminal-Icons
-# Import-Module ZLocation
+Import-Module ZLocation
