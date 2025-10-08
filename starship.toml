@@ -187,6 +187,7 @@ format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
 style = "fg:#E8E3E3 bg:#252525 bold"
 
 [nodejs]
+disabled = true
 symbol = ""
 format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
 style = "fg:#E8E3E3 bg:#252525 bold"

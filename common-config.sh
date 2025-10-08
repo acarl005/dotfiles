@@ -58,7 +58,7 @@ alias v=$EDITOR
 alias vi=$EDITOR
 alias vim=$EDITOR
 
-export PAGER='less -SX'
+export LESS='-miSRXFJ'
 
 # Colors ls should use for folders, files, symlinks etc, see `man ls` and
 # search for LSCOLORS

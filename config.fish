@@ -149,7 +149,6 @@ alias gitd="git d"
 alias grep='grep --exclude-dir=node_modules --color=auto'
 alias cp='cp -iv'
 alias mv='mv -iv'
-alias less='less -miJ'
 alias desk='cd ~/Desktop'
 alias vidu='vi (git du)'
 alias bat=batcat
