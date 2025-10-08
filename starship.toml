@@ -36,6 +36,7 @@ $git_branch\
 $git_commit\
 $git_status\
 $cmd_duration\
+$status\
 $jobs\
 $line_break\
 $character"""
@@ -51,24 +52,24 @@ style = "fg:#E8E3E3 bg:#252525 bold"
 
 [shlvl]
 disabled = false
-format = "[](fg:#252525 bg:none)[$shlvl](fg:#E8E3E3 bg:#252525)[█](fg:#252525 bg:#252525)[](fg:#8FFF98 bg:#252525)[$symbol](fg:#252525 bg:#8FFF98)[ ](fg:#8FFF98 bg:none)"
+format = "[](fg:#252525 bg:none)[$shlvl ](fg:#E8E3E3 bg:#252525)[](fg:#8FFF98 bg:#252525)[$symbol](fg:#252525 bg:#8FFF98)[ ](fg:#8FFF98 bg:none)"
 symbol = " "
 
 [hostname]
 disabled = false
 ssh_only = true
 ssh_symbol = " "
-format = "[](fg:#252525 bg:none)[$hostname](fg:#E8E3E3 bg:#252525)[█](fg:#252525 bg:#252525)[](fg:#D08FFF bg:#252525)[$ssh_symbol](fg:#252525 bg:#D08FFF)[ ](fg:#D08FFF bg:none)"
+format = "[](fg:#252525 bg:none)[$hostname ](fg:#E8E3E3 bg:#252525)[](fg:#D08FFF bg:#252525)[$ssh_symbol](fg:#252525 bg:#D08FFF)[ ](fg:#D08FFF bg:none)"
 
 [directory]
-format = "[](fg:#252525 bg:none)[$path]($style)[█](fg:#252525 bg:#252525)[](fg:#8FBEFF bg:#252525)[ ](fg:#252525 bg:#8FBEFF)[ ](fg:#8FBEFF bg:none)"
+format = "[](fg:#252525 bg:none)[$path ]($style)[](fg:#8FBEFF bg:#252525)[ ](fg:#252525 bg:#8FBEFF)[ ](fg:#8FBEFF bg:none)"
 style = "fg:#E8E3E3 bg:#252525 bold"
 fish_style_pwd_dir_length = 1
 truncate_to_repo=false
 
 [nix_shell]
 disabled = false
-format = "[](fg:#252525 bg:none)[$name]($style)[█](fg:#252525 bg:#252525)[](fg:#8FBEFF bg:#252525)[$symbol](fg:#252525 bg:#8FBEFF)[](fg:#8FBEFF bg:none)"
+format = "[](fg:#252525 bg:none)[$name ]($style)[](fg:#8FBEFF bg:#252525)[$symbol](fg:#252525 bg:#8FBEFF)[](fg:#8FBEFF bg:none)"
 symbol = " "
 style = "fg:#E8E3E3 bg:#252525 bold"
 
@@ -78,13 +79,13 @@ style = 'bold green'
 
 
 [git_branch]
-format = " [](fg:#252525 bg:none)[$branch]($style)[](fg:#252525 bg:#252525)[](fg:#8FBEFF bg:#252525)[$symbol](fg:#252525 bg:#8FBEFF)[](fg:#8FBEFF bg:none)"
+format = " [](fg:#252525 bg:none)[$branch ]($style)[](fg:#8FBEFF bg:#252525)[$symbol](fg:#252525 bg:#8FBEFF)[](fg:#8FBEFF bg:none)"
 only_attached = true
 style = "fg:#E8E3E3 bg:#252525"
 symbol = " "
 
 [git_commit]
-format = " [](fg:#252525 bg:none)[\\($hash\\)]($style)[](fg:#252525 bg:#252525)[](fg:#8FBEFF bg:#252525)[󰜘](fg:#252525 bg:#8FBEFF)[](fg:#8FBEFF bg:none)"
+format = " [](fg:#252525 bg:none)[\\($hash\\) ]($style)[](fg:#8FBEFF bg:#252525)[󰜘 ](fg:#252525 bg:#8FBEFF)[](fg:#8FBEFF bg:none)"
 style = "fg:#E8E3E3 bg:#252525"
 
 [git_status]
@@ -116,8 +117,13 @@ format = ' [](fg:#252525 bg:none)[$state( $progress_current/$progress_total)]
 [cmd_duration]
 disabled = false
 min_time = 1000
-format = " [](fg:#252525 bg:none)[$duration]($style)[](fg:#252525 bg:#252525)[](fg:#8FFF98 bg:#252525)[󱑂 ](fg:#252525 bg:#8FFF98)[](fg:#8FFF98 bg:none)"
+format = " [](fg:#252525 bg:none)[$duration ]($style)[](fg:#8FFF98 bg:#252525)[󱑂 ](fg:#252525 bg:#8FFF98)[](fg:#8FFF98 bg:none)"
 style = "fg:#E8E3E3 bg:#252525 bold"
+
+[status]
+disabled = false
+style = "fg:#E8E3E3 bg:#252525 bold"
+format = " [](fg:#252525 bg:none)[$status ]($style)[](fg:#FF6E5E bg:#252525)[ ](fg:#252525 bg:#FF6E5E)[](fg:#FF6E5E bg:none)"
 
 [line_break]
 disabled = false
