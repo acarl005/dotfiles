@@ -81,20 +81,20 @@ style = 'bold green'
 format = " [](fg:#252525 bg:none)[$branch]($style)[](fg:#252525 bg:#252525)[](fg:#8FBEFF bg:#252525)[$symbol](fg:#252525 bg:#8FBEFF)[](fg:#8FBEFF bg:none)"
 only_attached = true
 style = "fg:#E8E3E3 bg:#252525"
-symbol = ""
+symbol = " "
 
 [git_commit]
 format = " [](fg:#252525 bg:none)[\\($hash\\)]($style)[](fg:#252525 bg:#252525)[](fg:#8FBEFF bg:#252525)[󰜘](fg:#252525 bg:#8FBEFF)[](fg:#8FBEFF bg:none)"
 style = "fg:#E8E3E3 bg:#252525"
 
 [git_status]
-format=" [](fg:#252525 bg:none)[$all_status$ahead_behind]($style)[](fg:#252525 bg:#252525)[](fg:#D08FFF bg:#252525)[ ](fg:#252525 bg:#D08FFF)[](fg:#D08FFF bg:none)"
+format=" [](fg:#252525 bg:none)[$all_status$ahead_behind ]($style)[](fg:#D08FFF bg:#252525)[ ](fg:#252525 bg:#D08FFF)[](fg:#D08FFF bg:none)"
 style = "fg:#E8E3E3 bg:#252525"
 conflicted = "="
 ahead =	"⇡${count}"
 behind = "⇣${count}"
 diverged = "⇕⇡${ahead_count}⇣${behind_count}"
-up_to_date = " 󰄸 "
+up_to_date = "󰄸 "
 untracked = "?${count}"
 stashed = ""
 modified = "!${count}"
