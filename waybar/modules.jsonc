@@ -7,6 +7,7 @@
   "hyprland/window": {
     "rewrite": {
       "(.*) — Mozilla Firefox": "$1",
+      "(.*) — Glide Browser": "$1",
       "(.*) - Google Chrome": "$1",
       "(.*) - Cursor": "$1"
     },
