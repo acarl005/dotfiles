@@ -110,8 +110,8 @@ cherry_pick = "CHERRY-PICKING"
 bisect = "BISECTING"
 am = "AM"
 am_or_rebase = "AM/REBASE"
-style =	"yellow"
-format = ' \([$state( $progress_current/$progress_total)]($style)\)'
+style = "fg:yellow bg:#252525"
+format = ' [](fg:#252525 bg:none)[$state( $progress_current/$progress_total)]($style)[](fg:#252525 bg:none)'
 
 [cmd_duration]
 disabled = false
