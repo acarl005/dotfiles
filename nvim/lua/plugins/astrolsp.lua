@@ -116,6 +116,16 @@ return {
           desc = "Open type definition in a vsplit",
           cond = "textDocument/typeDefinition",
         },
+        ["<leader>lc"] = {
+          require("snacks").picker.lsp_incoming_calls,
+          desc = "LSP Incoming Calls",
+          cond = "callHierarchy/incomingCalls",
+        },
+        ["<leader>lC"] = {
+          require("snacks").picker.lsp_outgoing_calls,
+          desc = "LSP Outgoing Calls",
+          cond = "callHierarchy/outgoingCalls",
+        },
       },
     },
   },
