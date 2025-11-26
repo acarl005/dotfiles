@@ -29,6 +29,9 @@ return {
           }, "\n"),
         },
       },
+      image = {
+        force = vim.env.TERM_PROGRAM == "WarpTerminal",
+      },
     },
   },
   {
