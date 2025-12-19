@@ -51,9 +51,13 @@ window {
   color: @text;
 }
 
-#entry>* {
+#entry > * {
   color: @text;
   text-shadow: 0px 0px 2px @red;
+}
+
+.entry > * {
+  background: none;
 }
 
 #entry:selected {
