@@ -56,7 +56,7 @@ if (Get-Command -Name eza -Type Application -ErrorAction SilentlyContinue) {
   function ll {
     eza -al --icons --group-directories-first --sort extension
   }
-} else if (Get-Command -Name ls-go -Type Application -ErrorAction SilentlyContinue) {
+} elseif (Get-Command -Name ls-go -Type Application -ErrorAction SilentlyContinue) {
   function ll {
     ls-go -alLkn $args
   }
@@ -94,4 +94,3 @@ function dev {
 }
 
 Import-Module Terminal-Icons
-Import-Module ZLocation

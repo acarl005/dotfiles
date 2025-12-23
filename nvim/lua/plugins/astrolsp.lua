@@ -1,6 +1,6 @@
 local cwd = vim.fn.getcwd()
 local features = {}
-if cwd:find "warp%-internal" then features = { "local_tty", "agent_mode_debug" } end
+if cwd:find "warp%-internal" then features = { "local_tty", "local_fs" } end
 
 ---@type LazySpec
 return {
