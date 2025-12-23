@@ -36,7 +36,7 @@ foreach ($package in $packages) {
         Write-Host "    ✓ $($package.Name) installed" -ForegroundColor Green
     }
     catch {
-        Write-Host "    ⚠ Failed to install $($package.Name)" -ForegroundColor Yellow
+        Write-Host "    ⚠ Failed to install $($package.Name): $($_.Exception.Message)" -ForegroundColor Red
     }
 }
 
