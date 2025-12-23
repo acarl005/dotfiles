@@ -26,7 +26,7 @@ $packages = @(
     @{Id="tree-sitter.tree-sitter"; Name="tree-sitter"},
     @{Id="Gyan.FFmpeg"; Name="ffmpeg"},
     @{Id="RazrFalcon.resvg"; Name="resvg"},
-    @{Id="DEVCOM.InconsolataNerdFont"; Name="Inconsolata Nerd Font"},
+    @{Id="DEVCOM.InconsolataNerdFont"; Name="Inconsolata Nerd Font"}
 )
 
 foreach ($package in $packages) {
