@@ -81,3 +81,27 @@ if (Test-Path $starshipConfigPath) {
     Remove-Item -Force $starshipConfigPath
 }
 New-Item -ItemType SymbolicLink -Path $starshipConfigPath -Target "$DIR\starship.toml" -Force | Out-Null
+
+Install-Module -Name Terminal-Icons -Scope CurrentUser -Force -SkipPublisherCheck
+
+$latestRelease = Invoke-RestMethod -Uri "https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest"
+$version = $latestRelease.tag_name
+$url = "https://github.com/ryanoasis/nerd-fonts/releases/download/$version/Inconsolata.zip"
+$tempZip = "$env:TEMP\Inconsolata.zip"
+$extractDir = "$env:TEMP\Inconsolata"
+Invoke-WebRequest -Uri $url -OutFile $tempZip
+Expand-Archive -Path $tempZip -DestinationPath $extractDir -Force
+$fontInstallDir = "$env:LOCALAPPDATA\Microsoft\Windows\Fonts"
+New-Item $fontInstallDir -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
+$acl = Get-Acl $fontInstallDir
+$acl.SetAccessRule((New-Object System.Security.AccessControl.FileSystemAccessRule([System.Security.Principal.SecurityIdentifier]::new("S-1-15-2-1"), "ReadAndExecute", "ContainerInherit,ObjectInherit", "None", "Allow")))
+$acl.SetAccessRule((New-Object System.Security.AccessControl.FileSystemAccessRule([System.Security.Principal.SecurityIdentifier]::new("S-1-15-2-2"), "ReadAndExecute", "ContainerInherit,ObjectInherit", "None", "Allow")))
+Set-Acl -AclObject $acl $fontInstallDir
+$registryKey = "HKCU:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts"
+Get-ChildItem $extractDir -Filter '*NerdFont-*' | ForEach-Object {
+    $fontName = $_.Name.Replace($_.Extension, ' (TrueType)')
+    $fontPath = "$fontInstallDir\$($_.Name)"
+    New-ItemProperty -Path $registryKey -Name $fontName -Value $fontPath -Force | Out-Null
+    Copy-Item -LiteralPath $_.FullName -Destination $fontInstallDir
+}
+Remove-Item $tempZip, $extractDir -Recurse -Force
