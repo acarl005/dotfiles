@@ -14,9 +14,9 @@ if [[ $(uname) = Darwin ]]; then
   [ -L ~/.warp/themes ] && rm ~/.warp/themes
   ln -i -s "$DIR/warp-themes" ~/.warp/themes
 else
-  mkdir -p ~/.local/share/warp-terminal
-  [ -L ~/.local/share/warp-terminal/themes ] && rm ~/.local/share/warp-terminal/themes
-  ln -i -s "$DIR/warp-themes" ~/.local/share/warp-terminal/themes
+  mkdir -p "$XDG_DATA_HOME/warp-terminal"
+  [ -L "$XDG_DATA_HOME/warp-terminal/themes" ] && rm "$XDG_DATA_HOME/warp-terminal/themes"
+  ln -i -s "$DIR/warp-themes" "$XDG_DATA_HOME/warp-terminal/themes"
 fi
 
 [ -L ~/.config/gtk-3.0 ] && rm ~/.config/gtk-3.0

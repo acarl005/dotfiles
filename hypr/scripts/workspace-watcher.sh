@@ -28,6 +28,7 @@ ICONS["kbd-layout-viewer"]=" "
 ICONS["neovide"]=" "
 ICONS["io.missioncenter.MissionCenter"]=" "
 ICONS["Slack"]=" "
+ICONS["Docker Desktop"]=" "
 
 handle() {
   # Chop off event name and split comma-delimited args to an array.
