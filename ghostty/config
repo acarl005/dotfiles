@@ -16,7 +16,6 @@ background-opacity = 0.5
 cursor-color = #ff5ea0
 selection-background = #ffbd5e
 
-gtk-wide-tabs = false
 gtk-custom-css = ./style.css
 
 background-opacity = 0.5
