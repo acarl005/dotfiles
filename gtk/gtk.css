@@ -1,5 +1,5 @@
-@define-color selected_bg_color rgba(255, 94, 160, 0.3);
-@define-color theme_selected_bg_color rgba(255, 94, 160, 0.3);
+@define-color selected_bg_color #bd5eff;
+@define-color theme_selected_bg_color #bd5eff;
 
 window,
 notebook,
@@ -31,14 +31,15 @@ toolitem, entry {
 
 menu,
 menu menuitem {
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: rgba(0, 0, 0, 0.75);
     color: #e0e0e0;
 }
 
 menu menuitem:hover,
 menu menuitem:focus,
 menu menuitem:selected {
-    background-color: rgba(255, 94, 160, 0.3);
+    background-color: #bd5eff;
+    color: #000000;
 }
 
 menu menuitem:disabled {
@@ -47,11 +48,13 @@ menu menuitem:disabled {
 
 .sidebar row:selected,
 .sidebar row:active {
-    background-color: rgba(255, 94, 160, 0.35);
+    background-color: #bd5eff;
+    color: #000000;
 }
 
 .view:selected,
 .view row:selected,
 iconview:selected {
-    background-color: rgba(255, 94, 160, 0.4);
+    background-color: #bd5eff;
+    color: #000000;
 }
