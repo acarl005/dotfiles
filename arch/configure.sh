@@ -30,10 +30,11 @@ xdg-mime default neovide.desktop text/plain
 xdg-mime default thunar.desktop inode/directory
 
 rustup default stable
-cargo install --locked tree-sitter-cli mdcat
+cargo install --locked tree-sitter-cli mdcat rusty-rain
+# rusty-rain -s -g classic
 
-# Unfortunate hack that is necesssary for opening `.desktop` files where `Terminal=true`.
-sudo ln -fs /usr/bin/ghotty /usr/bin/gnome-terminal
+# Unfortunate hack that is necessary for opening `.desktop` files where `Terminal=true`.
+sudo ln -fs /usr/bin/ghostty /usr/bin/gnome-terminal
 
 mkdir -p ~/.config/fcitx5/
 ln -fs "$DIR/fcitx5.profile" ~/.config/fcitx5/profile
@@ -60,7 +61,9 @@ cd ~/src
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
-yay -S autojump bibata-cursor-theme-bin sysc-greet-hyprland papirus-icon-theme papirus-folders
+yay -S autojump bibata-cursor-theme-bin sysc-greet-hyprland papirus-icon-theme papirus-folders pipes-rs lavat-git
+# lavat -g -c ff5ea0 -k bd5eff
+# pipes-rs -p 8 -c ansi
 
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
