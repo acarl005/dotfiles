@@ -10,11 +10,12 @@ from gi.repository import Gtk
 
 # Power menu entries: display name -> (icon name, command)
 POWER_ACTIONS = {
+    "Suspend": ("media-playback-pause-symbolic", "systemctl suspend"),
     "Lock": ("system-lock-screen-symbolic", "loginctl lock-session"),
     "Logout": ("system-log-out-symbolic", "hyprctl dispatch exit"),
-    "Power Off": ("system-shutdown-symbolic", "systemctl poweroff"),
+    "Hibernate": ("system-hibernate-symbolic", "systemctl hibernate"),
     "Reboot": ("system-reboot-symbolic", "systemctl reboot"),
-    "Suspend": ("media-playback-pause-symbolic", "systemctl suspend"),
+    "Power Off": ("system-shutdown-symbolic", "systemctl poweroff"),
 }
 
 icon_theme = Gtk.IconTheme.get_default()
