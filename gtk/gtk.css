@@ -1,10 +1,15 @@
 @define-color selected_bg_color #bd5eff;
 @define-color theme_selected_bg_color #bd5eff;
 
+* {
+    font-family: "Inconsolata Nerd Font";
+}
+
 window,
 notebook,
 notebook > stack,
 paned,
+infobar box,
 .content-view,
 .view {
     background-color: rgba(0, 0, 0, 0.05);
@@ -57,4 +62,26 @@ menu menuitem:disabled {
 iconview:selected {
     background-color: #bd5eff;
     color: #000000;
+}
+
+switch {
+    border-radius: 12px;
+    background: none;
+    box-shadow: 0px 0px 6px 3px alpha(#d08fff, 0.25) inset;
+    border: none;
+}
+
+switch:checked {
+    background: alpha(#bd5eff, 0.2);
+}
+
+switch slider {
+    border-radius: 12px;
+    background: #333;
+    min-width: 16px;
+    min-height: 16px;
+}
+
+switch:checked slider {
+    background: #333;
 }
