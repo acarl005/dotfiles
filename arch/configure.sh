@@ -60,5 +60,8 @@ cd ~/src
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
-yay -S autojump bibata-cursor-theme-bin sysc-greet-hyprland
+yay -S autojump bibata-cursor-theme-bin sysc-greet-hyprland papirus-icon-theme papirus-folders
 
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+papirus-folders -C pink --theme Papirus-Dark
