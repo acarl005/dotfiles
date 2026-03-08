@@ -22,8 +22,8 @@ ln -s "$DIR/xdg-desktop-portal" ~/.config/xdg-desktop-portal
 sudo pacman -Syu kitty ghostty fish neovim man-pages man-db hyprland hyprpaper hypridle hyprlock hyprcursor waybar egl-wayland wl-clipboard \
   xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk tmux thunar tumbler firefox htop powertop brightnessctl unzip wofi \
   eza ripgrep fd fzf tldr bat onefetch jq jless starship rustup git-delta ttf-inconsolata ttf-inconsolata-nerd yazi mpv vlc vlc-plugin-ffmpeg less \
-  neovide fastfetch greetd uwsm gnome-themes-extra swaync gvfs grim slurp blueman wiremix resvg socat \
-  adobe-source-han-sans-cn-fonts fcitx5 fcitx5-configtool fcitx5-chinese-addons
+  neovide fastfetch greetd uwsm gnome-themes-extra swaync gvfs grim slurp blueman wiremix resvg socat python-pipx \
+  noto-fonts-emoji adobe-source-han-sans-cn-fonts fcitx5 fcitx5-configtool fcitx5-chinese-addons
 
 chsh -s /bin/fish
 xdg-mime default neovide.desktop text/plain
