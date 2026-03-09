@@ -48,30 +48,30 @@ add_newline = true
 [os]
 disabled = false
 format = "[](fg:#252525 bg:none)[$symbol]($style)[ ](fg:#252525 bg:none)"
-style = "fg:#E8E3E3 bg:#252525 bold"
+style = "bg:#252525 bold"
 
 [shlvl]
 disabled = false
-format = "[](fg:#252525 bg:none)[$shlvl ](fg:#E8E3E3 bg:#252525)[](fg:#8FFF98 bg:#252525)[$symbol](fg:#252525 bg:#8FFF98)[ ](fg:#8FFF98 bg:none)"
+format = "[](fg:#252525 bg:none)[$shlvl ](bg:#252525)[](fg:bright-green bg:#252525)[$symbol](fg:#252525 bg:bright-green)[ ](fg:bright-green bg:none)"
 symbol = " "
 
 [hostname]
 disabled = false
 ssh_only = true
 ssh_symbol = " "
-format = "[](fg:#252525 bg:none)[$hostname ](fg:#E8E3E3 bg:#252525)[](fg:#D08FFF bg:#252525)[$ssh_symbol](fg:#252525 bg:#D08FFF)[ ](fg:#D08FFF bg:none)"
+format = "[](fg:#252525 bg:none)[$hostname ](bg:#252525)[](fg:bright-purple bg:#252525)[$ssh_symbol](fg:#252525 bg:bright-purple)[ ](fg:bright-purple bg:none)"
 
 [directory]
-format = "[](fg:#252525 bg:none)[$path ]($style)[](fg:#8FBEFF bg:#252525)[ ](fg:#252525 bg:#8FBEFF)[ ](fg:#8FBEFF bg:none)"
-style = "fg:#E8E3E3 bg:#252525 bold"
+format = "[](fg:#252525 bg:none)[$path ]($style)[](fg:bright-blue bg:#252525)[ ](fg:#252525 bg:bright-blue)[ ](fg:bright-blue bg:none)"
+style = "bg:#252525 bold"
 fish_style_pwd_dir_length = 1
 truncate_to_repo=false
 
 [nix_shell]
 disabled = false
-format = "[](fg:#252525 bg:none)[$name ]($style)[](fg:#8FBEFF bg:#252525)[$symbol](fg:#252525 bg:#8FBEFF)[](fg:#8FBEFF bg:none)"
+format = "[](fg:#252525 bg:none)[$name ]($style)[](fg:bright-blue bg:#252525)[$symbol](fg:#252525 bg:bright-blue)[](fg:bright-blue bg:none)"
 symbol = " "
-style = "fg:#E8E3E3 bg:#252525 bold"
+style = "bg:#252525 bold"
 
 [fill]
 symbol = ' '
@@ -79,18 +79,18 @@ style = 'bold green'
 
 
 [git_branch]
-format = " [](fg:#252525 bg:none)[$branch ]($style)[](fg:#8FBEFF bg:#252525)[$symbol](fg:#252525 bg:#8FBEFF)[](fg:#8FBEFF bg:none)"
+format = " [](fg:#252525 bg:none)[$branch ]($style)[](fg:bright-blue bg:#252525)[$symbol](fg:#252525 bg:bright-blue)[](fg:bright-blue bg:none)"
 only_attached = true
-style = "fg:#E8E3E3 bg:#252525"
+style = "bg:#252525"
 symbol = " "
 
 [git_commit]
-format = " [](fg:#252525 bg:none)[\\($hash\\) ]($style)[](fg:#8FBEFF bg:#252525)[󰜘 ](fg:#252525 bg:#8FBEFF)[](fg:#8FBEFF bg:none)"
-style = "fg:#E8E3E3 bg:#252525"
+format = " [](fg:#252525 bg:none)[\\($hash\\) ]($style)[](fg:bright-blue bg:#252525)[󰜘 ](fg:#252525 bg:bright-blue)[](fg:bright-blue bg:none)"
+style = "bg:#252525"
 
 [git_status]
-format=" [](fg:#252525 bg:none)[$all_status$ahead_behind ]($style)[](fg:#D08FFF bg:#252525)[ ](fg:#252525 bg:#D08FFF)[](fg:#D08FFF bg:none)"
-style = "fg:#E8E3E3 bg:#252525"
+format=" [](fg:#252525 bg:none)[$all_status$ahead_behind ]($style)[](fg:bright-purple bg:#252525)[ ](fg:#252525 bg:bright-purple)[](fg:bright-purple bg:none)"
+style = "bg:#252525"
 conflicted = "="
 ahead =	"⇡${count}"
 behind = "⇣${count}"
@@ -117,20 +117,20 @@ format = ' [](fg:#252525 bg:none)[$state( $progress_current/$progress_total)]
 [cmd_duration]
 disabled = false
 min_time = 1000
-format = " [](fg:#252525 bg:none)[$duration ]($style)[](fg:#8FFF98 bg:#252525)[󱑂 ](fg:#252525 bg:#8FFF98)[](fg:#8FFF98 bg:none)"
-style = "fg:#E8E3E3 bg:#252525 bold"
+format = " [](fg:#252525 bg:none)[$duration ]($style)[](fg:bright-green bg:#252525)[󱑂 ](fg:#252525 bg:bright-green)[](fg:bright-green bg:none)"
+style = "bg:#252525 bold"
 
 [status]
 disabled = false
-style = "fg:#E8E3E3 bg:#252525 bold"
-format = " [](fg:#252525 bg:none)[$status ]($style)[](fg:#FF6E5E bg:#252525)[ ](fg:#252525 bg:#FF6E5E)[](fg:#FF6E5E bg:none)"
+style = "bg:#252525 bold"
+format = " [](fg:#252525 bg:none)[$status ]($style)[](fg:red bg:#252525)[ ](fg:#252525 bg:red)[](fg:red bg:none)"
 
 [line_break]
 disabled = false
 
 [character]
-success_symbol = "[❯](#8FBEFF bold)"
-error_symbol = "[❯](#FF6E5E bold)"
+success_symbol = "[❯](bright-blue bold)"
+error_symbol = "[❯](red bold)"
 
 
 #============================================================
@@ -140,107 +140,107 @@ error_symbol = "[❯](#FF6E5E bold)"
 [c]
 symbol = ""
 format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
-style = "fg:#E8E3E3 bg:#252525 bold"
+style = "bg:#252525 bold"
 
 [conda]
 symbol = "󰄦"
 format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
-style = "fg:#E8E3E3 bg:#252525 bold"
+style = "bg:#252525 bold"
 
 [crystal]
 symbol = ""
 format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
-style = "fg:#E8E3E3 bg:#252525 bold"
+style = "bg:#252525 bold"
 
 [gleam]
 format = "[](fg:#252525 bg:none)[$symbol]($style)[](fg:#252525 bg:none)"
-style = "fg:#E8E3E3 bg:#252525 bold"
+style = "bg:#252525 bold"
 
 [golang]
 symbol = ""
 format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
-style = "fg:#E8E3E3 bg:#252525 bold"
+style = "bg:#252525 bold"
 
 [helm]
 symbol = "󱃾"
 format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
-style = "fg:#E8E3E3 bg:#252525 bold"
+style = "bg:#252525 bold"
 
 [java]
 symbol = ""
 format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
-style = "fg:#E8E3E3 bg:#252525 bold"
+style = "bg:#252525 bold"
 
 [julia]
 symbol = ""
 format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
-style = "fg:#E8E3E3 bg:#252525 bold"
+style = "bg:#252525 bold"
 
 [lua]
 symbol = ""
 format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
-style = "fg:#E8E3E3 bg:#252525 bold"
+style = "bg:#252525 bold"
 
 [nim]
 symbol = ""
 format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
-style = "fg:#E8E3E3 bg:#252525 bold"
+style = "bg:#252525 bold"
 
 [nodejs]
 disabled = true
 symbol = ""
 format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
-style = "fg:#E8E3E3 bg:#252525 bold"
+style = "bg:#252525 bold"
 
 [php]
 symbol = ""
 format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
-style = "fg:#E8E3E3 bg:#252525 bold"
+style = "bg:#252525 bold"
 
 [pulumi]
 symbol = "⛰️"
 format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
-style = "fg:#E8E3E3 bg:#252525 bold"
+style = "bg:#252525 bold"
 
 [python]
 symbol = ""
 format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
-style = "fg:#E8E3E3 bg:#252525 bold"
+style = "bg:#252525 bold"
 
 [rlang]
 symbol = "󰟔"
 format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
-style = "fg:#E8E3E3 bg:#252525 bold"
+style = "bg:#252525 bold"
 
 [ruby]
 symbol = ""
 format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
-style = "fg:#E8E3E3 bg:#252525 bold"
+style = "bg:#252525 bold"
 
 [rust]
 symbol = ""
 format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
-style = "fg:#E8E3E3 bg:#252525 bold"
+style = "bg:#252525 bold"
 
 [scala]
 symbol = ""
 format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
-style = "fg:#E8E3E3 bg:#252525 bold"
+style = "bg:#252525 bold"
 
 [swift]
 symbol = ""
 format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
-style = "fg:#E8E3E3 bg:#252525 bold"
+style = "bg:#252525 bold"
 
 [terraform]
 symbol = ""
 format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
-style = "fg:#E8E3E3 bg:#252525 bold"
+style = "bg:#252525 bold"
 
 [zig]
 symbol = ""
 format = "[](fg:#252525 bg:none)[$symbol ]($style)[](fg:#252525 bg:none)"
-style = "fg:#E8E3E3 bg:#252525 bold"
+style = "bg:#252525 bold"
 
 
 #============================================================
