@@ -1,37 +1,86 @@
-@define-color selected_bg_color #bd5eff;
-@define-color theme_selected_bg_color #bd5eff;
+@define-color magenta #bd5eff;
+@define-color lavender #d08fff;
+
+@define-color selected_bg_color @magenta;
+@define-color theme_selected_bg_color @magenta;
+
+@define-color shadow alpha(@lavender, 0.25);
 
 * {
     font-family: "Inconsolata Nerd Font";
 }
 
-window,
-notebook,
-notebook > stack,
-paned,
-infobar box,
-.content-view,
-.view {
-    background-color: rgba(0, 0, 0, 0.05);
-    background-image: none;
+window, dialog {
+    background-color: rgba(0, 0, 0, 0.25);
 }
 
-.sidebar,
-.sidebar .view,
-.sidebar row {
+.view {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.sidebar {
     background-color: rgba(0, 0, 0, 0.25);
 }
 
 toolbar,
 headerbar,
 menubar,
+.toolbar,
 .path-bar,
-.toolbar {
+.titlebar {
     background-color: rgba(0, 0, 0, 0.25);
+    background-image: none;
 }
 
 toolitem, entry {
     background-color: rgba(40, 40, 40, 0.3);
+}
+
+infobar > revealer > box {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+button {
+    background-color: rgba(40, 40, 40, 0.5);
+    background-image: none;
+}
+
+button:hover {
+    background-color: @magenta;
+    background-image: none;
+}
+
+button:hover label {
+    color: #000;
+}
+
+button:hover image {
+    color: #000;
+}
+
+button:disabled {
+    background-color: rgba(0, 0, 0, 0.5);
+    background-image: none;
+}
+
+button label:disabled {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+button.suggested-action {
+    border-color: @magenta;
+}
+
+button.suggested-action:disabled {
+    border-color: rgb(27, 27, 27);
+}
+
+toolitem, entry:focus {
+    box-shadow: 0px 0px 6px 3px @shadow inset;
+}
+
+list {
+    background-color: rgba(0, 0, 0, 0.15);
 }
 
 menu,
@@ -43,7 +92,7 @@ menu menuitem {
 menu menuitem:hover,
 menu menuitem:focus,
 menu menuitem:selected {
-    background-color: #bd5eff;
+    background-color: @magenta;
     color: #000000;
 }
 
@@ -53,15 +102,37 @@ menu menuitem:disabled {
 
 .sidebar row:selected,
 .sidebar row:active {
-    background-color: #bd5eff;
+    background-color: @magenta;
     color: #000000;
 }
 
 .view:selected,
 .view row:selected,
 iconview:selected {
-    background-color: #bd5eff;
+    background-color: @magenta;
     color: #000000;
+}
+
+notebook header {
+    background-color: rgba(0, 0, 0, 0.25)
+}
+
+notebook header tab:hover {
+    background-color: @magenta;
+}
+
+notebook header tab:hover label {
+    color: #000000;
+}
+
+notebook stack {
+    background-color: rgba(0, 0, 0, 0.35)
+}
+
+check:checked {
+    background-color: @magenta;
+    background-image: none;
+    /* border-color: TODO; */
 }
 
 switch {
@@ -72,7 +143,7 @@ switch {
 }
 
 switch:checked {
-    background: alpha(#bd5eff, 0.2);
+    background: alpha(@magenta, 0.2);
 }
 
 switch slider {
