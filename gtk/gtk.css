@@ -1,6 +1,8 @@
 @define-color magenta #bd5eff;
 @define-color lavender #d08fff;
+@define-color pink #ff5ea0;
 
+@define-color activeFg #000000;
 @define-color selected_bg_color @magenta;
 @define-color theme_selected_bg_color @magenta;
 
@@ -8,6 +10,10 @@
 
 * {
     font-family: "Inconsolata Nerd Font";
+}
+
+link {
+    color: @pink;
 }
 
 window, dialog {
@@ -51,11 +57,11 @@ button:hover {
 }
 
 button:hover label {
-    color: #000;
+    color: @activeFg;
 }
 
 button:hover image {
-    color: #000;
+    color: @activeFg;
 }
 
 button:disabled {
@@ -83,9 +89,16 @@ list {
     background-color: rgba(0, 0, 0, 0.15);
 }
 
-menu,
-menu menuitem {
+menubar menuitem:hover {
+    color: @magenta;
+    box-shadow: 0 -4px @magenta inset;
+}
+
+menu {
     background-color: rgba(0, 0, 0, 0.75);
+}
+
+menu menuitem {
     color: #e0e0e0;
 }
 
@@ -93,7 +106,7 @@ menu menuitem:hover,
 menu menuitem:focus,
 menu menuitem:selected {
     background-color: @magenta;
-    color: #000000;
+    color: @activeFg;
 }
 
 menu menuitem:disabled {
@@ -103,14 +116,14 @@ menu menuitem:disabled {
 .sidebar row:selected,
 .sidebar row:active {
     background-color: @magenta;
-    color: #000000;
+    color: @activeFg;
 }
 
 .view:selected,
 .view row:selected,
 iconview:selected {
     background-color: @magenta;
-    color: #000000;
+    color: @activeFg;
 }
 
 notebook header {
@@ -122,7 +135,7 @@ notebook header tab:hover {
 }
 
 notebook header tab:hover label {
-    color: #000000;
+    color: @activeFg;
 }
 
 notebook stack {
@@ -130,9 +143,24 @@ notebook stack {
 }
 
 check:checked {
-    background-color: @magenta;
+    background-color: none;
     background-image: none;
-    /* border-color: TODO; */
+    box-shadow: 0px 0px 6px 3px alpha(#d08fff, 0.25) inset;
+    border: solid 1px @activeFg;
+}
+
+tab:checked {
+    box-shadow: 0 -4px @pink inset;
+}
+
+radio:checked {
+    background-image: none;
+    box-shadow: 0px 0px 6px 3px alpha(#d08fff, 0.25) inset;
+    border: solid 1px @activeFg;
+}
+
+highlight {
+    background-color: @magenta;
 }
 
 switch {
