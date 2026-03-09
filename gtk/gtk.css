@@ -1,6 +1,8 @@
 @define-color magenta #bd5eff;
 @define-color lavender #d08fff;
 @define-color pink #ff5ea0;
+@define-color red #ff6e5e;
+@define-color brightRed #ff9a8f;
 
 @define-color activeFg #000000;
 @define-color selected_bg_color @magenta;
@@ -81,6 +83,18 @@ button.suggested-action:disabled {
     border-color: rgb(27, 27, 27);
 }
 
+button.destructive-action {
+    background-color: @red;
+}
+
+button.destructive-action label {
+    color: @activeFg;
+}
+
+button.destructive-action:hover {
+    background-color: @brightRed;
+}
+
 toolitem, entry:focus {
     box-shadow: 0px 0px 6px 3px @shadow inset;
 }
@@ -94,8 +108,16 @@ menubar menuitem:hover {
     box-shadow: 0 -4px @magenta inset;
 }
 
-menu {
-    background-color: rgba(0, 0, 0, 0.75);
+menu, popover, sheet {
+    background-color: rgba(20, 20, 20, 0.75);
+}
+
+popover modelbutton:hover {
+    background-color: @magenta;
+}
+
+popover modelbutton:hover label {
+    color: @activeFg;
 }
 
 menu menuitem {

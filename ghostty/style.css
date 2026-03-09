@@ -4,6 +4,7 @@
 @define-color lavender #d08fff;
 
 @define-color text #ffe8e5;
+@define-color activeFg #000000;
 @define-color shadow alpha(@lavender, 0.25);
 
 .top-bar,
@@ -27,4 +28,12 @@ tab:hover {
   color: #000000;
   background: @magenta;
   text-shadow: none;
+}
+
+button.tab-close-button {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+button.tab-close-button:hover {
+  border: solid 1px @activeFg;
 }
