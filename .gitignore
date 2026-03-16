@@ -1,2 +1,3 @@
 *.swp
 nvim/lazy-lock.json
+gtk/bookmarks

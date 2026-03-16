@@ -5,7 +5,6 @@ font-feature = "-calt, -liga, -dlig"
 keybind = ctrl+shift+left=move_tab:-1
 keybind = ctrl+shift+right=move_tab:+1
 keybind = ctrl+shift+k=clear_screen
-keybind = ctrl+shift+f=write_screen_file:open
 
 copy-on-select = false
 app-notifications = no-clipboard-copy
