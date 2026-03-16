@@ -2,7 +2,6 @@
 @define-color red #ff6e5e;
 @define-color lavender #d08fff;
 @define-color brightRed #ff9a8f;
-@define-color text #ffe8e5;
 
 @define-color surface alpha(#000000, 0.6);
 @define-color text #ffe8e5;

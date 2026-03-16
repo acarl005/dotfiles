@@ -19,6 +19,8 @@
     "hyprland/workspaces"
   ],
   "modules-right": [
+    "custom/camera",
+    "custom/recording",
     "group/hardware",
     "network",
     "wireplumber",

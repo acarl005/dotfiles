@@ -69,6 +69,18 @@
       " "
     ]
   },
+  "custom/camera": {
+    "exec": "fuser /dev/video* > /dev/null && echo on || true",
+    "interval": 2,
+    "format": " "
+  },
+  "custom/recording": {
+    "exec": "pidof wf-recorder > /dev/null && echo '{\"text\": \" \", \"class\": \"active\"}' || echo '{}'",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "killall -s SIGINT wf-recorder",
+    "format": "{}"
+  },
   "clock": {
     "format-alt": "󰥔 {0:%H:%M:%S}",
     "interval": 1,
