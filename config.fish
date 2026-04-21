@@ -17,7 +17,7 @@ end
 if status is-interactive
   alias ff=fastfetch
   alias of=onefetch
-  if type -q starship && not string match '/dev/tty*' (tty) >/dev/null
+  if type -q starship && begin; not string match '/dev/tty*' (tty) >/dev/null || test (uname) != Linux; end
     starship init fish | source
   end
   if test -d .git && type -q onefetch

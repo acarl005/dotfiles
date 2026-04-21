@@ -31,7 +31,7 @@ if ! command -v starship >/dev/null; then
   curl -sS https://starship.rs/install.sh | sh -s -- --yes
 fi
 
-~/.cargo/bin/cargo install --locked tree-sitter-cli yazi-fm yazi-cli git-delta
+~/.cargo/bin/cargo install --locked yazi-fm yazi-cli git-delta
 
 # install nerd font
 while true; do

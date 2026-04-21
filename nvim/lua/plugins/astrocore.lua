@@ -31,6 +31,10 @@ return {
         ["<leader>x("] = { "<i(0])dd[(dd", desc = "Remove wrapping parentheses" },
         ["<leader>x["] = { "<i[0]]dd[[dd", desc = "Remove wrapping square bracket pair" },
         ["<c-p>"] = { require("snacks").picker.files, desc = "Search files" },
+        ["<c-,>"] = {
+          function() require("snacks").picker.files { dirs = { vim.fn.stdpath "config" }, desc = "Config Files" } end,
+          desc = "Find AstroNvim config files",
+        },
         L = {
           function() require("bufferline.commands").cycle(1) end,
           desc = "Next buffer",

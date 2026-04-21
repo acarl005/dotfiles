@@ -23,7 +23,6 @@ $packages = @(
     @{Id="dandavison.delta"; Name="git-delta"},
     @{Id="sxyazi.yazi"; Name="yazi"},
     @{Id="tldr-pages.tlrc"; Name="tldr"},
-    @{Id="tree-sitter.tree-sitter"; Name="tree-sitter"},
     @{Id="Gyan.FFmpeg"; Name="ffmpeg"},
     @{Id="RazrFalcon.resvg"; Name="resvg"},
     @{Id="DEVCOM.InconsolataNerdFont"; Name="Inconsolata Nerd Font"}

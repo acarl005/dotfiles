@@ -30,7 +30,7 @@ xdg-mime default neovide.desktop text/plain
 xdg-mime default thunar.desktop inode/directory
 
 rustup default stable
-cargo install --locked tree-sitter-cli mdcat rusty-rain
+cargo install --locked mdcat rusty-rain
 # rusty-rain -s -g classic
 
 # Unfortunate hack that is necessary for opening `.desktop` files where `Terminal=true`.
