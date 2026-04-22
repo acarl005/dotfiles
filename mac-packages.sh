@@ -7,9 +7,11 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 25
 defaults write -g ApplePressAndHoldEnabled -bool false
 
 # set preferred dock settings
-defaults write com.apple.dock autohide -int 1
+defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock tilesize -int 45
 defaults write com.apple.dock appswitcher-all-displays -bool true
+
+defaults write com.apple.finder ShowPathbar -bool true
 
 if command -v brew >/dev/null; then
   echo Homebrew already installed
@@ -34,3 +36,4 @@ fi
 
 
 brew install eza ripgrep autojump git gh neovim coreutils fastfetch fd fzf tldr bat onefetch highlight mdcat jq starship diff-so-fancy git-delta font-inconsolata-nerd-font yazi ffmpeg resvg pipx
+brew install --cask rectangle warp 1password
