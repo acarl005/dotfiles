@@ -121,4 +121,12 @@ return {
     end,
   },
   { "ii14/neorepl.nvim" },
+  {
+    -- Pin past v2.7.0 to include the iter_matches({all = false}) fix for Neovim 0.12.
+    -- Issue:  https://github.com/stevearc/aerial.nvim/issues/408
+    -- Commit: https://github.com/stevearc/aerial.nvim/commit/f93dceed41e2f926074944fdf94c93c747bb7d19
+    -- TODO: remove this pin once the fix is included in a tagged release (> v2.7.0).
+    "stevearc/aerial.nvim",
+    commit = "f93dcee",
+  },
 }

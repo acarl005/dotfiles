@@ -5,13 +5,13 @@ foreground: '#98d1ce'
 terminal_colors:
   bright:
     black: '#10151b'
-    blue: '#093748'
+    blue: '#3d8aa5'
     cyan: '#599caa'
-    green: '#081f2d'
+    green: '#4ec9a6'
     magenta: '#888ba5'
     red: '#d26939'
     white: '#d3ebe9'
-    yellow: '#245361'
+    yellow: '#f5ce7f'
   normal:
     black: '#0a0f14'
     blue: '#195465'
