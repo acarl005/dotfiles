@@ -129,4 +129,29 @@ return {
     "stevearc/aerial.nvim",
     commit = "f93dcee",
   },
+  {
+    "rmagatti/goto-preview",
+    dependencies = { "rmagatti/logger.nvim" },
+    event = "LspAttach",
+    opts = {},
+    specs = {
+      {
+        "AstroNvim/astrocore",
+        opts = {
+          mappings = {
+            n = {
+              ["<leader>lp"] = {
+                function() require("goto-preview").goto_preview_definition() end,
+                desc = "Peek definition",
+              },
+              ["<leader>lP"] = {
+                function() require("goto-preview").goto_preview_type_definition() end,
+                desc = "Peek type definition",
+              },
+            },
+          },
+        },
+      },
+    },
+  },
 }
