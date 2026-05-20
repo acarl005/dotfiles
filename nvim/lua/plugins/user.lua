@@ -13,6 +13,14 @@ return {
     "folke/snacks.nvim",
     ---@type snacks.Config
     opts = {
+      picker = {
+        previewers = {
+          file = {
+            max_size = 4 * 1024 * 1024,
+            max_line_length = 32 * 1024,
+          },
+        },
+      },
       dashboard = {
         preset = {
           header = table.concat({
