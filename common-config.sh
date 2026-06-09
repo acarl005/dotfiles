@@ -163,7 +163,7 @@ if [[ $(uname -s) = Linux ]]; then
 else
   alias ls='ls -Gp'
 fi
-alias less='less -miJX'
+alias less='less -miJXS'
 # force tmux to use utf8 encoding so emojis and stuff render
 alias tmux='tmux -u'
 # https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo

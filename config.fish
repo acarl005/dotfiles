@@ -38,6 +38,8 @@ if status is-interactive
   end
 end
 
+set -gx LESS "-miJXS"
+
 set EDITOR vi
 if type -q nvim
   set EDITOR nvim
