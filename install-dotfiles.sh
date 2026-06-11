@@ -19,10 +19,6 @@ else
   ln -i -s "$DIR/warp-themes" "$XDG_DATA_HOME/warp-terminal/themes"
 fi
 
-[ -L ~/.config/gtk-3.0 ] && rm ~/.config/gtk-3.0
-ln -s "$DIR/gtk" ~/.config/gtk-3.0
-[ -L ~/.config/gtk-4.0 ] && rm ~/.config/gtk-4.0
-ln -s "$DIR/gtk" ~/.config/gtk-4.0
 [ -L ~/.config/kitty ] && rm ~/.config/kitty
 ln -s "$DIR/kitty" ~/.config/kitty
 [ -L ~/.config/ghostty ] && rm ~/.config/ghostty

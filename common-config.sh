@@ -28,10 +28,10 @@ if [[ $- =~ "i" ]]; then
     if [[ "$TERM" == xterm-ghostty ]]; then
       sleep 0.1 # ghostty has size issues if we run fastfetch too quickly
     fi
-    if [[ $(tty) != /dev/tty* ]]; then
-      fastfetch
-    else
+    if [[ $(tty) == /dev/tty* ]] && [[ $(uname -s) = Linux ]]; then
       fastfetch -c ~/.config/fastfetch/clean.jsonc
+    else
+      fastfetch
     fi
   elif command -v pfetch >/dev/null; then
     # I disabled "packages"
