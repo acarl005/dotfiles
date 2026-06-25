@@ -18,6 +18,10 @@ ln -s "$DIR/swaync" ~/.config/swaync
 ln -s "$DIR/fastfetch" ~/.config/fastfetch
 [ -L ~/.config/xdg-desktop-portal ] && rm ~/.config/xdg-desktop-portal
 ln -s "$DIR/xdg-desktop-portal" ~/.config/xdg-desktop-portal
+[ -L ~/.config/gtk-3.0 ] && rm ~/.config/gtk-3.0
+ln -s "$DIR/gtk" ~/.config/gtk-3.0
+[ -L ~/.config/gtk-4.0 ] && rm ~/.config/gtk-4.0
+ln -s "$DIR/gtk" ~/.config/gtk-4.0
 
 sudo pacman -Syu kitty ghostty fish neovim man-pages man-db hyprland hyprpaper hypridle hyprlock hyprcursor waybar egl-wayland wl-clipboard \
   xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk tmux thunar tumbler firefox htop powertop brightnessctl unzip wofi \

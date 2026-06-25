@@ -40,6 +40,13 @@ return {
       image = {
         force = vim.env.TERM_PROGRAM == "WarpTerminal",
       },
+      picker = {
+        previewers = {
+          file = {
+            max_size = 50 * 1024 * 1024, -- 50MB (default is 1MB)
+          },
+        },
+      },
     },
   },
   {
