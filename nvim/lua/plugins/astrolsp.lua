@@ -2,6 +2,9 @@ local cwd = vim.fn.getcwd()
 local features = {}
 if cwd:find "warp%-internal" then features = { "local_tty", "local_fs" } end
 
+local ok, registry = pcall(require, "mason-registry")
+local prettier_installed = ok and registry.is_installed "prettier"
+
 ---@type LazySpec
 return {
   "AstroNvim/astrolsp",
@@ -23,7 +26,8 @@ return {
         allow_filetypes = {},
         ignore_filetypes = {},
       },
-      disabled = {},
+      -- make sure prettier takes precedence over typescript-language-server if installed
+      disabled = prettier_installed and { "ts_ls" } or {},
       timeout_ms = 1000,
     },
     -- enable servers that you already have installed without mason
@@ -33,6 +37,16 @@ return {
     },
     ---@diagnostic disable: missing-fields
     config = {
+      -- html-lsp was crashing without this...
+      html = {
+        settings = {
+          css = {
+            lint = {
+              validProperties = {},
+            },
+          },
+        },
+      },
       powershell_es = {
         settings = {
           powershell = {

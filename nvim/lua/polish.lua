@@ -11,6 +11,7 @@ vim.api.nvim_create_user_command(
 )
 
 vim.api.nvim_create_user_command("F", ":echo expand('%:p')", { desc = "Echo absolute path of current buffer" })
+vim.api.nvim_create_user_command("LspLog", function() vim.cmd.edit(vim.lsp.get_log_path()) end, { desc = "Open LSP log" })
 
 vim.api.nvim_create_user_command("Unescape", function()
   vim.cmd "%s/\\\\n/\\r/g"
