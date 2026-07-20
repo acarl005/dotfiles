@@ -71,7 +71,7 @@
   plm = "!git pull origin $(basename $(git symbolic-ref --short refs/remotes/origin/HEAD))"
   ass = "!git add . ; git s"
   rr = "!git ls-files -dz | xargs -0 git rm"
-  logo = log --oneline
+  logo = log --format=\"%C(yellow)%h%Creset%C(auto)%d%Creset %C(cyan)%ad%Creset %C(green)%an%Creset %s\" --date=short
   logout = "!open https://help.github.com/articles/updating-credentials-from-the-osx-keychain/"
   compare = "!f() { [[ ! $# -eq 1 ]] && echo provide 1 branch name to compare against working branch || git rev-list --left-right --count $1...@; }; f"
   root = "!git rev-parse --show-toplevel"
@@ -100,3 +100,5 @@
 
 [help]
   autocorrect = prompt
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
