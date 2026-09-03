@@ -109,7 +109,7 @@ disabled = false
 only_nonzero_diffs = true
 added_style = "bg:#252525 bold green"
 deleted_style = "bg:#252525 bold red"
-format = " [](fg:#252525 bg:none)[+$added ]($added_style)[-$deleted ]($deleted_style)[](fg:yellow bg:#252525)[ ](fg:#252525 bg:yellow)[](fg:yellow bg:none)"
+format = "( [](fg:#252525 bg:none)([+$added ]($added_style))([-$deleted ]($deleted_style))[](fg:yellow bg:#252525)[ ](fg:#252525 bg:yellow)[](fg:yellow bg:none))"
 
 [git_state]
 rebase = "REBASING"
