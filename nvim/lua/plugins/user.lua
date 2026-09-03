@@ -136,6 +136,38 @@ return {
       vim.keymap.set("n", "<leader>Gd", crates.show_dependencies_popup, { desc = "Crates: show dependencies popup" })
     end,
   },
+  {
+    "sindrets/diffview.nvim",
+    opts = {
+      hooks = {
+        -- Remap highlight groups per-window so the left (old/"a") side renders
+        -- as red and the right (new/"b") side renders as green, GitHub-style.
+        diff_buf_win_enter = function(_, _, ctx)
+          if not ctx.layout_name:match "^diff2" then return end
+          if ctx.symbol == "a" then
+            vim.opt_local.winhl = table.concat({
+              "DiffAdd:DiffviewDiffAddAsDelete",
+              "DiffChange:DiffviewDiffAddAsDelete",
+              "DiffText:DiffviewDiffDeleteText",
+            }, ",")
+          elseif ctx.symbol == "b" then
+            vim.opt_local.winhl = table.concat({
+              "DiffChange:DiffAdd",
+              "DiffText:DiffviewDiffAddText",
+            }, ",")
+          end
+        end,
+      },
+    },
+    config = function(_, opts)
+      require("diffview").setup(opts)
+      vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#1e3a2e" })
+      vim.api.nvim_set_hl(0, "DiffviewDiffAddAsDelete", { bg = "#3a1e1e" })
+      vim.api.nvim_set_hl(0, "DiffviewDiffDeleteText", { bg = "#5a2626" })
+      vim.api.nvim_set_hl(0, "DiffviewDiffAddText", { bg = "#2a5a3a" })
+      vim.api.nvim_set_hl(0, "DiffDelete", { bg = "NONE", fg = "#7a3a3a" })
+    end,
+  },
   { "ii14/neorepl.nvim" },
   {
     "rmagatti/goto-preview",

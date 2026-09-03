@@ -22,6 +22,7 @@ return {
         wrap = false,
         title = false,
         scrolloff = 9001,
+        fillchars = { diff = " " },
       },
     },
     mappings = {
