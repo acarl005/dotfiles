@@ -58,6 +58,30 @@ return {
         ["<leader>DH"] = { ":DiffviewFileHistory<CR>", desc = "File history (repo)" },
         ["<leader>Dt"] = { ":DiffviewToggleFiles<CR>", desc = "Toggle file panel" },
         ["<leader>Dr"] = { ":DiffviewRefresh<CR>", desc = "Refresh diff view" },
+        ["<leader>Dm"] = {
+          function()
+            local function git(...)
+              local out = vim.fn.systemlist { "git", ... }
+              if vim.v.shell_error ~= 0 then return nil end
+              return vim.trim(out[1] or "")
+            end
+
+            local base = git("symbolic-ref", "--short", "refs/remotes/origin/HEAD")
+            if not base or base == "" then
+              vim.notify("Could not determine origin/HEAD. Run: git remote set-head origin -a", vim.log.levels.ERROR)
+              return
+            end
+
+            local merge_base = git("merge-base", "HEAD", base)
+            if not merge_base or merge_base == "" then
+              vim.notify("Could not determine merge-base with " .. base, vim.log.levels.ERROR)
+              return
+            end
+
+            vim.cmd("DiffviewOpen " .. merge_base)
+          end,
+          desc = "Diff against merge-base with origin/HEAD",
+        },
       },
     },
     treesitter = {
