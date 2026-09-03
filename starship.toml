@@ -90,7 +90,7 @@ format = " [](fg:#252525 bg:none)[\\($hash\\) ]($style)[](fg:bright-blue b
 style = "bg:#252525"
 
 [git_status]
-format=" [](fg:#252525 bg:none)[$all_status$ahead_behind ]($style)[](fg:bright-purple bg:#252525)[ ](fg:#252525 bg:bright-purple)[](fg:bright-purple bg:none)"
+format = " [](fg:#252525 bg:none)[$all_status$ahead_behind ]($style)[](fg:bright-purple bg:#252525)[ ](fg:#252525 bg:bright-purple)[](fg:bright-purple bg:none)"
 style = "bg:#252525"
 conflicted = "="
 ahead =	"⇡${count}"
@@ -109,7 +109,7 @@ disabled = false
 only_nonzero_diffs = true
 added_style = "bg:#252525 bold green"
 deleted_style = "bg:#252525 bold red"
-format = ' [](fg:#252525 bg:none)[+$added ]($added_style)[-$deleted ]($deleted_style)[](fg:yellow bg:#252525)[ ](fg:#252525 bg:yellow)[](fg:yellow bg:none)'
+format = " [](fg:#252525 bg:none)[+$added ]($added_style)[-$deleted ]($deleted_style)[](fg:yellow bg:#252525)[ ](fg:#252525 bg:yellow)[](fg:yellow bg:none)"
 
 [git_state]
 rebase = "REBASING"
@@ -119,8 +119,8 @@ cherry_pick = "CHERRY-PICKING"
 bisect = "BISECTING"
 am = "AM"
 am_or_rebase = "AM/REBASE"
-style = "fg:yellow bg:#252525"
-format = ' [](fg:#252525 bg:none)[$state( $progress_current/$progress_total)]($style)[](fg:#252525 bg:none)'
+style = "bg:#252525 bold"
+format = " [](fg:#252525 bg:none)[$state( $progress_current/$progress_total) ]($style)[](fg:bright-red bg:#252525)[󱇎 ](fg:#252525 bg:bright-red)[](fg:bright-red bg:none)"
 
 [cmd_duration]
 disabled = false
