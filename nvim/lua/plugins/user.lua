@@ -1,5 +1,6 @@
 ---@type LazySpec
 return {
+  { "akinsho/toggleterm.nvim", enabled = false },
   {
     "mason-org/mason.nvim",
     ---@class MasonSettings

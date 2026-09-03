@@ -7,8 +7,6 @@ try {
 } catch {
 }
 
-Set-PSReadLineOption -EditMode Vi
-
 if (Test-Path -PathType Container "$HOME/.cargo/bin/") {
   $env:PATH += ":$HOME/.cargo/bin/" 
 }
@@ -92,5 +90,3 @@ function dev {
   Import-Module 'C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\Microsoft.VisualStudio.DevShell.dll'
   Enter-VsDevShell b31daaa6 -SkipAutomaticLocation -DevCmdArguments '-arch=x64 -host_arch=x64'
 }
-
-Import-Module Terminal-Icons

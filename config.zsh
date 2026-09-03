@@ -12,6 +12,11 @@ zstyle ':omz:lib:directories' aliases no
 
 . "$ZSH/oh-my-zsh.sh"
 
+if command -v fzf >/dev/null; then
+  source <(fzf --zsh)
+fi
+
 if command -v starship >/dev/null && [[ $(tty) != '/dev/tty1' ]]; then
   eval "$(starship init zsh)"
+  eval "$(starship completions zsh)"
 fi

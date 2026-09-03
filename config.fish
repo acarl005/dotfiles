@@ -19,6 +19,7 @@ if status is-interactive
   alias of=onefetch
   if type -q starship && begin; not string match '/dev/tty*' (tty) >/dev/null || test (uname) != Linux; end
     starship init fish | source
+    starship completions fish | source
   end
   if test -d .git && type -q onefetch
     onefetch
@@ -159,6 +160,10 @@ if test -f "$HOMEBREW_PREFIX/share/autojump/autojump.fish"
   source "$HOMEBREW_PREFIX/share/autojump/autojump.fish"
 else if test -f /usr/share/autojump/autojump.fish
   source /usr/share/autojump/autojump.fish
+end
+
+if command -v fzf >/dev/null
+  fzf --fish | source
 end
 
 # The next line updates PATH for the Google Cloud SDK.
