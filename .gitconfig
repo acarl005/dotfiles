@@ -3,6 +3,7 @@
   excludesfile = ~/.gitignore_global
   editor = nvim
   pager = delta
+  quotepath = false
 
 [interactive]
   diffFilter = delta --color-only
