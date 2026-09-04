@@ -142,20 +142,28 @@ return {
       hooks = {
         -- Remap highlight groups per-window so the left (old/"a") side renders
         -- as red and the right (new/"b") side renders as green, GitHub-style.
-        diff_buf_win_enter = function(_, _, ctx)
-          if not ctx.layout_name:match "^diff2" then return end
-          if ctx.symbol == "a" then
-            vim.opt_local.winhl = table.concat({
-              "DiffAdd:DiffviewDiffAddAsDelete",
-              "DiffChange:DiffviewDiffAddAsDelete",
-              "DiffText:DiffviewDiffDeleteText",
-            }, ",")
-          elseif ctx.symbol == "b" then
-            vim.opt_local.winhl = table.concat({
-              "DiffChange:DiffAdd",
-              "DiffText:DiffviewDiffAddText",
-            }, ",")
+        diff_buf_win_enter = function(bufnr, _, ctx)
+          if ctx.layout_name:match "^diff2" then
+            if ctx.symbol == "a" then
+              vim.opt_local.winhl = table.concat({
+                "DiffAdd:DiffviewDiffAddAsDelete",
+                "DiffChange:DiffviewDiffAddAsDelete",
+                "DiffText:DiffviewDiffDeleteText",
+              }, ",")
+            elseif ctx.symbol == "b" then
+              vim.opt_local.winhl = table.concat({
+                "DiffChange:DiffAdd",
+                "DiffText:DiffviewDiffAddText",
+              }, ",")
+            end
           end
+
+          -- gitsigns sets buffer-local ]g/[g mappings via its own on_attach,
+          -- which can fire after this buffer is opened and clobber diffview's
+          -- bindings. Reassert non-recursive ]g/[g -> ]c/[c (builtin hunk
+          -- jump) here, since this hook runs last, per diff buffer/window.
+          vim.keymap.set("n", "]g", "]c", { buffer = bufnr, desc = "Next hunk" })
+          vim.keymap.set("n", "[g", "[c", { buffer = bufnr, desc = "Previous hunk" })
         end,
       },
     },
@@ -166,6 +174,27 @@ return {
       vim.api.nvim_set_hl(0, "DiffviewDiffDeleteText", { bg = "#5a2626" })
       vim.api.nvim_set_hl(0, "DiffviewDiffAddText", { bg = "#2a5a3a" })
       vim.api.nvim_set_hl(0, "DiffDelete", { bg = "NONE", fg = "#7a3a3a" })
+    end,
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = function(_, opts)
+      local orig_on_attach = opts.on_attach
+      opts.on_attach = function(bufnr)
+        if orig_on_attach then orig_on_attach(bufnr) end
+
+        -- gitsigns computes hunks asynchronously and may call on_attach
+        -- after diffview has already set up a diff buffer/window, silently
+        -- re-clobbering ]g/[g with gitsigns' own hunk nav. If this buffer's
+        -- window is in diff mode, force ]g/[g back to the builtin (and
+        -- diffview-aware) ]c/[c hunk jump, applied last, buffer-local.
+        local winid = vim.fn.bufwinid(bufnr)
+        if winid ~= -1 and vim.wo[winid].diff then
+          vim.keymap.set("n", "]g", "]c", { buffer = bufnr, desc = "Next hunk" })
+          vim.keymap.set("n", "[g", "[c", { buffer = bufnr, desc = "Previous hunk" })
+        end
+      end
+      return opts
     end,
   },
   { "ii14/neorepl.nvim" },
