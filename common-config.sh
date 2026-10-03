@@ -22,7 +22,7 @@ alias of=onefetch
 alias ff=fastfetch
 # if this is an interactive shell
 if [[ $- =~ "i" ]]; then
-  if [ -d .git ] && command -v onefetch >/dev/null; then
+  if [ -d .git ] && command -v onefetch >/dev/null && git rev-parse HEAD >/dev/null 2>&1; then
     onefetch
   elif command -v fastfetch >/dev/null; then
     if [[ "$TERM" == xterm-ghostty ]]; then
@@ -133,7 +133,7 @@ hl() {
 
 root() {
   builtin cd "$(git root)"
-  if [ -d .git ] && command -v onefetch >/dev/null; then
+  if [ -d .git ] && command -v onefetch >/dev/null && git rev-parse HEAD >/dev/null 2>&1; then
     onefetch
   fi
   ll
