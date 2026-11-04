@@ -8,7 +8,11 @@ try {
 }
 
 if (Test-Path -PathType Container "$HOME/.cargo/bin/") {
-  $env:PATH += ":$HOME/.cargo/bin/" 
+  $env:PATH += "$([System.IO.Path]::PathSeparator)$HOME/.cargo/bin/"
+}
+
+if (Test-Path -PathType Container "$HOME/.local/bin/") {
+  $env:PATH += "$([System.IO.Path]::PathSeparator)$HOME/.local/bin/"
 }
 
 if (Get-Alias cd -ErrorAction SilentlyContinue) {
@@ -44,6 +48,7 @@ if (Get-Command -Name nvim -Type Application -ErrorAction SilentlyContinue) {
   Set-Alias -Name vim -Value nvim
   Set-Alias -Name vi -Value nvim
   Set-Alias -Name v -Value nvim
+  $env:EDITOR = 'nvim'
 }
 
 if (Get-Command -Name fastfetch -Type Application -ErrorAction SilentlyContinue) {
@@ -80,6 +85,9 @@ if (Get-Command -Name yazi -Type Application -ErrorAction SilentlyContinue) {
       Set-Location -LiteralPath $cwd
     }
     Remove-Item -Path $tmp
+  }
+  if ($IsWindows -and (Test-Path "$env:ProgramFiles\Git\usr\bin\file.exe")) {
+    $env:YAZI_FILE_ONE = "$env:ProgramFiles\Git\usr\bin\file.exe"
   }
 }
 
