@@ -29,11 +29,11 @@ function mkcd {
 }
 
 function gitd {
-  git d
+  git d $args
 }
 
 function gits {
-  git s
+  git s $args
 }
 
 function desk {
@@ -57,7 +57,7 @@ if (Get-Command -Name fastfetch -Type Application -ErrorAction SilentlyContinue)
 
 if (Get-Command -Name eza -Type Application -ErrorAction SilentlyContinue) {
   function ll {
-    eza -al --icons --group-directories-first --sort extension
+    eza -al --icons --group-directories-first --sort extension $args
   }
 } elseif (Get-Command -Name ls-go -Type Application -ErrorAction SilentlyContinue) {
   function ll {
