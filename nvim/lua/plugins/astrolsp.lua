@@ -1,7 +1,3 @@
-local cwd = vim.fn.getcwd()
-local features = {}
-if cwd:find "warp%-internal" then features = { "local_tty", "local_fs" } end
-
 local ok, registry = pcall(require, "mason-registry")
 local prettier_installed = ok and registry.is_installed "prettier"
 
@@ -28,7 +24,6 @@ return {
     },
     -- enable servers that you already have installed without mason
     servers = {
-      "gleam",
       -- "rust_analyzer",
     },
     ---@diagnostic disable: missing-fields
@@ -57,9 +52,6 @@ return {
           ["rust-analyzer"] = {
             cfg = {
               setTest = true,
-            },
-            cargo = {
-              features = features,
             },
             granularity = {
               enforce = true,
