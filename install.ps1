@@ -55,13 +55,6 @@ if (Test-Path $nvimConfigPath) {
 }
 New-Item -ItemType SymbolicLink -Path $nvimConfigPath -Target "$DIR\nvim" -Force | Out-Null
 
-# $warpThemesPath = "$env:LOCALAPPDATA\Warp\themes"
-# New-Item -ItemType Directory -Force -Path "$env:LOCALAPPDATA\Warp" | Out-Null
-# if (Test-Path $warpThemesPath) {
-#     Remove-Item -Recurse -Force $warpThemesPath
-# }
-# New-Item -ItemType SymbolicLink -Path $warpThemesPath -Target "$DIR\warp-themes" -Force | Out-Null
-
 # Set up PowerShell profile
 $psProfilePath = "$PROFILE"
 if (Test-Path $psProfilePath) {
@@ -87,6 +80,33 @@ if (Test-Path $starshipConfigPath) {
     Remove-Item -Force $starshipConfigPath
 }
 New-Item -ItemType SymbolicLink -Path $starshipConfigPath -Target "$DIR\starship.toml" -Force | Out-Null
+
+# Merge Windows Terminal settings
+$wtSettingsPath = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+$wtCustomSettingsPath = "$DIR\windows-terminal-settings.json"
+if (Test-Path $wtCustomSettingsPath) {
+    function Merge-Json ($target, $source) {
+        foreach ($prop in $source.PSObject.Properties) {
+            if ($target.PSObject.Properties[$prop.Name] -and $target.$($prop.Name) -is [PSCustomObject] -and $prop.Value -is [PSCustomObject]) {
+                Merge-Json $target.$($prop.Name) $prop.Value
+            }
+            else {
+                $target | Add-Member -MemberType NoteProperty -Name $prop.Name -Value $prop.Value -Force
+            }
+        }
+    }
+
+    $wtSource = Get-Content -Raw -Path $wtCustomSettingsPath | ConvertFrom-Json
+    if (Test-Path $wtSettingsPath) {
+        $wtTarget = Get-Content -Raw -Path $wtSettingsPath | ConvertFrom-Json
+        Merge-Json $wtTarget $wtSource
+    }
+    else {
+        New-Item -ItemType Directory -Force -Path (Split-Path -Parent $wtSettingsPath) | Out-Null
+        $wtTarget = $wtSource
+    }
+    $wtTarget | ConvertTo-Json -Depth 100 | Set-Content -Path $wtSettingsPath -Encoding UTF8
+}
 
 Install-Module -Name Terminal-Icons -Scope CurrentUser -Force -SkipPublisherCheck
 

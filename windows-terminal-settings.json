@@ -1,0 +1,54 @@
+{
+  "$help": "https://aka.ms/terminal-documentation",
+  "$schema": "https://aka.ms/terminal-profiles-schema",
+  "actions": [
+    {
+      "command": {
+        "action": "sendInput",
+        "input": "\u001b[13;2u"
+      },
+      "id": "User.sendInput.8882FD6D"
+    }
+  ],
+  "copyFormatting": "none",
+  "copyOnSelect": false,
+  "keybindings": [
+    {
+      "id": "Terminal.DuplicatePaneAuto",
+      "keys": "alt+shift+d"
+    },
+    {
+      "id": "User.sendInput.8882FD6D",
+      "keys": "shift+enter"
+    },
+    {
+      "id": "Terminal.CopyToClipboard",
+      "keys": "ctrl+c"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+shift+tab"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+tab"
+    },
+    {
+      "id": "Terminal.FindText",
+      "keys": "ctrl+shift+f"
+    },
+    {
+      "id": "Terminal.PrevTab",
+      "keys": "ctrl+pgup"
+    },
+    {
+      "id": "Terminal.NextTab",
+      "keys": "ctrl+pgdn"
+    }
+  ],
+  "newTabMenu": [
+    {
+      "type": "remainingProfiles"
+    }
+  ]
+}
