@@ -17,5 +17,5 @@ for i in "${!WORKSPACE_IDS[@]}"; do
   WORKSPACE_ID="${WORKSPACE_IDS[i]}"
   MONITOR_INDEX=$(( i > LAST_MONITOR_INDEX ? LAST_MONITOR_INDEX : i ))
   MONITOR_ID="${MONITOR_IDS[MONITOR_INDEX]}"
-  hyprctl dispatch moveworkspacetomonitor "$WORKSPACE_ID" "$MONITOR_ID"
+  hyprctl dispatch "hl.dsp.workspace.move({ workspace = $WORKSPACE_ID, monitor = $MONITOR_ID })"
 done

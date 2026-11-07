@@ -1,0 +1,14 @@
+name = "Cyberdream"
+
+[colors]
+bg_base      = "#16181a"
+bg_active    = "#3c4048"
+primary      = "#bd5eff"
+secondary    = "#5ef1ff"
+accent       = "#ff5ea0"
+warning      = "#ffbd5e"
+danger       = "#ff6e5e"
+fg_primary   = "#ffffff"
+fg_secondary = "#c2c5cc"
+fg_muted     = "#545964"
+border_focus = "#bd5eff"

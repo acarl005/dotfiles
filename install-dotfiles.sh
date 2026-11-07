@@ -2,22 +2,12 @@
 
 set -e
 
-DIR=$(dirname $(readlink -f $0))
+DIR="$(dirname "$(readlink -f $0)")"
 
 mkdir -p ~/.config/{powershell,fish}
 
 rm -rf ~/.config/nvim
 ln -i -s "$DIR/nvim" ~/.config/nvim
-
-if [[ $(uname) = Darwin ]]; then
-  mkdir -p ~/.warp
-  [ -L ~/.warp/themes ] && rm ~/.warp/themes
-  ln -i -s "$DIR/warp-themes" ~/.warp/themes
-else
-  mkdir -p "$XDG_DATA_HOME/warp-terminal"
-  [ -L "$XDG_DATA_HOME/warp-terminal/themes" ] && rm "$XDG_DATA_HOME/warp-terminal/themes"
-  ln -i -s "$DIR/warp-themes" "$XDG_DATA_HOME/warp-terminal/themes"
-fi
 
 [ -L ~/.config/kitty ] && rm ~/.config/kitty
 ln -s "$DIR/kitty" ~/.config/kitty

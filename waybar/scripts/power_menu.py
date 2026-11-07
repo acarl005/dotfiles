@@ -12,7 +12,7 @@ from gi.repository import Gtk
 POWER_ACTIONS = {
     "Suspend": ("media-playback-pause-symbolic", "systemctl suspend"),
     "Lock": ("system-lock-screen-symbolic", "loginctl lock-session"),
-    "Logout": ("system-log-out-symbolic", "hyprctl dispatch exit"),
+    "Logout": ("system-log-out-symbolic", 'hyprctl dispatch "hl.dsp.exit()"'),
     "Hibernate": ("system-hibernate-symbolic", "systemctl hibernate"),
     "Reboot": ("system-reboot-symbolic", "systemctl reboot"),
     "Power Off": ("system-shutdown-symbolic", "systemctl poweroff"),

@@ -27,7 +27,11 @@ sudo pacman -Syu kitty ghostty fish neovim man-pages man-db hyprland hyprpaper h
   xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk tmux thunar tumbler firefox htop powertop brightnessctl unzip wofi \
   eza ripgrep fd fzf tldr bat onefetch jq jless starship rustup git-delta ttf-inconsolata ttf-inconsolata-nerd yazi mpv vlc vlc-plugin-ffmpeg less \
   neovide fastfetch greetd uwsm gnome-themes-extra swaync gvfs grim slurp blueman wiremix resvg socat python-pipx wf-recorder \
-  noto-fonts-emoji adobe-source-han-sans-cn-fonts fcitx5 fcitx5-configtool fcitx5-chinese-addons
+  noto-fonts-emoji adobe-source-han-sans-cn-fonts fcitx5 fcitx5-configtool fcitx5-chinese-addons keyd
+
+sudo mkdir -p /etc/keyd
+sudo ln -fs "$DIR/keyd/default.conf" /etc/keyd/default.conf
+sudo systemctl enable --now keyd
 
 chsh -s /bin/fish
 xdg-mime default neovide.desktop text/plain
@@ -68,6 +72,9 @@ makepkg -si
 yay -S autojump bibata-cursor-theme-bin sysc-greet-hyprland papirus-icon-theme papirus-folders pipes-rs lavat-git
 # lavat -g -c ff5ea0 -k bd5eff
 # pipes-rs -p 8 -c ansi
+
+sudo mkdir -p /usr/share/sysc-greet/themes
+sudo cp -f "$DIR/sysc-greet/themes/cyberdream.toml" /usr/share/sysc-greet/themes/cyberdream.toml
 
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'

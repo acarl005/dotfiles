@@ -36,4 +36,4 @@ fi
 
 
 brew install eza ripgrep autojump git gh neovim coreutils fastfetch fd fzf tldr bat onefetch highlight mdcat jq jless starship diff-so-fancy git-delta font-inconsolata-nerd-font yazi ffmpeg resvg pipx
-brew install --cask rectangle warp 1password
+brew install --cask rectangle 1password
