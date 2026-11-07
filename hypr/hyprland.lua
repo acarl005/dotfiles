@@ -308,7 +308,6 @@ local workspace_icons = {
 	["thunar"] = " ",
 	["xdg-desktop-portal-gtk"] = " ",
 	["zenity"] = " ",
-	["Cursor"] = "󰆧 ",
 	["Spotify"] = " ",
 	["vlc"] = "󰕼 ",
 	["virt-viewer"] = "󰍹 ",

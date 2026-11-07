@@ -18,7 +18,8 @@ link {
     color: @pink;
 }
 
-window, dialog {
+window,
+dialog {
     background-color: rgba(0, 0, 0, 0.25);
 }
 
@@ -40,11 +41,12 @@ menubar,
     background-image: none;
 }
 
-toolitem, entry {
+toolitem,
+entry {
     background-color: rgba(40, 40, 40, 0.3);
 }
 
-infobar > revealer > box {
+infobar>revealer>box {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -95,7 +97,8 @@ button.destructive-action:hover {
     background-color: @brightRed;
 }
 
-toolitem, entry:focus {
+toolitem,
+entry:focus {
     box-shadow: 0px 0px 6px 3px @shadow inset;
 }
 
@@ -108,7 +111,10 @@ menubar menuitem:hover {
     box-shadow: 0 -4px @magenta inset;
 }
 
-menu, popover, sheet {
+menu,
+popover,
+sheet,
+popover.menu>contents {
     background-color: rgba(20, 20, 20, 0.75);
 }
 
@@ -116,7 +122,7 @@ popover modelbutton:hover {
     background-color: @magenta;
 }
 
-popover modelbutton:hover label {
+popover modelbutton:hover>label {
     color: @activeFg;
 }
 
@@ -205,4 +211,9 @@ switch slider {
 
 switch:checked slider {
     background: #333;
+}
+
+popover.background,
+popover.menu {
+    background: none;
 }
