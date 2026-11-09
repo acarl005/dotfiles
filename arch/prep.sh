@@ -29,7 +29,7 @@ mount /dev/sda2 /mnt
 
 pacstrap -K /mnt base base-devel linux linux-headers linux-firmware \
   efibootmgr grub os-prober intel-media-driver mesa-utils nvidia-open nvidia-utils libva-nvidia-driver nvidia-prime bolt \
-  bluez bluez-utils networkmanager sof-firmware pipewire pipewire-jack pipewire-alsa alsa-utils pipewire-libcamera libcamera libcamera-ipa rtkit \
+  bluez bluez-utils networkmanager sof-firmware pipewire pipewire-pulse pipewire-jack pipewire-alsa alsa-utils pipewire-libcamera libcamera libcamera-ipa rtkit \
   vim sudo git make cmake curl gcc
 
 mount --mkdir /dev/sda1 /mnt/boot/efi

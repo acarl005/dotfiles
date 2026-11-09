@@ -52,7 +52,7 @@ hl.on("hyprland.start", function()
 	-- initializing first in order to register itself as the auth agent. Might be the
 	-- `blueman-mechanism.service` but I'm not sure, so just sleep for a bit.
 	hl.exec_cmd("sleep 2 && blueman-applet")
-	hl.exec_cmd("sleep 1 && aplay $HOME/.config/hypr/startup.wav")
+	hl.exec_cmd("sleep 1 && pw-play $HOME/.config/hypr/startup.wav")
 end)
 
 -----------------------------
@@ -61,6 +61,7 @@ end)
 
 -- See https://wiki.hypr.land/configuring/core/environment-variables/
 
+hl.env("GDK_WAYLAND_DISABLE", "ext_background_effect_manager_v1")
 hl.env("HYPRCURSOR_THEME", "Bibata-Modern-Classic")
 hl.env("HYPRCURSOR_SIZE", "24")
 hl.env("XCURSOR_THEME", "Bibata-Modern-Classic")
