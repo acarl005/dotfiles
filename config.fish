@@ -24,9 +24,6 @@ if status is-interactive
   if test -d .git && type -q onefetch
     onefetch
   else if type -q fastfetch
-    if [ "$TERM" = xterm-ghostty ]
-      sleep 0.1 # ghostty has size issues if we run fastfetch too quickly
-    end
     if not string match '/dev/tty*' (tty) >/dev/null
       fastfetch
     else
@@ -164,10 +161,4 @@ end
 
 if command -v fzf >/dev/null
   fzf --fish | source
-end
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -d "$HOME/src/google-cloud-sdk" ]
-  . "$HOME/src/google-cloud-sdk/path.fish.inc"
-  fish_add_path "$HOME/src/google-cloud-sdk/bin"
 end

@@ -25,9 +25,6 @@ if [[ $- =~ "i" ]]; then
   if [ -d .git ] && command -v onefetch >/dev/null && git rev-parse HEAD >/dev/null 2>&1; then
     onefetch
   elif command -v fastfetch >/dev/null; then
-    if [[ "$TERM" == xterm-ghostty ]]; then
-      sleep 0.1 # ghostty has size issues if we run fastfetch too quickly
-    fi
     if [[ $(tty) == /dev/tty* ]] && [[ $(uname -s) = Linux ]]; then
       fastfetch -c ~/.config/fastfetch/clean.jsonc
     else
