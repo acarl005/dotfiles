@@ -5,6 +5,8 @@ font-feature = "-calt, -liga, -dlig"
 keybind = ctrl+shift+left=move_tab:-1
 keybind = ctrl+shift+right=move_tab:+1
 keybind = ctrl+shift+k=clear_screen
+# close the pane instead of the whole tab
+keybind = ctrl+shift+w=close_surface
 
 copy-on-select = false
 app-notifications = no-clipboard-copy

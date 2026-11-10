@@ -156,6 +156,7 @@ hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("pidof wofi && killall wofi || " .. m
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/move-workspaces.sh"))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/blueconnect.sh"))
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("$HOME/.config/waybar/scripts/power_menu.py"))
+hl.bind(mainMod .. " + H", hl.dsp.exec_cmd("firefox"))
 
 hl.bind(
 	"Print",
