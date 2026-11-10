@@ -106,7 +106,9 @@ hl.config({
 
 	input = {
 		touchpad = {
+			tap_to_click = false,
 			natural_scroll = true,
+			disable_while_typing = true,
 		},
 	},
 })
@@ -333,30 +335,35 @@ local workspace_icons = {
 -- - If any window in the workspace has an entry in `workspace_icons`, use that icon.
 -- - If the workspace has at least one window, but none in `workspace_icons`, use a generic  .
 -- - Otherwise, name the workspace its ID.
+-- Zero-width spaces (U+200B) are appended per workspace ID so icon names stay unique across workspaces.
+local zwsp = "\226\128\139"
+
 local function update_workspace_name(ws)
 	if not ws or ws.special or not ws.id then
 		return
 	end
 
-	local name
+	local icon
 	local last = ws.last_window
 	if last and last.mapped and workspace_icons[last.class] then
-		name = workspace_icons[last.class]
+		icon = workspace_icons[last.class]
 	else
 		local has_windows = false
 		for _, win in ipairs(ws:get_windows()) do
 			if win.mapped then
 				has_windows = true
 				if workspace_icons[win.class] then
-					name = workspace_icons[win.class]
+					icon = workspace_icons[win.class]
 					break
 				end
 			end
 		end
-		if not name then
-			name = has_windows and " " or tostring(ws.id)
+		if not icon and has_windows then
+			icon = " "
 		end
 	end
+
+	local name = icon and (icon .. zwsp:rep(math.max(0, ws.id))) or tostring(ws.id)
 
 	if ws.name ~= name then
 		hl.dispatch(hl.dsp.workspace.rename({ workspace = ws.id, name = name }))

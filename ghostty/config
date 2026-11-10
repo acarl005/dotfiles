@@ -7,6 +7,9 @@ keybind = ctrl+shift+right=move_tab:+1
 keybind = ctrl+shift+k=clear_screen
 # close the pane instead of the whole tab
 keybind = ctrl+shift+w=close_surface
+keybind = ctrl+shift+d=new_split:right
+keybind = ctrl+alt+page_up=jump_to_prompt:-1
+keybind = ctrl+alt+page_down=jump_to_prompt:1
 
 copy-on-select = false
 app-notifications = no-clipboard-copy
