@@ -22,12 +22,14 @@ ln -s "$DIR/xdg-desktop-portal" ~/.config/xdg-desktop-portal
 ln -s "$DIR/gtk" ~/.config/gtk-3.0
 [ -L ~/.config/gtk-4.0 ] && rm ~/.config/gtk-4.0
 ln -s "$DIR/gtk" ~/.config/gtk-4.0
+[ -L ~/.config/quickshell ] && rm ~/.config/quickshell
+ln -s "$DIR/quickshell" ~/.config/quickshell
 
 sudo pacman -Syu kitty ghostty fish neovim man-pages man-db hyprland hyprpaper hypridle hyprlock hyprcursor waybar egl-wayland wl-clipboard \
   xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk tmux thunar tumbler firefox htop powertop brightnessctl unzip wofi \
   eza ripgrep fd fzf tldr bat onefetch jq jless starship rustup git-delta ttf-inconsolata ttf-inconsolata-nerd yazi mpv vlc vlc-plugin-ffmpeg less \
   neovide fastfetch greetd uwsm gnome-themes-extra swaync gvfs grim slurp blueman wiremix resvg socat python-pipx wf-recorder \
-  noto-fonts-emoji adobe-source-han-sans-cn-fonts fcitx5 fcitx5-configtool fcitx5-chinese-addons keyd
+  noto-fonts-emoji adobe-source-han-sans-cn-fonts fcitx5 fcitx5-configtool fcitx5-chinese-addons keyd quickshell
 
 sudo mkdir -p /etc/keyd
 sudo ln -fs "$DIR/keyd/default.conf" /etc/keyd/default.conf

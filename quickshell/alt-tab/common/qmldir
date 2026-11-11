@@ -1,0 +1,4 @@
+singleton Appearance 1.0 Appearance.qml
+singleton Config 1.0 Config.qml
+singleton ColorUtils 1.0 ColorUtils.qml
+StyledText 1.0 StyledText.qml

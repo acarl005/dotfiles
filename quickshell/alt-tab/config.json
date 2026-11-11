@@ -1,0 +1,15 @@
+{
+  "appearance": {
+    "font": {
+      "family": {
+        "main": "Inconsolata Nerd Font",
+        "title": "Inconsolata Nerd Font"
+      }
+    }
+  },
+  "altTab": {
+    "effects": {
+      "glassMode": true
+    }
+  }
+}

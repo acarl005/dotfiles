@@ -25,10 +25,6 @@ hl.monitor({
 	scale = 1.5,
 })
 
-hl.workspace_rule({ workspace = "1", persistent = true })
-hl.workspace_rule({ workspace = "2", persistent = true })
-hl.workspace_rule({ workspace = "3", persistent = true })
-
 -------------------
 --- MY PROGRAMS ---
 -------------------
@@ -47,6 +43,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("fcitx5")
 	hl.exec_cmd("hypridle")
 	hl.exec_cmd("swaync")
+	hl.exec_cmd("qs -c alt-tab")
 	-- TODO: do this better.
 	-- There's some race condition happening here where the `blueman-applet` depends on something else
 	-- initializing first in order to register itself as the auth agent. Might be the
@@ -253,12 +250,9 @@ hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = tr
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
-hl.bind("ALT + Tab", function()
-	local last = hl.get_last_window()
-	if last then
-		hl.dispatch(hl.dsp.focus({ window = last }))
-	end
-end)
+hl.bind("ALT + TAB", hl.dsp.exec_cmd("qs ipc -c alt-tab call alt-tab cycle"))
+hl.bind("ALT + SHIFT + TAB", hl.dsp.exec_cmd("qs ipc -c alt-tab call alt-tab cycleBack"))
+
 hl.bind(
 	"ALT + Space",
 	hl.dsp.exec_cmd(
@@ -338,6 +332,16 @@ local workspace_icons = {
 -- Zero-width spaces (U+200B) are appended per workspace ID so icon names stay unique across workspaces.
 local zwsp = "\226\128\139"
 
+local ignored_workspace_classes = {
+	["wofi"] = true,
+	["org.quickshell"] = true,
+	["quickshell"] = true,
+}
+
+local function is_ignored_window(win)
+	return not win or not win.mapped or ignored_workspace_classes[win.class] or win.title == "quickshell-alt-tab"
+end
+
 local function update_workspace_name(ws)
 	if not ws or ws.special or not ws.id then
 		return
@@ -345,12 +349,12 @@ local function update_workspace_name(ws)
 
 	local icon
 	local last = ws.last_window
-	if last and last.mapped and workspace_icons[last.class] then
+	if not is_ignored_window(last) and workspace_icons[last.class] then
 		icon = workspace_icons[last.class]
 	else
 		local has_windows = false
 		for _, win in ipairs(ws:get_windows()) do
-			if win.mapped then
+			if not is_ignored_window(win) then
 				has_windows = true
 				if workspace_icons[win.class] then
 					icon = workspace_icons[win.class]
