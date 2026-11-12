@@ -52,11 +52,16 @@
     "on-click": "ghostty -e nmtui"
   },
   "bluetooth": {
-    "format-disabled": "",
     "format-off": "",
+    "format-disabled": "󰂲",
+    "format-no-controller": "󰂲",
+    "format-on": "󰂯",
+    "format-connected": "󰂰 ",
+    "tooltip-format": "{num_connections} connected",
+    "tooltip-format-connected": "{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias} - {device_address}",
     "interval": 30,
     "on-click": "ghostty -e bluetoothctl",
-    "format-no-controller": ""
   },
   "wireplumber": {
     "format": "{icon} {volume}%",

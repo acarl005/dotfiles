@@ -4,6 +4,7 @@
 @define-color lavender #d08fff;
 
 @define-color text #ffe8e5;
+@define-color surface alpha(#000000, 0.6);
 @define-color activeFg #000000;
 @define-color shadow alpha(@lavender, 0.25);
 
@@ -36,4 +37,63 @@ button.tab-close-button {
 
 button.tab-close-button:hover {
   border: solid 1px @activeFg;
+}
+
+.search-overlay {
+  background-color: @surface;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+}
+
+.search-overlay entry {
+  background-color: rgba(40, 40, 40, 0.4);
+  border: none;
+  outline: none;
+  color: @text;
+  text-shadow: 0px 0px 2px @red;
+}
+
+.search-overlay entry:focus-within {
+  box-shadow: 0px 0px 6px 3px @shadow inset;
+  outline: none;
+}
+
+.search-overlay label.dim-label {
+  color: @text;
+  text-shadow: 0px 0px 2px @red;
+  opacity: 0.8;
+}
+
+.search-overlay button {
+  background: none;
+  border: none;
+  color: @text;
+  box-shadow: 0px 0px 6px 3px @shadow inset;
+}
+
+.search-overlay button:hover {
+  background-color: @magenta;
+  color: @activeFg;
+}
+
+toast {
+  background-color: @surface;
+  color: @text;
+  box-shadow: 0px 0px 6px 3px @shadow inset;
+}
+
+toast label {
+  color: @text;
+  text-shadow: 0px 0px 2px @red;
+}
+
+toast button {
+  background: none;
+  color: @text;
+}
+
+toast button:hover {
+  background-color: @magenta;
+  color: @activeFg;
 }
