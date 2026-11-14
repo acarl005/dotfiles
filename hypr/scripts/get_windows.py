@@ -24,6 +24,13 @@ def get_clients():
     return json.loads(result.stdout)
 
 
+def focus_sort_key(client):
+    focus_id = client.get("focusHistoryID")
+    if isinstance(focus_id, (int, float)) and focus_id >= 0:
+        return (0, focus_id)
+    return (1, float("inf"))
+
+
 def find_desktop_file(binary):
     search_dirs = [
         Path("/usr/share/applications"),
@@ -52,7 +59,7 @@ def get_icon_name_from_desktop(path):
 
 
 def main():
-    clients = get_clients()
+    clients = sorted(get_clients(), key=focus_sort_key)
     for client in clients:
         pid = client.get("pid")
         title = client.get("title")

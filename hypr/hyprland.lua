@@ -25,12 +25,6 @@ hl.monitor({
 	scale = 1.5,
 })
 
--------------------
---- MY PROGRAMS ---
--------------------
-
-local menu = "wofi --allow-images --normal-window --no-actions"
-
 -----------------
 --- AUTOSTART ---
 -----------------
@@ -131,6 +125,7 @@ hl.gesture({
 -------------------
 
 local mainMod = "SUPER"
+local menu = "wofi --allow-images --normal-window --no-actions"
 local drun = "pidof wofi && killall wofi || " .. menu .. ' --show drun --prompt "Choose a program"'
 
 -- See https://wiki.hypr.land/configuring/core/binds/ for more
@@ -258,7 +253,7 @@ hl.bind(
 	hl.dsp.exec_cmd(
 		'pidof wofi && killall wofi || hyprctl dispatch "hl.dsp.focus({ window = \\"address:$("$HOME"/.config/hypr/scripts/get_windows.py | '
 			.. menu
-			.. ' --show dmenu --prompt "Choose a window" | grep -o \'0x.*$\')\\" })"'
+			.. ' --show dmenu --cache-file=/dev/null --prompt "Choose a window" | grep -o \'0x.*$\')\\" })"'
 	)
 )
 
@@ -306,7 +301,7 @@ local workspace_icons = {
 	["thunar"] = " ",
 	["xdg-desktop-portal-gtk"] = " ",
 	["zenity"] = " ",
-	["Spotify"] = " ",
+	["spotify"] = " ",
 	["vlc"] = "󰕼 ",
 	["virt-viewer"] = "󰍹 ",
 	["remote-viewer"] = "󰍹 ",
