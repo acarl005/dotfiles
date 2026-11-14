@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Neovim (Ghostty)
+Comment=Edit text files in Neovim using Ghostty terminal
+Exec=ghostty -e nvim %F
+Terminal=false
+MimeType=text/plain;
+Icon=nvim
+Categories=Utility;TextEditor;
