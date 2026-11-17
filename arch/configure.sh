@@ -22,6 +22,10 @@ ln -s "$DIR/xdg-desktop-portal" ~/.config/xdg-desktop-portal
 ln -s "$DIR/gtk" ~/.config/gtk-3.0
 [ -L ~/.config/gtk-4.0 ] && rm ~/.config/gtk-4.0
 ln -s "$DIR/gtk" ~/.config/gtk-4.0
+[ -L ~/.config/qt5ct ] && rm ~/.config/qt5ct
+ln -s "$DIR/qt" ~/.config/qt5ct
+[ -L ~/.config/qt6ct ] && rm ~/.config/qt6ct
+ln -s "$DIR/qt" ~/.config/qt6ct
 [ -L ~/.config/quickshell ] && rm ~/.config/quickshell
 ln -s "$DIR/quickshell" ~/.config/quickshell
 
@@ -32,9 +36,15 @@ sudo pacman -Syu kitty ghostty fish neovim man-pages man-db hyprland hyprpm hypr
   xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk tmux thunar tumbler firefox htop powertop brightnessctl unzip wofi \
   eza ripgrep fd fzf tldr bat onefetch jq jless starship rustup git-delta ttf-inconsolata ttf-inconsolata-nerd yazi mpv vlc vlc-plugin-ffmpeg less \
   fastfetch greetd uwsm gnome-themes-extra swaync gvfs grim slurp blueman wiremix resvg socat python-pipx wf-recorder \
-  noto-fonts-emoji adobe-source-han-sans-cn-fonts fcitx5 fcitx5-configtool fcitx5-chinese-addons keyd quickshell
+  noto-fonts-emoji adobe-source-han-sans-cn-fonts fcitx5 fcitx5-configtool fcitx5-chinese-addons keyd quickshell qt5ct qt6ct gnome-keyring libsecret
 
 systemctl --user enable --now hyprpolkitagent.service
+systemctl --user enable --now gnome-keyring-daemon.socket
+
+# Auto-unlock gnome-keyring at login via greetd PAM
+if ! grep -q "pam_gnome_keyring.so" /etc/pam.d/greetd; then
+  sudo sh -c 'printf "\nauth       optional     pam_gnome_keyring.so\nsession    optional     pam_gnome_keyring.so auto_start\n" >> /etc/pam.d/greetd'
+fi
 
 sudo mkdir -p /etc/keyd
 sudo ln -fs "$DIR/keyd/default.conf" /etc/keyd/default.conf
