@@ -14,6 +14,8 @@ ln -s "$DIR/waybar" ~/.config/waybar
 ln -s "$DIR/wofi" ~/.config/wofi
 [ -L ~/.config/swaync ] && rm ~/.config/swaync
 ln -s "$DIR/swaync" ~/.config/swaync
+[ -L ~/.config/swayosd ] && rm ~/.config/swayosd
+ln -s "$DIR/swayosd" ~/.config/swayosd
 [ -L ~/.config/fastfetch ] && rm ~/.config/fastfetch
 ln -s "$DIR/fastfetch" ~/.config/fastfetch
 [ -L ~/.config/xdg-desktop-portal ] && rm ~/.config/xdg-desktop-portal
@@ -35,7 +37,7 @@ ln -fs "$DIR/applications/nvim.desktop" ~/.local/share/applications/nvim.desktop
 sudo pacman -Syu kitty ghostty fish neovim man-pages man-db hyprland hyprpm hyprpaper hypridle hyprlock hyprcursor hyprpolkitagent waybar egl-wayland wl-clipboard \
   xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk tmux thunar tumbler firefox htop powertop brightnessctl unzip wofi \
   eza ripgrep fd fzf tldr bat onefetch jq jless starship rustup git-delta ttf-inconsolata ttf-inconsolata-nerd yazi mpv vlc vlc-plugin-ffmpeg less \
-  fastfetch greetd uwsm gnome-themes-extra swaync gvfs grim slurp blueman wiremix resvg socat python-pipx wf-recorder \
+  fastfetch greetd uwsm gnome-themes-extra swaync swayosd gvfs grim slurp blueman wiremix resvg socat python-pipx wf-recorder \
   noto-fonts-emoji adobe-source-han-sans-cn-fonts fcitx5 fcitx5-configtool fcitx5-chinese-addons keyd quickshell qt5ct qt6ct gnome-keyring libsecret
 
 systemctl --user enable --now hyprpolkitagent.service
@@ -72,6 +74,7 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 sudo systemctl enable --now blueman-mechanism.service
 sudo systemctl enable --now bluetooth
+sudo systemctl enable --now swayosd-libinput-backend.service
 
 # I prefer to have systemd-resolved, rather than NetworkManager, handle hostnames since it supports mDNS out of the box.
 sudo systemctl enable --now systemd-resolved

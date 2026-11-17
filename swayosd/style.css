@@ -1,0 +1,55 @@
+@define-color magenta #bd5eff;
+@define-color red #ff6e5e;
+@define-color lavender #d08fff;
+@define-color foreground #ffe8e5;
+@define-color surface alpha(#000000, 0.6);
+@define-color shadow alpha(@lavender, 0.25);
+
+window#osd {
+  border-radius: 999px;
+  border: none;
+  background: @surface;
+  box-shadow: 0px 0px 6px 3px @shadow inset;
+}
+
+window#osd #container {
+  margin: 16px;
+}
+
+window#osd image,
+window#osd label {
+  color: @foreground;
+  font-family:
+    InconsolataNerdFont,
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  font-weight: 900;
+}
+
+window#osd progressbar:disabled,
+window#osd image:disabled {
+  opacity: 0.5;
+}
+
+window#osd progressbar {
+  min-height: 6px;
+  border-radius: 999px;
+  background: transparent;
+  border: none;
+}
+
+window#osd trough {
+  min-height: inherit;
+  border-radius: inherit;
+  border: none;
+  background: alpha(@foreground, 0.2);
+}
+
+window#osd progress {
+  min-height: inherit;
+  border-radius: inherit;
+  border: none;
+  background: linear-gradient(90deg, @magenta, @red);
+}
