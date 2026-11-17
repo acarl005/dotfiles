@@ -117,7 +117,7 @@ hl.gesture({
 hl.gesture({
 	fingers = 3,
 	direction = "up",
-	action = "float",
+	action = hl.plugin.hymission.toggle,
 })
 
 -------------------

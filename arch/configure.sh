@@ -28,7 +28,7 @@ ln -s "$DIR/quickshell" ~/.config/quickshell
 mkdir -p ~/.local/share/applications
 ln -fs "$DIR/applications/nvim.desktop" ~/.local/share/applications/nvim.desktop
 
-sudo pacman -Syu kitty ghostty fish neovim man-pages man-db hyprland hyprpaper hypridle hyprlock hyprcursor hyprpolkitagent waybar egl-wayland wl-clipboard \
+sudo pacman -Syu kitty ghostty fish neovim man-pages man-db hyprland hyprpm hyprpaper hypridle hyprlock hyprcursor hyprpolkitagent waybar egl-wayland wl-clipboard \
   xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk tmux thunar tumbler firefox htop powertop brightnessctl unzip wofi \
   eza ripgrep fd fzf tldr bat onefetch jq jless starship rustup git-delta ttf-inconsolata ttf-inconsolata-nerd yazi mpv vlc vlc-plugin-ffmpeg less \
   fastfetch greetd uwsm gnome-themes-extra swaync gvfs grim slurp blueman wiremix resvg socat python-pipx wf-recorder \
@@ -70,6 +70,11 @@ sudo sh -c 'echo MulticastDNS=yes >> /etc/systemd/resolved.conf'
 sudo sh -c 'echo LLMNR=no >> /etc/systemd/resolved.conf'
 sudo sh -c 'echo DNSStubListener=yes >> /etc/systemd/resolved.conf'
 sudo systemctl restart systemd-resolved
+
+hyprpm update
+hyprpm add https://github.com/gfhdhytghd/hymission
+hyprpm enable hymission
+hyprpm reload
 
 mkdir -p ~/src
 cd ~/src
