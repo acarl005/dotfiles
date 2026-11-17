@@ -35,7 +35,7 @@ mkdir -p ~/.local/share/applications
 ln -fs "$DIR/applications/nvim.desktop" ~/.local/share/applications/nvim.desktop
 
 sudo pacman -Syu kitty ghostty fish neovim man-pages man-db hyprland hyprpm hyprpaper hypridle hyprlock hyprcursor hyprpolkitagent waybar egl-wayland wl-clipboard \
-  xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk tmux thunar tumbler firefox htop powertop brightnessctl unzip wofi \
+  xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk tmux thunar tumbler firefox htop powertop unzip wofi \
   eza ripgrep fd fzf tldr bat onefetch jq jless starship rustup git-delta ttf-inconsolata ttf-inconsolata-nerd yazi mpv vlc vlc-plugin-ffmpeg less \
   fastfetch greetd uwsm gnome-themes-extra swaync swayosd gvfs grim slurp blueman wiremix resvg socat python-pipx wf-recorder \
   noto-fonts-emoji adobe-source-han-sans-cn-fonts fcitx5 fcitx5-configtool fcitx5-chinese-addons keyd quickshell qt5ct qt6ct gnome-keyring libsecret
@@ -71,6 +71,12 @@ sudo grub-mkfont -s 32 -o /boot/grub/fonts/Inconsolata32.pf2 /usr/share/fonts/TT
 sudo sh -c 'echo GRUB_BACKGROUND="/boot/grub/space.jpg" >> /etc/default/grub'
 sudo sh -c 'echo GRUB_FONT="/boot/grub/fonts/Inconsolata32.pf2" >> /etc/default/grub'
 sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+if [ -d /sys/class/backlight/intel_backlight ] &&
+   strings /sys/class/backlight/intel_backlight/device/edid 2>/dev/null | grep -q '^ATNA' &&
+   ! grep -q 'i915.enable_dpcd_backlight=1' /etc/default/grub; then
+  echo "NOTE: Samsung OLED panel detected on intel_backlight. Add 'i915.enable_dpcd_backlight=1' to GRUB_CMDLINE_LINUX_DEFAULT in /etc/default/grub and re-run grub-mkconfig."
+fi
 
 sudo systemctl enable --now blueman-mechanism.service
 sudo systemctl enable --now bluetooth

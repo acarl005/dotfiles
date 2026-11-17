@@ -32,6 +32,7 @@ hl.monitor({
 -- See https://wiki.hypr.land/configuring/core/autostart/
 
 hl.on("hyprland.start", function()
+	hl.exec_cmd("hyprpm reload -n")
 	hl.exec_cmd("hyprpaper")
 	hl.exec_cmd("waybar")
 	hl.exec_cmd("fcitx5")
