@@ -28,11 +28,13 @@ ln -s "$DIR/quickshell" ~/.config/quickshell
 mkdir -p ~/.local/share/applications
 ln -fs "$DIR/applications/nvim.desktop" ~/.local/share/applications/nvim.desktop
 
-sudo pacman -Syu kitty ghostty fish neovim man-pages man-db hyprland hyprpaper hypridle hyprlock hyprcursor waybar egl-wayland wl-clipboard \
+sudo pacman -Syu kitty ghostty fish neovim man-pages man-db hyprland hyprpaper hypridle hyprlock hyprcursor hyprpolkitagent waybar egl-wayland wl-clipboard \
   xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk tmux thunar tumbler firefox htop powertop brightnessctl unzip wofi \
   eza ripgrep fd fzf tldr bat onefetch jq jless starship rustup git-delta ttf-inconsolata ttf-inconsolata-nerd yazi mpv vlc vlc-plugin-ffmpeg less \
   fastfetch greetd uwsm gnome-themes-extra swaync gvfs grim slurp blueman wiremix resvg socat python-pipx wf-recorder \
   noto-fonts-emoji adobe-source-han-sans-cn-fonts fcitx5 fcitx5-configtool fcitx5-chinese-addons keyd quickshell
+
+systemctl --user enable --now hyprpolkitagent.service
 
 sudo mkdir -p /etc/keyd
 sudo ln -fs "$DIR/keyd/default.conf" /etc/keyd/default.conf
