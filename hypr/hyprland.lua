@@ -40,6 +40,9 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("swaync")
 	hl.exec_cmd("swayosd-server")
 	hl.exec_cmd("qs -c alt-tab")
+	hl.exec_cmd(
+		'nwg-dock-hyprland -d -hd 0 -i 32 -mb 8 -w 10 -ico "$HOME/.config/nwg-dock-hyprland/grid.svg" -g "wofi org.quickshell quickshell" -c "wofi --allow-images --normal-window --no-actions --show drun"'
+	)
 	-- TODO: do this better.
 	-- There's some race condition happening here where the `blueman-applet` depends on something else
 	-- initializing first in order to register itself as the auth agent. Might be the
@@ -165,6 +168,7 @@ hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/move-work
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/blueconnect.sh"))
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("$HOME/.config/waybar/scripts/power_menu.py"))
 hl.bind(mainMod .. " + H", hl.dsp.exec_cmd("firefox"))
+hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("pkill -RTMIN+1 -f '^nwg-dock-hyprland'"))
 
 hl.bind(
 	"Print",
@@ -339,6 +343,7 @@ local workspace_icons = {
 	["io.missioncenter.MissionCenter"] = " ",
 	["Slack"] = " ",
 	["Docker Desktop"] = " ",
+	["com.system76.keyboardconfigurator"] = " ",
 }
 
 -- Custom naming for each workspace based on the last active window:

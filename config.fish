@@ -31,24 +31,24 @@ if status is-interactive
     end
   else if type -q pfetch
     # I disabled "packages"
-    set PF_INFO "ascii title os host kernel uptime memory shell editor wm de palette"
+    set -gx PF_INFO "ascii title os host kernel uptime memory shell editor wm de palette"
     pfetch
   end
 end
 
 set -gx LESS "-miJXS"
 
-set EDITOR vi
+set -gx EDITOR vi
 if type -q nvim
-  set EDITOR nvim
+  set -gx EDITOR nvim
 else if type -q vim
-  set EDITOR vim
+  set -gx EDITOR vim
 end
 
 if type -q neovide
-  set VISUAL neovide
+  set -gx VISUAL neovide
 else
-  set VISUAL $EDITOR
+  set -gx VISUAL $EDITOR
 end
 alias v=$EDITOR
 alias vi=$EDITOR

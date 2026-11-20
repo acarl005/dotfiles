@@ -55,6 +55,14 @@ button {
     background-image: none;
 }
 
+#box button {
+    background-color: transparent;
+}
+
+#box button:hover {
+    background-color: @magenta;
+}
+
 button:hover {
     background-color: @magenta;
     background-image: none;
@@ -66,6 +74,12 @@ button:hover label {
 
 button:hover image {
     color: @activeFg;
+}
+
+button:focus,
+button:focus-visible {
+    border-color: @magenta;
+    outline-color: @magenta;
 }
 
 button:disabled {

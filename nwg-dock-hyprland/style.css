@@ -1,0 +1,138 @@
+@define-color magenta #bd5eff;
+@define-color red #ff6e5e;
+@define-color lavender #d08fff;
+@define-color brightRed #ff9a8f;
+
+@define-color base alpha(#000000, 0.1);
+@define-color surface alpha(#000000, 0.6);
+@define-color text #ffe8e5;
+@define-color activeBg @magenta;
+@define-color activeFg #000000;
+@define-color shadow alpha(@lavender, 0.25);
+
+window {
+  background-color: @surface;
+  border-radius: 999px;
+  border-style: none;
+  font-family:
+    InconsolataNerdFont,
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  font-weight: 900;
+  color: @text;
+}
+
+window.popup,
+menu,
+popover.background > contents,
+popover.menu > contents {
+  background-color: alpha(#000000, 0.8);
+  border-radius: 4px;
+  border: none;
+  box-shadow: 0px 0px 6px 3px @shadow inset;
+  color: @text;
+}
+
+menuitem,
+popover modelbutton {
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: @text;
+  text-shadow: 0px 0px 2px @red;
+}
+
+menuitem:hover,
+popover modelbutton:hover {
+  background-color: @activeBg;
+  color: @activeFg;
+  text-shadow: none;
+}
+
+menuitem label,
+popover modelbutton label {
+  color: @text;
+  text-shadow: 0px 0px 2px @red;
+}
+
+menuitem:hover label,
+popover modelbutton:hover label {
+  color: @activeFg;
+  text-shadow: none;
+}
+
+tooltip,
+tooltip.background {
+  opacity: 1;
+  background-color: alpha(#000000, 0.8);
+  border-radius: 8px;
+  border: none;
+  box-shadow: none;
+}
+
+tooltip label {
+  color: @text;
+  font-weight: 900;
+  text-shadow: 0px 0px 4px @red, 0px 0px 8px @brightRed;
+  padding: 2px 6px;
+}
+
+#box {
+  padding: 4px 10px;
+  background-color: @surface;
+  border-radius: 999px;
+  box-shadow: 0px 0px 6px 3px @shadow inset;
+}
+
+#active {
+  border-bottom: 2px solid @magenta;
+  border-radius: 8px;
+}
+
+box {
+  background: transparent;
+  box-shadow: none;
+}
+
+button,
+image {
+  background: transparent;
+  background-color: transparent;
+  background-image: none;
+  border-style: none;
+  box-shadow: none;
+  color: @text;
+}
+
+button {
+  padding: 3px;
+  margin: 0 2px;
+  border-radius: 8px;
+  color: @text;
+  font-size: 12px;
+  text-shadow: 0px 0px 2px @red;
+  transition:
+    all 50ms cubic-bezier(0.55, 0, 0.28, 1.682),
+    background-color 150ms ease-in-out;
+}
+
+button label {
+  color: @text;
+  text-shadow: 0px 0px 2px @red;
+}
+
+button:hover {
+  background-color: @activeBg;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+button:hover label {
+  color: @activeFg;
+  text-shadow: none;
+}
+
+button:focus {
+  box-shadow: none;
+}

@@ -30,16 +30,22 @@ ln -s "$DIR/qt" ~/.config/qt5ct
 ln -s "$DIR/qt" ~/.config/qt6ct
 [ -L ~/.config/quickshell ] && rm ~/.config/quickshell
 ln -s "$DIR/quickshell" ~/.config/quickshell
+[ -L ~/.config/nwg-dock-hyprland ] && rm ~/.config/nwg-dock-hyprland
+ln -s "$DIR/nwg-dock-hyprland" ~/.config/nwg-dock-hyprland
 
 mkdir -p ~/.local/share/applications
 ln -fs "$DIR/applications/nvim.desktop" ~/.local/share/applications/nvim.desktop
 
 sudo pacman -Syu kitty ghostty fish neovim man-pages man-db hyprland hyprpm hyprpaper hypridle hyprlock hyprcursor hyprpolkitagent waybar egl-wayland wl-clipboard \
-  xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk tmux thunar tumbler firefox htop powertop unzip wofi \
+  nwg-dock-hyprland xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk tmux thunar tumbler firefox htop powertop unzip wofi \
   eza ripgrep fd fzf tldr bat onefetch jq jless starship rustup git-delta ttf-inconsolata ttf-inconsolata-nerd yazi mpv vlc vlc-plugin-ffmpeg less \
   fastfetch greetd uwsm gnome-themes-extra swaync swayosd gvfs grim slurp blueman wiremix resvg socat python-pipx wf-recorder \
   noto-fonts-emoji adobe-source-han-sans-cn-fonts fcitx5 fcitx5-configtool fcitx5-chinese-addons keyd quickshell qt5ct qt6ct gnome-keyring libsecret
 
+# Prevent hyprpolkitagent from hitting start-limit-hit when the Wayland socket closes on logout
+mkdir -p ~/.config/systemd/user/hyprpolkitagent.service.d
+printf "[Unit]\nStartLimitIntervalSec=0\n\n[Service]\nRestartSec=2\n" > ~/.config/systemd/user/hyprpolkitagent.service.d/override.conf
+systemctl --user daemon-reload
 systemctl --user enable --now hyprpolkitagent.service
 systemctl --user enable --now gnome-keyring-daemon.socket
 
@@ -108,5 +114,24 @@ sudo mkdir -p /usr/share/sysc-greet/themes
 sudo cp -f "$DIR/sysc-greet/themes/cyberdream.toml" /usr/share/sysc-greet/themes/cyberdream.toml
 
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
-gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
 papirus-folders -C pink --theme Papirus-Dark
+
+# Build a 'cyberdream' icon theme: Papirus-Dark UI/folders + hicolor vendor app icons
+rm -rf ~/.local/share/icons/cyberdream
+mkdir -p ~/.local/share/icons/cyberdream
+sed -e 's/^Name=.*/Name=cyberdream/' -e 's/^Inherits=.*/Inherits=hicolor/' \
+  /usr/share/icons/Papirus-Dark/index.theme > ~/.local/share/icons/cyberdream/index.theme
+for dir in /usr/share/icons/Papirus-Dark/*/; do
+  name=$(basename "$dir")
+  case "$name" in
+    [0-9]*x*|scalable)
+      mkdir -p ~/.local/share/icons/cyberdream/"$name"
+      for sub in "$dir"*/; do
+        subname=$(basename "$sub")
+        [ "$subname" != "apps" ] && [ "$subname" != "categories" ] && [ "$subname" != "symbolic" ] && [ "$subname" != "symbolic-up-to-20" ] && \
+          ln -s "$sub" ~/.local/share/icons/cyberdream/"$name"/"$subname"
+      done
+      ;;
+  esac
+done
+gsettings set org.gnome.desktop.interface icon-theme 'cyberdream'
