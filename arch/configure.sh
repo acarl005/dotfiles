@@ -106,7 +106,7 @@ cd ~/src
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
-yay -S autojump bibata-cursor-theme-bin sysc-greet-hyprland papirus-icon-theme papirus-folders pipes-rs lavat-git
+yay -S autojump bibata-cursor-theme-bin sysc-greet-hyprland adwaita-colors-icon-theme pipes-rs lavat-git
 # lavat -g -c ff5ea0 -k bd5eff
 # pipes-rs -p 8 -c ansi
 
@@ -114,24 +114,4 @@ sudo mkdir -p /usr/share/sysc-greet/themes
 sudo cp -f "$DIR/sysc-greet/themes/cyberdream.toml" /usr/share/sysc-greet/themes/cyberdream.toml
 
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
-papirus-folders -C pink --theme Papirus-Dark
-
-# Build a 'cyberdream' icon theme: Papirus-Dark UI/folders + hicolor vendor app icons
-rm -rf ~/.local/share/icons/cyberdream
-mkdir -p ~/.local/share/icons/cyberdream
-sed -e 's/^Name=.*/Name=cyberdream/' -e 's/^Inherits=.*/Inherits=hicolor/' \
-  /usr/share/icons/Papirus-Dark/index.theme > ~/.local/share/icons/cyberdream/index.theme
-for dir in /usr/share/icons/Papirus-Dark/*/; do
-  name=$(basename "$dir")
-  case "$name" in
-    [0-9]*x*|scalable)
-      mkdir -p ~/.local/share/icons/cyberdream/"$name"
-      for sub in "$dir"*/; do
-        subname=$(basename "$sub")
-        [ "$subname" != "apps" ] && [ "$subname" != "categories" ] && [ "$subname" != "symbolic" ] && [ "$subname" != "symbolic-up-to-20" ] && \
-          ln -s "$sub" ~/.local/share/icons/cyberdream/"$name"/"$subname"
-      done
-      ;;
-  esac
-done
-gsettings set org.gnome.desktop.interface icon-theme 'cyberdream'
+gsettings set org.gnome.desktop.interface icon-theme 'Adwaita-pink'
