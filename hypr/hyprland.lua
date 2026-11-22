@@ -75,6 +75,7 @@ hl.config({
 		gaps_in = 5,
 		gaps_out = 10,
 		border_size = 1,
+		resize_on_border = true,
 
 		col = {
 			active_border = { colors = { "rgba(bd5effff)", "rgba(ff6e5eff)" }, angle = 45 },
@@ -312,6 +313,12 @@ hl.window_rule({
 	no_focus = true,
 })
 
+hl.layer_rule({
+	name = "dock-animation",
+	match = { namespace = "nwg-dock" },
+	animation = "slide bottom",
+})
+
 -----------------------
 --- WORKSPACE ICONS ---
 -----------------------
@@ -426,3 +433,79 @@ for _, event in ipairs({
 end
 
 update_all_workspaces()
+
+-----------------------
+--- DOCK VISIBILITY ---
+-----------------------
+
+-- Show nwg-dock-hyprland when the active workspace has no non-ignored windows,
+-- and hide it otherwise.
+local dock_visible = nil
+local dock_workspace = nil
+
+local function is_dock_ready()
+	return #hl.get_layers({ namespace = "hotspot" }) > 0 or #hl.get_layers({ namespace = "nwg-dock" }) > 0
+end
+
+local function workspace_has_windows(ws)
+	if not ws then
+		return false
+	end
+	for _, win in ipairs(ws:get_windows()) do
+		if not is_ignored_window(win) then
+			return true
+		end
+	end
+	return false
+end
+
+local function update_dock_visibility()
+	if not is_dock_ready() then
+		return
+	end
+
+	local ws = hl.get_active_workspace()
+	local special_ws = hl.get_active_special_workspace()
+	local should_show = not workspace_has_windows(ws) and not workspace_has_windows(special_ws)
+	local ws_id = ws and ws.id or nil
+
+	if should_show then
+		if not dock_visible or ws_id ~= dock_workspace then
+			dock_visible = true
+			dock_workspace = ws_id
+			hl.exec_cmd("pkill -RTMIN+2 -f '^nwg-dock-hyprland'")
+		end
+	elseif dock_visible ~= false then
+		dock_visible = false
+		dock_workspace = ws_id
+		hl.exec_cmd("pkill -RTMIN+3 -f '^nwg-dock-hyprland'")
+	end
+end
+
+hl.on("layer.opened", function(layer)
+	if layer and (layer.namespace == "hotspot" or layer.namespace == "nwg-dock") and dock_visible == nil then
+		update_dock_visibility()
+	end
+end)
+
+hl.on("layer.closed", function(layer)
+	if layer and (layer.namespace == "hotspot" or layer.namespace == "nwg-dock") and not is_dock_ready() then
+		dock_visible = nil
+		dock_workspace = nil
+	end
+end)
+
+for _, event in ipairs({
+	"workspace.active",
+	"workspace.special_active",
+	"monitor.focused",
+	"window.open",
+	"window.close",
+	"window.destroy",
+	"window.move_to_workspace",
+	"config.reloaded",
+}) do
+	hl.on(event, update_dock_visibility)
+end
+
+update_dock_visibility()
