@@ -11,24 +11,24 @@
 @define-color shadow alpha(@lavender, 0.25);
 
 * {
-    font-family: "Inconsolata Nerd Font";
+  font-family: "Inconsolata Nerd Font";
 }
 
 link {
-    color: @pink;
+  color: @pink;
 }
 
 window,
 dialog {
-    background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(0, 0, 0, 0.25);
 }
 
 .view {
-    background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .sidebar {
-    background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(0, 0, 0, 0.25);
 }
 
 toolbar,
@@ -37,203 +37,203 @@ menubar,
 .toolbar,
 .path-bar,
 .titlebar {
-    background-color: rgba(0, 0, 0, 0.25);
-    background-image: none;
+  background-color: rgba(0, 0, 0, 0.25);
+  background-image: none;
 }
 
 toolitem,
 entry {
-    background-color: rgba(40, 40, 40, 0.3);
+  background-color: rgba(40, 40, 40, 0.3);
 }
 
-infobar>revealer>box {
-    background-color: rgba(0, 0, 0, 0.5);
+infobar > revealer > box {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 button {
-    background-color: rgba(40, 40, 40, 0.5);
-    background-image: none;
+  background-color: rgba(40, 40, 40, 0.5);
+  background-image: none;
 }
 
 #box button {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 #box button:hover {
-    background-color: @magenta;
+  background-color: @magenta;
 }
 
 button:hover {
-    background-color: @magenta;
-    background-image: none;
+  background-color: @magenta;
+  background-image: none;
 }
 
 button:hover label {
-    color: @activeFg;
+  color: @activeFg;
 }
 
 button:hover image {
-    color: @activeFg;
+  color: @activeFg;
 }
 
 button:focus,
 button:focus-visible {
-    border-color: @magenta;
-    outline-color: @magenta;
+  border-color: @magenta;
+  outline-color: @magenta;
 }
 
 button:disabled {
-    background-color: rgba(0, 0, 0, 0.5);
-    background-image: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-image: none;
 }
 
 button label:disabled {
-    color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.3);
 }
 
 button.suggested-action {
-    border-color: @magenta;
+  border-color: @magenta;
 }
 
 button.suggested-action:disabled {
-    border-color: rgb(27, 27, 27);
+  border-color: rgb(27, 27, 27);
 }
 
 button.destructive-action {
-    background-color: @red;
+  background-color: @red;
 }
 
 button.destructive-action label {
-    color: @activeFg;
+  color: @activeFg;
 }
 
 button.destructive-action:hover {
-    background-color: @brightRed;
+  background-color: @brightRed;
 }
 
 button.destructive-action:focus {
-    border-color: @activeFg;
-    outline-color: @activeFg;
-    box-shadow: 0px 0px 6px 3px @brightRed;
+  border-color: @activeFg;
+  outline-color: @activeFg;
+  box-shadow: 0px 0px 6px 3px @brightRed;
 }
 
 toolitem,
 entry:focus {
-    box-shadow: 0px 0px 6px 3px @shadow inset;
+  box-shadow: 0px 0px 6px 3px @shadow inset;
 }
 
 list {
-    background-color: rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 0, 0, 0.15);
 }
 
 menubar menuitem:hover {
-    color: @magenta;
-    box-shadow: 0 -4px @magenta inset;
+  color: @magenta;
+  box-shadow: 0 -4px @magenta inset;
 }
 
 menu,
 popover,
 sheet,
-popover.menu>contents {
-    background-color: rgba(20, 20, 20, 0.75);
+popover.menu > contents {
+  background-color: rgba(20, 20, 20, 0.75);
 }
 
 popover modelbutton:hover {
-    background-color: @magenta;
+  background-color: @magenta;
 }
 
-popover modelbutton:hover>label {
-    color: @activeFg;
+popover modelbutton:hover > label {
+  color: @activeFg;
 }
 
 menu menuitem {
-    color: #e0e0e0;
+  color: #e0e0e0;
 }
 
 menu menuitem:hover,
 menu menuitem:focus,
 menu menuitem:selected {
-    background-color: @magenta;
-    color: @activeFg;
+  background-color: @magenta;
+  color: @activeFg;
 }
 
 menu menuitem:disabled {
-    color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.3);
 }
 
 .sidebar row:selected,
 .sidebar row:active {
-    background-color: @magenta;
-    color: @activeFg;
+  background-color: @magenta;
+  color: @activeFg;
 }
 
 .view:selected,
 .view row:selected,
 iconview:selected {
-    background-color: @magenta;
-    color: @activeFg;
+  background-color: @magenta;
+  color: @activeFg;
 }
 
 notebook header {
-    background-color: rgba(0, 0, 0, 0.25)
+  background-color: rgba(0, 0, 0, 0.25);
 }
 
 notebook header tab:hover {
-    background-color: @magenta;
+  background-color: @magenta;
 }
 
 notebook header tab:hover label {
-    color: @activeFg;
+  color: @activeFg;
 }
 
 notebook stack {
-    background-color: rgba(0, 0, 0, 0.35)
+  background-color: rgba(0, 0, 0, 0.35);
 }
 
 check:checked {
-    background-color: none;
-    background-image: none;
-    box-shadow: 0px 0px 6px 3px alpha(#d08fff, 0.25) inset;
-    border: solid 1px @activeFg;
+  background-color: none;
+  background-image: none;
+  box-shadow: 0px 0px 6px 3px alpha(#d08fff, 0.25) inset;
+  border: solid 1px @activeFg;
 }
 
 tab:checked {
-    box-shadow: 0 -4px @pink inset;
+  box-shadow: 0 -4px @pink inset;
 }
 
 radio:checked {
-    background-image: none;
-    box-shadow: 0px 0px 6px 3px alpha(#d08fff, 0.25) inset;
-    border: solid 1px @activeFg;
+  background-image: none;
+  box-shadow: 0px 0px 6px 3px alpha(#d08fff, 0.25) inset;
+  border: solid 1px @activeFg;
 }
 
 highlight {
-    background-color: @magenta;
+  background-color: @magenta;
 }
 
 switch {
-    border-radius: 12px;
-    background: none;
-    box-shadow: 0px 0px 6px 3px alpha(#d08fff, 0.25) inset;
-    border: none;
+  border-radius: 12px;
+  background: none;
+  box-shadow: 0px 0px 6px 3px alpha(#d08fff, 0.25) inset;
+  border: none;
 }
 
 switch:checked {
-    background: alpha(@magenta, 0.2);
+  background: alpha(@magenta, 0.2);
 }
 
 switch slider {
-    border-radius: 12px;
-    background: #333;
-    min-width: 16px;
-    min-height: 16px;
+  border-radius: 12px;
+  background: #333;
+  min-width: 16px;
+  min-height: 16px;
 }
 
 switch:checked slider {
-    background: #333;
+  background: #333;
 }
 
 popover.background,
 popover.menu {
-    background: none;
+  background: none;
 }

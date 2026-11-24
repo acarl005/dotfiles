@@ -9,15 +9,10 @@
   "reload_style_on_change": true,
   "include": [
     "~/.config/waybar/modules.jsonc",
-    "~/.config/waybar/hardware.jsonc"
+    "~/.config/waybar/hardware.jsonc",
   ],
-  "modules-left": [
-    "custom/appmenu",
-    "hyprland/window"
-  ],
-  "modules-center": [
-    "hyprland/workspaces"
-  ],
+  "modules-left": ["custom/appmenu", "hyprland/window"],
+  "modules-center": ["hyprland/workspaces"],
   "modules-right": [
     "custom/camera",
     "custom/recording",
@@ -25,6 +20,6 @@
     "bluetooth",
     "network",
     "wireplumber",
-    "clock"
-  ]
+    "clock",
+  ],
 }

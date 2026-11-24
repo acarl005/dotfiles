@@ -15,8 +15,10 @@
 
 tab {
   color: @text;
-  font-family: 'Inconsolata Nerd Font';
-  text-shadow: 0px 0px 4px @red, 0px 0px 8px @brightRed;
+  font-family: "Inconsolata Nerd Font";
+  text-shadow:
+    0px 0px 4px @red,
+    0px 0px 8px @brightRed;
 }
 
 tab:selected {

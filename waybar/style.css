@@ -14,12 +14,7 @@
   all: unset;
   font-size: 1rem;
   font-weight: 900;
-  font-family:
-    InconsolataNerdFont,
-    Roboto,
-    Helvetica,
-    Arial,
-    sans-serif;
+  font-family: InconsolataNerdFont, Roboto, Helvetica, Arial, sans-serif;
   background-clip: border-box;
   color: @text;
 }
@@ -66,7 +61,9 @@ window#waybar.empty #window {
 
 #window {
   margin-right: 8px;
-  text-shadow: 0px 0px 4px @red, 0px 0px 8px @brightRed;
+  text-shadow:
+    0px 0px 4px @red,
+    0px 0px 8px @brightRed;
 }
 
 #workspaces button {
@@ -100,7 +97,9 @@ window#waybar.empty #window {
 }
 
 #hardware {
-  text-shadow: 0px 0px 4px @red, 0px 0px 8px @brightRed;
+  text-shadow:
+    0px 0px 4px @red,
+    0px 0px 8px @brightRed;
 }
 
 #custom-camera,

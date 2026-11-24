@@ -19,12 +19,7 @@ window#osd #container {
 window#osd image,
 window#osd label {
   color: @foreground;
-  font-family:
-    InconsolataNerdFont,
-    Roboto,
-    Helvetica,
-    Arial,
-    sans-serif;
+  font-family: InconsolataNerdFont, Roboto, Helvetica, Arial, sans-serif;
   font-weight: 900;
 }
 

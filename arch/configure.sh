@@ -109,7 +109,7 @@ cd ~/src
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
-yay -S autojump bibata-cursor-theme-bin sysc-greet-hyprland adwaita-colors-icon-theme pipes-rs lavat-git
+yay -S autojump bibata-cursor-theme-bin sysc-greet-hyprland adwaita-colors-icon-theme pipes-rs lavat-git csakura
 # lavat -g -c ff5ea0 -k bd5eff
 # pipes-rs -p 8 -c ansi
 

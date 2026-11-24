@@ -11,12 +11,7 @@ window {
   margin: 0px;
   background-color: @surface;
   border-radius: 4px;
-  font-family:
-    InconsolataNerdFont,
-    Roboto,
-    Helvetica,
-    Arial,
-    sans-serif;
+  font-family: InconsolataNerdFont, Roboto, Helvetica, Arial, sans-serif;
 }
 
 #input {
@@ -66,7 +61,9 @@ window {
 
 #entry:selected #text {
   font-weight: bold;
-  text-shadow: 0px 0px 4px @red, 0px 0px 8px @brightRed;
+  text-shadow:
+    0px 0px 4px @red,
+    0px 0px 8px @brightRed;
 }
 
 #expander-box {

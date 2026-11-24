@@ -2,23 +2,23 @@
   "custom/appmenu": {
     "format": "󰣇",
     "tooltip-format": "Open the power menu",
-    "on-click": "$HOME/.config/waybar/scripts/power_menu.py"
+    "on-click": "$HOME/.config/waybar/scripts/power_menu.py",
   },
   "hyprland/window": {
     "rewrite": {
       "(.*) — Mozilla Firefox": "$1",
       "(.*) — Glide Browser": "$1",
       "(.*) - Google Chrome": "$1",
-      "(.*) - Cursor": "$1"
+      "(.*) - Cursor": "$1",
     },
-    "separate-outputs": true
+    "separate-outputs": true,
   },
   "hyprland/workspaces": {
     "on-click": "activate",
     "all-outputs": true,
     "format": "{name}",
     "persistent-workspaces": {
-      "*": 3
+      "*": 3,
     },
     "move-to-monitor": true,
     "window-rewrite": {
@@ -35,8 +35,8 @@
       "class<qdbusviewer>": " ",
       "class<mpv>": " ",
       "class<qvidcap>": " ",
-      "class<Audacity>": " "
-    }
+      "class<Audacity>": " ",
+    },
   },
   "network": {
     "format": "{ifname}",
@@ -49,7 +49,7 @@
     "tooltip-format-disconnected": "Disconnected",
     "max-length": 50,
     "interval": 1,
-    "on-click": "ghostty -e sh -c 'nmtui-go || nmtui'"
+    "on-click": "ghostty -e sh -c 'nmtui-go || nmtui'",
   },
   "bluetooth": {
     "format-off": "",
@@ -67,23 +67,19 @@
     "format": "{icon} {volume}%",
     "format-muted": " ",
     "on-click": "ghostty -e alsamixer",
-    "format-icons": [
-      "",
-      " ",
-      " "
-    ]
+    "format-icons": ["", " ", " "],
   },
   "custom/camera": {
     "exec": "fuser /dev/video* > /dev/null && echo on || true",
     "interval": 2,
-    "format": " "
+    "format": " ",
   },
   "custom/recording": {
     "exec": "pidof wf-recorder > /dev/null && echo '{\"text\": \" \", \"class\": \"active\"}' || echo '{}'",
     "return-type": "json",
     "interval": 1,
     "on-click": "killall -s SIGINT wf-recorder",
-    "format": "{}"
+    "format": "{}",
   },
   "clock": {
     "format-alt": "󰥔 {0:%H:%M:%S}",
@@ -92,8 +88,8 @@
     "tooltip-format": "{calendar}",
     "calendar": {
       "format": {
-        "today": "<span color='#ff6e5e'><b><u>{}</u></b></span>"
-      }
-    }
-  }
+        "today": "<span color='#ff6e5e'><b><u>{}</u></b></span>",
+      },
+    },
+  },
 }
