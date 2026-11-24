@@ -32,9 +32,12 @@ ln -s "$DIR/qt" ~/.config/qt6ct
 ln -s "$DIR/quickshell" ~/.config/quickshell
 [ -L ~/.config/nwg-dock-hyprland ] && rm ~/.config/nwg-dock-hyprland
 ln -s "$DIR/nwg-dock-hyprland" ~/.config/nwg-dock-hyprland
+[ -L ~/.config/wireplumber ] && rm ~/.config/wireplumber
+ln -s "$DIR/wireplumber" ~/.config/wireplumber
 
 mkdir -p ~/.local/share/applications
 ln -fs "$DIR/applications/nvim.desktop" ~/.local/share/applications/nvim.desktop
+ln -fs "$DIR/applications/hypr-cheatsheet.desktop" ~/.local/share/applications/hypr-cheatsheet.desktop
 
 sudo pacman -Syu kitty ghostty fish neovim man-pages man-db hyprland hyprpm hyprpaper hypridle hyprlock hyprcursor hyprpolkitagent waybar egl-wayland wl-clipboard \
   nwg-dock-hyprland xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-gtk tmux thunar tumbler firefox htop powertop unzip wofi \

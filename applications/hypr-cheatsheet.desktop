@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Hyprland Keybindings
+Comment=Toggle Hyprland keybindings cheatsheet (Super + /)
+Exec=sh -c "qs ipc -c cheatsheet call cheatsheet toggle || (qs -c cheatsheet -n -d && sleep 0.3 && qs ipc -c cheatsheet call cheatsheet toggle)"
+Terminal=false
+Icon=/home/andy/.config/nwg-dock-hyprland/cheatsheet.svg
+Categories=Utility;

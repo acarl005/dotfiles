@@ -90,19 +90,69 @@ Item {
             anchors.margins: root.cardPadding
             spacing: Math.max(4, Math.round(root.cardPadding * 0.6))
 
-            StyledText {
+            Item {
                 Layout.fillWidth: true
                 Layout.preferredHeight: root.headerHeight
                 Layout.alignment: Qt.AlignVCenter
-                text: (root.windowData?.title && `${root.windowData.title}`.trim().length > 0)
-                    ? root.windowData.title
-                    : (root.windowData?.class ?? "Window")
-                elide: Text.ElideRight
-                maximumLineCount: 1
-                font.family: Appearance.font.family.title
-                font.pixelSize: Math.max(11, Math.round(root.headerHeight * 0.56))
-                font.weight: root.isSelected ? Font.DemiBold : Font.Medium
-                color: root.isSelected ? Appearance.colors.colOnSecondaryContainer : Appearance.colors.colOnLayer1
+
+                StyledText {
+                    anchors.fill: parent
+                    visible: root.isSelected
+                    text: titleText.text
+                    elide: Text.ElideRight
+                    maximumLineCount: 1
+                    font: titleText.font
+                    color: "#ff9a8f"
+                    style: Text.Outline
+                    styleColor: "#ff9a8f"
+                    opacity: 0.45
+
+                    layer.enabled: root.isSelected
+                    layer.smooth: true
+                    layer.effect: MultiEffect {
+                        blurEnabled: true
+                        blur: 0.95
+                        blurMax: 42
+                        blurMultiplier: 0.4
+                        autoPaddingEnabled: true
+                    }
+                }
+
+                StyledText {
+                    anchors.fill: parent
+                    visible: root.isSelected
+                    text: titleText.text
+                    elide: Text.ElideRight
+                    maximumLineCount: 1
+                    font: titleText.font
+                    color: "#ff6e5e"
+                    style: Text.Outline
+                    styleColor: "#ff6e5e"
+                    opacity: 0.6
+
+                    layer.enabled: root.isSelected
+                    layer.smooth: true
+                    layer.effect: MultiEffect {
+                        blurEnabled: true
+                        blur: 0.75
+                        blurMax: 22
+                        autoPaddingEnabled: true
+                    }
+                }
+
+                StyledText {
+                    id: titleText
+                    anchors.fill: parent
+                    text: (root.windowData?.title && `${root.windowData.title}`.trim().length > 0)
+                        ? root.windowData.title
+                        : (root.windowData?.class ?? "Window")
+                    elide: Text.ElideRight
+                    maximumLineCount: 1
+                    font.family: Appearance.font.family.title
+                    font.pixelSize: Math.max(11, Math.round(root.headerHeight * 0.56))
+                    font.weight: root.isSelected ? Font.DemiBold : Font.Medium
+                    color: root.isSelected ? Appearance.colors.colOnSecondaryContainer : Appearance.colors.colOnLayer1
+                }
             }
 
             Item {

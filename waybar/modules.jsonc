@@ -61,7 +61,7 @@
     "tooltip-format-connected": "{num_connections} connected\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias} - {device_address}",
     "interval": 30,
-    "on-click": "$HOME/.config/hypr/scripts/blueconnect.sh",
+    "on-click": "blueman-manager",
   },
   "wireplumber": {
     "format": "{icon} {volume}%",
