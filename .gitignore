@@ -1,3 +1,4 @@
 *.swp
 nvim/lazy-lock.json
 gtk/bookmarks
+__pycache__
