@@ -79,7 +79,42 @@ sudo cp "$DIR/grub/space.jpg" /boot/grub
 sudo grub-mkfont -s 32 -o /boot/grub/fonts/Inconsolata32.pf2 /usr/share/fonts/TTF/Inconsolata-Regular.ttf
 sudo sh -c 'echo GRUB_BACKGROUND="/boot/grub/space.jpg" >> /etc/default/grub'
 sudo sh -c 'echo GRUB_FONT="/boot/grub/fonts/Inconsolata32.pf2" >> /etc/default/grub'
+
+if [ ! -f /swapfile ]; then
+  read -rp "Create a swapfile? [y/N] " create_swap
+  if [[ "$create_swap" =~ ^[Yy]([Ee][Ss])?$ ]]; then
+    ram_gb=$(awk '/MemTotal:/ {printf "%d", ($2 + 1048575) / 1048576}' /proc/meminfo)
+    read -rp "Swapfile size in GB (at least ${ram_gb}G needed to enable hibernation): " swap_gb
+    if [[ "$swap_gb" =~ ^[1-9][0-9]*$ ]]; then
+      sudo mkswap -U clear --size "${swap_gb}G" --file /swapfile
+      sudo swapon /swapfile
+      if ! grep -q '^/swapfile ' /etc/fstab; then
+        echo '/swapfile none swap defaults 0 0' | sudo tee -a /etc/fstab >/dev/null
+      fi
+      if (( swap_gb >= ram_gb )); then
+        read -rp "Configure GRUB resume parameters for hibernation? [y/N] " enable_resume
+        if [[ "$enable_resume" =~ ^[Yy]([Ee][Ss])?$ ]]; then
+          root_uuid=$(findmnt -no UUID -T /swapfile)
+          resume_offset=$(sudo filefrag -v /swapfile | awk '$1=="0:" {print substr($4, 1, length($4)-2)}')
+          if ! grep -q 'resume=' /etc/default/grub; then
+            sudo sed -i "s/^GRUB_CMDLINE_LINUX_DEFAULT=\"\(.*\)\"/GRUB_CMDLINE_LINUX_DEFAULT=\"\1 resume=UUID=${root_uuid} resume_offset=${resume_offset}\"/" /etc/default/grub
+          fi
+        fi
+      fi
+    else
+      echo "Invalid swapfile size '$swap_gb'; skipping swapfile creation."
+    fi
+  fi
+fi
+
 sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+if grep -q 'resume=' /etc/default/grub; then
+  sudo install -Dm644 "$DIR/systemd/sleep.conf.d/10-suspend-then-hibernate.conf" /etc/systemd/sleep.conf.d/10-suspend-then-hibernate.conf
+  if compgen -G "/sys/class/power_supply/BAT*" >/dev/null; then
+    sudo install -Dm644 "$DIR/systemd/logind.conf.d/10-lid.conf" /etc/systemd/logind.conf.d/10-lid.conf
+  fi
+fi
 
 if [ -d /sys/class/backlight/intel_backlight ] &&
    strings /sys/class/backlight/intel_backlight/device/edid 2>/dev/null | grep -q '^ATNA' &&
@@ -88,9 +123,15 @@ if [ -d /sys/class/backlight/intel_backlight ] &&
 fi
 
 if pacman -Qq nvidia-utils >/dev/null 2>&1; then
-  sudo cp -f "$DIR/nvidia/nvidia-pm.conf" /etc/modprobe.d/nvidia-pm.conf
-  sudo cp -f "$DIR/nvidia/80-nvidia-pm.rules" /etc/udev/rules.d/80-nvidia-pm.rules
-  sudo mkinitcpio -P
+  if compgen -G "/sys/class/power_supply/BAT*" >/dev/null; then
+    sudo cp -f "$DIR/nvidia/nvidia-pm.conf" /etc/modprobe.d/nvidia-pm.conf
+    sudo cp -f "$DIR/nvidia/80-nvidia-pm.rules" /etc/udev/rules.d/80-nvidia-pm.rules
+    sudo systemctl enable nvidia-suspend.service nvidia-resume.service
+    sudo mkinitcpio -P
+  fi
+  if grep -q 'resume=' /etc/default/grub; then
+    sudo systemctl enable nvidia-hibernate.service nvidia-resume.service
+  fi
 fi
 
 sudo systemctl enable --now blueman-mechanism.service
