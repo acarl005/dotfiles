@@ -87,9 +87,19 @@ if [ -d /sys/class/backlight/intel_backlight ] &&
   echo "NOTE: Samsung OLED panel detected on intel_backlight. Add 'i915.enable_dpcd_backlight=1' to GRUB_CMDLINE_LINUX_DEFAULT in /etc/default/grub and re-run grub-mkconfig."
 fi
 
+if pacman -Qq nvidia-utils >/dev/null 2>&1; then
+  sudo cp -f "$DIR/nvidia/nvidia-pm.conf" /etc/modprobe.d/nvidia-pm.conf
+  sudo cp -f "$DIR/nvidia/80-nvidia-pm.rules" /etc/udev/rules.d/80-nvidia-pm.rules
+  sudo mkinitcpio -P
+fi
+
 sudo systemctl enable --now blueman-mechanism.service
 sudo systemctl enable --now bluetooth
 sudo systemctl enable --now swayosd-libinput-backend.service
+sudo systemctl enable --now power-profiles-daemon.service
+if pacman -Qq thermald >/dev/null 2>&1; then
+  sudo systemctl enable --now thermald.service
+fi
 
 # I prefer to have systemd-resolved, rather than NetworkManager, handle hostnames since it supports mDNS out of the box.
 sudo systemctl enable --now systemd-resolved

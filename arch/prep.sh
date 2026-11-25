@@ -28,7 +28,9 @@ mkfs.fat -F 32 /dev/sda1
 mount /dev/sda2 /mnt
 
 pacstrap -K /mnt base base-devel linux linux-headers linux-firmware \
-  efibootmgr grub os-prober intel-media-driver mesa-utils nvidia-open nvidia-utils libva-nvidia-driver nvidia-prime bolt \
+  efibootmgr grub os-prober mesa-utils vulkan-mesa-layers libva-utils power-profiles-daemon bolt \
+  intel-ucode intel-media-driver vulkan-intel vpl-gpu-rt thermald \
+  nvidia-open nvidia-utils nvidia-prime libva-nvidia-driver \
   bluez bluez-utils networkmanager sof-firmware pipewire pipewire-pulse pipewire-jack pipewire-alsa alsa-utils pipewire-libcamera libcamera libcamera-ipa rtkit \
   vim sudo git make cmake curl gcc
 
