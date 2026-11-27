@@ -4,6 +4,7 @@ local M = {}
 
 local saved_builtin_spec = nil
 local display_sync_timer = nil
+local persistent_rules = {}
 
 local function is_lid_closed()
 	local f = io.open("/proc/acpi/button/lid/LID0/state", "r") or io.open("/proc/acpi/button/lid/LID/state", "r")
@@ -102,6 +103,21 @@ local function sync_lid_state()
 	return false
 end
 
+local function sync_persistent_workspaces(count)
+	for id = 1, count do
+		if not persistent_rules[id] then
+			persistent_rules[id] = hl.workspace_rule({ workspace = tostring(id), persistent = true })
+		else
+			persistent_rules[id]:set_enabled(true)
+		end
+	end
+	for id, rule in pairs(persistent_rules) do
+		if id > count then
+			rule:set_enabled(false)
+		end
+	end
+end
+
 function M.redistribute()
 	local monitors = get_active_monitors()
 	local n = #monitors
@@ -122,6 +138,8 @@ function M.redistribute()
 			n = #monitors
 		end
 	end
+
+	sync_persistent_workspaces(math.min(n * 3, 10))
 
 	local prev_ws = hl.get_active_workspace()
 	local prev_ws_id = prev_ws and prev_ws.id or nil
