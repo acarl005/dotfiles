@@ -116,6 +116,10 @@ if grep -q 'resume=' /etc/default/grub; then
   fi
 fi
 
+if [ -d /sys/module/hid_asus ]; then
+  sudo install -Dm755 "$DIR/systemd/system-sleep/hid-asus-reload" /usr/lib/systemd/system-sleep/hid-asus-reload
+fi
+
 if [ -d /sys/class/backlight/intel_backlight ] &&
    strings /sys/class/backlight/intel_backlight/device/edid 2>/dev/null | grep -q '^ATNA' &&
    ! grep -q 'i915.enable_dpcd_backlight=1' /etc/default/grub; then

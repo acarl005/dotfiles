@@ -1,0 +1,5 @@
+#!/bin/sh
+# Reload hid_asus on resume so ASUS N-Key Fn hotkeys recover after USB power loss/reset.
+if [ "$1" = "post" ] && [ -d /sys/module/hid_asus ]; then
+  /usr/bin/modprobe -r hid_asus && /usr/bin/modprobe hid_asus
+fi
