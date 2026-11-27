@@ -5,14 +5,12 @@
 -- See https://wiki.hypr.land/configuring/core/monitors/
 
 -- ASUS Zephyrus G16 display
-local builtin_monitor = {
+hl.monitor({
 	output = "desc:Samsung Display Corp. ATNA60DL01-0",
 	mode = "2560x1600",
 	position = "0x0",
 	scale = 1.6,
-	vrr = 2,
-	disabled = false,
-}
+})
 hl.monitor({
 	output = "desc:Samsung Electric Company LC27G7xT H4ZR501928",
 	mode = "2560x1440",
@@ -27,10 +25,8 @@ hl.monitor({
 })
 
 local displays = require("displays")
-displays.setup(builtin_monitor)
-
-local power = require("power")
-power.setup(builtin_monitor, "2560x1600@60")
+displays.setup()
+require("power").setup(displays.find_builtin)
 
 -----------------
 --- AUTOSTART ---
@@ -106,6 +102,7 @@ hl.config({
 	},
 
 	misc = {
+		vrr = 2,
 		force_default_wallpaper = 0,
 		disable_hyprland_logo = true,
 		disable_splash_rendering = true,

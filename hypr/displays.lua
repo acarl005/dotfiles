@@ -2,7 +2,7 @@
 
 local M = {}
 
-local builtin_monitor = nil
+local saved_builtin_spec = nil
 local display_sync_timer = nil
 
 local function is_lid_closed()
@@ -53,24 +53,38 @@ local function has_external_monitor()
 	return false
 end
 
-local function is_builtin_enabled()
-	for _, mon in ipairs(hl.get_monitors()) do
-		if is_real_monitor(mon) and is_builtin_monitor(mon) then
-			return true
+function M.find_builtin()
+	for _, mon in ipairs(hl.get_monitors({ all = true })) do
+		if mon and not mon.is_mirror and is_builtin_monitor(mon) then
+			return mon
 		end
 	end
-	return false
+	return nil
+end
+
+local function is_builtin_enabled()
+	local mon = M.find_builtin()
+	return mon ~= nil and mon.enabled ~= false
 end
 
 local function apply_builtin_monitor(enabled)
-	if not builtin_monitor then
+	local mon = M.find_builtin()
+	if not mon then
 		return
 	end
 	if enabled then
-		hl.monitor(builtin_monitor)
-	else
-		hl.monitor({ output = builtin_monitor.output, disabled = true })
+		hl.monitor(saved_builtin_spec or { output = mon.name, mode = "preferred", position = "auto", scale = "auto" })
+		return
 	end
+	if mon.enabled ~= false then
+		saved_builtin_spec = {
+			output = mon.name,
+			mode = string.format("%dx%d@%.0f", mon.width, mon.height, mon.refresh_rate),
+			position = string.format("%dx%d", mon.x, mon.y),
+			scale = mon.scale,
+		}
+	end
+	hl.monitor({ output = mon.name, disabled = true })
 end
 
 local function sync_lid_state()
@@ -169,11 +183,10 @@ function M.sync()
 	M.redistribute()
 end
 
-function M.setup(builtin_spec)
-	builtin_monitor = builtin_spec
-
-	-- Apply initial built-in monitor state without flicker on reload.
-	apply_builtin_monitor(not (is_lid_closed() and has_external_monitor()))
+function M.setup()
+	if is_lid_closed() and has_external_monitor() then
+		apply_builtin_monitor(false)
+	end
 
 	hl.bind("switch:on:Lid Switch", function()
 		if has_external_monitor() then
