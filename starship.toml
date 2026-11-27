@@ -93,7 +93,7 @@ style = "bg:#252525"
 format = " [](fg:#252525 bg:none)[$all_status$ahead_behind ]($style)[](fg:bright-purple bg:#252525)[ ](fg:#252525 bg:bright-purple)[](fg:bright-purple bg:none)"
 style = "bg:#252525"
 conflicted = "="
-ahead =	"⇡${count}"
+ahead = "⇡${count}"
 behind = "⇣${count}"
 diverged = "⇕⇡${ahead_count}⇣${behind_count}"
 up_to_date = "󰄸 "
@@ -113,7 +113,7 @@ format = "( [](fg:#252525 bg:none)([+$added ]($added_style))([-$deleted ]($de
 
 [git_state]
 rebase = "REBASING"
-merge =	"MERGING"
+merge = "MERGING"
 revert = "REVERTING"
 cherry_pick = "CHERRY-PICKING"
 bisect = "BISECTING"

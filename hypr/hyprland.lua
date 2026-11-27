@@ -7,10 +7,10 @@
 -- ASUS Zephyrus G16 display
 local builtin_monitor = {
 	output = "desc:Samsung Display Corp. ATNA60DL01-0",
-	mode = "2560x1600@240",
+	mode = "2560x1600",
 	position = "0x0",
 	scale = 1.6,
-	vrr = 1,
+	vrr = 2,
 	disabled = false,
 }
 hl.monitor({
@@ -29,6 +29,9 @@ hl.monitor({
 local displays = require("displays")
 displays.setup(builtin_monitor)
 
+local power = require("power")
+power.setup(builtin_monitor, "2560x1600@60")
+
 -----------------
 --- AUTOSTART ---
 -----------------
@@ -41,6 +44,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("waybar")
 	hl.exec_cmd("fcitx5")
 	hl.exec_cmd("hypridle")
+	hl.exec_cmd("$HOME/.config/hypr/scripts/upower-watch.sh")
 	hl.exec_cmd("swaync")
 	hl.exec_cmd("swayosd-server")
 	hl.exec_cmd("qs -c alt-tab")
